@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="external_layout_standard_custom_int_do">
+        <div class="header" t-att-style="report_header_style">
+            <!-- <div class="row">
+                <div class="col-3 mb4">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
+                </div>
+                <div class="col-9 text-right" style="margin-top:22px;" t-field="company.report_header" name="moto"/>
+            </div>
+            <div t-if="company.logo or company.report_header" class="row zero_min_height">
+                <div class="col-12">
+                    <div style="border-bottom: 1px solid black;"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6" name="company_address">
+                    <div t-field="company.partner_id"/>
+                </div>
+            </div> -->
+        </div>
+        <div class="article o_report_layout_standard"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <!-- <t t-call="web.address_layout"/> -->
+            <t t-raw="0"/>
+        </div>
+        <!-- <div class="footer o_standard_footer">
+            <div class="text-center" style="border-top: 1px solid black;">
+                <div t-if="report_type == 'pdf'">
+                    Halaman: <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+        </div> -->
+
+    </template>
+
+    <!-- Public api: layout to t-call from reports -->
+
+    <template id="external_layout_custom_int_do">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+
+        <t t-if="not company">
+            <!-- Multicompany -->
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+        <t t-call="vit_custom_report_picking.external_layout_standard_custom_int_do">
+            <t t-raw="0"/>                
+        </t>
+
+    </template>
+
+</odoo>

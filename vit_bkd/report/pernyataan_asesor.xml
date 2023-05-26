@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_pernyataan_asesor_menu" string="Vit - Pernyataan asesor"
+         model="vit.pernyataan_asesor" report_type="qweb-pdf" 
+         file="vit.pernyataan_asesor"  name="vit_bkd.vit_pernyataan_asesor_report" />
+
+        <!-- document template -->
+        <template id="vit_bkd.vit_pernyataan_asesor_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Pernyataan asesor: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Date</strong>
+                            <p class="m-0" t-field="doc.date" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Bkd</strong>
+                            <p class="m-0" t-field="doc.bkd_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Asesor1</strong>
+                            <p class="m-0" t-field="doc.asesor1_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Asesor2</strong>
+                            <p class="m-0" t-field="doc.asesor2_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_bkd.vit_pernyataan_asesor_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_bkd.vit_pernyataan_asesor_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

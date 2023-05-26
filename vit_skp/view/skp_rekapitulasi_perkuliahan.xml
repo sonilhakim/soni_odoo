@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_skp_rekapitulasi_perkuliahan_tree" model="ir.ui.view">
+            <field name="name">vit_skp_rekapitulasi_perkuliahan_tree</field>
+            <field name="model">vit.skp_rekapitulasi_perkuliahan</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Skp rekapitulasi perkuliahan">
+                    <field name="name" />
+                    <field name="sks" />
+                    <field name="sks_riil" />
+                    <field name="ak_10_sks_pertama" />
+                    <field name="ak_sks_berikutnya" />
+                    <field name="ak_jumlah" />
+                    <field name="skp_id" />
+                    <field name="semester_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_skp_rekapitulasi_perkuliahan_form" model="ir.ui.view">
+            <field name="name">vit_skp_rekapitulasi_perkuliahan_form</field>
+            <field name="model">vit.skp_rekapitulasi_perkuliahan</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Skp rekapitulasi perkuliahan">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Skp rekapitulasi perkuliahan Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="sks" />
+                                <field name="sks_riil" />
+                                <field name="ak_10_sks_pertama" />
+                                <field name="ak_sks_berikutnya" />
+                                <field name="ak_jumlah" />
+                            </group>
+                            <group>
+                                <field name="skp_id" />
+                                <field name="semester_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_skp_rekapitulasi_perkuliahan_search" model="ir.ui.view">
+            <field name="name">vit_skp_rekapitulasi_perkuliahan</field>
+            <field name="model">vit.skp_rekapitulasi_perkuliahan</field>
+            <field name="arch" type="xml">
+                <search string="Skp rekapitulasi perkuliahan">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Sks" name="filter_by_sks" domain="[('sks','=','')]" />
+                    <filter string="Sks riil" name="filter_by_sks_riil" domain="[('sks_riil','=','')]" />
+                    <filter string="Ak 10 sks pertama" name="filter_by_ak_10_sks_pertama" domain="[('ak_10_sks_pertama','=','')]" />
+                    <filter string="Ak sks berikutnya" name="filter_by_ak_sks_berikutnya" domain="[('ak_sks_berikutnya','=','')]" />
+                    <filter string="Ak jumlah" name="filter_by_ak_jumlah" domain="[('ak_jumlah','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="sks" select="True"/>
+                    <field name="sks_riil" select="True"/>
+                    <field name="ak_10_sks_pertama" select="True"/>
+                    <field name="ak_sks_berikutnya" select="True"/>
+                    <field name="ak_jumlah" select="True"/>
+                    <field name="skp_id" select="True"/>
+                    <field name="semester_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Skp" domain="[]" name="group_by_skp_id" context="{'group_by':'skp_id'}"/>
+                        <filter string="Semester" domain="[]" name="group_by_semester_id" context="{'group_by':'semester_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_skp_rekapitulasi_perkuliahan_kanban" model="ir.ui.view" >
+            <field name="name">vit_skp_rekapitulasi_perkuliahan</field>
+            <field name="model">vit.skp_rekapitulasi_perkuliahan</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="sks" />
+                    <field name="sks_riil" />
+                    <field name="ak_10_sks_pertama" />
+                    <field name="ak_sks_berikutnya" />
+                    <field name="ak_jumlah" />
+                    <field name="skp_id" />
+                    <field name="semester_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Skp</span> <field name="skp_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Semester</span> <field name="semester_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_skp_rekapitulasi_perkuliahan_graph" model="ir.ui.view">
+            <field name="name">vit_skp_rekapitulasi_perkuliahan</field>
+            <field name="model">vit.skp_rekapitulasi_perkuliahan</field>
+            <field name="arch" type="xml">
+                <graph string="Skp rekapitulasi perkuliahan" type="bar">
+                    <field name="skp_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_skp_rekapitulasi_perkuliahan" model="ir.actions.act_window">
+            <field name="name">Skp rekapitulasi perkuliahan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.skp_rekapitulasi_perkuliahan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Skp rekapitulasi perkuliahan
+                </p><p>
+                Click the Create button to add a new Skp rekapitulasi perkuliahan
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_skp_rekapitulasi_perkuliahan" name="Skp rekapitulasi perkuliahan" parent="vit_skp_config_menu" action="action_vit_skp_rekapitulasi_perkuliahan" sequence="210"/>
+    </data>
+</odoo>

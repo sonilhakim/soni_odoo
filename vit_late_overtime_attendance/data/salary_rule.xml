@@ -1,0 +1,197 @@
+<odoo>
+    <data  noupdate="1">
+        
+        <!--Overtime-->
+        
+        <record id="hr_rule_overtime1h" model="hr.salary.rule">
+            <field name="name">Lembur 1 Jam</field>
+            <field name="sequence" eval="50"/>
+            <field name="code">Overtime1h</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.Overtime1h.number_of_days > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.Overtime1h.number_of_days * contract.t_lembur_1h</field>
+        </record>
+        <record id="hr_rule_overtime1_5h" model="hr.salary.rule">
+            <field name="name">Lembur 1.5 Jam</field>
+            <field name="sequence" eval="51"/>
+            <field name="code">Overtime1_5h</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.Overtime1_5h.number_of_days > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.Overtime1_5h.number_of_days * contract.t_lembur_1_5h</field>
+        </record>
+        <record id="hr_rule_overtime2h" model="hr.salary.rule">
+            <field name="name">Lembur 2 Jam</field>
+            <field name="sequence" eval="52"/>
+            <field name="code">Overtime2h</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.Overtime2h.number_of_days > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.Overtime2h.number_of_days * contract.t_lembur_2h</field>
+        </record>
+        <record id="hr_rule_overtime2_5h" model="hr.salary.rule">
+            <field name="name">Lembur 2.5 Jam</field>
+            <field name="sequence" eval="53"/>
+            <field name="code">Overtime2_5h</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.Overtime2_5h.number_of_days > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.Overtime2_5h.number_of_days * contract.t_lembur_2_5h</field>
+        </record>
+        <record id="hr_rule_overtime3h" model="hr.salary.rule">
+            <field name="name">Lembur 3 Jam</field>
+            <field name="sequence" eval="54"/>
+            <field name="code">Overtime3h</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.Overtime3h.number_of_days > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.Overtime3h.number_of_days * contract.t_lembur_3h</field>
+        </record>
+        <record id="hr_rule_overtime3_5h" model="hr.salary.rule">
+            <field name="name">Lembur 3.5 Jam</field>
+            <field name="sequence" eval="55"/>
+            <field name="code">Overtime3_5h</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.Overtime3_5h.number_of_days > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.Overtime3_5h.number_of_days * contract.t_lembur_3_5h</field>
+        </record>
+        <record id="hr_rule_overtime4h" model="hr.salary.rule">
+            <field name="name">Lembur 4 Jam</field>
+            <field name="sequence" eval="56"/>
+            <field name="code">Overtime4h</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.Overtime4h.number_of_days > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.Overtime4h.number_of_days * contract.t_lembur_4h</field>
+        </record>
+        <record id="hr_rule_overtime4_5h" model="hr.salary.rule">
+            <field name="name">Lembur 4.5 Jam</field>
+            <field name="sequence" eval="57"/>
+            <field name="code">Overtime4_5h</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.Overtime4_5h.number_of_days > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.Overtime4_5h.number_of_days * contract.t_lembur_4_5h</field>
+        </record>
+        <record id="hr_rule_overtime5_7h" model="hr.salary.rule">
+            <field name="name">Lembur 5 - 7 Jam</field>
+            <field name="sequence" eval="58"/>
+            <field name="code">Overtime5_7h</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.Overtime5_7h.number_of_days > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.Overtime5_7h.number_of_days * contract.t_lembur_5_7h</field>
+        </record>
+        <record id="hr_rule_overtime2s" model="hr.salary.rule">
+            <field name="name">Lembur Double Shift</field>
+            <field name="sequence" eval="59"/>
+            <field name="code">Overtime2shift</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.Overtime2shift.number_of_days > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.Overtime2shift.number_of_days * contract.t_lembur_2s</field>
+        </record>
+
+        <!--Late-->
+        
+        <record id="hr_rule_late" model="hr.salary.rule">
+            <field name="name">Terlambat 5 Menit</field>
+            <field name="sequence" eval="116"/>
+            <field name="code">Late</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.Late.number_of_days > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -worked_days.Late.number_of_days * contract.potongan_tlmbt_5</field>
+        </record>
+
+        <record id="hr_rule_late2" model="hr.salary.rule">
+            <field name="name">Terlambat 10 Menit</field>
+            <field name="sequence" eval="117"/>
+            <field name="code">Late2</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.Late2.number_of_days > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -worked_days.Late2.number_of_days * contract.potongan_tlmbt_10</field>
+        </record>
+
+        <record id="hr_rule_late3" model="hr.salary.rule">
+            <field name="name">Terlambat 15 Menit</field>
+            <field name="sequence" eval="118"/>
+            <field name="code">Late3</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.Late3.number_of_days > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -worked_days.Late3.number_of_days * contract.potongan_tlmbt_15</field>
+        </record>
+
+        <record id="hr_rule_late4" model="hr.salary.rule">
+            <field name="name">Terlambat 20 Menit</field>
+            <field name="sequence" eval="119"/>
+            <field name="code">Late4</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.Late4.number_of_days > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -worked_days.Late4.number_of_days * contract.potongan_tlmbt_20</field>
+        </record>
+        
+
+
+        <!-- Salary Structure -->
+        <!-- <record model="hr.payroll.structure" id="general_salary_structure" >
+            <field name="name">General Salary Structure</field>
+            <field name="code">GSS</field>
+            <field name="parent_id" ref="hr_payroll.structure_base"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="[(6, 0, [ref('hr_rule_tunj_jabatan'), 
+            ref('hr_rule_tunj_makan'), 
+            ref('hr_rule_tunj_transport'),
+            ref('hr_rule_tunj_komunikasi'), 
+            ref('hr_rule_tunj_fungsional'),
+            ref('hr_rule_tunj_luar_kota'),
+            ref('hr_rule_tunj_kendaraan_dinas'),
+            ref('hr_rule_tunj_masa_kerja'),
+            ref('hr_rule_tunj_kost'),
+            ref('hr_rule_overtime'),
+            ref('hr_rule_overtime_day_off'),
+            ref('hr_rules_tunj_kemahalan'),
+            ref('hr_rule_overtime_meal'),
+            ref('hr_rules_thr'),
+            ref('hr_rules_bonus'),
+            ref('hr_rules_adjustment'),
+            ref('hr_rules_total_allowance'),
+            ref('hr_rule_ded_inhealth'),
+            ref('hr_rules_potongan_lain'),
+            ref('hr_rule_pot_sukarela'),
+            ref('hr_rule_ded_bpjs_jaminan_pensiun'),
+            ref('hr_rule_ded_premi_asuransi'),
+            ref('hr_rule_ded_bpjs_jht'), 
+            ref('hr_rule_zakat_profesi'),
+            ref('hr_rule_alpha'), 
+            ref('hr_rule_pot_makan'), 
+            ref('hr_rule_ded_bpjs_kesehatan'),
+            ref('hr_rules_iuran_wajib1'), 
+            ref('hr_rules_potongan_koperasi'), 
+            ref('hr_rules_total_deduction'),
+             ])]" name="rule_ids"/>
+        </record> -->
+
+
+
+    </data>
+</odoo>

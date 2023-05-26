@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_penerima_beasiswa_tree2" model="ir.ui.view">
+            <field name="name">vit_penerima_beasiswa_tree2</field>
+            <field name="model">vit.penerima_beasiswa</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_beasiswa.view_vit_penerima_beasiswa_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="Penerima beasiswa">
+                        <field name="name" />
+                        <field name="nama_siswa" />
+                        <field name="nomor_hp" />
+                        <field name="email" />
+                        <field name="nama_orang_tua" />
+                        <field name="nomor_hp_orang_tua" />
+                        <field name="alamat" />
+                        <field name="asal_sekolah" />
+                        <field name="nomor_rekening" />
+                        <field name="nama_bank" />
+                        <field name="institusi_id" />
+                        <field name="state" />
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_penerima_beasiswa_form2" model="ir.ui.view">
+            <field name="name">vit_penerima_beasiswa_form2</field>
+            <field name="model">vit.penerima_beasiswa</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_beasiswa.view_vit_penerima_beasiswa_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="replace">
+                    <header>
+                        <button string="Konfirmasi" type="object" name="action_confirm" states="draft" />
+                        <button string="Lolos Akademik" type="object" name="action_pass" states="open" groups="vit_beasiswa.group_beasiswa_manager"/>
+                        <button string="Lolos PTN" type="object" name="action_done" states="lolos_akademik" groups="vit_beasiswa.group_beasiswa_ptn"/>
+                        <button string="Tolak" type="object" name="action_reject" states="open" groups="vit_beasiswa.group_beasiswa_manager"/>
+                        <button string="Tolak" type="object" name="action_reject" states="lolos_akademik" groups="vit_beasiswa.group_beasiswa_ptn"/>
+                        <button string="Kembali ke Rancangan" type="object" name="action_draft" states="open" groups="vit_beasiswa.group_beasiswa_manager" />
+                        <button string="Kembali ke Rancangan" type="object" name="action_draft" states="lolos_akademik" groups="vit_beasiswa.group_beasiswa_ptn" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,lolos_akademik,done"/>
+                    </header>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='prestasi_akademik_ids']" position="replace">
+                    <field name="prestasi_akademik_ids">
+                        <tree string="Prestasi akademik">
+                            <field name="name" />
+                            <field name="tahun" />
+                            <field name="tingkat" />
+                            <field name="prestasi" />
+                        </tree>
+                        <form string="Prestasi akademik">
+                            <sheet>
+                                <div class="oe_button_box" name="button_box">
+                                    <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                        <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                        <!--field name="detail_ids" invisible="1"/-->
+                                    <!--/button-->
+                                </div>
+                                <div class="oe_title">
+                                    <label for="name" class="oe_edit_only" string="Prestasi akademik Name"/>
+                                    <h1><field name="name"/></h1>
+                                </div>
+                                <group>
+                                    <group>
+                                        <field name="tahun" />
+                                        <field name="tingkat" />
+                                        <field name="prestasi" />
+                                        <field name="upload_bukti" />
+                                    </group>
+                                </group>
+                                <notebook>
+                                </notebook>
+                            </sheet>
+                        </form>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+        <!-- search -->
+        <!-- <record id="view_vit_penerima_beasiswa_search" model="ir.ui.view">
+            <field name="name">vit_penerima_beasiswa</field>
+            <field name="model">vit.penerima_beasiswa</field>
+            <field name="inherit_id" ref=""/>
+            <field name="arch" type="xml">
+            </field>
+        </record> -->
+    </data>
+</odoo>

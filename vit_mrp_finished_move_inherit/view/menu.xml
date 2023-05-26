@@ -1,0 +1,147 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+
+        <record id="mrp_production_tree_view_fin" model="ir.ui.view">
+            <field name="name">mrp.production.tree.fin</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="replace">
+                    <field name="product_tmpl_id" string="Style"/>
+                </xpath>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="create">false</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="vit_mrp_production_fin" model="ir.ui.view">
+            <field name="name">mrp.production.fin.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[2]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[2]" position="after">
+                    <page string="Finished Products" attrs="{'invisible': [('boq_po_line_id', '=', False)]}">
+                        <field name="move_finished_ids">
+                        	<tree string="Finished Products">
+	                        	<field name="product_id" />
+			                    <field name="product_uom_qty" string="Qty" sum="total_qty"/>
+			                    <field name="product_uom" options="{'no_open': True, 'no_create': True}" string="Unit of Measure"/>
+			                    <field name="state" invisible="1"/>
+			                </tree>
+                            <form string="Finished Products">
+                                <group>
+                                    <group>
+                                        <field name="product_id" />
+                                    </group>
+                                    <group>
+                                        <field name="product_uom_qty" string="Qty"/>
+                                        <field name="product_uom" options="{'no_open': True, 'no_create': True}" string="Unit of Measure"/>
+                                    </group>
+                                </group>
+                                <notebook>
+                                    <page string="Finished Products Lines">
+                                        <field name="move_line_ids">
+                                            <tree default_order="done_move" create="0" delete="0" decoration-muted="state in ('done', 'cancel')">
+                                                <field name="product_id" readonly="1"/>
+                                                <field name="lot_id" groups="stock.group_production_lot" domain="[('product_id', '=', product_id)]" context="{'default_product_id': product_id}" attrs="{'invisible': [('lots_visible', '=', False)]}"/>
+                                                <field name="product_uom_qty"/>
+                                                <field name="product_uom_id" groups="uom.group_uom"/>
+                                                <field name="lots_visible" invisible="1"/>
+                                                <field name="done_move" invisible="1"/>
+                                                <field name="is_worksheet" invisible="1"/>
+                                                <field name="state" invisible="1"/>
+                                            </tree>
+                                        </field>
+                                    </page>
+                                </notebook>
+                            </form>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_production_workorder_tree_view_inherit_fin">
+            <field name="name">mrp.production.work.order.tree.fin</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_view_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="replace">
+                    <field name="product_tmpl_id"/>
+                </xpath>
+                <xpath expr="//field[@name='qty_production']" position="after">
+                    <field name="qty_sisa"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_production_workorder_form_view_inherit_fin">
+            <field name="name">mrp.production.work.order.form.fin</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='record_production']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', '|', '|', '|', ('is_produced', '=', True), ('working_state', '=', 'blocked'), ('state', '!=', 'progress'), ('is_user_working', '=', False), ('next_work_order_id', '=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='record_production']" position="after">
+                    <button name="button_complete" type="object" string="Done" attrs="{'invisible': ['|', '|', '|', '|', '|', ('is_produced', '=', True), ('working_state', '=', 'blocked'), ('state', '!=', 'progress'), ('is_user_working', '=', False), ('next_work_order_id', '!=', False)]}" class="btn-success"/>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="replace">
+                    <field name="product_tmpl_id" string="To Produce"/>
+                    <field name="product_id" invisible="1"/>
+                </xpath>
+                <!-- <xpath expr="//field[@name='final_lot_id']" position="after">
+                    <field name="complete" attrs="{'invisible': [('next_work_order_id', '!=', False)]}"/>
+                </xpath> -->
+                <xpath expr="//field[@name='final_lot_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='qty_producing']" position="after">
+                    <field name="qty_uncomplete" string="Current Qty" attrs="{'invisible': [ ('done_by', '!=', 'scan_qa')]}"/>
+                    <field name="qty_cek_qa" attrs="{'invisible': [ ('done_by', '!=', 'scan_qa')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- lot_ids -->
+        <record id="finish_lots_workorder_form" model="ir.ui.view">
+            <field name="name">finish_lots_workorder.form</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="vit_workorder_lot.numbering_lots_workorder_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_ids']/tree" position="attributes">
+                    <attribute name="decoration-success">status_complete != 'onprogress'</attribute>
+                </xpath>
+                <xpath expr="//field[@name='lot_ids']/tree/field[@name='spec_type']" position="after">
+                    <field name="status_complete" invisible="0"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- workorder_history -->
+        <record id="mrp_workorder_history_view_line_form_fm" model="ir.ui.view">
+            <field name="name">mrp.workorder.history.view.form.fm</field>
+            <field name="model">mrp.workorder.history</field>
+            <field name="inherit_id" ref="vit_workorder.mrp_workorder_history_view_line_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Items History">
+                        <field name="item_ids">
+                            <tree string="Lots History">
+                                <field name="lot_id" string="Serial Number" readonly="1"/>
+                                <field name="product_id" readonly="1"/>
+                                <field name="pengukuran_karyawan" string="Karyawan" readonly="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        
+   </data>
+</odoo>

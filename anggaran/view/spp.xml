@@ -1,0 +1,208 @@
+<odoo>
+    <data>
+        <!-- SPP from -->
+        <record id="view_spp_form" model="ir.ui.view">
+            <field name="name">anggaran_spp_form</field>
+            <field name="model">anggaran.spp</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="spp form" >
+                    <header>
+                        <button string="Kirim Persetujuan" type="object" name="action_confirm" 
+                             class="oe_highlight" states="draft" />
+
+                        <button string="Setuju" type="object" name="action_done" 
+                             class="oe_highlight" states="open" />
+
+                        <button string="Cancel" type="object" name="action_draft"
+                              states="open" />
+
+                        <button string="Tolak" type="object" name="action_reject"
+                              states="open" />
+
+                        <button string="Catat Pencairan" type="object" name="action_create_spm"
+                             class="oe_highlight"
+                             attrs="{'invisible': ['|', ('spm_exists', '=', True), ('state','&lt;&gt;','done')]}" />
+
+                        <button string="View Pencairan" type="object" name="action_view_spm"
+                             attrs="{'invisible': ['|', ('spm_exists', '=', False), ('state','&lt;&gt;','done')]}" />
+
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" 
+                                 string="Nomor" />
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+                        <group>
+                           
+                            <group>
+                                <field name="tanggal"/>       
+
+                                <field name="unit_id" string='SUBSATKER'/>       
+                                <field name="nomor_rek"/>       
+                                <field name="nama_bank"/>  
+
+                                <field name="tahun_id" required="1"/>       
+                                <field name="period_id"/>       
+                                <field name="rka_id" domain="[('unit_id','=',unit_id),('tahun','=',tahun_id),('state','=','done')]" />
+
+                            </group>
+                            <group>  
+                                <field name="kepada"/>
+                                <field name="cara_bayar"/>       
+                                <field name="keperluan"/>       
+                            </group>
+                                                        
+                        </group>
+
+                        <notebook>
+
+                            <page string="Rincian Penjelasan">
+                                <field name="spp_line_ids">
+                                    <tree string="Rincian Penjelasan">
+                                        <field name="rka_kegiatan_id" />  
+                                        <field name="pagu" />   
+                                        <field name="spp_lalu" string="Realisasi sd yg Lalu"/>     
+                                        <field name="spp_ini" string="Realisasi ini"/>
+                                        <field name="jumlah_spp" string="Jumlah Realisasi"/>
+                                        <field name="sisa_dana" />      
+                                    </tree>
+                                </field>
+                                <group colspan="4">
+                                    <field name="jumlah"/>       
+                                </group>
+
+                            </page>
+                            
+                            <page string="Persetujuan">
+                                <group>
+                                    <group>
+                                        <field name="pumkc_id" string="Petugas Keuangan"/>       
+                                        <field name="nip_pumkc" string="NIP Petugas Keuangan"/>       
+                                    </group>
+                                    <group>
+                                        <field name="atasan_pumkc_id" string="Atasan Petugas Keuangan"/>       
+                                        <field name="nip_atasan_pumkc" string="NIP Atasan Petugas Keuangan"/>       
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Other Info">
+                                <group>
+                                    <field name="spm_exists" string="Rencana Realisasi Pencairan Sudah Tercatat"/>      
+                                </group>
+                            </page>
+
+                        </notebook>                     
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- SPP line tree -->
+        <record id="view_spp_tree" model="ir.ui.view">
+            <field name="name">anggaran_spp_tree</field>
+            <field name="model">anggaran.spp</field>
+            <field name="arch" type="xml">
+                <tree string="list spp" colors="grey:state=='done'; blue:state=='draft'">
+                    <field name="name"/>
+                    <field name="tanggal"/>         
+                    <field name="jumlah"/>       
+                    <field name="keperluan"/>       
+                    <field name="unit_id" string='SUBSATKER'/>       
+                    <field name="nomor_rek"/>       
+                    <field name="nama_bank"/>                           
+                    <field name="spm_exists" string="Rencana Realisasi Pencairan Sudah Tercatat"/>
+                    <field name="state"/>                           
+                </tree>    
+            </field>
+        </record>
+
+
+        <!-- SPP Line from -->
+        <record id="view_spp_line_form" model="ir.ui.view">
+            <field name="name">anggaran_spp_line_form</field>
+            <field name="model">anggaran.spp_line</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="spp_line form" >
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" 
+                             string="Kegiatan" />
+                        <h1>
+                            <field name='rka_kegiatan_id' domain="[('rka_id','=', parent.rka_id)]"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name='pagu'/>    
+                            <field name='spp_lalu' string="Realisasi sd yg Lalu"/>
+                            <field name='spp_ini' string="Realisasi ini"/>
+                        </group>
+                        <group>
+                            <field name='jumlah_spp' string="Jumlah Realisasi"/>
+                            <field name='sisa_dana'/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Rincian MAK">
+                            <field name="spp_line_mak_ids">
+                                <tree string="Rincian MAK" editable="bottom">
+                                    <field name='rka_coa_id' 
+                                        domain="[('rka_kegiatan_id','=',parent.rka_kegiatan_id)]"/>
+                                    <field name='pagu'/>
+                                    <field name='spp_lalu' string="Realisasi sd yg Lalu"/>
+                                    <field name='spp_ini' string="Realisasi ini"/>
+                                    <field name='jumlah_spp' string="Jumlah Realisasi"/>
+                                    <field name='sisa_dana'/>                       
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <!-- SPP MAK tree -->
+        <record id="view_spp_line_mak_tree" model="ir.ui.view">
+            <field name="name">anggaran_spp_line_mak_tree</field>
+            <field name="model">anggaran.spp_line_mak</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="spp_line_mak tree" create="false">
+                    <field name="rka_coa_id"/>
+                    <field name="pagu"/>
+                    <field name="jumlah_spp"/>
+                </tree>
+            </field>
+        </record>
+        <!-- SPP MAK from -->
+        <record id="view_spp_line_mak_form" model="ir.ui.view">
+            <field name="name">anggaran_spp_line_mak_form</field>
+            <field name="model">anggaran.spp_line_mak</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="spp_line_mak form" create="false" edit="false">
+                    <group>
+                        <group>
+                            <field name='spp_line_id'/>
+                            <field name='pagu'/>
+                            <field name='spp_lalu' string="Realisasi sd yg Lalu"/>
+                            <field name='spp_ini' string="Realisasi ini"/>
+                        </group>
+                        <group>
+                            <field name='rka_kegiatan_id' invisible='1'/>
+                            <field name='rka_coa_id' domain="[('rka_kegiatan_id','=',rka_kegiatan_id)]"/>
+                            <field name='jumlah_spp' string="Jumlah Realisasi"/>
+                            <field name='sisa_dana'/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

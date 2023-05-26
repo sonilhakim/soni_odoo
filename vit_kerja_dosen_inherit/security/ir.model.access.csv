@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_user_vit_sertifikasi_dosen,access_user_vit_sertifikasi_dosen,model_vit_sertifikasi_dosen,vit_kerja_dosen.group_kerja dosen_user,1,0,0,0
+access_manager_vit_sertifikasi_dosen,access_manager_vit_sertifikasi_dosen,model_vit_sertifikasi_dosen,vit_kerja_dosen.group_kerja dosen_manager,1,1,1,1
+access_admin_vit_sertifikasi_dosen,access_admin_vit_sertifikasi_dosen,model_vit_sertifikasi_dosen,base.group_system,1,1,1,1
+access_user_vit_kerja_dosen,access_user_vit_kerja_dosen,model_vit_kerja_dosen,vit_kerja_dosen.group_kerja dosen_user,1,0,0,0
+access_manager_vit_kerja_dosen,access_manager_vit_kerja_dosen,model_vit_kerja_dosen,vit_kerja_dosen.group_kerja dosen_manager,1,1,1,1
+access_admin_vit_kerja_dosen,access_admin_vit_kerja_dosen,model_vit_kerja_dosen,base.group_system,1,1,1,1

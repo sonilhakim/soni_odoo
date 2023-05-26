@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+        <menuitem id="purchase_report_cus" name="Reporting" parent="purchase.menu_purchase_root" sequence="99"
+        groups="purchase.group_purchase_manager" action=""/>
+
+        <menuitem id="purchase.purchase_report" name="Reporting" parent="vit_report_purchase.purchase_report_cus" sequence="10"
+        groups="purchase.group_purchase_manager" action="purchase.action_purchase_order_report_all"/>
+        
+    </data>
+</odoo>

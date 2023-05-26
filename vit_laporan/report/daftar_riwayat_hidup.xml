@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_daftar_riwayat_hidup_menu" string="Vit - Daftar riwayat hidup"
+         model="vit.daftar_riwayat_hidup" report_type="qweb-pdf" 
+         file="vit.daftar_riwayat_hidup"  name="vit_laporan.vit_daftar_riwayat_hidup_report" />
+
+        <!-- document template -->
+        <template id="vit_laporan.vit_daftar_riwayat_hidup_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Daftar riwayat hidup: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Golongan</strong>
+                            <p class="m-0" t-field="doc.golongan_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Fakultas</strong>
+                            <p class="m-0" t-field="doc.fakultas_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Matra</strong>
+                            <p class="m-0" t-field="doc.matra_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jabatn</strong>
+                            <p class="m-0" t-field="doc.jabatn_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Detail</h2>
+                <table class="table table-sm o_main_table" name="detail_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Nip</td>
+                            <td>Tgl lahir</td>
+                            <td>Tmp lahir</td>
+                            <td>Riwayat hidup</td>
+                        </tr>
+                    </thead>
+                    <tbody class="detail_ids_tbody">
+                        <tr t-foreach="doc.detail_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.nip" /></td>
+                            <td><span t-field="line.tgl_lahir" /></td>
+                            <td><span t-field="line.tmp_lahir" /></td>
+                            <td><span t-field="line.riwayat_hidup_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_laporan.vit_daftar_riwayat_hidup_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_laporan.vit_daftar_riwayat_hidup_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

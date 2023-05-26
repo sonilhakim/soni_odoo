@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.setup.aset</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="120"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Set Up Aset" string="Set Up Aset" data-key="vit_pengelolaan_asset_setup" groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager">
+                    <h2>Lokasi Aset</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="aset_location"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="aset_location"/>
+                                <div class="text-muted">
+                                    Konfigurasi Lokasi Aset
+                                </div>
+                                <div class="content-group" attrs="{'invisible': [('aset_location','=',False)]}">
+                                    <div class="mt16">
+                                        <button name="%(vit_asset.act_open_vit_location_view)d" icon="fa-arrow-right" type="action" string="Lokasi" class="btn-link"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Jenis Dan Kelompok Aset</h2>
+                    <div class="row mt16 o_settings_container">                        
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="aset_category"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="aset_category"/>
+                                <div class="text-muted">
+                                    Setting Jenis Aset.
+                                </div>
+                                <div class="content-group" attrs="{'invisible': [('aset_category' ,'=', False)]}">
+                                    <button name="%(vit_pengelolaan_asset_setup.action_account_jenis_asset)d" icon="fa-arrow-right" type="action" string="Jenis Aset" class="btn-link"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="aset_kelompok"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="aset_kelompok"/>
+                                <div class="text-muted">
+                                    Setting Kelompok Aset
+                                </div>
+                                <div class="content-group" attrs="{'invisible': [('aset_kelompok' ,'=', False)]}">
+                                    <button name="%(vit_pengelolaan_asset_setup.action_account_jenis_asset)d" icon="fa-arrow-right" type="action" string="Kelompok Aset" class="btn-link"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                    <h2>Satuan Aset</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="aset_satuan"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="aset_satuan"/>
+                                <div class="text-muted">
+                                    Konfigurasi Satuan Aset
+                                </div>
+                                <div class="content-group" attrs="{'invisible': [('aset_satuan','=',False)]}">
+                                    <div class="mt16">
+                                        <button name="%(vit_pengelolaan_asset_setup.product_satuan_form_action)d" icon="fa-arrow-right" type="action" string="Satuan Aset" class="btn-link"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Pengadaan Aset</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="aset_pengadaan"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="aset_pengadaan"/>
+                                <div class="text-muted">
+                                    Konfigurasi Cara Pengadaan Aset
+                                </div>
+                                <div class="content-group" attrs="{'invisible': [('aset_pengadaan','=',False)]}">
+                                    <div class="mt16">
+                                        <button name="%(vit_cara_pengadaan.action_vit_cara_pengadaan)d" icon="fa-arrow-right" type="action" string="Cara Pengadaan" class="btn-link"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_setup_aset_config_settings" model="ir.actions.act_window">
+        <field name="name">Set Up</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <!-- <field name="view_id" ref="res_config_settings_view_form"/> -->
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'vit_pengelolaan_asset_setup'}</field>
+    </record>
+
+    <menuitem id="menu_setup_aset"
+        name="Set Up"
+        parent="vit_aset_setup_root"
+        sequence="100"
+        action="action_setup_aset_config_settings"
+        groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+
+</odoo>

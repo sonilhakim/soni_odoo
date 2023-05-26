@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>        
+        <record id="view_vit_pernyataan_asesor_tree2" model="ir.ui.view">
+            <field name="name">vit_pernyataan_asesor_tree2</field>
+            <field name="model">vit.pernyataan_asesor</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_pernyataan_asesor_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="Pernyataan asesor">
+                        <field name="name" />
+                        <field name="date" />                        
+                        <field name="bkd_id" />
+                        <field name="asesor1_id" />
+                        <field name="asesor2_id" />
+                        <field name="state" />
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_pernyataan_asesor_form2" model="ir.ui.view">
+            <field name="name">vit_pernyataan_asesor_form2</field>
+            <field name="model">vit.pernyataan_asesor</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_pernyataan_asesor_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="action_done" position="attributes" >
+                    <attribute name="string">Disetujui</attribute>
+                </button>
+                <xpath expr="//group" position="replace">
+                    <group>
+                        <group>
+                            <field name="date" />
+                            <field name="bkd_id" domain="[('state','=','open')]"/>
+                        </group>
+                        <group>                            
+                            <field name="asesor1_id" />
+                            <field name="asesor2_id" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Pernyataan">
+                            <field name="pernyataan"/>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

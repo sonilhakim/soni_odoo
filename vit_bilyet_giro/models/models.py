@@ -12,34 +12,6 @@ STATES = [('draft', 'Draft'), ('open', 'Open'),
 
 class vit_bilyet_giro(models.Model):
 	_name = "vit.vit_bilyet_giro"
-	_inherit = ['portal.mixin', 'mail.thread', 'mail.activity.mixin']
-
-
-	def post_mesages_giro(self):
-		# import pdb;pdb.set_trace();
-		ir_model_data_sudo = self.env['ir.model.data'].sudo()
-
-		user    = ir_model_data_sudo.get_object('vit_bilyet_giro', 'group_user')
-		manager = ir_model_data_sudo.get_object('vit_bilyet_giro', 'group_manager')
-		billing = ir_model_data_sudo.get_object('account', 'group_account_invoice')
-
-		user_partner_ids     = user.users.mapped('partner_id')
-		manager_partner_ids  = manager.users.mapped('partner_id')
-		bill_partner_ids = billing.users.mapped('partner_id.id')
-
-		user_partners    =  user_partner_ids.ids
-		manager_partners =  manager_partner_ids.ids
-		bill_partners    =  bill_partner_ids
-
-		receivers = user_partners + manager_partners + bill_partners
-
-		subject = _("Bilyet Giro")
-		body = _('Giro %s Closed, journal payment %s were created.') % (self.name, self.payment_id.name,)
-		messages = self.message_post(body=body, subject=subject)
-		messages.update({'needaction_partner_ids' : [(6, 0, list(set(receivers)))]})
-
-		
-		return True
 
 	def _invoice_names(self):
 		# results = {}
@@ -59,7 +31,8 @@ class vit_bilyet_giro(models.Model):
 								   'draft': [('readonly', False)]})
 	submit_date = fields.Date(string="Submit Date", readonly=True, states={
 								   'draft': [('readonly', False)]})
-	clearing_date = fields.Datetime(string="Clearing Date", readonly=True,)
+	clearing_date = fields.Datetime(string="Clearing Date", readonly=True, states={
+									'draft': [('readonly', True)]})
 	amount = fields.Float(string="Amount", readonly=True, states={
 						  'draft': [('readonly', False)]})
 	amount_difference = fields.Float(string="Amount Difference", compute="_cek_total",)
@@ -67,7 +40,6 @@ class vit_bilyet_giro(models.Model):
 								 'draft': [('readonly', False)]})
 	journal_id = fields.Many2one(comodel_name="account.journal", string="Bank Journal", domain=[
 								 ('type', '=', 'bank')], readonly=True, states={'draft': [('readonly', False)]})
-	payment_id = fields.Many2one(comodel_name="account.payment", string="Payment", readonly=True)
 	giro_invoice_ids = fields.One2many(comodel_name="vit.giro_invoice", inverse_name="giro_id", required=True, readonly=True, states={
 									   'draft': [('readonly', False)]})
 	invoice_names = fields.Char(compute="_invoice_names", string="Allocated Invoices")
@@ -77,7 +49,6 @@ class vit_bilyet_giro(models.Model):
 							   'draft': [('readonly', False)]})
 	state = fields.Selection(string="State", selection=STATES,
 							 required=True, readonly=True, default=STATES[0][0])
-	user_id = fields.Many2one("res.users", string="User", default=lambda self: self.env.user)
 	param_id = fields.Many2one(comodel_name="vit.vit_config_giro", string="Submit Term")
 	_sql_constraints = [('name_uniq', 'unique(name)',
 						 _('Nomor Giro tidak boleh sama!'))]
@@ -176,12 +147,12 @@ class vit_bilyet_giro(models.Model):
 			if giro.type == 'payment':
 				pay_type = 'outbound'
 				partner_type = 'supplier'
-				# payment_method = giro.journal_id.outbound_payment_method_ids.id
+				payment_method = giro.journal_id.outbound_payment_method_ids.id
 			#receive customer
 			else:
 				pay_type = 'inbound'
 				partner_type = 'customer'
-				# payment_method = giro.journal_id.inbound_payment_method_ids.id
+				payment_method = giro.journal_id.inbound_payment_method_ids.id
 
 			payment_id = payment.create({
 				'payment_type': pay_type,
@@ -189,17 +160,14 @@ class vit_bilyet_giro(models.Model):
 				'partner_type': partner_type,
 				'journal_id': giro.journal_id.id,
 				'amount': giro.amount,
-				'communication': 'Payment giro ' + giro.name,
+				'communication': 'Payment giro ' + self.name,
 				'company_id': company_id,
-				'payment_method_id': 1,
+				'payment_method_id': payment_method,
 
 			})
 			# import pdb; pdb.set_trace()
 			payment.browse(payment_id.id).post()
-			giro.write({'state': STATES[2][0], 'clearing_date': time.strftime("%Y-%m-%d %H:%M:%S"), 'payment_id': payment_id.id})
-			giro.post_mesages_giro()
-			# messages = giro.message_post(body=_('Giro %s Closed, journal payment %s were created.') % (self.name, self.payment_id.name,))
-			# messages.update({'needaction_partner_ids' : [(6, 0, [self.user_id.partner_id.id])]})
+			self.write({'state': STATES[2][0], 'clearing_date': time.strftime("%Y-%m-%d %H:%M:%S")})
 
 	@api.multi
 	def action_reject(self):

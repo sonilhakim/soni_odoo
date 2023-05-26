@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<!-- <menuitem id="vit_cash_in_cash_out_top_menu" name="Cash In Cash Out" sequence="20" web_icon="vit_cash_in_cash_out,static/description/icon.png" /> -->
+		<menuitem id="vit_cash_in_cash_out_sub_menu" name="Cash In Cash Out" sequence="6" parent="account_accountant.menu_accounting" />
+		<!-- <menuitem id="vit_cash_in_cash_out_config_menu" name="Configurations" sequence="50" parent="vit_cash_in_cash_out_top_menu" /> -->
+	</data>
+</odoo>

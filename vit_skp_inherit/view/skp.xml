@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_vit_skp_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.instructor.form.inherit</field>
+            <field name="model">vit.skp</field>
+            <field name="inherit_id" ref="vit_skp.view_vit_skp_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="action_done" position="replace" >
+                    <button string="Disetujui" type="object" name="action_done" states="open" groups="vit_skp.group_skp_manager"/>
+                </button>
+                <button name="action_done" position="after" >
+                    <button string="Tolak" type="object" name="action_reject" states="open"  groups="vit_skp.group_skp_manager"/>
+                </button>
+                <button name="action_draft" position="replace">
+                    <button string="Kembali ke Rancangan" type="object" name="action_draft" states="open" />
+                </button>
+                <xpath expr="//group" position="replace">
+                    <group>
+                        <group>
+                            <field name="jumlah_10_sks_pertama" />
+                            <field name="jumlah_sks_berikutnya" />
+                        </group>
+                        <group>
+                            <field name="tanggal" />
+                            <field name="tahun_akademik_id" />
+                        </group>
+                        <group>
+                            <field name="pns_nip" />
+                            <field name="pns_gender" />
+                            <field name="pns_tgl_lahir" />
+                            <field name="pns_usia" />
+                            <field name="pns_tmt_pns" />
+                            <field name="pns_mk_thn" />
+                            <field name="pns_mk_bln" />
+                            <field name="pns_tmt_golongan" />
+                            <field name="pns_tmt_jabatan" />
+                            <field name="pns_pendidikan" />
+                            <field name="pns_prog_studi" />
+                        </group>
+                        <group>
+                            <field name="pns_id" />
+                            <field name="pns_temp_lahir" />
+                            <field name="pns_tmt_pensiun" />
+                            <field name="pns_tmt_cpns" />
+                            <field name="pns_pangkat_gol_ruang" />
+                            <field name="pns_golongan_id" />
+                            <field name="pns_jabatan_id" />
+                            <field name="pns_pts" />
+                            <field name="pns_almamater" />
+                            <field name="pns_thn_lulus" />
+                        </group>
+                        <group>
+                            <field name="pejabat_penilai_nip" />
+                            <field name="pejabat_penilai_pangkat_gol_ruang" />
+                            <field name="pejabat_penilai_unit_kerja_id" />
+                        </group>
+                        <group>
+                            <field name="pejabat_penilai_id" />
+                            <field name="pejabat_penilai_golongan_id" />
+                            <field name="pejabat_penilai_jabatan_id" />
+                        </group>
+                        <group>
+                            <field name="lokasi" />
+                        </group>
+                    </group>
+                </xpath>
+
+                <xpath expr="//notebook/page/field[@name='perkuliahan_ids']" position="replace">
+                    <button string="Hitung" type="object" name="compute_perkuliahan" states="draft" />
+                    <field name="perkuliahan_ids" mode="tree">
+                        <tree string="SKP perkuliahan" editable="bottom">
+                            <field name="name" />
+                            <field name="sks" />
+                            <field name="jumlah_kelas" />
+                            <field name="jumlah_dosen_pengampu" />
+                            <field name="totak_sks_per_smt" sum="Total SKS"/>
+                            <field name="semester_id" />
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='rekapitulasi_ids']" position="replace">
+                    <button string="Rekap" type="object" name="rekap_perkuliahan" class="btn-primary" states="draft" />
+                    <field name="rekapitulasi_ids" mode="tree">
+                        <tree string="SKP rekapitulasi perkuliahan" editable="bottom">
+                            <field name="name" />
+                            <field name="sks" />
+                            <field name="sks_riil" />
+                            <field name="ak_10_sks_pertama" />
+                            <field name="ak_sks_berikutnya" />
+                            <field name="ak_jumlah" sum="Total AK"/>
+                            <field name="semester_id" />
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='seminar_ids']" position="replace">
+                    <button string="Hitung" type="object" name="compute_seminar" states="draft" />
+                    <field name="seminar_ids" mode="tree">
+                        <tree string="SKP seminar" editable="bottom">
+                            <field name="name" />
+                            <field name="pelaksanaan" />
+                            <field name="ak" sum="Total AK"/>
+                            <field name="semester_id" />
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='kkn_pkn_pkl_ids']" position="replace">
+                    <button string="Hitung" type="object" name="compute_kkn" states="draft" />
+                    <field name="kkn_pkn_pkl_ids" mode="tree">
+                        <tree string="SKP kkn pkn pkl" editable="bottom">
+                            <field name="name" />
+                            <field name="semester_genap" />
+                            <field name="semester_ganjil" />
+                            <field name="jumlah" />
+                            <field name="ak" sum="Total AK"/>
+                            <field name="jenis_kkn_id" />
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='disertasi_thesis_skripsi_ids']" position="replace">
+                    <button string="Hitung" type="object" name="compute_disertasi" states="draft" />
+                    <field name="disertasi_thesis_skripsi_ids" mode="tree">
+                        <tree string="SKP disertasi" editable="bottom">
+                            <field name="name" />
+                            <field name="jumlah_lulusan_pembimbing_utama" />
+                            <field name="jumlah_lulusan_pembimbing_pembantu" />
+                            <field name="ak_pembimbing_utama" />
+                            <field name="ak_pembimbing_pembantu" />
+                            <field name="ak_total" sum="Total AK"/>
+                            <field name="jenis_disertasi_id" />
+                            <field name="semester_id" />
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='penguji_ids']" position="replace">
+                    <button string="Hitung" type="object" name="compute_penguji" states="draft" />
+                    <field name="penguji_ids" mode="tree">
+                        <tree string="SKP penguji" editable="bottom">
+                            <field name="name" />
+                            <field name="jumlah_mhs_ketua_penguji" />
+                            <field name="jumlah_mhs_anggota_penguji" />
+                            <field name="ak_ketua_penguji" />
+                            <field name="ak_anggota_penguji" />
+                            <field name="ak_total" sum="Total AK"/>
+                            <field name="semester_id" />
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='membina_ids']" position="replace">
+                    <button string="Hitung" type="object" name="compute_membina" states="draft" />
+                    <field name="membina_ids" mode="tree">
+                        <tree string="SKP membina" editable="bottom">
+                            <field name="name" />
+                            <field name="semester_genap" />
+                            <field name="semester_ganjil" />
+                            <field name="jumlah" />
+                            <field name="ak" sum="Total AK"/>
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='mengembangkan_program_kuliah_ids']" position="replace">
+                    <button string="Hitung" type="object" name="compute_mpk" states="draft" />
+                    <field name="mengembangkan_program_kuliah_ids" mode="tree">
+                        <tree string="SKP mengembangkan program kuliah" editable="bottom">
+                            <field name="name" />
+                            <field name="semester_genap" />
+                            <field name="semester_ganjil" />
+                            <field name="jumlah" />
+                            <field name="ak" sum="Total AK"/>
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='mengembangkan_bahan_kuliah_ids']" position="replace">
+                    <button string="Hitung" type="object" name="compute_mbk" states="draft" />
+                    <field name="mengembangkan_bahan_kuliah_ids" mode="tree">
+                        <tree string="SKP mengembangkan bahan kuliah" editable="bottom">
+                            <field name="name" />
+                            <field name="jumlah" />
+                            <field name="ak_per_bahan_kuliah" />
+                            <field name="ak_jumlah" sum="Total AK"/>
+                            <field name="semester_id" />
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='rekapitulasi_mengembangkan_bahan_kuliah_ids']" position="replace">
+                    <button string="Rekap" type="object" name="rekap_rbk" class="btn-primary" states="draft" />
+                    <field name="rekapitulasi_mengembangkan_bahan_kuliah_ids" mode="tree">
+                        <tree string="SKP rekapitulasi mengembangkan bahan kuliah" editable="bottom">
+                            <field name="name" />
+                            <field name="naskah" />
+                            <field name="ak" sum="Total AK"/>
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='orasi_ilmiah_ids']" position="replace">
+                    <button string="Hitung" type="object" name="compute_oil" states="draft" />
+                    <field name="orasi_ilmiah_ids" mode="tree">
+                        <tree string="SKP orasi ilmiah" editable="bottom">
+                            <field name="name" />
+                            <field name="semester_genap" />
+                            <field name="semester_ganjil" />
+                            <field name="jumlah" />
+                            <field name="ak" sum="Total AK"/>
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='jabatan_pt_ids']" position="replace">
+                    <button string="Hitung" type="object" name="compute_jpt" states="draft" />
+                    <field name="jabatan_pt_ids" mode="tree">
+                        <tree string="SKP jabatan pt" editable="bottom">
+                            <field name="name" />
+                            <field name="hasil" />
+                            <field name="satuan_hasil" />
+                            <field name="angka_kredit" />
+                            <field name="jumlah_angka_kredit" sum="Total AK"/>
+                            <field name="semester_id" />
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='rekapitulasi_jabatan_pt_ids']" position="replace">
+                    <button string="Rekap" type="object" name="rekap_jpt" class="btn-primary" states="draft" />
+                    <field name="rekapitulasi_jabatan_pt_ids" mode="tree">
+                        <tree string="SKP rekapitulasi jabatan pt" editable="bottom">
+                            <field name="name" />
+                            <field name="satuan_hasil" />
+                            <field name="jumlah_angka_kredit" sum="Total AK"/>
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='membimbing_dosen_ids']" position="replace">
+                    <button string="Hitung" type="object" name="compute_mbd" states="draft" />
+                    <field name="membimbing_dosen_ids" mode="tree">
+                        <tree string="SKP membimbing dosen" editable="bottom">
+                            <field name="name" />
+                            <field name="semester_genap" />
+                            <field name="semester_ganjil" />
+                            <field name="jumlah" />
+                            <field name="ak" sum="Total AK"/>
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='detasering_ids']" position="replace">
+                    <button string="Hitung" type="object" name="compute_det" states="draft" />
+                    <field name="detasering_ids" mode="tree">
+                        <tree string="SKP detasering" editable="bottom">
+                            <field name="name" />
+                            <field name="semester_genap" />
+                            <field name="semester_ganjil" />
+                            <field name="jumlah" />
+                            <field name="ak" sum="Total AK"/>
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='pengembangan_diri_ids']" position="replace">
+                    <button string="Hitung" type="object" name="compute_pd" states="draft" />
+                    <field name="pengembangan_diri_ids" mode="tree">
+                        <tree string="SKP pengembangan diri" editable="bottom">
+                            <field name="name" />
+                            <field name="semester_genap" />
+                            <field name="semester_ganjil" />
+                            <field name="jumlah" />
+                            <field name="ak" />
+                            <field name="jumlah_ak" sum="Total AK"/>
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='penelitian_ids']" position="replace">
+                    <button string="Hitung" type="object" name="compute_plt" states="draft" />
+                    <field name="penelitian_ids" mode="tree">
+                        <tree string="SKP penelitian" editable="bottom">
+                            <field name="name" />
+                            <field name="jumlah_peneliti_mandiri" />
+                            <field name="jumlah_peneliti_utama" />
+                            <field name="jumlah_peneliti_anggota" />
+                            <field name="ak_karya_ilmiah_jurnal" />
+                            <field name="ak_jumlah_peneliti_mandiri" />
+                            <field name="ak_jumlah_peneliti_utama" />
+                            <field name="ak_jumlah_peneliti_anggota" />
+                            <field name="ak_jumlah" sum="Total AK"/>
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='pengabdian_ids']" position="replace">
+                    <button string="Hitung" type="object" name="compute_abd" states="draft" />
+                    <field name="pengabdian_ids" mode="tree">
+                        <tree string="SKP pengabdian" editable="bottom">
+                            <field name="name" />
+                            <field name="jumlah_program" />
+                            <field name="ak_program" />
+                            <field name="ak_jumlah" sum="Total AK"/>
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page[15]" position="after">
+                    <page string="Tugas Tambahan">
+                        <button string="Hitung" type="object" name="compute_tgs" states="draft" />
+                        <field name="tugas_tambahan_ids" mode="tree">
+                            <tree string="SKP tugas tambahan" editable="bottom">
+                                <field name="name" />
+                                <field name="semester_genap" />
+                                <field name="semester_ganjil" />
+                                <field name="jumlah" />
+                                <field name="ak" sum="Total AK"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

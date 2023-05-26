@@ -1,0 +1,56 @@
+<odoo noupdate="1"> 
+
+    <record id="product_attribute_size" model="product.attribute">
+        <field name="name">Size</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="product_attribute_value_size1" model="product.attribute.value">
+        <field name="name">XXS</field>
+        <field name="attribute_id" ref="product_attribute_size"/>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="product_attribute_value_size2" model="product.attribute.value">
+        <field name="name">XS</field>
+        <field name="attribute_id" ref="product_attribute_size"/>
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="product_attribute_value_size3" model="product.attribute.value">
+        <field name="name">S</field>
+        <field name="attribute_id" ref="product_attribute_size"/>
+        <field name="sequence">3</field>
+    </record>
+
+    <record id="product_attribute_value_size4" model="product.attribute.value">
+        <field name="name">M</field>
+        <field name="attribute_id" ref="product_attribute_size"/>
+        <field name="sequence">4</field>
+    </record>
+
+    <record id="product_attribute_value_size5" model="product.attribute.value">
+        <field name="name">L</field>
+        <field name="attribute_id" ref="product_attribute_size"/>
+        <field name="sequence">5</field>
+    </record>
+
+    <record id="product_attribute_value_size6" model="product.attribute.value">
+        <field name="name">XL</field>
+        <field name="attribute_id" ref="product_attribute_size"/>
+        <field name="sequence">6</field>
+    </record>
+
+    <record id="product_attribute_value_size7" model="product.attribute.value">
+        <field name="name">XXL</field>
+        <field name="attribute_id" ref="product_attribute_size"/>
+        <field name="sequence">7</field>
+    </record>
+
+    <record id="product_attribute_value_size8" model="product.attribute.value">
+        <field name="name">XXXL</field>
+        <field name="attribute_id" ref="product_attribute_size"/>
+        <field name="sequence">8</field>
+    </record>
+
+</odoo>

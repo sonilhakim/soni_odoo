@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_kir_detail_menu" string="Vit - Kir detail"
+         model="vit.kir_detail" report_type="qweb-pdf" 
+         file="vit.kir_detail"  name="vit_tks.vit_kir_detail_report" />
+
+        <!-- document template -->
+        <template id="vit_tks.vit_kir_detail_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Kir detail: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Merk model</strong>
+                            <p class="m-0" t-field="doc.merk_model" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>No seri pbr</strong>
+                            <p class="m-0" t-field="doc.no_seri_pbr" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Thn pembuatan</strong>
+                            <p class="m-0" t-field="doc.thn_pembuatan" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Code</strong>
+                            <p class="m-0" t-field="doc.code" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jumlah</strong>
+                            <p class="m-0" t-field="doc.jumlah" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Harga</strong>
+                            <p class="m-0" t-field="doc.harga" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Kondisi</strong>
+                            <p class="m-0" t-field="doc.kondisi" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Keterangan</strong>
+                            <p class="m-0" t-field="doc.keterangan" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Kir</strong>
+                            <p class="m-0" t-field="doc.kir_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Asset</strong>
+                            <p class="m-0" t-field="doc.asset_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_tks.vit_kir_detail_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_tks.vit_kir_detail_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

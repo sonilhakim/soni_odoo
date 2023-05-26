@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_product_request_form_inherit_tag">
+            <field name="name">view_product_request_form_inherit_tag</field>
+            <field name="model">vit.product.request</field>
+            <field name="inherit_id" ref="vit_product_request.view_product_request_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_required']" position="after">
+                    <field name="analytic_tag_id" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

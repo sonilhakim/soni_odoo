@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_partner_form_mitra">
+            <field name="name">view_partner_form_mitra_inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='purchase']/field[@name='supplier']" position="after">
+                    <field name="is_mitra_kerja"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_purchase_form_mitra">
+            <field name="name">view_purchase_form_mitra_inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_approve']" position="after">
+                    <field name="is_subcon"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

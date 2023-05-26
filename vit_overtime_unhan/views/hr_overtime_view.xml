@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+
+        <record id="view_hr_overtime_filter" model="ir.ui.view">
+            <field name="name">hr.overtime.filter</field>
+            <field name="model">hr.overtime</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Overtime">
+                        <field name="department_id"/>
+                        <field name="type_id"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                </search>
+            </field>
+        </record>
+
+<!--         <record id="view_hr_overtime_filter" model="ir.ui.view">
+            <field name="name">hr.overtime.filter</field>
+            <field name="model">hr.overtime</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Overtime">
+                    <group col='8' colspan='4'>
+                        <filter domain="[('state','=','validate')]" string="Validated"/>
+                        <separator orientation="vertical"/>
+                        <filter icon="terp-check" domain="[('state','=','draft')]" string="To Confirm"/>
+                        <filter icon="terp-camera_test" domain="[('state','=','confirm')]" string="To Approve"/>
+                        <separator orientation="vertical"/>
+                        <filter string="This Month" icon="terp-go-month" name="This Month"
+                                domain="[('date_from','&lt;=',(datetime.date.today()+relativedelta(day=31)).strftime('%%Y-%%m-%%d')),('date_from','&gt;=',(datetime.date.today()-relativedelta(day=1)).strftime('%%Y-%%m-%%d'))]"/>
+                        <separator orientation="vertical"/>
+                        <field name="department_id" widget="selection">
+                            <filter icon="terp-personal+" help="My Department Overtime"
+                                domain="[('department_id.manager_id','=',uid)]" />
+                        </field>
+                        <field name="type_id" widget="selection"/>
+                    </group>
+                    <newline/>
+                    <group expand="0" string="Extended Filters...">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="Manager" icon="terp-personal" domain="[]" context="{'group_by':'manager_id'}"/>
+                        <filter string="Department" icon="terp-personal+" domain="[]" context="{'group_by':'department_id','set_visible':True}"/>
+                        <separator orientation="vertical"/>
+                        <filter name="group_type" string="Type" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'type_id'}"/>
+                        <separator orientation="vertical"/>
+                        <filter string="State" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record> -->
+        
+        <record model="ir.ui.view" id="view_hr_overtime_form">
+            <field name="name">Pengajuan Lembur</field>
+            <field name="model">hr.overtime</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Pengajuan Lembur" version="7.0">  
+                    <header>
+                        <!-- <button string="Refuse" name="refuse" states="confirm,validate" type="object" groups="base.group_hr_user,base.group_hr_manager"/>
+                        <button string="Confirm" name="confirm" states="draft" type="object"/>
+                        <button string="Approve" name="validate" states="confirm" type="object" groups="base.group_hr_user,hrd_ppi.group_hr_aprove_dep1"/>
+                        <button string="Approved" name="second_validate" states="validate1" type="object" groups="base.group_hr_manager"/>
+                        <button string="Set to Draft" name="set_to_draft" states="refuse" type="object" groups="base.group_hr_user"/> -->
+                        
+                        <button string="Kembali ke Draft" 
+                                type="object" 
+                                name="action_draft" 
+                                states="refuse,cancel,validate" 
+                                groups="vit_overtime_unhan.group_manager_overtime,
+                                       vit_overtime_unhan.group_hrd_overtime"/>                        
+
+                        <button string="Konfirmasi" 
+                                type="object" 
+                                name="action_confirm_admin" 
+                                states="draft" 
+                                groups="vit_overtime_unhan.group_employee_overtime"/>
+
+                        <button string="Konfirmasi" 
+                                type="object"
+                                name="action_confirm_manager"
+                                states="confirm"
+                                groups="vit_overtime_unhan.group_manager_overtime"/>                         
+
+                        <button string="Validasi" 
+                                type="object"
+                                name="action_validate"
+                                states="confirm_manager"
+                                groups="vit_overtime_unhan.group_hrd_overtime"/>
+
+                        <button string="Tolak" 
+                                type="object"
+                                name="action_refuse"
+                                states="confirm,confirm_manager"
+                                groups="vit_overtime_unhan.group_manager_overtime,
+                                        vit_overtime_unhan.group_hrd_overtime"/>                        
+
+                        <button string="Batal" 
+                                type="object"
+                                name="action_cancel"
+                                states="validate"
+                                groups="vit_overtime_unhan.group_manager_overtime,
+                                       vit_overtime_unhan.group_hrd_overtime"/>
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,confirm_manager,validate" statusbar_colors='{"confirm":"blue","confirm_manager":"blue","validate":"blue","refuse":"red"}'/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name" attrs="{'readonly':[('state','!=','draft'),('state','!=','confirm')]}" /> 
+                        </group>
+                        <group> 
+                            <group>
+                                <field name="type_id" options="{'no_open':True,'no_create':True}"/>
+                                <field name="break_hour"/>
+                                <field name="date_from" required="1"/>
+                                <field name="date_to" required="1"/>
+                                <field name="number_of_hours_temp"/>
+
+                            </group>
+                            <group>
+                                <field name="user_id" readonly="1" options="{'no_open':True,'no_create':True}" string="Nama"/>
+                                <field name="date" readonly="1"/>
+                                <field name="department_id" required="1" options="{'no_open':True,'no_create':True}"/> 
+                                <field name="manager_department_id" invisible="1"/> 
+                                <field name="hari_libur" attrs="{'invisible':['|',('lembur_istimewa', '=', True),('lembur_biasa', '=', True)]}"/>
+                                <field name="lembur_istimewa" attrs="{'invisible':['|',('hari_libur', '=', True),('lembur_biasa', '=', True)]}"/>
+                                 <field name="lembur_biasa" attrs="{'invisible':['|',('hari_libur', '=', True),('lembur_istimewa', '=', True)]}"/>
+                                <field name="tgl_lembur" invisible="1"/>
+                                <field name="number_of_days_temp" invisible="1"/>
+                            </group>    
+                        </group>
+                        <notebook>
+                            <page string="Karyawan">
+                                <group>
+                                    <field name="employee_ids" widget="one2many_list" nolabel="1">
+                                        <tree editable="bottom">
+                                            <!-- <field name="employee_id" options="{'no_open':True,'no_create':True}"/> -->
+                                            <field name="employee_id"/>
+                                            <field name="ovt_hour" />
+                                            <field name="total_jam"/>
+                                        </tree>
+                                        <!-- <form>
+                                            <group>
+                                                <group>
+                                                    <field name="employee_id"/>
+                                                </group>
+                                                 <group>
+
+                                                    <field name="ovt_hour" />
+                                                    <field name="total_jam"/>
+                                                </group>                                               
+                                            </group>
+                                        </form> -->
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                        <group>
+                            <field name="notes" nolabel="1" colspan="4"/>
+                        </group>                        
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        
+        <record model="ir.ui.view" id="view_overtime_tree">
+            <field name="name">hr.overtime.tree</field>
+            <field name="model">hr.overtime</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree colors="red:state in ('refuse');blue:state in (' draft');black:state in ('confirm','validate')" string="Lembur">
+                    <field name="department_id" invisible="not context.get('set_visible',False)"/>
+                    <field name="name"/>
+                    <field name="user_id" string="Nama"/>
+                    <field name="type_id"/>
+                    <field name="number_of_hours" string="Number of Hours" sum="Number of Hours"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="manager_id" invisible="1"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="open_overtime">
+            <field name="name">Pengajuan Lembur</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.overtime</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add an Overtime
+                </p>
+                <p>klik tombol create untuk menambah data lembur baru</p>
+            </field>
+        </record> 
+        
+        <!-- top menu overtime -->
+        <menuitem
+            name="Lembur"
+            id="menu_overtime"
+            sequence="50"
+            web_icon="vit_overtime_unhan,static/description/icon.png"/>
+
+        <menuitem 
+            name="Pengajuan Lembur" 
+            parent="menu_overtime" 
+            id="menu_overtime_request"
+            action="open_overtime" 
+            sequence="10"/> 
+            
+
+    <!-- type lembur-->
+    <record model="ir.ui.view" id="hr_overtime_type_form">
+        <field name="name">hr.overtime.hour.form</field>
+        <field name="model">hr.overtime.hour</field>
+        <field name="arch" type="xml">
+            <form string="Perhitunan Lembur" version="7.0">
+                <group string="Overtime Type">
+                        <field name="name"/>
+                        <field name="hour_ids">
+                            <tree editable="bottom">
+                                <field name="from_hour"/>
+                                <field name="to_hour"/>
+                                <field name="calculation"/>
+                            </tree>        
+                        </field>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- detail type lembur-->
+    <record id="hr_overtime_type_act" model="ir.actions.act_window">
+        <field name="name">Tipe Lembur</field>
+        <field name="res_model">hr.overtime.hour</field>
+        <field name="view_type">form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new overtime calculations.
+          </p><p>
+            .....
+          </p>
+        </field>
+    </record>
+
+        <menuitem name="Konfigurasi"
+        id="hr_overtime_configuration"
+        parent="menu_overtime"
+        sequence="50"/>
+
+        <menuitem
+            id="ovt_type_menu"
+            name="Tipe Lembur"
+            parent="hr_overtime_configuration"
+            action="hr_overtime_type_act"
+            sequence="1"/>
+    
+
+
+    </data>
+
+</odoo>

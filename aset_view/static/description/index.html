@@ -1,0 +1,123 @@
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Introduction</h2>
+
+        <h3 style="width:80%">
+            <ul>
+                <li>this is modul is used to print PO, SO, Invoice directly to dot matrix printer</li>
+                <li>no special hardware needed</li>
+                <li>using printer proxy script (example apache/ngnix+php) or any webserver</li>
+                <li>add printer_data field on account.invoice, sale.order, purchase.order</li>
+                <li>printer template data from mail.template named "Dot Matrix *"</li>
+            </ul>
+        </h3>
+
+        <div class="oe_span10 text-justify">
+
+
+
+            <div class="oe_screenshot" style="margin:8px">
+                <img class="img img-responsive" src="images/po.png"/>
+            </div>
+
+            <p class="oe_mb32" style="margin:8px;">
+                Salah satu problem terbesar implementasi Odoo di perusahaan Indonesia, apalagi yang sudah cukup banyak transaksi per harinya adalah masalah printer Dot Matrix!
+            </p>
+
+            <p class="oe_mb32" style="margin:8px;">
+                Ya, sebagian besar perusahaan di Indonesia menggunakan printer Dot Matrix untuk mencetak dokumen, seperti PO, SO, Faktur Invoce, dan sebagainya, dengan alasan hemat dan cepat (bisa cetak sekaligus 3-4 lembar pakai kertas continuous carbonized).
+            </p>
+
+
+            <div class="oe_screenshot" style="margin:8px">
+                <img class="img img-responsive" src="images/template-inv.png"/>
+            </div>
+
+            <p class="oe_mb32" style="margin:8px;">
+                Ini jadi masalah di Odoo, karena sistem printing di Odoo langsung via PDF file. Bagus memang kalau dicetak di printer deskjet atau laser. Tapi kalau dicetak di dot matrix, hasilnya pecah-pecah, nyaris tak terbaca! Ini disebabkan oleh setting resolusi DPI (dot per inch) PDF Odoo defaultnya kecil. Bisa dibesarkan menjadi 300 dpi, hasilnya lumayan bagus dan kebaca. Tapi… printing jadi lambat. Smaa sekali tidak cocok untuk perusahaan yang transaksinya bisa 4000 sales dan invoice perhari.
+            </p>
+
+
+            <div class="oe_screenshot" style="margin:8px">
+                <img class="img img-responsive" src="images/inv.png"/>
+            </div>
+
+            <p class="oe_mb32" style="margin:8px;">
+                Untuk mensiasati hal tersebut diatas, kami punya solusinya yaitu dengan teknik proxy printing! Jadi kami bikin sebuah aplikasi kecil di komputer yang hendak mencetak via dot matrix. APlikasi itu listen di port http dan siap menerima data dari browser Odoo. Di sisi server, kami tambahkan Addons yang akan mengirimkan data mentah berupa text berisi dokumen yang akan diprint ke alamat localhost aplikasi proxy tersebut.
+            </p>
+            <p class="oe_mb32" style="margin:8px;">
+                Hasilnya: LUAR BIASA! printing bisa langsung ke printer dot matrix dengan kecepatan super bawaan dot matrix, dan hasil printing sempurna!
+            </p>
+
+
+            <div class="oe_screenshot" style="margin:8px">
+                <img class="img img-responsive" src="images/template-po.png"/>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="oe_row oe_spaced">
+
+        <h2 class="oe_slogan" style="color:#875A7B;">Mau Gratis?</h2>
+
+        <div class="oe_span10 text-justify">
+            <p class="oe_mb32" style="margin:8px;">
+                Addons ini bisa anda peroleh secara gratis jika mengikuti Training Odoo
+                di vitraining.com atau membeli E-BOOK
+                "PANDUAN LENGKAP IMPLEMENTASI ODOO V10 UNTUK PERUSAHAAN RETAIL DI INDONESIA"
+                di <a href="http://shop.vitraining.com">shop.vitraining.com</a>
+                maupun di Google Play.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Installation</h2>
+
+        <div class="text-justify">
+            <p class="oe_mb32" style="margin:8px;">
+                <ul>
+                    <li>install this addon on the database</li>
+                    <li>download the proxy script from this <a href="/vit_dotmatrix/static/dotmatrix.zip">LINK</a></li>
+                    <li>install apache+php or nginx+php on the local computer and extract to above file info the htdocs folder</li>
+                    <li>print Invoice, SO, PO directly to local dotmatrix printer</li>
+                </ul>
+            </p>
+        </div>
+        <div class="oe_span8">
+            <img class="oe_demo oe_picture oe_screenshot" style="margin:0px" src="images/input-nsfp.png"/>
+        </div>
+    </div>
+</section>
+
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span10 text-justify">
+            Find our other interesting modules that can make your life easier:
+            https://www.odoo.com/apps/modules/browse?search=vitraining
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+
+        <h2  class="oe_slogan" style="width:70%;color:#875A7B;">Contact and Support</h2>
+        <h3 class="oe_span10 oe_slogan">
+            Contact Us: info[at]vitraining.com<br/>
+            Facebook : <a href="https://www.facebook.com/trainingOdoo/">www.facebook.com/trainingOdoo</a><br/>
+            YouTube: <a href="https://www.youtube.com/channel/UCfLiSpb5nKcurnRIZse8zgA">www.youtube.com/channel/UCfLiSpb5nKcurnRIZse8zgA</a><br/>
+            Web: <a href="http://shop.vitraining.com">shop.vitraining.com</a>
+        </h3>
+
+    </div>
+</section>
+
+<section class="oe_container oe_separator">
+</section>

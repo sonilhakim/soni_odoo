@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="view_account_payment_kasbon_form" model="ir.ui.view">
+            <field name="name">account.payment.kasbon.form</field>
+            <field name="model">account.payment</field>
+            <field name="arch" type="xml">
+                <form string="Angsuran">
+                    <sheet>
+                        <group>
+                            <field name="payment_type" invisible="1"/>
+                            <field name="partner_type" invisible="1"/>
+                            <field name="kasbon_id" invisible="1"/>
+                            <field name="partner_id" invisible="1"/>
+                            <field name="state" invisible="1"/>
+                            <group>
+                                <field name="amount" string="Nominal"/>
+                                <field name="journal_id" widget="selection" attrs="{'invisible': [('amount', '=', 0)]}" string="Jurnal"/>
+                                <field name="hide_payment_method" invisible="1"/>
+                                <field name="payment_method_id" widget="radio" attrs="{'invisible': ['|', ('hide_payment_method', '=', True), ('amount', '=', 0.0)]}"/>
+                                <field name="partner_bank_account_id" attrs="{'invisible': [('show_partner_bank_account', '!=', True)], 'required': [('show_partner_bank_account', '=', True)], 'readonly': [('state', '!=', 'draft')]}" context="{'default_partner_id': partner_id}"/>
+                                <field name="show_partner_bank_account" invisible="1"/>
+                                <field name="payment_method_code" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="payment_date" string="Tanggal Angsuran"/>
+                                <field name="communication"/>
+                                <field name="note"/>
+                            </group>
+                            <!-- <group attrs="{'invisible': [('payment_difference', '=', 0.0)]}">
+                                <label for="payment_difference"/>
+                                <div>
+                                    <field name="payment_difference"/>
+                                    <field name="payment_difference_handling" widget="radio" nolabel="1"/>
+                                    <div attrs="{'invisible': [('payment_difference_handling','=','open')]}">
+                                        <label for="writeoff_account_id" class="oe_edit_only" string="Post Difference In"/>
+                                        <field name="writeoff_account_id" string="Post Difference In" attrs="{'required': [('payment_difference_handling', '=', 'reconcile'), ('payment_difference', '!=', 0.0)]}"/>
+                                        <label for="journal_id" string="Journal" attrs="{'invisible': [('amount', '!=', 0)]}"/>
+                                        <field name="journal_id" string="Journal" widget="selection" attrs="{'invisible': [('amount', '!=', 0)]}"/>
+                                        <label for="writeoff_label" class="oe_edit_only" string="Label"/>
+                                        <field name="writeoff_label" attrs="{'required': [('payment_difference_handling', '=', 'reconcile'), ('payment_difference', '!=', 0.0)]}"/>
+                                    </div>
+                                </div>
+                            </group> -->
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string='Validate' name="action_validate_kasbon_payment" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_account_kasbon_payment" model="ir.actions.act_window">
+            <field name="name">Angsuran</field>
+            <field name="res_model">account.payment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_account_payment_kasbon_form"/>
+            <field name="context">{'default_kasbon_id': active_id}</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

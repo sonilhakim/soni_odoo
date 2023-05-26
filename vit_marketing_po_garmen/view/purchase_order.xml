@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_purchase_order_garmen_tree" model="ir.ui.view">
+            <field name="name">vit_purchase_order_garmen_tree</field>
+            <field name="model">vit.purchase_order_garmen</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Order Received">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="sph_id" />
+                    <field name="po_buyer" />
+                    <field name="po_date" />
+                    <field name="time_production"/>
+                    <field name="partner_id" />
+                    <field name="total_price" string="Nilai PO"/>
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_purchase_order_garmen_form" model="ir.ui.view">
+            <field name="name">vit_purchase_order_garmen_form</field>
+            <field name="model">vit.purchase_order_garmen</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Order Received">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" />                        
+                        <button string="Create OR" type="object" name="create_or" attrs="{'invisible':['|',('po_payung_id','!=',False),('state','!=','approved')]}" confirm="Anda yakin akan membuat OR ?" groups="vit_marketing_po_garmen.group_marketing_or,vit_marketing_po_garmen.group_marketing_or_user"/>
+                        <button string="Create Product Style" type="object" name="create_product_jadi" attrs="{'invisible':['|','|',('po_payung_id','!=',False),('product_created','=',True),('state','!=','open')]}" confirm="Anda yakin akan membuat product style ?"/>
+                        <button string="Approve" type="object" name="action_approved" attrs="{'invisible':['|',('product_created','=',False),('state','!=','open')]}" groups="vit_marketing_po_garmen.group_marketing_or" confirm="Anda yakin OR akan di approve ?"/>
+                        <button string="Cancel" type="object" name="action_cancel" states="open" confirm="Anda yakin OR akan di cancel ?"/>
+                        <button string="Reset to Draft" type="object" name="action_draft" states="cancel" />
+                        <button string="SPK Pengukuran" type="object" name="create_spk_pengukuran" groups="vit_marketing_po_garmen.group_marketing_or_user" attrs="{'invisible':['|',('po_payung_id','!=',False),('state','!=','approved')]}" confirm="Anda yakin akan membuat SPK Pengukuran ?"/>
+                        <button string="Close" type="object" name="action_close" states="approved" groups="vit_marketing_po_garmen.group_marketing_or" confirm="Anda yakin OR akan di close ?"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,approved"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_doc"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-book">
+                                <field name="doc_count" widget="statinfo" string="Document"/>
+                            </button>
+                            <button name="action_view_or"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-book"
+                                attrs="{'invisible': [('or_count', '=', 0)]}">
+                                <field name="or_count" widget="statinfo" string="Order Recieve"/>
+                            </button>
+                            <button name="action_view_spk"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-book"
+                                attrs="{'invisible': [('spk_count', '=', 0)]}">
+                                <field name="spk_count" widget="statinfo" string="SPK"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="OR No :"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>                                
+                                <field name="date" />
+                                <field name="po_buyer" required="1"/>
+                                <field name="po_date" required="1" />
+                                <field name="time_production" required="1"/>
+                                <field name="sph_id" readonly="1"  attrs="{'invisible':[('po_payung_id','!=',False)]}"/>
+                                <field name="product_created" invisible="1" />
+                                <field name="po_payung_id" readonly="1" attrs="{'invisible':[('po_payung_id','=',False)]}"/>
+                            </group>
+                            <group>                                    
+                                <field name="partner_id" domain="[('customer','=',True)]" options="{'no_create': True}"/>
+                                <field name="partner_invoice" domain="[('parent_id','=',partner_id),('type','=','invoice')]" options="{'no_create': True}" />
+                                <field name="partner_delivery" domain="[('parent_id','=',partner_id),('type','=','delivery')]" options="{'no_create': True}" />
+                                <field name="user_id" />
+                                <field name="company_id" />
+                                <field name="project" required="1"/>
+                                <field name="note" />
+                                <field name="total" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="BOQ">
+                                <field name="boq_line_ids">
+                                    <tree string="BOQ" editable="bottom">
+                                        <field name="name" required="1"/>
+                                        <field name="sample_id" invisible="1"/>
+                                        <field name="product_id" readonly="1" />
+                                        <field name="product_name"/>
+                                        <!-- <field name="qty_sph"/> -->
+                                        <field name="qty" required="1"/>
+                                        <field name="uom_id" options="{'no_create': True}" string="Satuan"/>
+                                        <!-- <field name="gbr" widget="image"  class="oe_avatar" /> -->
+                                        <field name="kain" required="1"/>
+                                        <!-- <field name="colour" required="1"/> -->
+                                        <field name="price" required="1"/>
+                                        <field name="tax_id" options="{'no_create': True}"/>
+                                        <field name="tax_val"/>
+                                        <field name="total_price"/>
+                                        <field name="currency_id" invisible="1"/>
+                                    </tree>
+                                    <form string="BOQ">
+                                        <div class="oe_button_box" name="button_box">
+                                            <button name="action_view_doc"
+                                                type="object"
+                                                class="oe_stat_button"
+                                                icon="fa-book">
+                                                <field name="doc_count" widget="statinfo" string="Design"/>
+                                            </button>
+                                        </div>
+                                        <div class="oe_title">
+                                            <label for="name" class="oe_edit_only" string="Style :"/>
+                                            <h1><field name="name"/></h1>
+                                        </div>
+                                        <group>
+                                            <group>
+                                                <field name="sample_id"/>
+                                                <field name="product_id" readonly="1"/>
+                                                <field name="product_name"/>
+                                            </group>
+                                            <group>
+                                                <field name="qty" required="1"/>
+                                                <field name="uom_id" options="{'no_create': True}" string="Satuan"/>
+                                                <field name="kain" required="1"/>
+                                                <!-- <field name="colour" required="1"/> -->
+                                            </group>
+                                            <group>
+                                                <field name="po_id" string="NO. OR"/>
+                                                <!-- <field name="gbr" widget="image"  class="oe_avatar" /> -->
+                                                <field name="is_po_payung" invisible="1"/>
+                                            </group>
+                                            <group>
+                                                <field name="price" required="1"/>
+                                                <label string="Pajak" for="tax_id"/>
+                                                <div>
+                                                    <field name="tax_id" options="{'no_create': True}" style="width:25%; margin-right:33px;"/><field name="tax_val" style="width:55%;"/>
+                                                </div>
+                                                <field name="total_price"/>
+                                                <field name="currency_id" invisible="1"/>
+                                            </group>
+                                        </group>
+                                        <notebook>
+                                            <page string="Material List">
+                                                <field name="material_ids">
+                                                    <tree string="Material List" editable="bottom">
+                                                        <field name="acc_no" />
+                                                        <field name="material" context="{'default_type': 'product'}" domain="[('categ_id.name','!=','Barang Jadi Uniform')]" options="{'no_create': True}" />
+                                                        <field name="spec" />
+                                                        <field name="colour" />
+                                                        <field name="qty" />
+                                                        <field name="uom" options="{'no_create': True}"/>
+                                                        <field name="cons" />
+                                                    </tree>
+                                                </field>
+                                            </page>
+                                            <!-- <page string="Design">
+                                                <field name="design_ids">
+                                                    <tree string="Document" editable="bottom">
+                                                        <field name="doc_name" invisible="1"/>
+                                                        <field name="doc" widget="binary" filename="doc_name" />
+                                                        <field name="date"/>
+                                                        <field name="name"/>
+                                                    </tree>
+                                                </field>
+                                            </page> -->
+                                        </notebook>
+                                    </form>
+                                </field>
+                                <group class="oe_subtotal_footer oe_right">
+                                    <field name="total_price" class="oe_subtotal_footer_separator"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </group>
+                            </page>
+                            <!-- <page string="Document">
+                                <field name="doc_line_ids">
+                                    <tree string="Document" editable="bottom">
+                                        <field name="doc_name" invisible="1"/>
+                                        <field name="doc" widget="binary" filename="doc_name" />
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page> -->
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_purchase_order_garmen_search" model="ir.ui.view">
+            <field name="name">vit_purchase_order_garmen_search</field>
+            <field name="model">vit.purchase_order_garmen</field>
+            <field name="arch" type="xml">
+                <search string="Order Received">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="PO Buyer" name="filter_by_po_buyer" domain="[('po_buyer','=','')]" />
+                    <filter string="Po date" name="filter_by_po_date" domain="[('po_date','=','')]" />
+                    <filter string="Project" name="filter_by_project" domain="[('project','=','')]" />
+                    <filter string="Note" name="filter_by_note" domain="[('note','=','')]" />
+                    <!-- <filter string="Total" name="filter_by_total" domain="[('total','=','')]" /> -->
+                    <field name="name" select="True"/>
+                    <field name="po_date" select="True"/>
+                    <field name="project" select="True"/>
+                    <field name="note" select="True"/>
+                    <field name="po_buyer" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="partner_id" select="True"/>
+                    <field name="sph_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Partner" domain="[]" name="group_by_partner_id" context="{'group_by':'partner_id'}"/>
+                        <filter string="Sph" domain="[]" name="group_by_sph_id" context="{'group_by':'sph_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_purchase_order_garmen_kanban" model="ir.ui.view" >
+            <field name="name">vit_purchase_order_garmen_kanban</field>
+            <field name="model">vit.purchase_order_garmen</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="po_date" />
+                    <field name="po_buyer" />
+                    <field name="project" />
+                    <field name="state" />
+                    <field name="partner_id" />
+                    <field name="sph_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            <span class='text-muted'>Buyer</span> <field name="partner_id"></field>
+                                        </li>
+                                        <li>
+                                            <span class='text-muted'>Project</span> <field name="project"></field>
+                                        </li>
+                                        <li>
+                                            <span class='text-muted'>PO Buyer</span> <field name="po_buyer"></field>
+                                        </li>
+                                        <li>
+                                            <span class='text-muted'>PO Date</span> <field name="po_date"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_vit_purchase_order_garmen_cal" model="ir.ui.view">
+            <field name="name">vit_purchase_order_garmen_cal</field>
+            <field name="model">vit.purchase_order_garmen</field>
+            <field name="arch" type="xml">
+                <calendar string="Purchase order" date_start="po_date" color="name">
+                    <field name="name" />
+                    <field name="partner_id"/>
+                    <field name="po_buyer" />
+                    <field name="project" />
+                </calendar>
+            </field>
+        </record>
+        <!-- graph -->
+        <record id="view_vit_purchase_order_garmen_graph" model="ir.ui.view">
+            <field name="name">vit_purchase_order_garmen_graph</field>
+            <field name="model">vit.purchase_order_garmen</field>
+            <field name="arch" type="xml">
+                <graph string="Purchase order" type="bar">
+                    <field name="partner_id"/>
+                    <field name="po_buyer" />
+                    <field name="project" />
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_purchase_order_garmen" model="ir.actions.act_window">
+            <field name="name">Order Received (OR)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.purchase_order_garmen</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Order Received
+                </p><p>
+                Click the Create button to add a new Order Received
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_purchase_order_garmen" name="Order Received (OR)" parent="vit_marketing.vit_marketing_sub_menu" action="action_vit_purchase_order_garmen" sequence="50"/>
+    </data>
+</odoo>

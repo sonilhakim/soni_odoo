@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- tree view -->
+        <record id="view_vit_kinerja_bidang_pendidikan_tree2ref" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_pendidikan_tree2ref</field>
+            <field name="model">vit.kinerja_bidang_pendidikan</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_bkd_inherit.view_vit_kinerja_bidang_pendidikan_tree2"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='jenis_kegiatan_id']" position="replace">
+                    <field name="jenis_kegiatan1_id"/>
+                </xpath>
+                <xpath expr="//field[@name='bukti_dokumen']" position="after">
+                    <field name="jenis_doc_id"/>
+                    <field name="jenis_buku_id"/>
+                </xpath>
+                <xpath expr="//field[@name='beban_sks']" position="replace">
+                    <field name="nilai_sks" string="Beban SKS"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kinerja_bidang_pendidikan_form2ref" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_pendidikan_form2ref</field>
+            <field name="model">vit.kinerja_bidang_pendidikan</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd_inherit.view_vit_kinerja_bidang_pendidikan_form2"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">                
+                <xpath expr="//field[@name='jenis_kegiatan_id']" position="replace">
+                    <field name="jenis_kegiatan1_id"/>
+                </xpath>
+                <xpath expr="//field[@name='bukti_dokumen']" position="after">
+                    <field name="jenis_doc_id"/>
+                    <field name="jenis_buku_id"/>
+                </xpath>
+                <xpath expr="//field[@name='beban_sks']" position="replace">
+                    <field name="sks_dosen"/>
+                    <field name="nilai_sks"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="view_vit_kinerja_bidang_penelitian_tree2ref" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_penelitian_tree2ref</field>
+            <field name="model">vit.kinerja_bidang_penelitian</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_bkd_inherit.view_vit_kinerja_bidang_penelitian_tree2"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='jenis_kegiatan_id']" position="replace">
+                    <field name="jenis_kegiatan1_id"/>
+                </xpath>
+                <xpath expr="//field[@name='bukti_dokumen']" position="after">
+                    <field name="jenis_doc_id"/>
+                    <field name="jenis_buku_id"/>
+                </xpath>
+                <xpath expr="//field[@name='beban_sks']" position="replace">
+                    <field name="nilai_sks" string="Beban SKS"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kinerja_bidang_penelitian_form2ref" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_penelitian_form2ref</field>
+            <field name="model">vit.kinerja_bidang_penelitian</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd_inherit.view_vit_kinerja_bidang_penelitian_form2"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='jenis_kegiatan_id']" position="replace">
+                    <field name="jenis_kegiatan1_id"/>
+                </xpath>
+                <xpath expr="//field[@name='bukti_dokumen']" position="after">
+                    <field name="jenis_doc_id"/>
+                    <field name="jenis_buku_id"/>
+                </xpath>
+                <xpath expr="//field[@name='beban_sks']" position="replace">
+                    <field name="sks_dosen"/>
+                    <field name="nilai_sks"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="view_vit_kinerja_bidang_pengabdian_tree2ref" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_pengabdian_tree2ref</field>
+            <field name="model">vit.kinerja_bidang_pengabdian</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_bkd_inherit.view_vit_kinerja_bidang_pengabdian_tree2"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='jenis_kegiatan_id']" position="replace">
+                    <field name="jenis_kegiatan1_id"/>
+                </xpath>
+                <xpath expr="//field[@name='bukti_dokumen']" position="after">
+                    <field name="jenis_doc_id"/>
+                    <field name="jenis_buku_id"/>
+                </xpath>
+                <xpath expr="//field[@name='beban_sks']" position="replace">
+                    <field name="nilai_sks" string="Beban SKS"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kinerja_bidang_pengabdian_form2ref" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_pengabdian_form2ref</field>
+            <field name="model">vit.kinerja_bidang_pengabdian</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd_inherit.view_vit_kinerja_bidang_pengabdian_form2"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='jenis_kegiatan_id']" position="replace">
+                    <field name="jenis_kegiatan1_id"/>
+                </xpath>
+                <xpath expr="//field[@name='bukti_dokumen']" position="after">
+                    <field name="jenis_doc_id"/>
+                    <field name="jenis_buku_id"/>
+                </xpath>
+                <xpath expr="//field[@name='beban_sks']" position="replace">
+                    <field name="sks_dosen"/>
+                    <field name="nilai_sks"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="view_vit_kinerja_bidang_pengabdian_tree2ref" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_pengabdian_tree2ref</field>
+            <field name="model">vit.kinerja_bidang_pengabdian</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_bkd_inherit.view_vit_kinerja_bidang_pengabdian_tree2"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='jenis_kegiatan_id']" position="replace">
+                    <field name="jenis_kegiatan1_id"/>
+                </xpath>
+                <xpath expr="//field[@name='bukti_dokumen']" position="after">
+                    <field name="jenis_doc_id"/>
+                    <field name="jenis_buku_id"/>
+                </xpath>
+                <xpath expr="//field[@name='beban_sks']" position="replace">
+                    <field name="nilai_sks" string="Beban SKS"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kinerja_bidang_pengabdian_form2ref" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_pengabdian_form2ref</field>
+            <field name="model">vit.kinerja_bidang_pengabdian</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd_inherit.view_vit_kinerja_bidang_pengabdian_form2"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='jenis_kegiatan_id']" position="replace">
+                    <field name="jenis_kegiatan1_id"/>
+                </xpath>
+                <xpath expr="//field[@name='bukti_dokumen']" position="after">
+                    <field name="jenis_doc_id"/>
+                    <field name="jenis_buku_id"/>
+                </xpath>
+                <xpath expr="//field[@name='beban_sks']" position="replace">
+                    <field name="sks_dosen"/>
+                    <field name="nilai_sks"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!-- tree view -->
+        <record id="view_vit_kinerja_penunjang_treeref" model="ir.ui.view">
+            <field name="name">vit_kinerja_penunjang_treeref</field>
+            <field name="model">vit.kinerja_penunjang</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_bkd_inherit.view_vit_kinerja_penunjang_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='jenis_kegiatan_id']" position="replace">
+                    <field name="jenis_kegiatan1_id"/>
+                </xpath>
+                <xpath expr="//field[@name='bukti_dokumen']" position="after">
+                    <field name="jenis_doc_id"/>
+                    <field name="jenis_buku_id"/>
+                </xpath>
+                <xpath expr="//field[@name='beban_sks']" position="replace">
+                    <field name="nilai_sks" string="Beban SKS"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kinerja_penunjang_formref" model="ir.ui.view">
+            <field name="name">vit_kinerja_penunjang_formref</field>
+            <field name="model">vit.kinerja_penunjang</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd_inherit.view_vit_kinerja_penunjang_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='jenis_kegiatan_id']" position="replace">
+                    <field name="jenis_kegiatan1_id"/>
+                </xpath>
+                <xpath expr="//field[@name='bukti_dokumen']" position="after">
+                    <field name="jenis_doc_id"/>
+                    <field name="jenis_buku_id"/>
+                </xpath>
+                <xpath expr="//field[@name='beban_sks']" position="replace">
+                    <field name="sks_dosen"/>
+                    <field name="nilai_sks"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_kinerja_penunjang_searchref" model="ir.ui.view">
+            <field name="name">vit_kinerja_penunjangref</field>
+            <field name="model">vit.kinerja_penunjang</field>
+            <field name="inherit_id" ref="vit_bkd_inherit.view_vit_kinerja_penunjang_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='jenis_kegiatan_id']" position="replace">
+                    <field name="jenis_kegiatan1_id" select="True"/>
+                </xpath>
+                <xpath expr="//search/group/filter[2]" position="replace">
+                    <filter string="Jenis Kegiatan" domain="[]" name="group_by_jenis_kegiatan1_id" context="{'group_by':'jenis_kegiatan1_id'}"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_kinerja_penunjang_kanbanref" model="ir.ui.view" >
+            <field name="name">vit_kinerja_penunjang</field>
+            <field name="model">vit.kinerja_penunjang</field>
+            <field name="inherit_id" ref="vit_bkd_inherit.view_vit_kinerja_penunjang_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='jenis_kegiatan_id']" position="replace">
+                    <field name="jenis_kegiatan1_id" select="True"/>
+                </xpath>
+                <xpath expr="//kanban/templates" position="replace">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Bkd</span> <field name="bkd_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Jenis kegiatan</span> <field name="jenis_kegiatan1_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Rekomendasi</span> <field name="rekomendasi_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </xpath>
+            </field>
+        </record>
+
+        
+    </data>
+</odoo>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="discount_bertingkat_form" model="ir.ui.view">
+            <field name="name">purchase.discount.bertingkat.form</field>
+            <field name="model">purchase.discount.bertingkat</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Discount">
+                    <header>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group colspan="4">
+                            <!-- <field name="partner_id" widget="res_partner_many2one" context="{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0, 'show_vat': True}" domain="[('supplier','=',True)]"
+                                placeholder="Vendor name"
+                            /> -->
+                            <field name="valid_from"/> 
+                            <field name="valid_until"/> 
+                        </group>
+
+                        <notebook>
+                            <page string="Discount Detail">
+                                <field name="line_ids" mode="tree">
+                                    <form string="Discount Detail">
+                                        <field name="sequence"/>
+                                        <field name="discount" string="Discount %"/>
+                                        <field name="calculate"/>
+                                    </form>
+                                    <tree string="Discount Detail" editable="bottom">
+                                        <field name="sequence" style="width:15% !important;text-align: left !important"/>
+                                        <field name="discount" string="Discount %"/>
+                                        <field name="calculate"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="discount_bertingkat_tree" model="ir.ui.view">
+            <field name="name">purchase.discount.bertingkat.tree</field>
+            <field name="model">purchase.discount.bertingkat</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Discount Bertingkat">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="valid_from"/>
+                    <field name="valid_until"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_po_discount" model="ir.actions.act_window">
+            <field name="name">Purchase Discount Bertingkat</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.discount.bertingkat</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_purchase_discount" name="Discount Bertingkat"
+            parent="purchase.menu_procurement_management"
+            action="action_po_discount" sequence="30"/>
+    </data>
+</odoo>

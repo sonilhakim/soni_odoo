@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">        
+
+        <record id="overtime_type_default3" model="hr.overtime.hour">
+            <field name="name">Lembur 1 Jam</field>
+            <field name="hour_ids" eval="[(0, 0, {'from_hour': '17', 'to_hour': '18', 'calculation': 1})]"/>
+        </record>
+
+        <record id="overtime_type_default4" model="hr.overtime.hour">
+            <field name="name">Lembur 1.5 Jam</field>
+            <field name="hour_ids" eval="[(0, 0, {'from_hour': '17', 'to_hour': '18.5', 'calculation': 1})]"/>
+        </record>
+
+        <record id="overtime_type_default5" model="hr.overtime.hour">
+            <field name="name">Lembur 2 Jam</field>
+            <field name="hour_ids" eval="[(0, 0, {'from_hour': '17', 'to_hour': '19', 'calculation': 1})]"/>
+        </record>
+
+        <record id="overtime_type_default6" model="hr.overtime.hour">
+            <field name="name">Lembur 2.5 Jam</field>
+            <field name="hour_ids" eval="[(0, 0, {'from_hour': '17', 'to_hour': '19.5', 'calculation': 1})]"/>
+        </record>
+
+        <record id="overtime_type_default7" model="hr.overtime.hour">
+            <field name="name">Lembur 3 Jam</field>
+            <field name="hour_ids" eval="[(0, 0, {'from_hour': '17', 'to_hour': '20', 'calculation': 1})]"/>
+        </record>
+
+        <record id="overtime_type_default8" model="hr.overtime.hour">
+            <field name="name">Lembur 3.5 Jam</field>
+            <field name="hour_ids" eval="[(0, 0, {'from_hour': '17', 'to_hour': '20.5', 'calculation': 1})]"/>
+        </record>
+
+        <record id="overtime_type_default9" model="hr.overtime.hour">
+            <field name="name">Lembur 4 Jam</field>
+            <field name="hour_ids" eval="[(0, 0, {'from_hour': '17', 'to_hour': '21', 'calculation': 1})]"/>
+        </record>
+
+        <record id="overtime_type_default10" model="hr.overtime.hour">
+            <field name="name">Lembur 4.5 Jam</field>
+            <field name="hour_ids" eval="[(0, 0, {'from_hour': '17', 'to_hour': '21.5', 'calculation': 1})]"/>
+        </record>
+
+        <record id="overtime_type_default11" model="hr.overtime.hour">
+            <field name="name">Lembur 5 - 7 Jam</field>
+            <field name="hour_ids" eval="[(0, 0, {'from_hour': '17', 'to_hour': '24', 'calculation': 1})]"/>
+        </record>
+
+        <record id="overtime_type_default12" model="hr.overtime.hour">
+            <field name="name">Lembur Double Shift</field>
+            <field name="hour_ids" eval="[(0, 0, {'from_hour': '17', 'to_hour': '24', 'calculation': 1})]"/>
+        </record>
+
+    </data>
+</odoo>

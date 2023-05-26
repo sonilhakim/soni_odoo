@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_marketing_request_menu" string="Marketing Request"
+         model="vit.marketing_request" report_type="qweb-pdf" paperformat="vit_marketing_request.paperformat_marketing_request" file="vit.marketing_request"  name="vit_marketing_request.vit_marketing_request_report" />
+
+        <!-- document template -->
+        <template id="vit_marketing_request.vit_marketing_request_report_document" >
+            <t t-call="vit_marketing_request.external_layout_marketing_request">
+                <t t-set="o" t-value="o.with_context({'lang': lang})"/>
+                <div class="page">
+                    <div class="header">
+                        <h4 class="text-center">
+                            <strong>Form Marketing Request</strong>
+                            <!-- <t t-if="o.type==design">
+                                <strong>Form Desain Request</strong>
+                            </t>
+                            <t t-else="else">
+                                <strong>Form Sample Request</strong>
+                            </t> -->
+                        </h4>
+                        <div class="row justify-content-end" style="margin-right:5px;">
+                            <strong>Form Number: <span class="page"/></strong>
+                        </div>
+                    </div>
+                    
+                    <div style="padding-left:5px; margin-bottom:15px; border: 1px solid black;">
+                        <div class="row">
+                            <div class="col-4">
+                                <strong>Req</strong>
+                            </div>
+                            <div class="row">
+                                :&#160; <span t-field="o.requester" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <strong>Penerima</strong>
+                            </div>
+                            <div class="row">
+                                :&#160; <span t-field="o.recipient" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <strong>Req Number</strong>
+                            </div>
+                            <div class="row">
+                                :&#160; <span t-field="o.name" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <strong>Req Date</strong>
+                            </div>
+                            <div class="row">
+                                :&#160; <span t-field="o.date" />
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+
+                <div style="padding-left:5px; border: 1px solid black;">
+                    <div style="margin-bottom:15px;">
+                        <div class="row">
+                            <div class="col-4">
+                                <strong>Customer</strong>
+                            </div>
+                            <div class="row">
+                                :&#160; <span t-field="o.partner_id" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <strong>Qty</strong>
+                            </div>
+                            <div class="row">
+                                :&#160; <span t-field="o.total_qty" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <strong>Target Kirim Ke Customer</strong>
+                            </div>
+                            <div class="row">
+                                :&#160; <span t-field="o.due_date" />
+                            </div>
+                        </div>
+                    </div>
+                
+                    <table class="table table-sm o_main_table" name="line_ids_table">
+                        <thead>
+                            <tr>
+                                <td><strong>Item Seragam</strong></td>
+                                <td><strong>Desain</strong></td>
+                                <td><strong>Size</strong></td>
+                                <td><strong>Qty</strong></td>
+                                <td><strong>Kain</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody class="line_ids_tbody">
+                            <tr t-foreach="o.line_request_ids" t-as="line">
+                                <td><span t-field="line.product_id" /></td>
+                                <td><span t-field="line.desain" /></td>
+                                <td><span t-field="line.size" /></td>
+                                <td><span t-field="line.qty" /></td>
+                                <td><span t-field="line.kain" /></td>
+                            </tr> <!-- foreach-->
+                        </tbody>
+                    </table>
+                    <div>
+                        <strong>Keterangan :</strong>
+                    </div>
+                    <div style="color: red">
+                        <span t-field="o.notes"/>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <div style="margin-top:10px;">
+                    <div class="row">
+                        <div class="text-center col-4">DIBUAT</div>
+                        <div class="text-center col-4">DISETUJUI</div>
+                        <div class="text-center col-4">DITERIMA</div>
+                    </div>
+                    <div class="row" style="margin-top:100px">
+                        <div class="text-center col-4">
+                            (<span t-field="o.user_id"/>)
+                        </div>
+                        <div class="text-center col-4">(_________________)</div>
+                        <div class="text-center col-4">(_________________)</div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_marketing_request.vit_marketing_request_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="vit_marketing_request.vit_marketing_request_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

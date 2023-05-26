@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_marketing_request_tree" model="ir.ui.view">
+            <field name="name">vit_marketing_request_tree</field>
+            <field name="model">vit.marketing_request</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Marketing Request">
+                    <field name="name" string="No. Request"/>
+                    <field name="requester" />
+                    <field name="recipient" string="Penerima"/>
+                    <field name="date" />
+                    <field name="partner_id" />
+                    <field name="due_date" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_marketing_request_form" model="ir.ui.view">
+            <field name="name">vit_marketing_request_form</field>
+            <field name="model">vit.marketing_request</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Marketing Request">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" groups="vit_marketing_request.group_marketing_request_desain" states="draft" />
+                        <button string="ACC TD" type="object" name="action_acc" groups="vit_marketing_request.group_marketing_request" states="open" confirm="Anda yakin TD akan di ACC ?"/>
+                        <button name="%(vit_marketing_request.show_mkt_pr_wizard)d" string="Create Purchase Request" type="action" class="oe_highlight" attrs="{'invisible':['|',('product_request_id','!=',False),('state','!=','mo_product')]}" groups="vit_marketing_request.group_marketing_request_desain"/>
+                        <button string="Confirm MO" type="object" name="action_approve" states="mo_product" groups="vit_marketing_request.group_marketing_request_desain" confirm="Anda yakin Sample akan di Approve ?"/>
+                        <button string="Validate" type="object" name="action_done" states="approve" groups="vit_marketing_request.group_marketing_request" confirm="Anda yakin Request akan di Validate ?"/>
+                        <button string="Cancel" type="object" name="action_cancel" states="open" confirm="Anda yakin Request akan di cancel ?" groups="vit_marketing_request.group_marketing_request"/>
+                        <button string="Reset to Draft" type="object" name="action_draft" states="cancel" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,mo_product,approve,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Request Number :"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="requester" />
+                                <field name="recipient" string="Penerima"/>
+                                <field name="date" />
+                                <field name="due_date" string="Target Kirim"/>
+                            </group>
+                            <group>
+                                <field name="partner_id" domain="[('customer','=',True)]" options="{'no_create': True}" />
+                                <field name="user_id" />
+                                <field name="company_id" />
+                                <field name="project" />
+                                <field name="notes" />
+                                <!-- <field name="type" invisible="1" /> -->
+                            </group>
+                            <group>
+                                <field name="sph_id" readonly="1"/>
+                            </group>
+                            <group attrs="{'invisible':[('product_request_id','=',False)]}">
+                                <field name="product_request_id" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Item">
+                                <field name="line_request_ids">
+                                    <tree string="Item">
+                                        <field name="name" string="Item"/>
+                                        <field name="qty" sum="total Qty"/>
+                                        <field name="uom" string="Satuan" options="{'no_create': True}"/>
+                                        <field name="boq_sph_id" invisible="1"/>
+                                    </tree>
+                                    <form string="Item">
+                                        <sheet>
+                                            <div class="oe_title">
+                                                <label for="name" class="oe_edit_only" string="Item"/>
+                                                <h1><field name="name" options="{'no_create': True}"/></h1>
+                                            </div>
+                                            <group>
+                                                <group>
+                                                    <field name="qty" required="1"/>
+                                                    <field name="uom" string="Satuan" options="{'no_create': True}" required="1"/>
+                                                </group>
+                                                <group>
+                                                    <field name="boq_sph_id" invisible="1"/>
+                                                </group>
+                                            </group>
+                                            <notebook>
+                                                <page string="Detail">
+                                                    <field name="detail_ids">
+                                                    </field>
+                                                </page>
+                                                <!-- <page string="Design">
+                                                    <field name="doc_line_ids">
+                                                        <tree string="Design" editable="bottom">
+                                                            <field name="doc_name" invisible="1"/>
+                                                            <field name="doc" widget="binary" filename="doc_name" required="1"/>
+                                                            <field name="date"/>
+                                                            <field name="name"/>
+                                                        </tree>
+                                                    </field>
+                                                </page> -->
+                                            </notebook>
+                                        </sheet>
+                                    </form>
+                                </field>
+                                <!-- <group class="oe_subtotal_footer oe_right">
+                                    <field name="total_qty" class="oe_subtotal_footer_separator"/>
+                                </group> -->
+                            </page>                            
+                            <page string="Design">
+                                <field name="doc_request_ids">
+                                    <tree string="Design" editable="bottom">
+                                        <field name="doc_name" invisible="1"/>
+                                        <field name="doc" widget="binary" filename="doc_name" required="1"/>
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_marketing_request_search" model="ir.ui.view">
+            <field name="name">vit_marketing_request_search</field>
+            <field name="model">vit.marketing_request</field>
+            <field name="arch" type="xml">
+                <search string="Marketing Request">
+
+                    <!-- <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Date" name="filter_by_date" domain="[('date','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" /> -->
+                    <field name="name" select="True"/>
+                    <field name="date" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="partner_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Partner" domain="[]" name="group_by_partner_id" context="{'group_by':'partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_marketing_request_kanban" model="ir.ui.view" >
+            <field name="name">vit_marketing_request_kanban</field>
+            <field name="model">vit.marketing_request</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="state" />
+                    <field name="partner_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            Field1: <field name="project"></field>
+                                        </li>
+                                        <li>
+                                            Field2: <field name="partner_id"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_vit_marketing_request_cal" model="ir.ui.view">
+            <field name="name">vit_marketing_request_cal</field>
+            <field name="model">vit.marketing_request</field>
+            <field name="arch" type="xml">
+                <calendar string="Marketing Request" date_start="date">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record>
+        <!-- graph -->
+        <record id="view_vit_marketing_request_graph" model="ir.ui.view">
+            <field name="name">vit_marketing_request_graph</field>
+            <field name="model">vit.marketing_request</field>
+            <field name="arch" type="xml">
+                <graph string="Marketing Request" type="bar">
+                    <field name="partner_id"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- act window inquery_garmen customer -->
+        <record id="action_vit_marketing_request" model="ir.actions.act_window">
+            <field name="name">Marketing Request</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.marketing_request</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Marketing Request
+                </p><p>
+                Click the Create button to add a new Marketing Request
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_vit_marketing_request" name="Request" parent="vit_marketing_request.vit_marketing_request_sub_menu" action="action_vit_marketing_request" sequence="20"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_kasbon_pb_menu" string="Vit - Kasbon pb"
+         model="vit.kasbon_pb" report_type="qweb-pdf" 
+         file="vit.kasbon_pb"  name="vit_kasbon_pb.vit_kasbon_pb_report" />
+
+        <!-- document template -->
+        <template id="vit_kasbon_pb.vit_kasbon_pb_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Kasbon pb: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tanggal pengajuan</strong>
+                            <p class="m-0" t-field="doc.tanggal_pengajuan" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pinjaman</strong>
+                            <p class="m-0" t-field="doc.pinjaman" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pencairan</strong>
+                            <p class="m-0" t-field="doc.pencairan" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Angsuran</strong>
+                            <p class="m-0" t-field="doc.angsuran" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Karyawan d</strong>
+                            <p class="m-0" t-field="doc.karyawan_d"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Department</strong>
+                            <p class="m-0" t-field="doc.department_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>User</strong>
+                            <p class="m-0" t-field="doc.user_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_kasbon_pb.vit_kasbon_pb_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_kasbon_pb.vit_kasbon_pb_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

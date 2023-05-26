@@ -1,0 +1,21 @@
+<odoo>
+	<data>
+
+		<record id="so_multi_account_journal_form_view" model="ir.ui.view">
+			<field name="name">so.multi.account.journal.form</field>
+			<field name="model">account.journal</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="account.view_account_journal_form"/>
+			<field name="arch" type="xml">
+				
+				<field name="type" position="after">
+					<field name="is_wesel"/>
+					<field name="is_virtual_account"/>
+					<field name="is_transfer"/>
+				</field>
+
+			</field>
+		</record>
+		
+	</data>
+</odoo>

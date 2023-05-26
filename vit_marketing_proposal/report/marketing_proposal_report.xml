@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_marketing_proposal_menu" string="Proposal"
+         model="vit.marketing_proposal" report_type="qweb-pdf" 
+         file="vit.marketing_proposal"  name="vit_marketing_proposal.vit_marketing_proposal_report" />
+
+        <!-- document template -->
+        <template id="vit_marketing_proposal.vit_marketing_proposal_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Marketing Proposal: <span t-field="doc.name"/>
+                    </h2>
+                    <t>
+                        <div t-field="doc.partner_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                    </t>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Date</strong>
+                            <p class="m-0" t-field="doc.date" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Project</strong>
+                            <p class="m-0" t-field="doc.project" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>No Inquery</strong>
+                            <p class="m-0" t-field="doc.inquery_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Lines</h2>
+                <table class="table table-sm o_main_table" name="line_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Product</td>
+                            <td>Qty</td>
+                            <td>Unit of Measure</td>
+                        </tr>
+                    </thead>
+                    <tbody class="line_ids_tbody">
+                        <tr t-foreach="doc.line_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.qty" /></td>
+                            <td><span t-field="line.uom" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <!-- <div class="oe_structure"/>
+                <h2>Docs</h2>
+                <table class="table table-sm o_main_table" name="doc_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Doc</td>
+                            <td>Date</td>
+                        </tr>
+                    </thead>
+                    <tbody class="doc_ids_tbody">
+                        <tr t-foreach="doc.doc_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.doc" /></td>
+                            <td><span t-field="line.date" /></td>
+                        </tr>
+                    </tbody>
+                </table> -->
+                <strong>Notes :</strong>
+                <p t-field="doc.notes"/>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_marketing_proposal.vit_marketing_proposal_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_marketing_proposal.vit_marketing_proposal_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

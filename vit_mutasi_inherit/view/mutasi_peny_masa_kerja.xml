@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_mutasi_penyesuaian_masa_kerja_tree2" model="ir.ui.view">
+            <field name="name">vit_mutasi_penyesuaian_masa_kerja_tree2</field>
+            <field name="model">vit.mutasi_penyesuaian_masa_kerja</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_mutasi.view_vit_mutasi_penyesuaian_masa_kerja_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree position="replace">
+                    <tree string="Mutasi penyesuaian masa kerja">
+                        <field name="name" />
+                        <field name="date" />
+                        <field name="matra_id" />
+                        <field name="fakultas_id" string="SUBSATKER" />
+                        <field name="state" />
+                    </tree>
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_mutasi_penyesuaian_masa_kerja_form2" model="ir.ui.view">
+            <field name="name">vit_mutasi_penyesuaian_masa_kerja_form2</field>
+            <field name="model">vit.mutasi_penyesuaian_masa_kerja</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_mutasi.view_vit_mutasi_penyesuaian_masa_kerja_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="action_done" position="replace">
+                    <button string="Validasi" type="object" name="action_done" states="open" groups="vit_mutasi.group_mutasi_manager"/>
+                    <button string="Tolak" type="object" name="action_reject" states="open" groups="vit_mutasi.group_mutasi_manager"/>
+                </button>
+                <button name="action_draft" position="replace" >
+                    <button string="Kembali ke Rancangan" type="object" name="action_draft" states="open" />
+                </button>
+                <xpath expr="//group/group" position="inside">
+                    <field name="date" />
+                </xpath>
+                <xpath expr="//field[@name='fakultas_id']" position="attributes">
+                    <attribute name="string">SUBSATKER</attribute>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='mutasi_mk_detail_ids']" position="replace">
+                    <field name="mutasi_mk_detail_ids" mode="tree">
+                        <tree string="Mutasi pangkat golongan" editable="bottom">
+                            <field name="employee_id" string="Pegawai" domain="[('matra_id','=',matra_id),('fakultas_id','=',fakultas_id)]"/>
+                            <field name="mk_thn_awal" />
+                            <field name="mk_bln_awal" />
+                            <field name="mk_thn_tujuan" />                            
+                            <field name="mk_bln_tujuan" />
+                            <field name="matra_id" invisible="1"/>
+                            <field name="fakultas_id" invisible="1"/>
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

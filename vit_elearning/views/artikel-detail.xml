@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="artikel-detail">
+      <html>
+         <!-- Mirrored from envytheme.com/templates/edufield/edufield/index-four.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Jun 2020 06:56:29 GMT -->
+        <head>
+            <title t-field="artikel_id.name" />
+
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/bootstrap.min.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/icofont.min.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/classy-nav.min.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/animate.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/owl.carousel.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/magnific-popup.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/owl.theme.default.min.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/style.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/responsive.css"/>
+            <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"/>            
+            <link rel="icon" type="image/png" href="https://toffin.id/wp-content/uploads/2019/12/cropped-ic-192x192.png"/>
+        </head>
+        <body>
+            <div class="preloader-area">
+                <div class="loader">
+                   <div class="dots"> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-up"></i> </div>
+                </div>
+                
+            </div>
+            <t t-call="vit_elearning.header"/>
+              
+              <!-- Start Page Title Area -->
+            <div class="page-title">
+                <div class="d-table">
+                    <div class="d-table-cell">
+                        <div class="container">
+                            <h3>Artikel Detail</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <!-- End Page Title Area -->
+              
+              <!-- Start Course Details Area -->
+            <section class="course-details-area ptb-100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-12">
+                            <div class="courses-details" style="margin-top:0px; margin-bottom: 10px">
+                                
+                                <div class="courses-details-img">
+                                    <img t-attf-src="data:image/*;base64,{{artikel_id.image_small}}" t-attf-alt="{{artikel_id.name}}" class="img-fluid" style="width:100%;border-radius:5px"/>
+                                </div>
+
+                                <div class="content show" id="tab_1_content">
+                                    <h3><span t-field="artikel_id.name"/></h3>
+                                    <p><span t-esc="artikel_id.description[:130] + '\n' + artikel_id.description[130:260] + '\n' if artikel_id.description else ''"/></p>
+                                    
+                                    <p><span t-field="artikel_id.detail_artikel"/></p>
+                                </div>
+
+                                
+                                <div class="post-comments">
+                                    <h3 style="font-size: 28px; margin-top:20px;margin-bottom: 10px">Comments</h3>
+                                    <div class="single-comment" t-foreach="artikel_id.message_ids.search([('res_id','=', artikel_id.id),('model','=', artikel_id._name),('comment_id','=',False)])" t-as="message">
+                                        <div class="comment-img">
+                                            <img style="width:90%;" t-attf-src="data:image/*;base64,{{message.author_avatar}}" alt="client"/>
+                                        </div>
+                                        <div class="comment-content">
+                                            <h4><span t-field="message.author_id"/></h4>
+                                            <p><span t-field="message.body"/></p>
+                                            <span t-field="message.date" t-field-options='{"format": "dd/MM/yyyy - h:mm a"}'/>
+                                            <!-- <span t-esc="datetime.datetime.strptime(message.date, '%Y-%m-%d %H:%M:%S').strftime('%b %d,%Y - %I:%M %p')"/> -->
+
+                                            <!-- <a href="#">Reply</a> -->
+                                        </div>
+                                        <!-- <div class="single-comment row" style="padding-top:5px; padding-bottom:0px; margin-bottom:0px" t-foreach="e_learning_id.message_ids.search([('res_id','=', e_learning_id.id),('model','=', e_learning_id._name),('comment_id','=',message.id)])" t-as="message_id">
+                                            <div class="reply-img">
+                                                <img t-attf-src="data:image/*;base64,{{message_id.author_avatar}}" alt="client"/>
+                                            </div>
+                                            <div class="reply-content">
+                                                <h4><span t-field="message_id.author_id"/></h4>
+                                                <p><span t-field="message_id.body"/></p>
+                                                <span t-field="message_id.date" t-field-options='{"format": "dd/MM/yyyy - h:mm a"}'/>
+                                            </div>
+                                        </div> -->
+                                        <!-- <div class="reply-reply">
+                                            <form role="form" t-attf-action="/reply/{{message.id}}" method="POST">
+                                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <input type="text" name="body" t-att-value="body" id="body" class="form-control" placeholder="Your Reply" required="required" size="65"/>
+                                                    </div>
+                                                    
+                                                    <div class="clearfix oe_login_buttons">
+                                                        <button type="submit" class="btn btn-primary">Reply</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div> -->
+                                    </div>                                    
+                                </div>
+                              
+                                <div class="leave-a-reply" style="margin-top:25px;">
+                                    <h3 style="font-size: 26px; margin-top:15px;margin-bottom: 30px">Leave a Reply</h3>
+                                    <div class="row">
+                                        <form role="form" t-attf-action="/comment/{{artikel_id.id}}" method="POST">
+                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                            <div class="form-group">
+                                                <input type="text" name="body" t-att-value="body" id="body" class="form-control" placeholder="Your Comment" required="required" size="90"/>
+                                            </div>
+                                            <div class="clearfix oe_login_buttons">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                          
+                        <div class="col-lg-4 col-md-12">
+                            <div class="side-bar mb-0">
+                               
+                                <div class="single-widget search-box">
+                                    <h3 class="title">Search</h3>
+                                    <form role="form" t-attf-action="/search_page" method="POST">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <input type="text" name="name" t-att-value="name" id="name" class="form-control" placeholder="Search..."/>
+                                        <button type="submit" class="btn btn-primary"><i class="icofont icofont-search"></i></button>
+                                    </form>
+                                </div>
+                                
+                                <div class="single-widget latest-courses">
+                                    <h3 class="title">Rekomendasi Kelas</h3>
+                                  
+                                    <div class="single-latest-courses" t-foreach="e_learning_ids" t-as="e_learn">
+                                        <div class="img side_portrait">
+                                            <a t-attf-href="/single-courses/{{e_learn.id}}"><img t-attf-src="data:image/*;base64,{{e_learn.image_small}}" t-attf-alt="{{e_learn.name}}" class="img-fluid"/></a>
+                                        </div>
+                                          
+                                        <div class="content">
+                                            <h4><a t-attf-href="/single-courses/{{e_learn.id}}"><span t-field="e_learn.name"/></a></h4>
+                                            <t t-if="e_learn.total_price==0">
+                                              <p>Gratis</p>
+                                            </t>
+                                            <t t-else="">
+                                              <p>Rp <span t-field="e_learn.total_price"/></p>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  
+            </section>
+              <!-- End Course Details Area -->
+              
+              <!-- Start Footer Area -->
+            <t t-call="vit_elearning.footer"/>
+            <!-- End Footer Area -->
+            
+            <!-- Back to top -->
+            <a class="scrolltop" href="#top"><i class="icofont-hand-drawn-up"></i></a>
+            <!-- End Back to top -->
+            
+            <!-- jQuery Min JS -->
+            <script src="/vit_elearning/static/src/js/jquery.min.js"></script>
+            <!-- Prpper JS -->
+            <script src="/vit_elearning/static/src/js/popper.min.js"></script>
+            <!-- Bootstrap Min JS -->
+            <script src="/vit_elearning/static/src/js/bootstrap.min.js"></script>
+            <!-- Classy Nav Min Js -->
+            <script src="/vit_elearning/static/src/js/classy-nav.min.js"></script>
+            <!-- Owl Carousel Min Js -->
+            <script src="/vit_elearning/static/src/js/owl.carousel.min.js"></script>
+            <!-- Magnific Popup JS -->
+            <script src="/vit_elearning/static/src/js/jquery.magnific-popup.min.js"></script>
+            <!-- CounterUp JS -->
+            <script src="/vit_elearning/static/src/js/jquery.counterup.min.js"></script>
+            <!-- Waypoints JS -->
+            <script src="/vit_elearning/static/src/js/waypoints.min.js"></script>
+            <!-- Form Validator Min JS -->
+            <script src="/vit_elearning/static/src/js/form-validator.min.js"></script>
+            <!-- Contact Form Min JS -->
+            <script src="/vit_elearning/static/src/js/contact-form-script.js"></script>
+            <!-- Main JS -->
+            <script src="/vit_elearning/static/src/js/main.js"></script>
+        </body>
+      </html>
+    </template>
+  </data>
+</odoo>

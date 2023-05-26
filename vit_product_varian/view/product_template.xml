@@ -1,0 +1,115 @@
+<odoo>
+    <data>
+
+        <record id="product_template_variant_form_view" model="ir.ui.view">
+            <field name="name">product.template.variant.form.view</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <field name='type' position="before">
+                    <field name="nick_name"/>
+                </field>
+                <field name='company_id' position="after">
+                    <field name="ongkos_kirim"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="product_template_only_form_view" model="ir.ui.view">
+            <field name="name">product.template.product.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='variants']" position="after">
+                    <page name="product_variant_ids" string="Product Variants" >
+                        <field name="product_variant_ids" >
+                            <tree string="Product Variants" create="false" editable="bottom">
+                                <field name="sequence" string="Seq."/>
+                                <field name="default_code" string="No. SKU"/>
+                                <field name="barcode"/>
+                                <!-- <field name="name"/> -->
+                                <field name="attribute_value_ids" widget="many2many_tags" readonly="1"/>
+                                <!-- <field name="min_stock"/> -->
+                                <field name="qty_available" string="Qty" attrs="{'invisible':[('type', '!=', 'product')]}"/>
+                                <field name="satuan_product" string="Satuan"/>
+                                <field name="conv_value"/>
+                                <field name="standard_price" string="Harga Satuan"/>
+                                <field name="type" invisible="1"/>
+                                <!-- <field name="price" invisible="not context.get('pricelist',False)"/> -->
+                                <field name="discount_bertingkat_id" options="{'no_create': True}"/>
+                                <!-- <field name="harga_discount"/> -->
+                                <field name="harga_beli"/>
+                                <field name="valuation" invisible="1" readonly="1"/>
+                                <field name="harga_beli" string="Hpp"/>
+                                <field name="profit" class="oe_inline"/>
+                                <!-- <field name="virtual_available" attrs="{'invisible':[('type', '!=', 'product')]}"/> -->
+                                <!-- <field name="uom_id" options="{'no_open': True, 'no_create': True}" groups="uom.group_uom"/> -->
+                                <!-- <field name="harga_jual"/>
+                                <field name="harga_jual2"/>
+                                <field name="harga_jual3"/> -->
+                            </tree>
+                            <form string="Varian Info Master">
+                                <sheet>
+                                    <field name="id" invisible="1"/>
+                                    <div class="oe_title">
+                                        <label class="oe_edit_only" for="name" string="Product Name"/>
+                                        <h1><field name="name" placeholder="e.g. Odoo Enterprise Subscription"/></h1>
+                                    </div>
+                                    <group string="Attributes">
+                                        <field name="attribute_value_ids" widget="many2many_tags" readonly="1"/>
+                                    </group>
+                                    <group name="codes" string="Codes">
+                                        <group>
+                                            <field name="default_code" string="No. SKU"/>
+                                            <field name="barcode"/>
+                                        </group>
+                                        <group>
+                                            <field name="sequence" string="Sequence"/>
+                                            <field name="type" invisible="1"/>
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <group name="stock" string="Stock">
+                                            <field name="min_stock"/>
+                                            <field name="qty_available" string="Qty" attrs="{'invisible':[('type', '!=', 'product')]}"/>
+                                        </group>
+                                        <group name="satuan" string="Satuan">
+                                            <field name="satuan_product" string="Satuan" options="{'no_create': True}"/>
+                                            <field name="conv_value"/>
+                                        </group>
+                                    </group>
+                                    <group name="harga" string="Harga">
+                                        <group>
+                                            <field name="standard_price" string="Harga Satuan" widget='monetary' options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/>
+                                            <field name="discount_bertingkat_id" options="{'no_create': True}"/>
+                                            <field name="harga_discount" widget='monetary' options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/>
+                                            <field name="harga_beli" widget='monetary' options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/>
+                                        </group>
+                                        <group>
+                                            <field name="valuation" invisible="1" readonly="1"/>
+                                            <!-- <field name="standard_price" string="Hpp"
+                                            attrs="{'readonly':[('valuation','=','real_time')]}"
+                                            widget='monetary' options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/> -->
+                                            <field name="harga_beli" string="Hpp" widget='monetary' options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/>
+                                            <field name="currency_id" invisible='1'/>
+                                            <field name="cost_currency_id" invisible="1"/>
+                                            <label string="Profit" />
+                                            <div>
+                                                <field name="profit" style="width: 20%"/>%   | <field name="nilai_profit"/>
+                                            </div>
+                                            <!-- <field name="harga_jual" string="Harga Jual" widget='monetary' options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/>
+                                            <field name="harga_jual2" widget='monetary' options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/>
+                                            <field name="harga_jual3" widget='monetary' options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/> -->
+                                        </group>
+                                    </group>
+                                </sheet>
+                            </form>
+
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

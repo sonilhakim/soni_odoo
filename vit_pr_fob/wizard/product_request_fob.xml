@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_fob_pr_wizard" model="ir.ui.view">
+            <field name="name">fob.pr.wizard</field>
+            <field name="model">fob.pr.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Create PR">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date" required="1"/>
+                            </group>
+                            <group>
+                                <field name="generate_type" required="1"/>
+                                <field name="start_number" attrs="{'invisible': [('generate_type','=','all')]}"/>
+                                <field name="end_number" attrs="{'invisible': [('generate_type','=','all')]}"/>
+                            </group>
+                        </group>  
+                    </sheet>
+                    <footer>
+                        <button name="product_request_md" string="Create Purchase Request" type="object" class="btn-primary"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="show_fob_pr_wizard">
+            <field name="name">Create Purchase Request</field>
+            <field name="res_model">fob.pr.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+           
+</odoo>

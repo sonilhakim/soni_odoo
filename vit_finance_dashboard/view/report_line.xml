@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_financial_report_form_vit" model="ir.ui.view">
+            <field name="name">account.financial.html.report.form.vit</field>
+            <field name="model">account.financial.html.report</field>
+            <field name="inherit_id" ref="account_reports.view_account_financial_report_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="before">
+                    <header>
+                        <button string="Compute" type="object" name="compute_balance" />
+                    </header>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_account_financial_report_line_form_vit" model="ir.ui.view">
+            <field name="name">account.financial.html.report.line.form.vit</field>
+            <field name="model">account.financial.html.report.line</field>
+            <field name="inherit_id" ref="account_reports.view_account_financial_report_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="before">
+                    <header>
+                        <button string="Compute" type="object" name="compute_balance" />
+                    </header>
+                </xpath>
+                <xpath expr="//field[@name='code']" position="after">
+                    <field name="balance"/>
+                    <field name="credit"/>
+                    <field name="debit"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_account_financial_report_line_tree_vit" model="ir.ui.view">
+            <field name="name">account.financial.html.report.line.tree.vit</field>
+            <field name="model">account.financial.html.report.line</field>
+            <field name="inherit_id" ref="account_reports.view_account_financial_report_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='figure_type']" position="after">
+                    <field name="balance"/>
+                    <field name="credit"/>
+                    <field name="debit"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

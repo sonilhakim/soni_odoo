@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+
+        <record id="vit_mrp_production_req" model="ir.ui.view">
+            <field name="name">mrp.production.req.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='availability']" position="after">
+                    <field name="approval_line_id" readonly="True" attrs="{'invisible':[('approval_line_id','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- menu mo sample marketing request -->
+        <record id="mrp_action_sample_approval" model="ir.actions.act_window">
+            <field name="name">MO Sample Approval</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.production</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="False"/>
+            <field name="domain">[('sample','=',True),('approval_line_id','!=',False)]</field>
+            <field name="search_view_id" ref="mrp.view_mrp_production_filter"/>
+            <field name="context">{'search_default_todo': True,'default_sample':True}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a manufacturing order Sample.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_mo_sample_approval"
+                name="MO Sample Approval"
+                action="mrp_action_sample_approval"
+                parent="vit_merchandise_garment.submenu_merchandise_sample_approval"
+                sequence="40"/>
+        
+   </data>
+</odoo>

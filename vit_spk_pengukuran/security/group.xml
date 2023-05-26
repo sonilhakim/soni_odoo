@@ -1,0 +1,17 @@
+<odoo>
+	<data>
+		<record model="ir.module.category" id="module_marketing_spk_pengukuran">
+			<field name="name">Marketing SPK Pengukuran</field>
+			<field name="description">Marketing SPK Pengukuran Groups</field>
+			<field name="sequence">70</field>
+		</record>
+		<record id="group_marketing_spk_pengukuran_user" model="res.groups">
+			<field name="name">User SPK Pengukuran</field>
+			<field name="category_id" ref="module_marketing_spk_pengukuran"/>
+		</record>
+		<record id="group_marketing_spk_pengukuran" model="res.groups">
+			<field name="name">Manager SPK Pengukuran</field>
+			<field name="category_id" ref="module_marketing_spk_pengukuran"/>
+		</record>
+	</data>
+</odoo>

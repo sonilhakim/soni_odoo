@@ -1,0 +1,278 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- RKA form -->
+        <record id="view_rka_form_report" model="ir.ui.view">
+            <field name="name">anggaran_rka_form_report</field>
+            <field name="model">anggaran.rka</field>
+            <field name="inherit_id" ref="anggaran.view_rka_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <!-- <button name="action_confirm" position="before">
+                    <button string="Report" type="object" name="action_report" />
+                </button> -->
+                <xpath expr="//notebook/page" position="after">
+                    <page string="Report Kegiatan" invisible="1">
+                        <field name="rka_tridharma_ids">
+                            <tree string="Kegiatan Tridharma">
+                                <field name="tridharma_id"/>
+                                <field name="anggaran" />
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- RKA Tridharma form -->
+        <record id="view_rka_tridharma_form" model="ir.ui.view">
+            <field name="name">anggaran_rka_tridharma_form</field>
+            <field name="model">anggaran.rka_tridharma</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="rka_tridharma form" >
+                    <sheet>
+                        <group>
+                            <group> 
+                                <field name="tridharma_id"/>
+                            </group>
+                            <group>
+                                <field name="anggaran" />
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="KRO">
+                                <field name="rka_kro_ids">
+                                    <tree string="KRO">
+                                        <field name="category_id"/>
+                                        <field name="anggaran" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>      
+
+        <!-- RKA KRO form -->
+        <record id="view_rka_kro_form" model="ir.ui.view">
+            <field name="name">anggaran_rka_kro_form</field>
+            <field name="model">anggaran.rka_kro</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="rka_kro form" >
+                    <sheet>
+                        <group>
+                            <group> 
+                                <field name="category_id"/>
+                            </group>
+                            <group>
+                                <field name="anggaran" />
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="RO">
+                                <field name="rka_ro_ids">
+                                    <tree string="RO">
+                                        <field name="indikator"/>
+                                        <field name="anggaran" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_rka_ro_form" model="ir.ui.view">
+            <field name="name">anggaran_rka_ro_form</field>
+            <field name="model">anggaran.rka_ro</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="rka_ro form" >
+                    <sheet>
+                        <group>
+                            <group> 
+                                <field name="indikator"/>
+                            </group>
+                            <group>
+                                <field name="anggaran" />
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Komponen">
+                                <field name="rka_komp_ids">
+                                    <tree string="Komponen">
+                                        <field name="komponen_id"/>
+                                        <field name="total" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Komponen">
+                                <field name="rka_sub_ids">
+                                    <tree string="SubKomponen">
+                                        <field name="subkomponen_id"/>
+                                        <field name="total" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="MAK">
+                                <field name="rka_mak_ids">
+                                    <tree string="MAK">
+                                        <field name="mak_id"/>
+                                        <field name="total" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_rka_komponen_form" model="ir.ui.view">
+            <field name="name">anggaran_rka_komponen_form</field>
+            <field name="model">anggaran.rka_komponen</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="rka_komponen form" >
+                    <sheet>
+                        <group>
+                            <group> 
+                                <field name="komponen_id"/>
+                            </group>
+                            <group>
+                                <field name="total" />
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Komponen">
+                                <field name="rka_sub_ids">
+                                    <tree string="SubKomponen">
+                                        <field name="subkomponen_id"/>
+                                        <field name="total" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="MAK">
+                                <field name="rka_mak_ids">
+                                    <tree string="MAK">
+                                        <field name="mak_id"/>
+                                        <field name="total" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_rka_subkomponen_form" model="ir.ui.view">
+            <field name="name">anggaran_rka_subkomponen_form</field>
+            <field name="model">anggaran.rka_subkomponen</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="rka_subkomponen form" >
+                    <sheet>
+                        <group>
+                            <group> 
+                                <field name="subkomponen_id"/>
+                            </group>
+                            <group>
+                                <field name="total" />
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="MAK">
+                                <field name="rka_mak_ids">
+                                    <tree string="MAK">
+                                        <field name="mak_id"/>
+                                        <field name="total" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_rka_mak_form" model="ir.ui.view">
+            <field name="name">anggaran_rka_mak_form</field>
+            <field name="model">anggaran.rka_mak</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="rka_mak form" >
+                    <sheet>
+                        <group>
+                            <group> 
+                                <field name="mak_id"/>
+                            </group>
+                            <group>
+                                <field name="total" />
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Det">
+                                <field name="rka_det_ids">
+                                    <tree string="Det">
+                                        <field name="keterangan" /> 
+                                        <field name="tarif" />         
+                                        <field name="jumlah" />  
+                                        <field name="volume_total" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- RKA detail form -->
+        <record id="view_rka_det_form" model="ir.ui.view">
+            <field name="name">anggaran_rka_det_form</field>
+            <field name="model">anggaran.rka_det</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="rka_det form" >
+                    <sheet>
+                      
+                        <div class="oe_title">
+                            <label for="keterangan" class="oe_edit_only" 
+                                 string="Detail" />
+                            <h1>
+                                <field name="keterangan" />
+                            </h1>
+                                <field name="satuan_volume" nolabel="1"/>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="keterangan" />
+                                <field name="satuan_volume" />
+                                <field name="volume_total" />
+                            </group>
+                            <group>
+                                <field name="tarif" />
+                                <field name="jumlah" />
+                                <field name="uom_volume" />
+                            </group>
+                        </group>
+
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

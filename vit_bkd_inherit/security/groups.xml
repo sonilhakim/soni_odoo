@@ -1,0 +1,8 @@
+<odoo>
+	<data>
+		<record id="group_bkd_sesprodi" model="res.groups">
+			<field name="name">Sesprodi</field>
+			<field name="category_id" ref="vit_bkd.module_category_bkd"/>
+		</record>
+	</data>
+</odoo>

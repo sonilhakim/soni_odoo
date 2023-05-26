@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="rekap_bkb_report_tmpl">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="doc">
+                        <div class="page">
+                            <div>
+                                <h4 class="text-center">
+                                    <strong>REKAP Bukti Keluar Barang (BKB)</strong>
+                                </h4>
+                                <t t-if="doc.date_from and doc.date_to">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h5 class="text-center">
+                                                <span t-field="doc.date_from" />
+                                                -
+                                                <span t-field="doc.date_to" />
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                            <table class="table-sm text-center" style="font-size:14px;">
+                                <thead style="background-color: #ebebeb;">
+                                    <tr>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:11%;">TGL</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:15%;">NO WS</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:21%;">BUYER</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:21%;">DESCRIPTION</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:8%;">QTY</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;text-align:right;width:12%;">PA</th>
+                                        <th style="border-top: 1px solid black;border-right: 1px solid black;text-align:left;width:12%;">RAF</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="border-left: 1px solid black;"></th>
+                                        <th style="border-left: 1px solid black;"></th>
+                                        <th style="border-left: 1px solid black;"></th>
+                                        <th style="border-left: 1px solid black;"></th>
+                                        <th style="border-left: 1px solid black;"></th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;">PENERIMA</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid">PPIC</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="data_dict" t-as="dat">
+                                        <tr>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat[0].strftime('%d-%m-%Y')" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat[1]" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat[2]" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat[3]" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat[4]" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                            </td>
+                                        </tr>
+                                    </t>
+
+                                </tbody>
+                            </table>
+                            <div class="row" style="margin-left:3px;">
+                                Tgl Cetak: <span t-esc="doc.get_current_date()" />
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+
+        </template>
+
+    </data>
+</openerp>

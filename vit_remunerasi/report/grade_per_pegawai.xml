@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_grade_per_pegawai_menu" string="Vit - Grade per pegawai"
+         model="vit.grade_per_pegawai" report_type="qweb-pdf" 
+         file="vit.grade_per_pegawai"  name="vit_remunerasi.vit_grade_per_pegawai_report" />
+
+        <!-- document template -->
+        <template id="vit_remunerasi.vit_grade_per_pegawai_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Grade per pegawai: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Description</strong>
+                            <p class="m-0" t-field="doc.description" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Grade pegawai</h2>
+                <table class="table table-sm o_main_table" name="grade_pegawai_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Grade</td>
+                            <td>Karyawan</td>
+                            <td>Grade</td>
+                        </tr>
+                    </thead>
+                    <tbody class="grade_pegawai_ids_tbody">
+                        <tr t-foreach="doc.grade_pegawai_ids" t-as="line">
+                            <td><span t-field="line.grade" /></td>
+                            <td><span t-field="line.karyawan_id" /></td>
+                            <td><span t-field="line.grade_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_remunerasi.vit_grade_per_pegawai_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_remunerasi.vit_grade_per_pegawai_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_vit_export_buku_bank_wizard" model="ir.actions.act_window">
+            <field name="name">Report Buku Bank</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.export_buku_bank</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="view_vit_export_buku_bank_wizard_form" model="ir.ui.view">
+            <field name="name">view_vit_export_buku_bank_wizard_form</field>
+            <field name="model">vit.export_buku_bank</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Export Buku Bank">
+                    <group>
+                        <group>
+                            <field name="journal_id" domain="[('type','=','bank')]"/>
+                        </group>
+                        <group>
+                            <label string="Periode" for="month"/>
+                            <div>
+                                <field name="month" style="width: 40%"/>
+                                <field name="year" style="width: 40%"/>
+                            </div>
+                            <label string="Date Range" for="date_start" invisible="1"/>
+                            <div invisible="1">
+                                <field name="date_start" style="width: 40%"/> - 
+                                <field name="date_end" style="width: 40%"/>
+                            </div>
+                        </group>
+                    </group>
+                    <!-- <p>
+                        Klik tombol Export di bawah untuk mulai export data Barang/Jasa.
+                        Data yang diexport adalah Product yang belum diexport ke E-xport.
+                    </p>
+
+                    <p>
+                        Setelah proses export Barang/Jasa selesai dilakukan,
+                        download file:
+                    </p> -->
+                    <p>
+                        <group>
+                            <field name="export_file" readonly="1" filename="export_filename"/>
+                            <field name="export_filename" invisible="1" />
+                        </group>
+                    </p>
+
+
+                    <!-- <p>
+                        Lalu import ke program E-xport melalui menu <b>Referensi - Barang/Jasa - Import</b>
+                    </p> -->
+
+                    <footer>
+                        <button string="Export" name="confirm_button" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+
+        <menuitem id="Export_buku_bank" 
+                    name="Report Buku Bank"
+                    parent="accounting_pdf_reports.menu_finance_legal_statement"
+                    action="action_vit_export_buku_bank_wizard"
+                    sequence="50" />
+
+    </data>
+</odoo>

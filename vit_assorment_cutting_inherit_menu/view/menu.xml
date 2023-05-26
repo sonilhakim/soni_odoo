@@ -1,0 +1,35 @@
+<!-- top menu MD -->
+<odoo>
+    <data>
+        <!-- form style -->
+        <record id="stock_production_lot_form_ac" model="ir.ui.view">
+            <field name="name">stock_production_lot.form.ac</field>
+            <field name="model">vit.boq_po_garmen_line</field>
+            <field name="inherit_id" ref="vit_merchandise_garment.view_vit_boq_po_md_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[@name='%(vit_merchandise_garment.show_create_worksheet_wizard)d']" position="attributes">
+                    <attribute name="groups">vit_merchandise_garment.group_md_garment_user,vit_merchandise_garment.group_md_garment_manager</attribute>
+                </xpath>
+                <xpath expr="//sheet/div/button[@name='action_view_worksheet']" position="attributes">
+                    <attribute name="groups">vit_merchandise_garment.group_md_garment_user,vit_merchandise_garment.group_md_garment_manager</attribute>
+                </xpath>
+                <xpath expr="//header/button[@name='generate_number']" position="attributes">
+                    <attribute name="groups">vit_pengukuran.group_edp_pengukuran</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[1]" position="attributes">
+                    <attribute name="groups">vit_merchandise_garment.group_md_garment_user,vit_merchandise_garment.group_md_garment_manager</attribute>
+                </xpath>
+                <xpath expr="//field[@name='routing_id']" position="attributes">
+                    <attribute name="groups">vit_merchandise_garment.group_md_garment_user,vit_merchandise_garment.group_md_garment_manager</attribute>
+                </xpath>
+                <xpath expr="//field[@name='total_assortment_cutting']" position="attributes">
+                    <attribute name="groups">vit_merchandise_garment.group_md_garment_user,vit_merchandise_garment.group_md_garment_manager</attribute>
+                </xpath>
+            </field>
+        </record>
+        <!-- menu -->
+        <menuitem id="menu_vit_boq_po_edp" name="Style List" parent="vit_pengukuran.vit_pengukuran_sub_menu" action="vit_merchandise_garment.action_vit_boq_po_md" sequence="50"/>
+        <menuitem id="menu_vit_boq_po_mrp" name="Style List" parent="mrp.menu_mrp_manufacturing" action="vit_merchandise_garment.action_vit_boq_po_md" sequence="50"/>
+        <menuitem id="menu_vit_boq_po_mrp" name="Style List" parent="vit_ppic.vit_ppic_sub_menu" action="vit_merchandise_garment.action_vit_boq_po_md" sequence="50"/> 
+    </data>
+</odoo>

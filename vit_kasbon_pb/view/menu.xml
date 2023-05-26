@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="vit_kasbon_pb_top_menu" name="Kasbon" sequence="70" web_icon="vit_kasbon_pb,static/description/icon.png" />
+		<menuitem id="vit_kasbon_pb_sub_menu" name="Kasbon" sequence="40" parent="vit_kasbon_pb_top_menu" />
+		<menuitem id="vit_kasbon_pb_config_menu" name="Configurations" sequence="50" parent="vit_kasbon_pb_top_menu" />
+	</data>
+</odoo>

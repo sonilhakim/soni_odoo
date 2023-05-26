@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="myaccount">
+      <html>
+        <head>
+          <meta charset="utf-8"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/bootstrap.min.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/icofont.min.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/classy-nav.min.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/animate.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/owl.carousel.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/magnific-popup.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/owl.theme.default.min.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/style.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/responsive.css"/>
+          <!-- <title>Toffin Indonesia - E-Learning</title> -->
+          <link rel="icon" type="image/png" href="https://toffin.id/wp-content/uploads/2019/12/cropped-ic-192x192.png"/>
+        </head>
+        <body>
+          <div class="preloader-area">
+              <div class="loader">
+                 <div class="dots"> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-up"></i> </div>
+              </div>
+          </div>
+          <t t-call="vit_elearning.header"/>
+            
+            <!-- Start Page Title Area -->
+          <div class="page-title">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <h3>MY ACCOUNT</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Title Area -->
+        
+        <!-- Start Register Area -->
+        <section class="register-area ptb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <div class="container">
+                        <div class="col-md-12 main" role="main">
+
+                          <!-- Nav tabs -->
+                          <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+                            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+                            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+                          </ul>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">Konten 1</div>
+                            <div role="tabpanel" class="tab-pane" id="profile">
+                              <div class="features-akun">
+
+                                  <img t-attf-src="data:image/*;base64,{{user_id.partner_id.image}}" t-attf-alt="user"/>
+                                  <div class="akun-features">
+                                    <h4 style="margin-bottom:10px;"><span t-esc="user_id.partner_id.name"/></h4>
+                                    <h5>Alamat</h5>
+                                    <span t-field="user_id.partner_id" t-options='{"widget": "contact", "fields": ["address"]}'/>
+                                    <h5>Email</h5>
+                                    <div style="margin-bottom:10px;"><span t-esc="user_id.partner_id.email"/></div>
+                                    <h5>Phone</h5>
+                                    <div style="margin-bottom:10px;"><span style="margin-bottom:5px;" t-esc="user_id.partner_id.phone"/></div>
+                                    <h5>Mobile</h5>
+                                    <span t-esc="user_id.partner_id.mobile"/>
+                                  </div>
+                                
+                              </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="messages">Konten 4</div>
+                            <div role="tabpanel" class="tab-pane" id="settings">Konten 4</div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </section>                
+            
+            <!-- Start Footer Area -->
+          <t t-call="vit_elearning.footer"/>
+            <!-- End Footer Area -->
+            
+            <!-- Back to top -->
+            <a class="scrolltop" href="#top"><i class="icofont-hand-drawn-up"></i></a>
+            <!-- End Back to top -->
+
+            <!-- jQuery Min JS -->
+            <script src="/vit_elearning/static/src/js/jquery.min.js"></script>
+            <!-- Prpper JS -->
+            <script src="/vit_elearning/static/src/js/popper.min.js"></script>
+            <!-- Bootstrap Min JS -->
+            <script src="/vit_elearning/static/src/js/bootstrap.min.js"></script>
+            <!-- Classy Nav Min Js -->
+            <script src="/vit_elearning/static/src/js/classy-nav.min.js"></script>
+            <!-- Owl Carousel Min Js -->
+            <script src="/vit_elearning/static/src/js/owl.carousel.min.js"></script>
+            <!-- Magnific Popup JS -->
+            <script src="/vit_elearning/static/src/js/jquery.magnific-popup.min.js"></script>
+            <!-- CounterUp JS -->
+            <script src="/vit_elearning/static/src/js/jquery.counterup.min.js"></script>
+            <!-- Waypoints JS -->
+            <script src="/vit_elearning/static/src/js/waypoints.min.js"></script>
+            <!-- Form Validator Min JS -->
+            <script src="/vit_elearning/static/src/js/form-validator.min.js"></script>
+            <!-- Contact Form Min JS -->
+            <script src="/vit_elearning/static/src/js/contact-form-script.js"></script>
+            <!-- Main JS -->
+            <script src="/vit_elearning/static/src/js/main.js"></script>
+            <script src="/vit_elearning/static/src/js/new.js"></script>
+        </body>
+      </html>
+    </template>
+
+
+  </data>
+</odoo>

@@ -1,0 +1,2 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_all_partner_truck_run","access_all_partner_truck_run","model_partner_truck_run",,1,1,1,1

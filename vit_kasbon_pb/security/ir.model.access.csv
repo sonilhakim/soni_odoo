@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_user_vit_kasbon_pb,access_user_vit_kasbon_pb,model_vit_kasbon_pb,vit_kasbon_pb.group_vit_kasbon_pb_user,1,0,0,0
+access_manager_vit_kasbon_pb,access_manager_vit_kasbon_pb,model_vit_kasbon_pb,vit_kasbon_pb.group_vit_kasbon_pb_manager,1,1,1,1
+access_kasir_vit_kasbon_pb,access_kasir_vit_kasbon_pb,model_vit_kasbon_pb,vit_kasbon_pb.group_vit_kasbon_pb_kasir,1,1,1,1
+access_admin_vit_kasbon_pb,access_admin_vit_kasbon_pb,model_vit_kasbon_pb,base.group_system,1,1,1,1

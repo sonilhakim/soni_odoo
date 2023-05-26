@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_vit_gedung_tree" model="ir.ui.view">
+            <field name="name">vit_vit_gedung_tree</field>
+            <field name="model">vit.vit_gedung</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Vit gedung">
+                    <field name="name" />
+                    <field name="kode_gedung" />
+                    <field name="alamat" />
+                    <field name="state" />
+                    <field name="asset_id" />
+                    <field name="penanggung_jawab_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_vit_gedung_form" model="ir.ui.view">
+            <field name="name">vit_vit_gedung_form</field>
+            <field name="model">vit.vit_gedung</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Vit gedung">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" />
+                        <button string="Mark as Done" type="object" name="action_done" states="open" />
+                        <button string="Reset to Draft" type="object" name="action_draft" states="open,done" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Vit gedung Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="kode_gedung" />
+                                <field name="alamat" />
+                            </group>
+                            <group>
+                                <field name="asset_id" />
+                                <field name="penanggung_jawab_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Ruang">
+                                <field name="ruang_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_vit_gedung_search" model="ir.ui.view">
+            <field name="name">vit_vit_gedung</field>
+            <field name="model">vit.vit_gedung</field>
+            <field name="arch" type="xml">
+                <search string="Vit gedung">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Kode gedung" name="filter_by_kode_gedung" domain="[('kode_gedung','=','')]" />
+                    <filter string="Alamat" name="filter_by_alamat" domain="[('alamat','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="kode_gedung" select="True"/>
+                    <field name="alamat" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="asset_id" select="True"/>
+                    <field name="penanggung_jawab_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Asset" domain="[]" name="group_by_asset_id" context="{'group_by':'asset_id'}"/>
+                        <filter string="Penanggung jawab" domain="[]" name="group_by_penanggung_jawab_id" context="{'group_by':'penanggung_jawab_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_vit_gedung_kanban" model="ir.ui.view" >
+            <field name="name">vit_vit_gedung</field>
+            <field name="model">vit.vit_gedung</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="kode_gedung" />
+                    <field name="alamat" />
+                    <field name="state" />
+                    <field name="asset_id" />
+                    <field name="penanggung_jawab_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Asset</span> <field name="asset_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Penanggung jawab</span> <field name="penanggung_jawab_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_vit_gedung_graph" model="ir.ui.view">
+            <field name="name">vit_vit_gedung</field>
+            <field name="model">vit.vit_gedung</field>
+            <field name="arch" type="xml">
+                <graph string="Vit gedung" type="bar">
+                    <field name="asset_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_vit_gedung" model="ir.actions.act_window">
+            <field name="name">Vit gedung</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.vit_gedung</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Vit gedung
+                </p><p>
+                Click the Create button to add a new Vit gedung
+                </p>
+            </field>
+        </record>
+
+        <!-- <menuitem id="menu_vit_vit_gedung" name="Vit gedung" parent="vit_gedung_ruang_sub_menu" action="action_vit_vit_gedung" sequence="20"/> -->
+    </data>
+</odoo>

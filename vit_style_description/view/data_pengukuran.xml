@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_data_pengukuran_desc_tree" model="ir.ui.view">
+            <field name="name">vit_data_pengukuran_desc_tree</field>
+            <field name="model">vit.data_pengukuran</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_pengukuran.view_vit_data_pengukuran_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='karyawan_id']" position="after">
+                	<field name="description"/>
+            	</xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_data_pengukuran_desc_form" model="ir.ui.view">
+            <field name="name">vit_data_pengukuran_desc_form</field>
+            <field name="model">vit.data_pengukuran</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_pengukuran.view_vit_data_pengukuran_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='style_id']" position="after">
+            		<field name="description"/>
+            	</xpath>
+            </field>
+        </record>
+
+        <!-- pengukuran_karyawan form view -->
+        <record id="view_vit_pengukuran_karyawan_form_desc" model="ir.ui.view">
+            <field name="name">vit_pengukuran_karyawan_form_desc</field>
+            <field name="model">vit.pengukuran_karyawan</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_pengukuran.view_vit_pengukuran_karyawan_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//form/sheet/notebook/page/field[@name='data_ids']/tree/field[@name='style_id']" position="after">
+            		<field name="description"/>
+            	</xpath>
+            	<xpath expr="//form/sheet/notebook/page/field[@name='data_ids']/form/sheet/group/group[2]/field[@name='qty']" position="after">
+            		<field name="description"/>
+            	</xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

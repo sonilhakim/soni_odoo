@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="so_multipayment_invoice_inherite_id" model="ir.ui.view">
+        <field name="name">so multipayment account invoice</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+            	<field name="payment_journal_id" options="{'no_create': True, 'no_open' : True}" domain="[('company_id','=',company_id)]"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="vit_invoice_search_multipyment" model="ir.ui.view">
+        <field name="name">account.invoice.tree.search</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <filter name="group_by_partner_id" position="before">
+                <filter name="payment_journal_id" string="Payment Journal" context="{'group_by':'payment_journal_id'}"/>
+                <filter name="has_outstanding" string="Unapplied Payments" domain="[('state','=','open'),('partner_id.credit','&lt;',0)]"/>
+            </filter>
+        </field>
+    </record>
+
+    </data>
+</odoo>

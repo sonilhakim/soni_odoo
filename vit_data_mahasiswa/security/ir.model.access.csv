@@ -1,0 +1,4 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_user_vit_vit_data_mahasiswa,access_user_vit_vit_data_mahasiswa,model_vit_vit_data_mahasiswa,vit_data_mahasiswa.group_data mahasiswa_user,1,0,0,0
+access_manager_vit_vit_data_mahasiswa,access_manager_vit_vit_data_mahasiswa,model_vit_vit_data_mahasiswa,vit_data_mahasiswa.group_data mahasiswa_manager,1,1,1,1
+access_admin_vit_vit_data_mahasiswa,access_admin_vit_vit_data_mahasiswa,model_vit_vit_data_mahasiswa,base.group_system,1,1,1,1

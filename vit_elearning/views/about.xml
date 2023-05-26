@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <template id="about">
+      <html>
+        <head>
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/bootstrap.min.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/icofont.min.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/classy-nav.min.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/animate.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/owl.carousel.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/magnific-popup.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/owl.theme.default.min.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/style.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/responsive.css"/>
+            <!-- <title>Toffin Indonesia - E-Learning</title> -->
+            <link rel="icon" type="image/png" href="https://toffin.id/wp-content/uploads/2019/12/cropped-ic-192x192.png"/>
+        </head>
+        <body>
+            <div class="preloader-area">
+              <div class="loader">
+                 <div class="dots"> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-up"></i> </div>
+              </div>
+            </div>
+
+            <t t-call="vit_elearning.header"/>              
+              
+              <!-- Start Page Title Area -->
+            <div class="page-title">
+              <div class="d-table">
+                  <div class="d-table-cell">
+                    <div class="container">
+                      <h3>About Us</h3>
+                    </div>
+                  </div>
+              </div>
+            </div>
+              <!-- End Page Title Area -->
+              
+              <!-- Start Upcoming Events Area -->
+            <section class="about-area ptb-100">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-lg-6 col-md-12">
+                          <div class="about-text">
+                            <h3>Coffee Business <span>Platform</span></h3>
+                              
+                              
+                            <p>Toffin Indonesia adalah penyedia solusi berupa produk dan     jasa di sektor hotel, restoran, kafe (horeka). Selama lebih dari satu dekade, Toffin membantu mengakselerasi bisnis ribuan mitra yang terdiri dari independent coffee shop, international chain coffee shop, local coffee shop, dan specialty coffee shop yang tersebar di seluruh Indonesia.
+                            </p>
+                          
+                            <h3>Toffin <span>E-Learning</span> Center</h3>
+                            <p>Toffin e-learning adalah platform yang menyediakan program pengembangan dan pelatihan industri kopi mulai dari kreasi menu, bisnis,hingga keterampilan yang difasilitasi oleh mentor berpengalaman di bidangnya melalui online video dan live online classs.
+                            </p>
+
+                          </div>
+                      </div>
+                      
+                      <div class="col-lg-6 col-md-12">
+                          <div class="about-slider">
+                              
+                              <div class="item">
+                                  <img src="/vit_elearning/static/src/img/w1.jpg" alt="about"/>
+                              </div>
+                              
+                              <div class="item">
+                                  <img src="/vit_elearning/static/src/img/w2.jpg" alt="about"/>
+                              </div>
+                              <div class="item">
+                                  <img src="/vit_elearning/static/src/img/w3.jpg" alt="about"/>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="col-lg-4 col-md-6" t-foreach="e_categories" t-as="e_category">
+                        <div class="single-about">
+                          <img style="height: 75px;" t-attf-src="data:image/*;base64,{{e_category.logo}}" t-attf-alt="{{e_category.name}}" class="img-fluid" />
+                          <h3><span t-field="e_category.name"/></h3>
+                          <p><span t-field="e_category.description"/></p>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6 col-md-6 ptb-100">
+                          <img src="/vit_elearning/static/src/img/peoples-ng-01.jpg"/>
+                      </div>
+                             
+                      <div  class="col-lg-6 col-md-6 ptb-100">
+                           <div style="margin-left: 45px;" class="about-text centreee">
+                              <h3>Our Audience</h3>
+                              
+                              <ul class="about-text-list">
+                                  <li>Entrepreneur &amp; Start-up</li>
+                                  <li>Café &amp; Restaurant Owner</li>
+                                  <li>Bartender</li>
+                                  <li>Barista</li>
+                                  <li>Tea &amp; Coffee Enthusiast</li>
+                                  <li>F&amp;B Enthusiast</li>
+                                  <li>General Public</li>                                
+                              </ul>
+                            </div>
+                            <div style="margin-top:45px;margin-left: 45px;" class="about-text centreee">
+                              <h3>Our Mentor</h3>
+                              <ul class="about-text-list">
+                                  <li>International Coffee Master</li>
+                                  <li>Indonesia Coffee Expert</li>
+                                  <li>Tea Specialist</li>
+                                  <li>Cafe &amp; Resto Expert</li>
+                                  <li>Creative Industry Practitioner</li>
+                                  <li>Brand Owner</li>
+                                  <li>Local Legend</li>
+                                  <li>F&amp;B Influencer</li>
+                                  <li>Toffin Professional Trainer</li>                                
+                              </ul>
+                          </div>
+                          <div style="margin-left: 45px;" class="view-all"> <a t-attf-href="/our-mentor?offset=0" class="btn btn-primary">Lebih Lanjut <i class="icofont-rounded-double-right"></i></a> </div>
+                      </div>                    
+                  </div>
+              </div>
+            </section>
+            <!-- End About Area -->
+          
+            <!-- Start Footer Area -->
+            <t t-call="vit_elearning.footer"/>
+            <!-- End Footer Area -->
+            
+            <!-- Back to top -->
+            <a class="scrolltop" href="#top"><i class="icofont-hand-drawn-up"></i></a>
+            <!-- End Back to top -->
+            
+            <!-- jQuery Min JS -->
+            <script src="/vit_elearning/static/src/js/jquery.min.js"></script>
+            <!-- Prpper JS -->
+            <script src="/vit_elearning/static/src/js/popper.min.js"></script>
+            <!-- Bootstrap Min JS -->
+            <script src="/vit_elearning/static/src/js/bootstrap.min.js"></script>
+            <!-- Classy Nav Min Js -->
+            <script src="/vit_elearning/static/src/js/classy-nav.min.js"></script>
+            <!-- Owl Carousel Min Js -->
+            <script src="/vit_elearning/static/src/js/owl.carousel.min.js"></script>
+            <!-- Magnific Popup JS -->
+            <script src="/vit_elearning/static/src/js/jquery.magnific-popup.min.js"></script>
+            <!-- CounterUp JS -->
+            <script src="/vit_elearning/static/src/js/jquery.counterup.min.js"></script>
+            <!-- Waypoints JS -->
+            <script src="/vit_elearning/static/src/js/waypoints.min.js"></script>
+            <!-- Form Validator Min JS -->
+            <script src="/vit_elearning/static/src/js/form-validator.min.js"></script>
+            <!-- Contact Form Min JS -->
+            <script src="/vit_elearning/static/src/js/contact-form-script.js"></script>
+            <!-- Main JS -->
+            <script src="/vit_elearning/static/src/js/main.js"></script>
+        </body>
+      </html>
+    </template>
+
+  </data>
+</odoo>

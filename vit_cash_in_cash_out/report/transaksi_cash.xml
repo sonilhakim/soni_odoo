@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_transaksi_cash" string="Transaksi Cash"
+         model="cash.in.out.wizard" report_type="qweb-pdf" paperformat="vit_cash_in_cash_out.paperformat_cio_a4"
+         file="vit_cash_in_cash_out.vit_transaksi_cash_report"  name="vit_cash_in_cash_out.vit_transaksi_cash_report" />
+
+        <!-- document template -->
+        <template id="vit_transaksi_cash_report_document" >
+            <t t-call="vit_cash_in_cash_out.external_layout_cash_in_out">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="col-12">
+                    <div style="border-bottom: 1px solid black; margin-bottom:3px; margin-top:0px;"/>
+                </div>
+                <table class="table table-sm" name="transaksi_ids_table" style="margin-bottom:3px;">
+                    <thead>
+                        <tr class="text-center">
+                            <td style="border: 1px solid black;">Tanggal</td>
+                            <td style="border: 1px solid black;">Kode Transaksi</td>
+                            <td style="border: 1px solid black;">Nama Transaksi</td>
+                            <td style="border: 1px solid black;">No. Voucher</td>
+                            <td style="border: 1px solid black;">Ket. Transaksi</td>
+                            <td style="border: 1px solid black;">Total</td>
+                        </tr>
+                    </thead>
+                    <tbody class="transaksi_ids_tbody">
+                        <tr t-foreach="doc.transaksi_ids" t-as="line">
+                            <td style="border: 1px solid black; text-align:center;"><span t-esc="line.tanggal.strftime('%d-%m-%Y')"/></td>
+                            <td style="border: 1px solid black; text-align:center;"><span t-field="line.kode_transaksi" /></td>
+                            <td style="border: 1px solid black; text-align:center;"><span t-field="line.name" /></td>
+                            <td style="border: 1px solid black; text-align:center;"><span t-field="line.no_voucher" /></td>
+                            <td style="border: 1px solid black;"><span t-field="line.keterangan" /></td>
+                            <td style="border: 1px solid black; text-align:right;"><span t-esc="'{0:,.2f}'.format(line.jumlah)" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="col-12">
+                    <div style="border-top: 1px solid black;"/>
+                </div>
+                <div id="grand_total" class="row justify-content-end" style="margin-top:5px;">
+                    <div class="col-8">
+                    </div>
+                    <div class="col-4">
+                        <table class="table table-sm" style="border: 2px solid black; box-shadow: 4px 3px 3px 0px black;">
+                            <tr class="o_total">
+                                <td><strong>Grand Total: </strong></td>
+                                <td class="text-right">
+                                    <span t-esc="'{0:,.2f}'.format(doc.grand_total)"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_transaksi_cash_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_cash_in_cash_out.vit_transaksi_cash_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

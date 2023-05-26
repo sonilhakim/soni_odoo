@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_employee_tree_ref" model="ir.ui.view">
+            <field name="name">hr_employee_tree_ref</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='work_phone']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='work_email']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='department_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_hr_employee_tree_ref2" model="ir.ui.view">
+            <field name="name">hr_employee_tree_ref2</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="vit_univ_common_inherit.view_hr_employee_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='pangkat_id']" position="before">
+                    <field name="gender" string="JENIS KELAMIN"/>
+                    <field name="birthday" string="TANGGAL LAHIR"/>
+                </xpath>
+                <xpath expr="//field[@name='pangkat_id']" position="attributes">
+                    <attribute name="string">PANGKAT/KORPS</attribute>
+                </xpath>
+                <xpath expr="//field[@name='pangkat_id']" position="after">
+                    <field name="nip" string="NIP/NRP"/>
+                </xpath>
+                <xpath expr="//field[@name='matra_id']" position="attributes">
+                    <attribute name="string">MATRA</attribute>
+                </xpath>
+                <xpath expr="//field[@name='jabatan_id']" position="attributes">
+                    <attribute name="string">JABATAN</attribute>
+                </xpath>
+                <xpath expr="//field[@name='jabatanf_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='golongan_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='golongan_id']" position="replace">
+                    <field name="jenis_jabatan_code" string="KODE JABATAN"/>
+                    <field name="agama" string="AGAMA"/>
+                    <field name="eselon" string="ESELON"/>
+                    <field name="tmt_jabatan" string="TMT JAB"/>
+                    <field name="subsatker_id" string="SUBSATKER"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_hr_employee_form_referens" model="ir.ui.view">
+            <field name="name">hr_employee_form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='marital']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='marital']" position="after">
+                    <field name="status_nikah" />
+                </xpath>
+                <xpath expr="//field[@name='work_phone']" position="after">
+                    <field name="unit_wilayah" />
+                </xpath>
+                <xpath expr="//field[@name='country_of_birth']" position="after">
+                    <field name="gol_darah" />
+                </xpath>
+                <xpath expr="//field[@name='status_pegawai']" position="after">
+                    <field name="jenis_pegawai" />
+                    <field name="ref_level" />
+                </xpath>
+                <xpath expr="//field[@name='bank_account_id']" position="after">
+                    <field name="asal_dana" />
+                    <field name="tunjangan_kesehatan" />
+                </xpath>
+                <xpath expr="//field[@name='bidang_ilmu']" position="replace">
+                    <field name="bidang_ilmu_id" />
+                </xpath>
+                <xpath expr="//field[@name='gender']" position="before">
+                    <field name="agama" />
+                </xpath>
+                <xpath expr="//field[@name='department_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='jabatanf_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='jabatan_id']" position="attributes">
+                    <attribute name="string">Jabatan</attribute>
+                </xpath>
+                <xpath expr="//field[@name='jabatan_id']" position="after">
+                    <field name="jenis_jabatan_id" />
+                    <field name="jenis_jabatan_code" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='nip']" position="attributes">
+                    <attribute name="string">NIP/NRP</attribute>
+                </xpath>
+                <xpath expr="//field[@name='department_id']" position="after">
+                    <field name="subsatker_id" />
+                    <field name="eselon" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

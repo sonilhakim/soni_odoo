@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="report_list_sticker_polybag"
+            string="List Sticker Polybag"
+            model="stock.production.lot" 
+            report_type="qweb-pdf"
+            paperformat="vit_sticker_polybag.paperformat_sticker_polybag_a4_lands"
+            file="stock.production.lot" 
+            name="vit_sticker_polybag.list_sticker_polybag_lot_report"
+        />
+
+        
+        <template id="list_sticker_polybag_lot_report">            
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <!-- <t t-set="o" t-value="o.with_context(lang=lang)"/> -->
+                    <div class="page">
+                        <div class="oe_structure"/>                        
+                        <table name="polybag_ids_table" style="text-align: center;width:100%;">
+                            <thead>
+                                <tr>
+                                    <td style="border: 1px solid black;"><strong>No</strong></td>
+                                    <td style="border: 1px solid black;"><strong>Project</strong></td>
+                                    <td style="border: 1px solid black;"><strong>Buyer</strong></td>
+                                    <td style="border: 1px solid black;"><strong>Lokasi1</strong></td>
+                                    <td style="border: 1px solid black;"><strong>Lokasi2</strong></td>
+                                    <td style="border: 1px solid black;"><strong>Lokasi3</strong></td>
+                                    <td style="border: 1px solid black;"><strong>Divisi</strong></td>
+                                    <td style="border: 1px solid black;"><strong>NIK</strong></td>
+                                    <td style="border: 1px solid black;"><strong>Nama</strong></td>
+                                    <td style="border: 1px solid black;"><strong>Style</strong></td>
+                                    <td style="border: 1px solid black;"><strong>Size</strong></td>
+                                    <td style="border: 1px solid black;"><strong>Qty</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="no" t-value="1" />
+                                <tr t-foreach="docs" t-as="o" style="border: 1px solid black;">
+                                    <t t-if="o.is_comp">
+                                        <td style="border: 1px solid black;">
+                                            <span t-esc="no" />
+                                            <t t-set="no" t-value="no + 1"/>
+                                        </td>
+                                        <td style="border: 1px solid black;"><span t-field="o.project_id.name" /></td>
+                                        <td style="border: 1px solid black;"><span t-field="o.project_id.partner_id.name" /></td>
+                                        <td style="border: 1px solid black;"><span t-field="o.pengukuran_karyawan.lokasi_id.name" /></td>
+                                        <td style="border: 1px solid black;"><span t-field="o.pengukuran_karyawan.lokasi2_id.name" /></td>
+                                        <td style="border: 1px solid black;"><span t-field="o.pengukuran_karyawan.lokasi3_id.name" /></td>
+                                        <td style="border: 1px solid black;"><span t-field="o.pengukuran_karyawan.divisi_id.name" /></td>
+                                        <td style="border: 1px solid black;"><span t-field="o.nik" /></td>
+                                        <td style="border: 1px solid black;"><span t-field="o.karyawan" /></td>
+                                        <td style="border: 1px solid black;"><span t-field="o.style_id.name" /></td>
+                                        <td style="border: 1px solid black;"><span t-field="o.size_id.name" /></td>
+                                        <td style="border: 1px solid black;"><span t-esc="1" /></td>
+                                    </t>
+                                </tr> <!-- foreach-->
+                            </tbody>
+                        </table>
+
+                        <div class="oe_structure"/>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

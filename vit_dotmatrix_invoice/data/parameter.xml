@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+
+        <record model="ir.config_parameter" id="dotmatrix_column_width">
+        	<field name="key">dotmatrix_column_width</field>
+        	<field name="value">105</field>
+        </record>
+
+    </data>
+</odoo>

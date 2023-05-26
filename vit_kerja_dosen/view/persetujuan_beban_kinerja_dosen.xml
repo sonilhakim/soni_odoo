@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_persetujuan_beban_kinerja_dosen_tree" model="ir.ui.view">
+            <field name="name">vit_persetujuan_beban_kinerja_dosen_tree</field>
+            <field name="model">vit.persetujuan_beban_kinerja_dosen</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Persetujuan beban kinerja dosen">
+                    <field name="name" />
+                    <field name="state" />
+                    <field name="beban_kinerja" />
+                    <field name="employee_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_persetujuan_beban_kinerja_dosen_form" model="ir.ui.view">
+            <field name="name">vit_persetujuan_beban_kinerja_dosen_form</field>
+            <field name="model">vit.persetujuan_beban_kinerja_dosen</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Persetujuan beban kinerja dosen">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" />
+                        <button string="Mark as Done" type="object" name="action_done" states="open" />
+                        <button string="Reset to Draft" type="object" name="action_draft" states="open,done" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Persetujuan beban kinerja dosen Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="beban_kinerja" />
+                            </group>
+                            <group>
+                                <field name="employee_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_persetujuan_beban_kinerja_dosen_search" model="ir.ui.view">
+            <field name="name">vit_persetujuan_beban_kinerja_dosen</field>
+            <field name="model">vit.persetujuan_beban_kinerja_dosen</field>
+            <field name="arch" type="xml">
+                <search string="Persetujuan beban kinerja dosen">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                    <filter string="Beban kinerja" name="filter_by_beban_kinerja" domain="[('beban_kinerja','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="beban_kinerja" select="True"/>
+                    <field name="employee_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Employee" domain="[]" name="group_by_employee_id" context="{'group_by':'employee_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_persetujuan_beban_kinerja_dosen_kanban" model="ir.ui.view" >
+            <field name="name">vit_persetujuan_beban_kinerja_dosen</field>
+            <field name="model">vit.persetujuan_beban_kinerja_dosen</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="state" />
+                    <field name="beban_kinerja" />
+                    <field name="employee_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Employee</span> <field name="employee_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_persetujuan_beban_kinerja_dosen_graph" model="ir.ui.view">
+            <field name="name">vit_persetujuan_beban_kinerja_dosen</field>
+            <field name="model">vit.persetujuan_beban_kinerja_dosen</field>
+            <field name="arch" type="xml">
+                <graph string="Persetujuan beban kinerja dosen" type="bar">
+                    <field name="employee_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_persetujuan_beban_kinerja_dosen" model="ir.actions.act_window">
+            <field name="name">Persetujuan beban kinerja dosen</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.persetujuan_beban_kinerja_dosen</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Persetujuan beban kinerja dosen
+                </p><p>
+                Click the Create button to add a new Persetujuan beban kinerja dosen
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_persetujuan_beban_kinerja_dosen" name="Persetujuan beban kinerja dosen" parent="vit_kerja_dosen_sub_menu" action="action_vit_persetujuan_beban_kinerja_dosen" sequence="40"/>
+    </data>
+</odoo>

@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="vit_data_buruh_top_menu" name="Data Buruh" sequence="77" web_icon="vit_data_buruh,static/description/icon.png" />
+		<menuitem id="vit_data_buruh_sub_menu" name="Data Buruh" sequence="40" parent="vit_data_buruh_top_menu" />
+		<menuitem id="vit_data_buruh_config_menu" name="Configurations" sequence="50" parent="vit_data_buruh_top_menu" />
+	</data>
+</odoo>

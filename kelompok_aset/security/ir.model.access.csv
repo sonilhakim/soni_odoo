@@ -1,0 +1,4 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_user_vit_kelompok_aset,access_user_vit_kelompok_aset,kelompok_aset.model_vit_kelompok_aset,kelompok_aset.group_kelompok_aset_user,1,0,0,0
+access_manager_vit_kelompok_aset,access_manager_vit_kelompok_aset,kelompok_aset.model_vit_kelompok_aset,kelompok_aset.group_kelompok_aset_manager,1,1,1,1
+access_admin_vit_kelompok_aset,access_admin_vit_kelompok_aset,kelompok_aset.model_vit_kelompok_aset,base.group_system,1,1,1,1

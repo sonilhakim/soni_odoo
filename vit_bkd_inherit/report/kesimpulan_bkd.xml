@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_kesimpulan_menu" string="Kesimpulan Kinerja Dosen"
+         model="vit.kesimpulan_kinerja_dosen" report_type="qweb-pdf" paperformat="vit_bkd_inherit.paperformat_bkd" file="vit.kesimpulan_kinerja_dosen"  name="vit_bkd_inherit.vit_kesimpulan_report" />
+
+        <!-- document template -->
+        <template id="vit_bkd_inherit.vit_kesimpulan_report_document" >
+            <t t-call="vit_bkd_inherit.external_layout_bkd">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <div style="text-align:center;margin-bottom:30px;">
+                        <img t-if="doc.dosen_id.company_id.logo" t-att-src="image_data_uri(doc.dosen_id.company_id.logo)" alt="Logo" style="width:100px"/>
+                        <br/><br/>
+                        <h4>
+                            <strong>LEMBAR KOREKSI ASESOR DAN PENGESAHAN PIMPINAN</strong>
+                        </h4>
+                    </div>
+                    <div class="row" style="margin-bottom:30px;margin-left:80px;">
+                        <div class="col-2">
+                            <img t-if="doc.dosen_id.image" t-att-src="image_data_uri(doc.dosen_id.image)" alt="Image" style="width:100px"/>
+                        </div>
+                        <div class="col-10">
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    NAMA
+                                </div>
+                                <div>
+                                    : <span t-field="doc.dosen_id" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    NIDN
+                                </div>
+                                <div>
+                                    : <span t-field="doc.dosen_id.nidn" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    JURUSAN/PRODI
+                                </div>
+                                <div>
+                                    : <span t-field="doc.dosen_id.jurusan_id" /><span t-field="doc.dosen_id.program_studi_id" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    FAKULTAS
+                                </div>
+                                <div>
+                                    : <span t-field="doc.dosen_id.fakultas_id" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    PERGURUAN TINGGI
+                                </div>
+                                <div>
+                                    : <span t-field="doc.dosen_id.company_id" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    SEMESTER-TAHUN LAPORAN
+                                </div>
+                                <div>
+                                    : <span t-field="doc.semester_id" /> - <span t-field="doc.tahun_akademik_id" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    STATUS
+                                </div>
+                                <div>
+                                    : <span t-field="doc.status_dosen_id" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- </div> -->
+                
+                    <table name="line_ids_table" style="margin-left:30px;width:95%;">
+                        <thead>
+                            <tr>
+                                <td style="width:5%;border:2px solid black;text-align:center"><strong>No</strong></td>
+                                <td style="width:25%;border:2px solid black;padding-left:5px;"><strong>Keterangan</strong></td>
+                                <td style="width:35%;border:2px solid black;padding-left:5px;"><strong>Syarat (PP 37 TH 2009)</strong></td>
+                                <td style="width:15%;border:2px solid black;padding-left:5px;"><strong>Kinerja</strong></td>
+                                <td style="width:20%;border:2px solid black;padding-left:5px;"><strong>Kesimpulan</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody class="line_ids_tbody">
+                            <tr t-foreach="doc.line_ids" t-as="line">
+                                <td style="width:5%;border-left:2px solid black;text-align:center"><t t-esc="line_index+1"/></td>
+                                <td style="width:25%;border-left:2px solid black;padding-left:5px;"><span t-field="line.name" /></td>
+                                <td style="width:35%;border-left:2px solid black;padding-left:5px;"><span t-field="line.syarat" /></td>
+                                <td style="width:15%;border-left:2px solid black;padding-left:5px;text-align:right"><span t-field="line.kinerja" /> SKS</td>
+                                <td style="width:20%;border-left:2px solid black;border-right:2px solid black;padding-left:5px;"><span t-field="line.kesimpulan" /></td>
+                            </tr> <!-- foreach-->
+                            <tr>
+                                <td style="width:5%;border-bottom:2px solid black;border-left:2px solid black;border-top:2px solid black;"></td>
+                                <td style="width:25%;border-bottom:2px solid black;border-top:2px solid black;text-align:right"><strong>Kesimpulan : </strong></td>
+                                <td style="width:35%;border-bottom:2px solid black;border-top:2px solid black;"><span t-field="doc.kesimpulan_kinerja" /></td>
+                                <td style="width:15%;border-bottom:2px solid black;border-top:2px solid black;"></td>
+                                <td style="width:20%;border-bottom:2px solid black;border-right:2px solid black;border-top:2px solid black;"></td>
+                            </tr> <!-- foreach-->
+                        </tbody>
+                    </table>
+
+                    <div class="oe_structure"/>
+                    <div style="text-align:center;margin-top:20px;">
+                        <strong>PERNYATAAN DOSEN</strong>
+                        <p>
+                            Saya dosen yang membuat laporan kinerja ini menyatakan bahwa semua aktivitas dan bukti pendukungnya <br/> aktivitas saya dan saya sanggup menerima sanksi apapun termasuk penghentian tunjangan dan mengembalikan <br/> yang sudah saya terima apabila pernyataan ini dikemudian hari terbukti tidak benar.
+                        </p>
+                    </div>
+                    <div style="text-align:center;margin-top:20px;">
+                        Dosen Yang Membuat
+                    </div>
+                    <div style="text-align:center;margin-top:50px;">
+                        <span t-field="doc.dosen_id" />                    
+                    </div>
+                    <div style="text-align:center;">
+                        <span t-field="doc.dosen_id.nidn" />
+                    </div>
+                    <div style="text-align:center;margin-top:20px;">
+                        <strong>PERNYATAAN ASESOR</strong>
+                        <p>
+                            Saya sudah memeriksa kebenaran dokumen yang ditunjukkan dan bisa menyetujui laporan evaluasi ini.
+                        </p>
+                    </div>
+                    <div class="row" style="margin-left:90px;margin-top:30px;">
+                        <div style="margin-right:535px">Asesor 1</div>
+                        <div>Asesor 2</div>
+                    </div>
+                    <div class="row" style="margin-left:90px;margin-top:50px;">
+                        <div style="margin-right:500px">
+                            <span t-field="doc.asesor1_id" />
+                            <span t-field="doc.asesor1_id.nip" />
+                        </div>
+                        <div>
+                            <span t-field="doc.asesor2_id" />
+                            <span t-field="doc.asesor2_id.nip" />
+                        </div>
+                    </div>
+                    <div style="text-align:center;margin-top:20px;">
+                        Mengetahui,<br/><span t-field="doc.dosen_id.jurusan_id" /><span t-field="doc.dosen_id.program_studi_id" />
+                    </div>
+                    <div style="text-align:center;margin-top:50px;">
+                        <span t-field="doc.dosen_id.jurusan_id.ketua_jurusan_id" /><span t-field="doc.dosen_id.program_studi_id.ketua_prodi_id" />                    
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_bkd_inherit.vit_kesimpulan_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_bkd_inherit.vit_kesimpulan_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

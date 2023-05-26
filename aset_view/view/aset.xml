@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="inherit_account_asset_asset_form">
+        <field name="name">account.asset.asset.form</field>
+        <field name="model">account.asset.asset</field>
+        <field name="inherit_id" ref="om_account_asset.view_account_asset_asset_form"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="replace">
+                <field name="category_id" string="Category" domain="[('type', '=', 'purchase')]" context="{'default_type': 'purchase'}" help="Category of asset"/>
+            </field>
+            <field name="asset_id" position="replace">
+                <field name="asset_id" string="Parent" readonly="1"/>
+            </field>
+            <xpath expr="//notebook/page/field[@name='asset_ids']/tree/field[@name='name']" position="replace">
+                <field name="name" string="Name"/>
+            </xpath>    
+        </field>
+    </record>
+</odoo>

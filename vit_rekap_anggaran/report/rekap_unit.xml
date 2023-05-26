@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_rekap_unit_menu" string="Vit - Rekap unit"
+         model="vit.rekap_unit" report_type="qweb-pdf" 
+         file="vit.rekap_unit"  name="vit_rekap_anggaran.vit_rekap_unit_report" />
+
+        <!-- document template -->
+        <template id="vit_rekap_anggaran.vit_rekap_unit_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Rekap unit: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Description</strong>
+                            <p class="m-0" t-field="doc.description" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Date</strong>
+                            <p class="m-0" t-field="doc.date" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tahun</strong>
+                            <p class="m-0" t-field="doc.tahun_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Periode</strong>
+                            <p class="m-0" t-field="doc.periode_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Anggaran unit</h2>
+                <table class="table table-sm o_main_table" name="anggaran_unit_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Alokasi</td>
+                            <td>Anggaran</td>
+                            <td>Realisasi</td>
+                            <td>Sisa</td>
+                            <td>Definitif</td>
+                            <td>Unit</td>
+                            <td>Rekap unit</td>
+                        </tr>
+                    </thead>
+                    <tbody class="anggaran_unit_ids_tbody">
+                        <tr t-foreach="doc.anggaran_unit_ids" t-as="line">
+                            <td><span t-field="line.alokasi" /></td>
+                            <td><span t-field="line.anggaran" /></td>
+                            <td><span t-field="line.realisasi" /></td>
+                            <td><span t-field="line.sisa" /></td>
+                            <td><span t-field="line.definitif" /></td>
+                            <td><span t-field="line.unit_id" /></td>
+                            <td><span t-field="line.rekap_unit_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_rekap_anggaran.vit_rekap_unit_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_rekap_anggaran.vit_rekap_unit_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

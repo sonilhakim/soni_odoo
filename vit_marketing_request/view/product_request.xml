@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_product_request_form_inherit">
+            <field name="name">view_product_request_form_inherit</field>
+            <field name="model">vit.product.request</field>
+            <field name="inherit_id" ref="vit_product_request.view_product_request_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='reference']" position="after">
+                    <field name="partner_id" options="{'no_create': True}"/>
+                    <field name="project_description" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

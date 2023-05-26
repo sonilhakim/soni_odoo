@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <!-- SO -->
+        <record id="view_order_form_disc_val" model="ir.ui.view">
+            <field name="name">sale.order.form.disc.val</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <!-- <xpath expr="/form/header/button[@name='action_confirm']" position="before">
+                    <button name="create_konversi" string="Create Konversi" class="btn-primary" type="object" attrs="{'invisible': [('need_konversi', '=', False)]}"/>
+                </xpath> -->
+
+                <xpath expr="/form/sheet/div[@name='button_box']" position="inside">
+                    <button name="action_view_konv"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-pencil-square-o"
+                        attrs="{'invisible': [('konv_count', '=', 0)]}">
+                        <field name="konv_count" widget="statinfo" string="Konversi"/>
+                    </button>
+                </xpath>
+
+                <xpath expr="//field[@name='picking_policy']" position="after">
+                    <field name="need_konversi" attrs="{'invisible': [('need_konversi', '=', False)]}"/>
+                </xpath>
+                <!-- <xpath expr="/form/sheet/notebook/page[@name='order_lines']/field[@name='order_line']/form/group/group[2]/div[2]" position="after">
+                    <label for="location_id"/>
+                    <div>
+                        <field name="location_id"/>
+                    </div>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page[@name='order_lines']/field[@name='order_line']/tree/field[@name='name']" position="after">
+                    <field name="parent_location" invisible="1"/>
+                    <field name="location_id" domain="[('location_id','=',parent_location)]"/>
+                </xpath> -->
+            </field>
+        </record>
+
+        <record id="view_product_konversi_form_sale" model="ir.ui.view">
+            <field name="name">product.konversi.form.sale</field>
+            <field name="model">product.konversi</field>
+            <field name="inherit_id" ref="vit_product_konversi.view_product_konversi_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='conv_date']" position="after">
+                    <field name="sale_id" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

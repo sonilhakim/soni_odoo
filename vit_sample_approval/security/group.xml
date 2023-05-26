@@ -1,0 +1,10 @@
+<odoo>
+	<data>
+
+		<record id="group_sample_approval" model="res.groups">
+			<field name="name">Sample Approval</field>
+			<field name="category_id" ref="vit_merchandise_garment.module_merchandise"/>
+		</record>
+
+	</data>
+</odoo>

@@ -1,0 +1,28 @@
+<!-- top menu MD -->
+<odoo>
+    <data>
+        <!-- vendor bill -->
+        <record id="view_vit_bill_btb" model="ir.ui.view">
+            <field name="name">account.invoice.bill.btb</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_bank_id']" position="after">
+                    <field name="btb_number" attrs="{'invisible': [('btb_number', '=', False)], 'readonly': [('state', 'not in', 'draft')]}"/>
+                </xpath>                
+            </field>
+        </record>
+
+        <!-- btb -->
+        <record id="view_vit_btb_bill" model="ir.ui.view">
+            <field name="name">stock.picking.bill.btb</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='move_type']" position="after">
+                    <field name="bill_number" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+                </xpath>                
+            </field>
+        </record>
+    </data>
+</odoo>

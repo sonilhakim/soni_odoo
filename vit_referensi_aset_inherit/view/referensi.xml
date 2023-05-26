@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- form view -->
+        <record id="view_vit_referensi_aset_form2" model="ir.ui.view">
+            <field name="name">vit_referensi_aset_form</field>
+            <field name="model">vit.referensi_aset</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_referensi_aset.view_vit_referensi_aset_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/group[1]" position="inside">
+                    <field name="data_file" />
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='ikhtisar_ids']" position="replace">
+                    <field name="ikhtisar_ids" mode="tree">
+                        <tree string="Ikhtisar" editable="bottom">
+                            <field name="name" string="Perihal"/>
+                            <field name="revisi"/>
+                            <field name="lama"/>
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

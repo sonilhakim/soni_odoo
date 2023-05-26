@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_rekap_data_buruh_tree" model="ir.ui.view">
+            <field name="name">vit_rekap_data_buruh_tree</field>
+            <field name="model">vit.rekap_data_buruh</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Rekap data buruh">
+                    <field name="name" />
+                    <field name="start_date" />
+                    <field name="end_date" />
+                    <field name="total_upah" />
+                    <field name="note" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- pivot view -->
+        <record id="view_vit_rekap_data_buruh_pivot" model="ir.ui.view">
+            <field name="name">vit_rekap_data_buruh_tree</field>
+            <field name="model">vit.rekap_data_buruh</field>
+            <field name="type">pivot</field>
+            <field name="arch" type="xml">
+                <pivot string="Rekap data buruh">
+                </pivot>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_rekap_data_buruh_form" model="ir.ui.view">
+            <field name="name">vit_rekap_data_buruh_form</field>
+            <field name="model">vit.rekap_data_buruh</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Rekap data buruh">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" class="btn-primary"/>
+                        <button string="Reload" type="object" name="load_data" states="open"/>
+                        <button string="Cancel" type="object" name="action_cancel" states="open" class="btn-danger"/>
+                        <button string="Done" type="object" name="action_done" states="open" class="btn-primary"/>
+                        <button string="Cancel" type="object" name="action_cancel" states="done" class="btn-danger" groups="vit_data_buruh.group_data_buruh_manager,base.group_system"/>
+                        <button string="Reset to Draft" type="object" name="action_draft" states="cancel" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Rekap data buruh Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <label string="Dari Tanggal" for="start_date"/>
+                                <div>
+                                    <field name="start_date" style="width: 40%"/> 
+                                    <b>Sampai </b> | &#160;
+                                    <field name="end_date" style="width: 40%"/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="total_upah" />
+                                <field name="user_id" invisible="1"/>
+                            </group>
+                            <group colspan="4">
+                                <field name="note"/>                            
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="rekap_daftar_ids" string="Rekap Detail">
+                                <field name="count_daftar" invisible="1"/>
+                                <button string="Compute" type="object" name="compute_upah" class="btn-success" attrs="{'invisible':[('count_daftar','=',0)]}"/>
+                                <field name="rekap_daftar_ids">
+                                    <tree string="Rekap daftar buruh" editable="bottom">
+                                        <field name="mandor" />
+                                        <field name="buruh_id" domain="[('buruh','=',True)]" context="{'default_buruh':1}"/>
+                                        <field name="upah" />
+                                        <field name="potongan" />
+                                        <field name="total" />
+                                        <field name="hadir" />
+                                        <field name="note" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_rekap_data_buruh_search" model="ir.ui.view">
+            <field name="name">vit_rekap_data_buruh</field>
+            <field name="model">vit.rekap_data_buruh</field>
+            <field name="arch" type="xml">
+                <search string="Rekap data buruh">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Start date" name="filter_by_start_date" domain="[('start_date','=','')]" />
+                    <filter string="End date" name="filter_by_end_date" domain="[('end_date','=','')]" />
+                    <filter string="Total upah" name="filter_by_total_upah" domain="[('total_upah','=','')]" />
+                    <filter string="Note" name="filter_by_note" domain="[('note','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="start_date" select="True"/>
+                    <field name="end_date" select="True"/>
+                    <field name="total_upah" select="True"/>
+                    <field name="note" select="True"/>
+                    <field name="state" select="True"/>
+                    <group string="Group By..">
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_rekap_data_buruh_kanban" model="ir.ui.view" >
+            <field name="name">vit_rekap_data_buruh</field>
+            <field name="model">vit.rekap_data_buruh</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="start_date" />
+                    <field name="end_date" />
+                    <field name="total_upah" />
+                    <field name="note" />
+                    <field name="state" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            <span class="text-muted">End date</span> <field name="end_date"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- <record id="view_vit_rekap_data_buruh_cal" model="ir.ui.view">
+            <field name="name">vit_rekap_data_buruh_cal</field>
+            <field name="model">vit.rekap_data_buruh</field>
+            <field name="arch" type="xml">
+                <calendar string="Rekap data buruh" date_start="end_date">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record> -->
+        <!-- graph -->
+        <!-- <record id="view_vit_rekap_data_buruh_graph" model="ir.ui.view">
+            <field name="name">vit_rekap_data_buruh</field>
+            <field name="model">vit.rekap_data_buruh</field>
+            <field name="arch" type="xml">
+                <graph string="Rekap data buruh" type="bar">
+                </graph>
+            </field>
+        </record> -->
+        <!-- action window -->
+        <record id="action_rekap_data_buruh" model="ir.actions.act_window">
+            <field name="name">Rekap Buruh</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.rekap_data_buruh</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Rekap Buruh
+                </p><p>
+                Click the Create button to add a new Rekap Buruh
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_rekap_data_buruh" name="Rekap Buruh" parent="vit_data_buruh_sub_menu" action="action_rekap_data_buruh" sequence="50"/>
+    </data>
+</odoo>

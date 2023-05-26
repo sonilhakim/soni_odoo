@@ -1,0 +1,58 @@
+<odoo>
+<data>
+        <record id="view_vit_doc_form2" model="ir.ui.view">
+            <field name="name">vit_doc_form2</field>
+            <field name="model">vit.doc</field>
+            <field name="inherit_id" ref="vit_eoffice.view_vit_doc_form"/>
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <!-- waktu draft -->
+                    <button string="Kirim Approval" type="object" name="action_confirm" class="oe_highlight" states="draft" />
+
+                    <!-- waktu open -->
+                    <button string="Setuju" type="object" name="action_send" class="oe_highlight" states="open" />
+                    <button string="Batal" type="object" name="action_draft" states="open" />
+
+                    <!-- waktu approved -->
+                    <button string="Kirim" type="object" name="action_send" class="oe_highlight" states="approved" />
+                    
+                    <!-- waktu read -->                        
+                    <!-- <button string="Reply" type="object" name="action_reply" states="read" /> attrs="{'invisible': ['|', ('spm_exists', '=', True), ('state','&lt;&gt;','done')]}" 
+                    -->
+                    <!-- <button string="Reply" type="object" name="action_reply"
+                            class="oe_highlight"
+                            states="read" 
+                            /> -->
+
+                    <button string="Forward" type="object" name="action_forward" states="read" />
+                </header>
+
+                <form position="inside">
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>                
+                </form>
+
+                <field name="to_user_ids" position="replace">
+                    <field name="to_user_ids">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="user_id"/>
+                            <field name="read_status"/>
+                        </tree>
+                    </field>
+                </field>
+                <field name="cc_user_ids" position="replace">
+                    <field name="cc_user_ids">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="user_id"/>
+                            <field name="read_status"/>
+                        </tree>
+                    </field>
+                </field>
+            </field>
+        </record>    
+</data>
+</odoo>

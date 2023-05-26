@@ -64,11 +64,6 @@
                   </tree>
                 </field>
               </page>
-              <page string="Other Info">
-                <group>
-                  <field name="payment_id"/>
-                </group>
-              </page>
             </notebook>
           </sheet>
         </form>
@@ -124,7 +119,7 @@
       <field name="res_model">vit.vit_config_giro</field>
       <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="menu_vit_bilyet_giro_top" name="Giro Invoice" sequence="10" groups="vit_bilyet_giro.group_giro" web_icon="vit_bilyet_giro,static/description/icon.png"/>
+    <menuitem id="menu_vit_bilyet_giro_top" name="Giro Invoice" sequence="10" groups="vit_bilyet_giro.group_giro"/>
 		<menuitem id="menu_vit_bilyet_giro_trans" name="Transactions" sequence="10" parent="menu_vit_bilyet_giro_top" groups="vit_bilyet_giro.group_giro"/>
     <menuitem id="menu_vit_bilyet_giro_config" name="Configuration" sequence="20" parent="menu_vit_bilyet_giro_top" groups="vit_bilyet_giro.group_manager"/>
     <menuitem id="menu_vit_bilyet_giro_config_tree" name="Submit Term" action="act_vit_bilyet_giro_config" sequence="20" parent="menu_vit_bilyet_giro_config" 

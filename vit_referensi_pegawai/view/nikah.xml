@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Kode Nikah tree view -->
+        <record id="view_vit_kode_nikah_tree" model="ir.ui.view">
+            <field name="name">vit_kode_nikah_tree</field>
+            <field name="model">vit.kode_nikah</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Kode Nikah">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kode_nikah_form" model="ir.ui.view">
+            <field name="name">vit_kode_nikah_form</field>
+            <field name="model">vit.kode_nikah</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Kode Nikah">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Kode Nikah"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- action window -->
+        <record id="action_vit_kode_nikah" model="ir.actions.act_window">
+            <field name="name">Kode Nikah</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.kode_nikah</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Kode Nikah
+                </p><p>
+                Click the Create button to add a new Kode Nikah
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_kode_nikah" name="Kode Nikah" parent="vit_referensi_sub_menu2" action="action_vit_kode_nikah" sequence="50"/>
+
+        <!-- status_nikah tree view -->
+        <record id="view_vit_status_nikah_tree" model="ir.ui.view">
+            <field name="name">vit_status_nikah_tree</field>
+            <field name="model">vit.status_nikah</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Status Nikah">
+                    <field name="name" />
+                    <field name="kode_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_status_nikah_form" model="ir.ui.view">
+            <field name="name">vit_status_nikah_form</field>
+            <field name="model">vit.status_nikah</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Status Nikah">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Status Nikah"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="kode_id" />
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- action window -->
+        <record id="action_vit_status_nikah" model="ir.actions.act_window">
+            <field name="name">Status Nikah</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.status_nikah</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Status Nikah
+                </p><p>
+                Click the Create button to add a new Status Nikah
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_status_nikah" name="Status Nikah" parent="vit_referensi_sub_menu2" action="action_vit_status_nikah" sequence="60"/>
+    </data>
+</odoo>

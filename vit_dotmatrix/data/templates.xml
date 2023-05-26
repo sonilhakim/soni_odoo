@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="template_dotmatrix_invoice" model="mail.template">
+            <field name="name">Dot Matrix Invoice</field>
+            <field name="model_id" ref="account.model_account_invoice"/>
+            <field name="subject">Dot Matrix Template for Invoice</field>
+            <field name="body_html"><![CDATA[
+${'TOFFIN'.ljust(50)} ${'PT TOFFIN INDONESIA'}
+${'Jl.Pluit Permai No.4 RT 20 RW 2 Pluit, Penjaringan'}
+${'North Jakarta, INDONESIA 14450'}
+${'P +62 21 66692940 | F +62 21 66690129 | E info@toffin.id'}
+${''}
+${'INVOICE'.ljust(50)} ${'Invoice No:'}${object.number}
+${'Customer No:'.rjust(63)} ${object.partner_id.customer_no}
+${''.rjust(80,'-')}
+${'Bill To:'}
+${object.partner_id.display_name}
+${object.partner_id.street}
+${object.partner_id.zip}
+${object.partner_id.country_id.name}
+${object.partner_id.phone}
+${''.rjust(80,'-')}
+${''.rjust(80,'-')}
+${'Delivery To:'}
+${object.partner_id.display_name}
+${object.partner_id.street}
+${object.partner_id.zip}
+${object.partner_id.country_id.name}
+${object.partner_id.phone}
+${''.rjust(80,'-')}
+${''.rjust(80,'-')}
+${'Invoice Date'.ljust(15)} ${'Delivery Date'.ljust(18)} ${'Term Of Payment'.rjust(22)} ${'Salesperson'.rjust(18)}
+${''.rjust(80,'-')}
+${object.date_invoice} ${''.rjust(3)} ${object.payment_term_id.name.rjust(17)} ${object.user_id.name.rjust(20)}
+${''.rjust(80,'-')}
+${''.rjust(80,'-')}
+${'Product'.ljust(30)} ${'WHS'.rjust(5)} ${'Qty'.rjust(10)} ${'UoM'.ljust(4)} ${'Price'.rjust(10)} ${'Total'.rjust(14)}
+${''.rjust(80,'-')}
+% for l in object.invoice_line_ids:
+${l.product_id.name[:30].ljust(30) if l.product_id else l.name[:30].ljust(28) } ${"{:4,.0f}".format(l.quantity).rjust(4)} ${l.uom_id.name.ljust(4) if l.uom_id else ''.ljust(4)} ${"{:4,.0f}".format(l.price_unit).rjust(10)} ${"{:4,.0f}".format(l.price_total).rjust(14)}
+% endfor
+${''.rjust(80,'-')}
+${'Total:'.rjust(59)} ${"{:20,.0f}".format(object.amount_total).rjust(20)}
+${'NOTE:'}
+${'THIS ACKNOWLEDGES YOUR ORDERS PRICING TERM AND CONDITION.'}
+${'TO CONFIRM, PLEASE SIGN'}
+
+${'AUTHORIZED/RECEIVED BY:'}
+${'DATE:'} ${object.confirmation_date}
+${'SINCERELY : ______________________'}
+
+${'Thank You!'}
+
+${'BANK INFORMATION:'}
+${''.rjust(80,'-')}
+${'Bank Code'.ljust(10)} ${'Bank Code'}
+${''.rjust(80,'-')}
+% for line in object.partner_id.partner_va_ids:
+${line.va_bank.ljust(10)} ${line.va_number}
+% endfor
+${''.rjust(80,'-')}
+${'*We guarantee that all goods sent are in good condition, therefore, we cannot'}
+${'held responsible and shall remain exempt from all liability for physical damage'} 
+${'or delay of delivery caused by the carrier.'}
+${'**All price are inclusive of VAT 10%'}
+]]></field>
+        </record>
+
+
+        <record id="template_dotmatrix_po" model="mail.template">
+            <field name="name">Dot Matrix PO</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="subject">Dot Matrix Template for PO</field>
+            <field name="body_html"><![CDATA[
+${'TOFFIN'.ljust(50)} ${'PT TOFFIN INDONESIA'}
+${'Jl.Pluit Permai No.4 RT 20 RW 2 Pluit, Penjaringan'}
+${'North Jakarta, INDONESIA 14450'}
+${'P +62 21 66692940 | F +62 21 66690129 | E info@toffin.id'}
+${''}
+${'PURCHASE ORDER'.ljust(50)} ${'PO No:'}${object.name}
+${'Customer No:'.rjust(63)} ${object.partner_id.customer_no}
+${''.rjust(80,'-')}
+${'Vendor:'}
+${object.partner_id.display_name}
+${object.partner_id.street}
+${object.partner_id.zip}
+${object.partner_id.country_id.name}
+${object.partner_id.phone}
+${''.rjust(80,'-')}
+${''.rjust(80,'-')}
+${'Ship To:'}
+${object.picking_type_id.warehouse_id.name}
+${''.rjust(80,'-')}
+${'Our Order Reference'.ljust(30)} ${'Your Order Reference'} ${'Order Date'.rjust(22)}
+${''.rjust(80,'-')}
+${object.name.ljust(30)} ${object.partner_ref}${''.rjust(16)} ${object.date_order}
+${''.rjust(80,'-')}
+${''.rjust(80,'-')}
+${'Product'.ljust(33)} ${'Qty'.rjust(5)} ${'UoM'.rjust(7)} ${'Price'.rjust(10)} ${'Taxes'.rjust(9)} ${'Total'.rjust(10)}
+${''.rjust(80,'-')}
+% for l in object.order_line:
+${l.product_id.display_name[:33].ljust(33)} ${"{:4,.0f}".format(l.product_qty).rjust(6)} ${l.product_uom.name.rjust(6) if l.product_uom else ''.rjust(4)} ${ "{:4,.0f}".format(l.price_unit).rjust(10)} ${l.taxes_id.name.ljust(7) if l.taxes_id else ''.ljust(7)} ${ "{:4,.0f}".format(l.price_subtotal).rjust(12)}
+% endfor
+
+${''.rjust(80,'-')}
+${'Untaxed Amount:'.rjust(58)} ${ "{:20,.0f}".format(object.amount_untaxed).rjust(20)}
+${'Taxes:'.rjust(58)} ${ "{:20,.0f}".format(object.amount_tax).rjust(20)}
+${'Total:'.rjust(58)} ${"{:20,.0f}".format(object.amount_total).rjust(20)}
+
+]]></field>
+        </record>
+
+        <record id="template_dotmatrix_picking" model="mail.template">
+            <field name="name">Dot Matrix Picking</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="subject">Dot Matrix Template for Picking</field>
+            <field name="body_html"><![CDATA[
+${object.picking_type_id.display_name.rjust(30) if object.picking_type_id else ''.rjust(30)} ${object.name}
+${''.rjust(80,'-')}
+${'Origin:'.rjust(20)} ${object.origin.ljust(20) if object.origin else ''.ljust(20)} ${'Commitment Date:'.rjust(18)} ${ object.date }
+${'State:'.rjust(20)} ${object.state.ljust(20) if object.state else ''.ljust(20)} ${'Scheduled Date:'.rjust(18)} ${ object.min_date }
+${'Partner:'.rjust(20)} ${object.partner_id.name.ljust(20) if object.partner_id else ''.ljust(20)}
+
+Products
+
+${''.rjust(80,'-')}
+${'Product'.ljust(30)} ${'Qty'.ljust(13)} ${'Barcode'.ljust(13)} ${'Destination'.ljust(20)}
+${''.rjust(80,'-')}
+% for l in object.move_lines:
+${l.product_id.display_name[:30].ljust(30)} ${"{:4,.0f}".format(l.product_uom_qty).rjust(4) if l.product_uom_qty else "".rjust(4)} ${l.product_uom.name.ljust(8)} ${l.product_id.ean13.ljust(13) if l.product_id.ean13 else ''.ljust(13)} ${ l.location_dest_id.display_name.rjust(20)}
+% endfor
+
+${''.rjust(80,'-')}
+
+
+]]></field>
+        </record>
+
+        <record id="template_dotmatrix_so" model="mail.template">
+    <field name="name">Dot Matrix SO</field>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="subject">Dot Matrix Template for SO</field>
+    <field name="body_html"><![CDATA[
+${'TOFFIN'.ljust(50)} ${'PT TOFFIN INDONESIA'}
+${'Jl.Pluit Permai No.4 RT 20 RW 2 Pluit, Penjaringan'}
+${'North Jakarta, INDONESIA 14450'}
+${'P +62 21 66692940 | F +62 21 66690129 | E info@toffin.id'}
+${''}
+${'SALE ORDER'.ljust(50)} ${'SO No:'}${object.name}
+${'Customer No:'.rjust(63)} ${object.partner_id.customer_no}
+${''.rjust(80,'-')}
+${'Bill To:'}
+${object.partner_id.display_name}
+${object.partner_id.street}
+${object.partner_id.zip}
+${object.partner_id.country_id.name}
+${object.partner_id.phone}
+${''.rjust(80,'-')}
+${''.rjust(80,'-')}
+${'Delivery To:'}
+${object.partner_id.display_name}
+${object.partner_id.street}
+${object.partner_id.zip}
+${object.partner_id.country_id.name}
+${object.partner_id.phone}
+${''.rjust(80,'-')}
+${''.rjust(80,'-')}
+${'SO Date'.ljust(15)} ${'Delivery Date'.ljust(18)} ${'Term Of Payment'.rjust(22)} 
+${''.rjust(80,'-')}
+${object.confirmation_date} ${''.rjust(3)} 
+${''.rjust(80,'-')}
+${''.rjust(80,'-')}
+${'Product'.ljust(35)} ${'Qty'.rjust(5)} ${'UoM'.rjust(5)} ${'Price'.rjust(13)} ${'Total'.rjust(15)}
+${''.rjust(80,'-')}
+
+% for l in object.order_line:
+${"{:3,.0f}".format(loop.index).ljust(3)} ${l.product_id.display_name[:35].ljust(35)} ${"{:4,.0f}".format(l.product_uom_qty).rjust(4) if l.product_uom_qty else "".rjust(4)} ${l.product_uom.name.rjust(8)} ${"{:4,.0f}".format(l.price_unit).rjust(13)} ${ "{:4,.0f}".format(l.price_total).rjust(15)}
+${'\n' * 5 if loop.index % 5 == 0 else ''} ${'\n' * (5 + (5 - (loop.index % 5))) if ((loop.last) and (loop.index % 5 >= 10)) else ''}
+% endfor
+${''.rjust(80,'-')}
+${'Total:'.rjust(58)} ${ "{:20,.0f}".format(object.amount_total).rjust(20) }
+${object.note} 
+${'NOTE:'}
+${'THIS ACKNOWLEDGES YOUR ORDERS PRICING TERM AND CONDITION.'}
+${'TO CONFIRM, PLEASE SIGN'}
+
+${'AUTHORIZED/RECEIVED BY:'}
+${'DATE:'} ${object.confirmation_date}
+${'SINCERELY : ______________________'}
+
+${'Thank You!'}
+
+${'BANK INFORMATION:'}
+${''.rjust(80,'-')}
+${'Bank Code'.ljust(10)} ${'Bank Code'}
+${''.rjust(80,'-')}
+% for line in object.partner_id.partner_va_ids:
+${line.va_bank.ljust(10)} ${line.va_number}
+% endfor
+${''.rjust(80,'-')}
+
+]]></field>
+</record>
+
+    </data>
+</odoo>

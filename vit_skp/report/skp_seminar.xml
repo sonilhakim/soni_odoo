@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_skp_seminar_menu" string="Vit - Skp seminar"
+         model="vit.skp_seminar" report_type="qweb-pdf" 
+         file="vit.skp_seminar"  name="vit_skp.vit_skp_seminar_report" />
+
+        <!-- document template -->
+        <template id="vit_skp.vit_skp_seminar_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Skp seminar: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pelaksanaan</strong>
+                            <p class="m-0" t-field="doc.pelaksanaan" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Ak</strong>
+                            <p class="m-0" t-field="doc.ak" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Skp</strong>
+                            <p class="m-0" t-field="doc.skp_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Semester</strong>
+                            <p class="m-0" t-field="doc.semester_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_skp.vit_skp_seminar_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_skp.vit_skp_seminar_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

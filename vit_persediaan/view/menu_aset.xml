@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <menuitem id="vit_persediaan"
+                  name="Persediaan"
+                  sequence="20"
+                  web_icon="vit_persediaan,static/description/icon.png"
+        />
+
+        <menuitem name="Pengelolaan Persediaan" id="vit_persediaan_menu" parent="vit_persediaan"
+                  action="product_persediaan_action_product" groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+
+        <menuitem name="Pengelolaan Stok Barang" id="vit_stock" parent="vit_persediaan" 
+                  action="action_persediaan_inventory_form" groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+
+        
+        <menuitem name="Registrasi Transaksi Harian" id="vit_trans_menu" parent="vit_persediaan"
+                  action="action_persediaan_tree_all" groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+
+    </data>
+</odoo>

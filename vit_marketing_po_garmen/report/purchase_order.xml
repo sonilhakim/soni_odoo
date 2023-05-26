@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_purchase_order_menu" string="Order Recieve"
+         model="vit.purchase_order" report_type="qweb-pdf" 
+         file="vit.purchase_order"  name="vit_marketing_po.vit_purchase_order_report" />
+
+        <!-- document template -->
+        <template id="vit_purchase_order_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Purchase order: <span t-field="doc.name"/>
+                    </h2>
+                    <t>
+                        <div t-field="doc.partner_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                    </t>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Date</strong>
+                            <p class="m-0" t-field="doc.date" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>PO Buyer</strong>
+                            <p class="m-0" t-field="doc.po_buyer" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Po Date</strong>
+                            <p class="m-0" t-field="doc.po_date" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Time Production</strong>
+                            <p class="m-0" t-field="doc.time_production" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Project</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>No. Sph</strong>
+                            <p class="m-0" t-field="doc.sph_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Boq lines</h2>
+                <table class="table table-sm o_main_table" name="boq_line_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Style</td>
+                            <td>Qty</td>
+                            <td>Uom</td>
+                            <td>Kain</td>
+                            <td>Colour</td>
+                            <td>Unit Price</td>
+                            <td>Pajak</td>
+                            <td>Total Price</td>
+                        </tr>
+                    </thead>
+                    <tbody class="boq_line_ids_tbody">
+                        <tr t-foreach="doc.boq_line_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.qty" /></td>
+                            <td><span t-field="line.uom_id" /></td>
+                            <td><span t-field="line.kain" /></td>
+                            <td><span t-field="line.colour" /></td>
+                            <td><span t-field="line.price" /></td>
+                            <td><span t-field="line.tax_val" /></td>
+                            <td><span t-field="line.total_price" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <!-- <div class="oe_structure"/>
+                <h2>Doc lines</h2>
+                <table class="table table-sm o_main_table" name="doc_line_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Doc</td>
+                            <td>Date</td>
+                        </tr>
+                    </thead>
+                    <tbody class="doc_line_ids_tbody">
+                        <tr t-foreach="doc.doc_line_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.doc" /></td>
+                            <td><span t-field="line.date" /></td>
+                        </tr> 
+                    </tbody>
+                </table> -->
+                <strong>Notes :</strong>
+                <p t-field="doc.notes"/>
+                <div class="oe_structure"/>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_purchase_order_garmen_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_purchase_order_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

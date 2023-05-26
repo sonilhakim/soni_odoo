@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="footer">
+      <html>            
+        <footer class="footer-area">
+          <div class="copyright-area">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-7 col-md-7">
+                  <p>Copyright <i class="icofont-copyright"></i> 2020 Copyrights Toffin Indonesia. All rights reserved</p>
+                </div>
+                <div class="col-lg-5 col-md-5">
+                  <ul>
+                    <li><a href="/elearning">Tentang Toffin</a></li>
+                    <li><a href="/kelasonline?offset=0">Class</a></li>
+                    <li>
+                      <!-- <a href="/seminaronline?offset=0">Online Seminar</a> -->
+                      <a>Online Seminar</a>
+                    </li>
+                    <li><a href="#">Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </html>
+    </template>
+  </data>
+</odoo>

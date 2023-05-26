@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_hr_contract_payroll" model="ir.ui.view">
+            <field name="name">hr.contract.payroll.form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='m_thr']" position="after">
+                    
+                    <field name="t_lembur_1h"/>
+                    <field name="t_lembur_1_5h"/>
+                    <field name="t_lembur_2h"/>
+                    <field name="t_lembur_2_5h"/>
+                    <field name="t_lembur_3h"/>
+                                
+                </xpath>
+                <xpath expr="//field[@name='m_konjungtur']" position="after">
+                    
+                    <field name="t_lembur_3_5h"/>
+                    <field name="t_lembur_4h"/>
+                    <field name="t_lembur_4_5h"/>
+                    <field name="t_lembur_5_7h"/>
+                    <field name="t_lembur_2s"/>
+                                
+                </xpath>
+                <xpath expr="//field[@name='m_potongan_akses']" position="after">
+                    
+                    <field name="potongan_tlmbt_5"/>
+                    <field name="potongan_tlmbt_10"/>
+                                
+                </xpath>
+                <xpath expr="//field[@name='m_pinjaman_lainnya']" position="after">
+                    
+                    <field name="potongan_tlmbt_15"/>
+                    <field name="potongan_tlmbt_20"/>
+                                
+                </xpath>     
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+
+        <record id="surat_jalan_wizard_view" model="ir.ui.view">
+            <field name="name">surat.jalan.wizard.form</field>
+            <field name="model">surat.jalan.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Surat Jalan">
+                    <p class="oe_grey">
+                        Print Surat Jalan ?
+                    </p>
+                    <footer>
+                        <button string="Ok" name="action_print_report" type="object" default_focus="1" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        
+        <record model="ir.actions.act_window" id="action_surat_jalan_wizard_view">
+            <field name="name">Print Surat Jalan</field>
+            <field name="res_model">surat.jalan.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_penerima_beasiswa_tree" model="ir.ui.view">
+            <field name="name">vit_penerima_beasiswa_tree</field>
+            <field name="model">vit.penerima_beasiswa</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Penerima beasiswa">
+                    <field name="name" />
+                    <field name="state" />
+                    <field name="nama_siswa" />
+                    <field name="nomor_hp" />
+                    <field name="email" />
+                    <field name="nama_orang_tua" />
+                    <field name="nomor_hp_orang_tua" />
+                    <field name="alamat" />
+                    <field name="asal_sekolah" />
+                    <field name="nomor_rekening" />
+                    <field name="nama_bank" />
+                    <field name="upload_foto" />
+                    <field name="upload_kartu_keluarga" />
+                    <field name="upload_buku_tabungan" />
+                    <field name="upload_ktp" />
+                    <field name="institusi_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_penerima_beasiswa_form" model="ir.ui.view">
+            <field name="name">vit_penerima_beasiswa_form</field>
+            <field name="model">vit.penerima_beasiswa</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Penerima beasiswa">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" />
+                        <button string="Mark as Done" type="object" name="action_done" states="open" />
+                        <button string="Reset to Draft" type="object" name="action_draft" states="open,done" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Penerima beasiswa Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="nama_siswa" />
+                                <field name="nomor_hp" />
+                                <field name="email" />
+                                <field name="nama_orang_tua" />
+                                <field name="nomor_hp_orang_tua" />
+                                <field name="alamat" />
+                                <field name="asal_sekolah" />
+                                <field name="nomor_rekening" />
+                                <field name="nama_bank" />
+                                <field name="upload_foto" />
+                                <field name="upload_kartu_keluarga" />
+                                <field name="upload_buku_tabungan" />
+                                <field name="upload_ktp" />
+                            </group>
+                            <group>
+                                <field name="institusi_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Prestasi akademik">
+                                <field name="prestasi_akademik_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_penerima_beasiswa_search" model="ir.ui.view">
+            <field name="name">vit_penerima_beasiswa</field>
+            <field name="model">vit.penerima_beasiswa</field>
+            <field name="arch" type="xml">
+                <search string="Penerima beasiswa">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                    <filter string="Nama siswa" name="filter_by_nama_siswa" domain="[('nama_siswa','=','')]" />
+                    <filter string="Nomor hp" name="filter_by_nomor_hp" domain="[('nomor_hp','=','')]" />
+                    <filter string="Email" name="filter_by_email" domain="[('email','=','')]" />
+                    <filter string="Nama orang tua" name="filter_by_nama_orang_tua" domain="[('nama_orang_tua','=','')]" />
+                    <filter string="Nomor hp orang tua" name="filter_by_nomor_hp_orang_tua" domain="[('nomor_hp_orang_tua','=','')]" />
+                    <filter string="Alamat" name="filter_by_alamat" domain="[('alamat','=','')]" />
+                    <filter string="Asal sekolah" name="filter_by_asal_sekolah" domain="[('asal_sekolah','=','')]" />
+                    <filter string="Nomor rekening" name="filter_by_nomor_rekening" domain="[('nomor_rekening','=','')]" />
+                    <filter string="Nama bank" name="filter_by_nama_bank" domain="[('nama_bank','=','')]" />
+                    <filter string="Upload foto" name="filter_by_upload_foto" domain="[('upload_foto','=','')]" />
+                    <filter string="Upload kartu keluarga" name="filter_by_upload_kartu_keluarga" domain="[('upload_kartu_keluarga','=','')]" />
+                    <filter string="Upload buku tabungan" name="filter_by_upload_buku_tabungan" domain="[('upload_buku_tabungan','=','')]" />
+                    <filter string="Upload ktp" name="filter_by_upload_ktp" domain="[('upload_ktp','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="nama_siswa" select="True"/>
+                    <field name="nomor_hp" select="True"/>
+                    <field name="email" select="True"/>
+                    <field name="nama_orang_tua" select="True"/>
+                    <field name="nomor_hp_orang_tua" select="True"/>
+                    <field name="alamat" select="True"/>
+                    <field name="asal_sekolah" select="True"/>
+                    <field name="nomor_rekening" select="True"/>
+                    <field name="nama_bank" select="True"/>
+                    <field name="upload_foto" select="True"/>
+                    <field name="upload_kartu_keluarga" select="True"/>
+                    <field name="upload_buku_tabungan" select="True"/>
+                    <field name="upload_ktp" select="True"/>
+                    <field name="institusi_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Institusi" domain="[]" name="group_by_institusi_id" context="{'group_by':'institusi_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_penerima_beasiswa_kanban" model="ir.ui.view" >
+            <field name="name">vit_penerima_beasiswa</field>
+            <field name="model">vit.penerima_beasiswa</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="state" />
+                    <field name="nama_siswa" />
+                    <field name="nomor_hp" />
+                    <field name="email" />
+                    <field name="nama_orang_tua" />
+                    <field name="nomor_hp_orang_tua" />
+                    <field name="alamat" />
+                    <field name="asal_sekolah" />
+                    <field name="nomor_rekening" />
+                    <field name="nama_bank" />
+                    <field name="upload_foto" />
+                    <field name="upload_kartu_keluarga" />
+                    <field name="upload_buku_tabungan" />
+                    <field name="upload_ktp" />
+                    <field name="institusi_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Institusi</span> <field name="institusi_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_penerima_beasiswa_graph" model="ir.ui.view">
+            <field name="name">vit_penerima_beasiswa</field>
+            <field name="model">vit.penerima_beasiswa</field>
+            <field name="arch" type="xml">
+                <graph string="Penerima beasiswa" type="bar">
+                    <field name="institusi_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_penerima_beasiswa" model="ir.actions.act_window">
+            <field name="name">Penerima beasiswa</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.penerima_beasiswa</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Penerima beasiswa
+                </p><p>
+                Click the Create button to add a new Penerima beasiswa
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_penerima_beasiswa" name="Penerima beasiswa" parent="vit_beasiswa_sub_menu" action="action_vit_penerima_beasiswa" sequence="20"/>
+    </data>
+</odoo>

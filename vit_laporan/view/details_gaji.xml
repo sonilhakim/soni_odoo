@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_details_gaji_tree" model="ir.ui.view">
+            <field name="name">vit_details_gaji_tree</field>
+            <field name="model">vit.details_gaji</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Details gaji">
+                    <field name="name" />
+                    <field name="nip" />
+                    <field name="gaji_awal" />
+                    <field name="gaji_sekarang" />
+                    <!-- <field name="kenaikan_id" /> -->
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_details_gaji_form" model="ir.ui.view">
+            <field name="name">vit_details_gaji_form</field>
+            <field name="model">vit.details_gaji</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Details gaji">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Details gaji Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="nip" />
+                                <field name="gaji_awal" />
+                                <field name="gaji_sekarang" />
+                            </group>
+                            <group>
+                                <field name="kenaikan_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_details_gaji_search" model="ir.ui.view">
+            <field name="name">vit_details_gaji</field>
+            <field name="model">vit.details_gaji</field>
+            <field name="arch" type="xml">
+                <search string="Details gaji">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Nip" name="filter_by_nip" domain="[('nip','=','')]" />
+                    <filter string="Gaji awal" name="filter_by_gaji_awal" domain="[('gaji_awal','=','')]" />
+                    <filter string="Gaji sekarang" name="filter_by_gaji_sekarang" domain="[('gaji_sekarang','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="nip" select="True"/>
+                    <field name="gaji_awal" select="True"/>
+                    <field name="gaji_sekarang" select="True"/>
+                    <field name="kenaikan_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Kenaikan" domain="[]" name="group_by_kenaikan_id" context="{'group_by':'kenaikan_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_details_gaji_kanban" model="ir.ui.view" >
+            <field name="name">vit_details_gaji</field>
+            <field name="model">vit.details_gaji</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="nip" />
+                    <field name="gaji_awal" />
+                    <field name="gaji_sekarang" />
+                    <field name="kenaikan_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Kenaikan</span> <field name="kenaikan_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_details_gaji_graph" model="ir.ui.view">
+            <field name="name">vit_details_gaji</field>
+            <field name="model">vit.details_gaji</field>
+            <field name="arch" type="xml">
+                <graph string="Details gaji" type="bar">
+                    <field name="kenaikan_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_details_gaji" model="ir.actions.act_window">
+            <field name="name">Details gaji</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.details_gaji</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Details gaji
+                </p><p>
+                Click the Create button to add a new Details gaji
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_details_gaji" name="Details gaji" parent="vit_laporan_config_menu" action="action_vit_details_gaji" sequence="210"/>
+    </data>
+</odoo>

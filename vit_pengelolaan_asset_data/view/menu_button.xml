@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_asset_asset_tree_data" model="ir.ui.view">
+            <field name="name">account.asset.asset.tree.data</field>
+            <field name="model">account.asset.asset</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_asset.view_account_asset_asset_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="name" position="replace">
+                    <field name="name" string="Name"/>
+                </field>
+                <field name="value" position="attributes">
+                    <attribute name="groups">account.group_account_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager</attribute>
+                </field>
+                <field name="value_residual" position="attributes">
+                    <attribute name="groups">account.group_account_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_account_asset_asset_form_data" model="ir.ui.view">
+            <field name="name">account.asset.asset.form2.data</field>
+            <field name="model">account.asset.asset</field>
+            <field name="inherit_id" ref="om_account_asset.view_account_asset_asset_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="set_to_draft" position="attributes">
+                    <attribute name="groups">vit_asset.group_asset_manager,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager</attribute>
+                </button>
+                <!-- <button name="validate" position="attributes">
+                    <attribute name="groups">vit_asset.group_confirm_asset_accounting,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager</attribute>
+                </button> -->
+                <button name="confirm_ga" position="attributes">
+                    <attribute name="groups">vit_asset.group_confirm_asset_ga,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager</attribute>
+                </button>
+
+                <field name="category_id" position="replace">
+                    <field name="category_id" string="Category" domain="[('type', '=', 'purchase')]" context="{'default_type': 'purchase'}" help="Category of asset"/>
+                </field>
+                <field name="asset_id" position="replace">
+                    <field name="asset_id" string="Parent" readonly="1"/>
+                </field>
+
+                <xpath expr="//field[@name='depreciation_line_ids']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('asset_id','=',False)]}</attribute>
+                    <attribute name="groups">account.group_account_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager</attribute>
+                </xpath>
+                <field name="value" position="attributes">
+                    <attribute name="groups">account.group_account_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager</attribute>
+                </field>
+                <field name="salvage_value" position="attributes">
+                    <attribute name="groups">account.group_account_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager</attribute>
+                </field>
+                <field name="value_residual" position="attributes">
+                    <attribute name="groups">account.group_account_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager</attribute>
+                </field>
+
+                <xpath expr="//notebook/page/field[@name='asset_ids']/tree/field[@name='name']" position="replace">
+                    <field name="name" string="Name"/>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='asset_ids']/tree/field[@name='value']" position="attributes">
+                    <attribute name="groups">account.group_account_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager</attribute>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='asset_ids']/tree/field[@name='value_residual']" position="attributes">
+                    <attribute name="groups">account.group_account_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_asset_asset_detail_tree2" model="ir.ui.view">
+            <field name="name">account.asset.asset.tree.detail</field>
+            <field name="model">account.asset.asset</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_asset.view_account_asset_asset_detail_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='asset_id']" position="attributes">
+                    <attribute name="string">Parent</attribute>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="string">Nama</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,496 @@
+id,unit kerja,nama unit,kebijakan,program,kegiatan,nama kegiatan,cost type,name,kode
+mak_00001,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.01,Rapat koordinasi dgn dosen,1,Bahan habis pakai,650.1.1.01.01.1.0101
+mak_00002,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.01,Rapat koordinasi dgn dosen,2,Honor/Upah,650.1.1.01.01.2.0101
+mak_00003,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.01,Rapat koordinasi dgn dosen,3,Sewa,650.1.1.01.01.3.0101
+mak_00004,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.01,Rapat koordinasi dgn dosen,4,Outsourcing,650.1.1.01.01.4.0101
+mak_00005,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.01,Rapat koordinasi dgn dosen,5,Overhead,650.1.1.01.01.5.0101
+mak_00006,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.02,Ketersediaan rancangan pembelajaran,1,Bahan habis pakai,650.1.1.01.02.1.0101
+mak_00007,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.02,Ketersediaan rancangan pembelajaran,2,Honor/Upah,650.1.1.01.02.2.0101
+mak_00008,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.02,Ketersediaan rancangan pembelajaran,3,Sewa,650.1.1.01.02.3.0101
+mak_00009,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.02,Ketersediaan rancangan pembelajaran,4,Outsourcing,650.1.1.01.02.4.0101
+mak_00010,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.02,Ketersediaan rancangan pembelajaran,5,Overhead,650.1.1.01.02.5.0101
+mak_00011,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.03,Ketersediaan dosen,1,Bahan habis pakai,650.1.1.01.03.1.0101
+mak_00012,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.03,Ketersediaan dosen,2,Honor/Upah,650.1.1.01.03.2.0101
+mak_00013,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.03,Ketersediaan dosen,3,Sewa,650.1.1.01.03.3.0101
+mak_00014,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.03,Ketersediaan dosen,4,Outsourcing,650.1.1.01.03.4.0101
+mak_00015,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.03,Ketersediaan dosen,5,Overhead,650.1.1.01.03.5.0101
+mak_00016,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.04,Kualifikasi dosen,1,Bahan habis pakai,650.1.1.01.04.1.0101
+mak_00017,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.04,Kualifikasi dosen,2,Honor/Upah,650.1.1.01.04.2.0101
+mak_00018,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.04,Kualifikasi dosen,3,Sewa,650.1.1.01.04.3.0101
+mak_00019,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.04,Kualifikasi dosen,4,Outsourcing,650.1.1.01.04.4.0101
+mak_00020,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.04,Kualifikasi dosen,5,Overhead,650.1.1.01.04.5.0101
+mak_00021,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.05,Ketersediaan fasilitas kuliah,1,Bahan habis pakai,650.1.1.01.05.1.0101
+mak_00022,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.05,Ketersediaan fasilitas kuliah,2,Honor/Upah,650.1.1.01.05.2.0101
+mak_00023,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.05,Ketersediaan fasilitas kuliah,3,Sewa,650.1.1.01.05.3.0101
+mak_00024,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.05,Ketersediaan fasilitas kuliah,4,Outsourcing,650.1.1.01.05.4.0101
+mak_00025,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.05,Ketersediaan fasilitas kuliah,5,Overhead,650.1.1.01.05.5.0101
+mak_00026,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.06,Mata kuliah yg ditawarkan dan jumlah kelas,1,Bahan habis pakai,650.1.1.01.06.1.0101
+mak_00027,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.06,Mata kuliah yg ditawarkan dan jumlah kelas,2,Honor/Upah,650.1.1.01.06.2.0101
+mak_00028,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.06,Mata kuliah yg ditawarkan dan jumlah kelas,3,Sewa,650.1.1.01.06.3.0101
+mak_00029,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.06,Mata kuliah yg ditawarkan dan jumlah kelas,4,Outsourcing,650.1.1.01.06.4.0101
+mak_00030,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.06,Mata kuliah yg ditawarkan dan jumlah kelas,5,Overhead,650.1.1.01.06.5.0101
+mak_00031,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.07,Jadual kuliah,1,Bahan habis pakai,650.1.1.01.07.1.0101
+mak_00032,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.07,Jadual kuliah,2,Honor/Upah,650.1.1.01.07.2.0101
+mak_00033,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.07,Jadual kuliah,3,Sewa,650.1.1.01.07.3.0101
+mak_00034,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.07,Jadual kuliah,4,Outsourcing,650.1.1.01.07.4.0101
+mak_00035,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.07,Jadual kuliah,5,Overhead,650.1.1.01.07.5.0101
+mak_00036,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.08,Pengisian KRS oleh mhs,1,Bahan habis pakai,650.1.1.01.08.1.0101
+mak_00037,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.08,Pengisian KRS oleh mhs,2,Honor/Upah,650.1.1.01.08.2.0101
+mak_00038,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.08,Pengisian KRS oleh mhs,3,Sewa,650.1.1.01.08.3.0101
+mak_00039,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.08,Pengisian KRS oleh mhs,4,Outsourcing,650.1.1.01.08.4.0101
+mak_00040,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.08,Pengisian KRS oleh mhs,5,Overhead,650.1.1.01.08.5.0101
+mak_00041,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.09,Daftar peserta kelas & presensi/mhs/kuliah,1,Bahan habis pakai,650.1.1.01.09.1.0101
+mak_00042,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.09,Daftar peserta kelas & presensi/mhs/kuliah,2,Honor/Upah,650.1.1.01.09.2.0101
+mak_00043,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.09,Daftar peserta kelas & presensi/mhs/kuliah,3,Sewa,650.1.1.01.09.3.0101
+mak_00044,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.09,Daftar peserta kelas & presensi/mhs/kuliah,4,Outsourcing,650.1.1.01.09.4.0101
+mak_00045,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.09,Daftar peserta kelas & presensi/mhs/kuliah,5,Overhead,650.1.1.01.09.5.0101
+mak_00046,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.10,Daftar hadir dosen/mata kuliah,1,Bahan habis pakai,650.1.1.01.10.1.0101
+mak_00047,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.10,Daftar hadir dosen/mata kuliah,2,Honor/Upah,650.1.1.01.10.2.0101
+mak_00048,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.10,Daftar hadir dosen/mata kuliah,3,Sewa,650.1.1.01.10.3.0101
+mak_00049,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.10,Daftar hadir dosen/mata kuliah,4,Outsourcing,650.1.1.01.10.4.0101
+mak_00050,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.01,1.01.10,Daftar hadir dosen/mata kuliah,5,Overhead,650.1.1.01.10.5.0101
+mak_00051,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.01,Lembar penyetaraan,1,Bahan habis pakai,650.1.1.02.01.1.0101
+mak_00052,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.01,Lembar penyetaraan,2,Honor/Upah,650.1.1.02.01.2.0101
+mak_00053,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.01,Lembar penyetaraan,3,Sewa,650.1.1.02.01.3.0101
+mak_00054,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.01,Lembar penyetaraan,4,Outsourcing,650.1.1.02.01.4.0101
+mak_00055,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.01,Lembar penyetaraan,5,Overhead,650.1.1.02.01.5.0101
+mak_00056,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.02,Mahasiswa pindahan sudah mengisi KRS pada minggu ke satu,1,Bahan habis pakai,650.1.1.02.02.1.0101
+mak_00057,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.02,Mahasiswa pindahan sudah mengisi KRS pada minggu ke satu,2,Honor/Upah,650.1.1.02.02.2.0101
+mak_00058,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.02,Mahasiswa pindahan sudah mengisi KRS pada minggu ke satu,3,Sewa,650.1.1.02.02.3.0101
+mak_00059,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.02,Mahasiswa pindahan sudah mengisi KRS pada minggu ke satu,4,Outsourcing,650.1.1.02.02.4.0101
+mak_00060,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.02,Mahasiswa pindahan sudah mengisi KRS pada minggu ke satu,5,Overhead,650.1.1.02.02.5.0101
+mak_00061,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.03,Ketersediaan rancangan praktikum,1,Bahan habis pakai,650.1.1.02.03.1.0101
+mak_00062,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.03,Ketersediaan rancangan praktikum,2,Honor/Upah,650.1.1.02.03.2.0101
+mak_00063,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.03,Ketersediaan rancangan praktikum,3,Sewa,650.1.1.02.03.3.0101
+mak_00064,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.03,Ketersediaan rancangan praktikum,4,Outsourcing,650.1.1.02.03.4.0101
+mak_00065,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.03,Ketersediaan rancangan praktikum,5,Overhead,650.1.1.02.03.5.0101
+mak_00066,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.04,Jadwal praktikum,1,Bahan habis pakai,650.1.1.02.04.1.0101
+mak_00067,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.04,Jadwal praktikum,2,Honor/Upah,650.1.1.02.04.2.0101
+mak_00068,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.04,Jadwal praktikum,3,Sewa,650.1.1.02.04.3.0101
+mak_00069,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.04,Jadwal praktikum,4,Outsourcing,650.1.1.02.04.4.0101
+mak_00070,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.04,Jadwal praktikum,5,Overhead,650.1.1.02.04.5.0101
+mak_00071,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.05,Modul / alat praktikum,1,Bahan habis pakai,650.1.1.02.05.1.0101
+mak_00072,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.05,Modul / alat praktikum,2,Honor/Upah,650.1.1.02.05.2.0101
+mak_00073,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.05,Modul / alat praktikum,3,Sewa,650.1.1.02.05.3.0101
+mak_00074,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.05,Modul / alat praktikum,4,Outsourcing,650.1.1.02.05.4.0101
+mak_00075,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.05,Modul / alat praktikum,5,Overhead,650.1.1.02.05.5.0101
+mak_00076,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.06,Bahan habis pakai,1,Bahan habis pakai,650.1.1.02.06.1.0101
+mak_00077,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.06,Bahan habis pakai,2,Honor/Upah,650.1.1.02.06.2.0101
+mak_00078,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.06,Bahan habis pakai,3,Sewa,650.1.1.02.06.3.0101
+mak_00079,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.06,Bahan habis pakai,4,Outsourcing,650.1.1.02.06.4.0101
+mak_00080,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.06,Bahan habis pakai,5,Overhead,650.1.1.02.06.5.0101
+mak_00081,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.07,Dana praktikum,1,Bahan habis pakai,650.1.1.02.07.1.0101
+mak_00082,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.07,Dana praktikum,2,Honor/Upah,650.1.1.02.07.2.0101
+mak_00083,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.07,Dana praktikum,3,Sewa,650.1.1.02.07.3.0101
+mak_00084,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.07,Dana praktikum,4,Outsourcing,650.1.1.02.07.4.0101
+mak_00085,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.02,1.02.07,Dana praktikum,5,Overhead,650.1.1.02.07.5.0101
+mak_00086,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.01,Ketersediaan rancangan praktikum,1,Bahan habis pakai,650.1.1.03.01.1.0101
+mak_00087,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.01,Ketersediaan rancangan praktikum,2,Honor/Upah,650.1.1.03.01.2.0101
+mak_00088,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.01,Ketersediaan rancangan praktikum,3,Sewa,650.1.1.03.01.3.0101
+mak_00089,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.01,Ketersediaan rancangan praktikum,4,Outsourcing,650.1.1.03.01.4.0101
+mak_00090,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.01,Ketersediaan rancangan praktikum,5,Overhead,650.1.1.03.01.5.0101
+mak_00091,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.02,Jadual praktikum,1,Bahan habis pakai,650.1.1.03.02.1.0101
+mak_00092,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.02,Jadual praktikum,2,Honor/Upah,650.1.1.03.02.2.0101
+mak_00093,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.02,Jadual praktikum,3,Sewa,650.1.1.03.02.3.0101
+mak_00094,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.02,Jadual praktikum,4,Outsourcing,650.1.1.03.02.4.0101
+mak_00095,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.02,Jadual praktikum,5,Overhead,650.1.1.03.02.5.0101
+mak_00096,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.03,Modul/alat praktikum,1,Bahan habis pakai,650.1.1.03.03.1.0101
+mak_00097,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.03,Modul/alat praktikum,2,Honor/Upah,650.1.1.03.03.2.0101
+mak_00098,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.03,Modul/alat praktikum,3,Sewa,650.1.1.03.03.3.0101
+mak_00099,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.03,Modul/alat praktikum,4,Outsourcing,650.1.1.03.03.4.0101
+mak_00100,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.03,Modul/alat praktikum,5,Overhead,650.1.1.03.03.5.0101
+mak_00101,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.04,Bahan habis pakai,1,Bahan habis pakai,650.1.1.03.04.1.0101
+mak_00102,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.04,Bahan habis pakai,2,Honor/Upah,650.1.1.03.04.2.0101
+mak_00103,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.04,Bahan habis pakai,3,Sewa,650.1.1.03.04.3.0101
+mak_00104,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.04,Bahan habis pakai,4,Outsourcing,650.1.1.03.04.4.0101
+mak_00105,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.04,Bahan habis pakai,5,Overhead,650.1.1.03.04.5.0101
+mak_00106,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.05,Dana praktikum,1,Bahan habis pakai,650.1.1.03.05.1.0101
+mak_00107,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.05,Dana praktikum,2,Honor/Upah,650.1.1.03.05.2.0101
+mak_00108,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.05,Dana praktikum,3,Sewa,650.1.1.03.05.3.0101
+mak_00109,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.05,Dana praktikum,4,Outsourcing,650.1.1.03.05.4.0101
+mak_00110,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.05,Dana praktikum,5,Overhead,650.1.1.03.05.5.0101
+mak_00111,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.06,Daftar peserta praktikum,1,Bahan habis pakai,650.1.1.03.06.1.0101
+mak_00112,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.06,Daftar peserta praktikum,2,Honor/Upah,650.1.1.03.06.2.0101
+mak_00113,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.06,Daftar peserta praktikum,3,Sewa,650.1.1.03.06.3.0101
+mak_00114,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.06,Daftar peserta praktikum,4,Outsourcing,650.1.1.03.06.4.0101
+mak_00115,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.06,Daftar peserta praktikum,5,Overhead,650.1.1.03.06.5.0101
+mak_00116,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.07,Asisten/instruktur,1,Bahan habis pakai,650.1.1.03.07.1.0101
+mak_00117,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.07,Asisten/instruktur,2,Honor/Upah,650.1.1.03.07.2.0101
+mak_00118,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.07,Asisten/instruktur,3,Sewa,650.1.1.03.07.3.0101
+mak_00119,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.07,Asisten/instruktur,4,Outsourcing,650.1.1.03.07.4.0101
+mak_00120,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.07,Asisten/instruktur,5,Overhead,650.1.1.03.07.5.0101
+mak_00121,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.08,Penugasan asisten/instruktur,1,Bahan habis pakai,650.1.1.03.08.1.0101
+mak_00122,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.08,Penugasan asisten/instruktur,2,Honor/Upah,650.1.1.03.08.2.0101
+mak_00123,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.08,Penugasan asisten/instruktur,3,Sewa,650.1.1.03.08.3.0101
+mak_00124,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.08,Penugasan asisten/instruktur,4,Outsourcing,650.1.1.03.08.4.0101
+mak_00125,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.08,Penugasan asisten/instruktur,5,Overhead,650.1.1.03.08.5.0101
+mak_00126,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.09,Nilai akhir praktikum,1,Bahan habis pakai,650.1.1.03.09.1.0101
+mak_00127,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.09,Nilai akhir praktikum,2,Honor/Upah,650.1.1.03.09.2.0101
+mak_00128,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.09,Nilai akhir praktikum,3,Sewa,650.1.1.03.09.3.0101
+mak_00129,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.09,Nilai akhir praktikum,4,Outsourcing,650.1.1.03.09.4.0101
+mak_00130,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.03,1.03.09,Nilai akhir praktikum,5,Overhead,650.1.1.03.09.5.0101
+mak_00131,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.04,1.04.01,Jumlah kehadiran dosen,1,Bahan habis pakai,650.1.1.04.01.1.0101
+mak_00132,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.04,1.04.01,Jumlah kehadiran dosen,2,Honor/Upah,650.1.1.04.01.2.0101
+mak_00133,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.04,1.04.01,Jumlah kehadiran dosen,3,Sewa,650.1.1.04.01.3.0101
+mak_00134,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.04,1.04.01,Jumlah kehadiran dosen,4,Outsourcing,650.1.1.04.01.4.0101
+mak_00135,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.04,1.04.01,Jumlah kehadiran dosen,5,Overhead,650.1.1.04.01.5.0101
+mak_00136,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.04,1.04.02,Presensi mhs,1,Bahan habis pakai,650.1.1.04.02.1.0101
+mak_00137,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.04,1.04.02,Presensi mhs,2,Honor/Upah,650.1.1.04.02.2.0101
+mak_00138,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.04,1.04.02,Presensi mhs,3,Sewa,650.1.1.04.02.3.0101
+mak_00139,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.04,1.04.02,Presensi mhs,4,Outsourcing,650.1.1.04.02.4.0101
+mak_00140,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.04,1.04.02,Presensi mhs,5,Overhead,650.1.1.04.02.5.0101
+mak_00141,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.04,1.04.03,Mahasiswa pindahan/melanjutkan,1,Bahan habis pakai,650.1.1.04.03.1.0101
+mak_00142,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.04,1.04.03,Mahasiswa pindahan/melanjutkan,2,Honor/Upah,650.1.1.04.03.2.0101
+mak_00143,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.04,1.04.03,Mahasiswa pindahan/melanjutkan,3,Sewa,650.1.1.04.03.3.0101
+mak_00144,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.04,1.04.03,Mahasiswa pindahan/melanjutkan,4,Outsourcing,650.1.1.04.03.4.0101
+mak_00145,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.04,1.04.03,Mahasiswa pindahan/melanjutkan,5,Overhead,650.1.1.04.03.5.0101
+mak_00146,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.05,1.05.01,Jumlah kehadiran asisten/instruktur,1,Bahan habis pakai,650.1.1.05.01.1.0101
+mak_00147,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.05,1.05.01,Jumlah kehadiran asisten/instruktur,2,Honor/Upah,650.1.1.05.01.2.0101
+mak_00148,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.05,1.05.01,Jumlah kehadiran asisten/instruktur,3,Sewa,650.1.1.05.01.3.0101
+mak_00149,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.05,1.05.01,Jumlah kehadiran asisten/instruktur,4,Outsourcing,650.1.1.05.01.4.0101
+mak_00150,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.05,1.05.01,Jumlah kehadiran asisten/instruktur,5,Overhead,650.1.1.05.01.5.0101
+mak_00151,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.05,1.05.02,Presensi mhs peserta praktikum,1,Bahan habis pakai,650.1.1.05.02.1.0101
+mak_00152,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.05,1.05.02,Presensi mhs peserta praktikum,2,Honor/Upah,650.1.1.05.02.2.0101
+mak_00153,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.05,1.05.02,Presensi mhs peserta praktikum,3,Sewa,650.1.1.05.02.3.0101
+mak_00154,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.05,1.05.02,Presensi mhs peserta praktikum,4,Outsourcing,650.1.1.05.02.4.0101
+mak_00155,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.05,1.05.02,Presensi mhs peserta praktikum,5,Overhead,650.1.1.05.02.5.0101
+mak_00156,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.01,Tersediaan sarana & prasarana ujian,1,Bahan habis pakai,650.1.1.06.01.1.0101
+mak_00157,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.01,Tersediaan sarana & prasarana ujian,2,Honor/Upah,650.1.1.06.01.2.0101
+mak_00158,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.01,Tersediaan sarana & prasarana ujian,3,Sewa,650.1.1.06.01.3.0101
+mak_00159,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.01,Tersediaan sarana & prasarana ujian,4,Outsourcing,650.1.1.06.01.4.0101
+mak_00160,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.01,Tersediaan sarana & prasarana ujian,5,Overhead,650.1.1.06.01.5.0101
+mak_00161,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.02,Jadual ujian,1,Bahan habis pakai,650.1.1.06.02.1.0101
+mak_00162,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.02,Jadual ujian,2,Honor/Upah,650.1.1.06.02.2.0101
+mak_00163,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.02,Jadual ujian,3,Sewa,650.1.1.06.02.3.0101
+mak_00164,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.02,Jadual ujian,4,Outsourcing,650.1.1.06.02.4.0101
+mak_00165,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.02,Jadual ujian,5,Overhead,650.1.1.06.02.5.0101
+mak_00166,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.03,KPU,1,Bahan habis pakai,650.1.1.06.03.1.0101
+mak_00167,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.03,KPU,2,Honor/Upah,650.1.1.06.03.2.0101
+mak_00168,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.03,KPU,3,Sewa,650.1.1.06.03.3.0101
+mak_00169,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.03,KPU,4,Outsourcing,650.1.1.06.03.4.0101
+mak_00170,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.03,KPU,5,Overhead,650.1.1.06.03.5.0101
+mak_00171,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.04,Naskah ujian & lembar jawab,1,Bahan habis pakai,650.1.1.06.04.1.0101
+mak_00172,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.04,Naskah ujian & lembar jawab,2,Honor/Upah,650.1.1.06.04.2.0101
+mak_00173,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.04,Naskah ujian & lembar jawab,3,Sewa,650.1.1.06.04.3.0101
+mak_00174,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.04,Naskah ujian & lembar jawab,4,Outsourcing,650.1.1.06.04.4.0101
+mak_00175,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.04,Naskah ujian & lembar jawab,5,Overhead,650.1.1.06.04.5.0101
+mak_00176,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.05,Daftar hadir & daftar nilai peserta ujian,1,Bahan habis pakai,650.1.1.06.05.1.0101
+mak_00177,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.05,Daftar hadir & daftar nilai peserta ujian,2,Honor/Upah,650.1.1.06.05.2.0101
+mak_00178,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.05,Daftar hadir & daftar nilai peserta ujian,3,Sewa,650.1.1.06.05.3.0101
+mak_00179,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.05,Daftar hadir & daftar nilai peserta ujian,4,Outsourcing,650.1.1.06.05.4.0101
+mak_00180,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.05,Daftar hadir & daftar nilai peserta ujian,5,Overhead,650.1.1.06.05.5.0101
+mak_00181,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.06,Nilai akhir,1,Bahan habis pakai,650.1.1.06.06.1.0101
+mak_00182,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.06,Nilai akhir,2,Honor/Upah,650.1.1.06.06.2.0101
+mak_00183,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.06,Nilai akhir,3,Sewa,650.1.1.06.06.3.0101
+mak_00184,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.06,Nilai akhir,4,Outsourcing,650.1.1.06.06.4.0101
+mak_00185,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.06,Nilai akhir,5,Overhead,650.1.1.06.06.5.0101
+mak_00186,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.07,Vakasi ujian,1,Bahan habis pakai,650.1.1.06.07.1.0101
+mak_00187,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.07,Vakasi ujian,2,Honor/Upah,650.1.1.06.07.2.0101
+mak_00188,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.07,Vakasi ujian,3,Sewa,650.1.1.06.07.3.0101
+mak_00189,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.07,Vakasi ujian,4,Outsourcing,650.1.1.06.07.4.0101
+mak_00190,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.06,1.06.07,Vakasi ujian,5,Overhead,650.1.1.06.07.5.0101
+mak_00191,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.01,Tersediaan sarana & prasarana ujian,1,Bahan habis pakai,650.1.1.07.01.1.0101
+mak_00192,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.01,Tersediaan sarana & prasarana ujian,2,Honor/Upah,650.1.1.07.01.2.0101
+mak_00193,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.01,Tersediaan sarana & prasarana ujian,3,Sewa,650.1.1.07.01.3.0101
+mak_00194,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.01,Tersediaan sarana & prasarana ujian,4,Outsourcing,650.1.1.07.01.4.0101
+mak_00195,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.01,Tersediaan sarana & prasarana ujian,5,Overhead,650.1.1.07.01.5.0101
+mak_00196,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.02,Jadual ujian,1,Bahan habis pakai,650.1.1.07.02.1.0101
+mak_00197,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.02,Jadual ujian,2,Honor/Upah,650.1.1.07.02.2.0101
+mak_00198,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.02,Jadual ujian,3,Sewa,650.1.1.07.02.3.0101
+mak_00199,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.02,Jadual ujian,4,Outsourcing,650.1.1.07.02.4.0101
+mak_00200,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.02,Jadual ujian,5,Overhead,650.1.1.07.02.5.0101
+mak_00201,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.03,KPU,1,Bahan habis pakai,650.1.1.07.03.1.0101
+mak_00202,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.03,KPU,2,Honor/Upah,650.1.1.07.03.2.0101
+mak_00203,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.03,KPU,3,Sewa,650.1.1.07.03.3.0101
+mak_00204,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.03,KPU,4,Outsourcing,650.1.1.07.03.4.0101
+mak_00205,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.03,KPU,5,Overhead,650.1.1.07.03.5.0101
+mak_00206,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.04,Naskah ujian & lembar jawab,1,Bahan habis pakai,650.1.1.07.04.1.0101
+mak_00207,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.04,Naskah ujian & lembar jawab,2,Honor/Upah,650.1.1.07.04.2.0101
+mak_00208,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.04,Naskah ujian & lembar jawab,3,Sewa,650.1.1.07.04.3.0101
+mak_00209,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.04,Naskah ujian & lembar jawab,4,Outsourcing,650.1.1.07.04.4.0101
+mak_00210,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.04,Naskah ujian & lembar jawab,5,Overhead,650.1.1.07.04.5.0101
+mak_00211,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.05,Daftar hadir & daftar nilai peserta ujian,1,Bahan habis pakai,650.1.1.07.05.1.0101
+mak_00212,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.05,Daftar hadir & daftar nilai peserta ujian,2,Honor/Upah,650.1.1.07.05.2.0101
+mak_00213,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.05,Daftar hadir & daftar nilai peserta ujian,3,Sewa,650.1.1.07.05.3.0101
+mak_00214,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.05,Daftar hadir & daftar nilai peserta ujian,4,Outsourcing,650.1.1.07.05.4.0101
+mak_00215,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.05,Daftar hadir & daftar nilai peserta ujian,5,Overhead,650.1.1.07.05.5.0101
+mak_00216,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.06,Nilai akhir,1,Bahan habis pakai,650.1.1.07.06.1.0101
+mak_00217,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.06,Nilai akhir,2,Honor/Upah,650.1.1.07.06.2.0101
+mak_00218,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.06,Nilai akhir,3,Sewa,650.1.1.07.06.3.0101
+mak_00219,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.06,Nilai akhir,4,Outsourcing,650.1.1.07.06.4.0101
+mak_00220,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.06,Nilai akhir,5,Overhead,650.1.1.07.06.5.0101
+mak_00221,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.07,Vakasi ujian,1,Bahan habis pakai,650.1.1.07.07.1.0101
+mak_00222,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.07,Vakasi ujian,2,Honor/Upah,650.1.1.07.07.2.0101
+mak_00223,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.07,Vakasi ujian,3,Sewa,650.1.1.07.07.3.0101
+mak_00224,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.07,Vakasi ujian,4,Outsourcing,650.1.1.07.07.4.0101
+mak_00225,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.07,1.07.07,Vakasi ujian,5,Overhead,650.1.1.07.07.5.0101
+mak_00226,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.08,1.08.01,Tersedia perush tempat mhs praktek,1,Bahan habis pakai,650.1.1.08.01.1.0101
+mak_00227,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.08,1.08.01,Tersedia perush tempat mhs praktek,2,Honor/Upah,650.1.1.08.01.2.0101
+mak_00228,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.08,1.08.01,Tersedia perush tempat mhs praktek,3,Sewa,650.1.1.08.01.3.0101
+mak_00229,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.08,1.08.01,Tersedia perush tempat mhs praktek,4,Outsourcing,650.1.1.08.01.4.0101
+mak_00230,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.08,1.08.01,Tersedia perush tempat mhs praktek,5,Overhead,650.1.1.08.01.5.0101
+mak_00231,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.01,Jumlah IPK/IPS <2,1,Bahan habis pakai,650.1.1.09.01.1.0101
+mak_00232,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.01,Jumlah IPK/IPS <2,2,Honor/Upah,650.1.1.09.01.2.0101
+mak_00233,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.01,Jumlah IPK/IPS <2,3,Sewa,650.1.1.09.01.3.0101
+mak_00234,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.01,Jumlah IPK/IPS <2,4,Outsourcing,650.1.1.09.01.4.0101
+mak_00235,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.01,Jumlah IPK/IPS <2,5,Overhead,650.1.1.09.01.5.0101
+mak_00236,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.02,"Jumlah IPK/IPS 2,02,5",1,Bahan habis pakai,650.1.1.09.02.1.0101
+mak_00237,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.02,"Jumlah IPK/IPS 2,02,5",2,Honor/Upah,650.1.1.09.02.2.0101
+mak_00238,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.02,"Jumlah IPK/IPS 2,02,5",3,Sewa,650.1.1.09.02.3.0101
+mak_00239,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.02,"Jumlah IPK/IPS 2,02,5",4,Outsourcing,650.1.1.09.02.4.0101
+mak_00240,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.02,"Jumlah IPK/IPS 2,02,5",5,Overhead,650.1.1.09.02.5.0101
+mak_00241,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.03,"Jumlah IPK/IPS 2,53,0",1,Bahan habis pakai,650.1.1.09.03.1.0101
+mak_00242,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.03,"Jumlah IPK/IPS 2,53,0",2,Honor/Upah,650.1.1.09.03.2.0101
+mak_00243,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.03,"Jumlah IPK/IPS 2,53,0",3,Sewa,650.1.1.09.03.3.0101
+mak_00244,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.03,"Jumlah IPK/IPS 2,53,0",4,Outsourcing,650.1.1.09.03.4.0101
+mak_00245,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.03,"Jumlah IPK/IPS 2,53,0",5,Overhead,650.1.1.09.03.5.0101
+mak_00246,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.04,"Jumlah IPK/IPS 3,04,0",1,Bahan habis pakai,650.1.1.09.04.1.0101
+mak_00247,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.04,"Jumlah IPK/IPS 3,04,0",2,Honor/Upah,650.1.1.09.04.2.0101
+mak_00248,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.04,"Jumlah IPK/IPS 3,04,0",3,Sewa,650.1.1.09.04.3.0101
+mak_00249,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.04,"Jumlah IPK/IPS 3,04,0",4,Outsourcing,650.1.1.09.04.4.0101
+mak_00250,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.04,"Jumlah IPK/IPS 3,04,0",5,Overhead,650.1.1.09.04.5.0101
+mak_00251,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.05,Segmentasi status akademik mhs berdasar perolehan SKS,1,Bahan habis pakai,650.1.1.09.05.1.0101
+mak_00252,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.05,Segmentasi status akademik mhs berdasar perolehan SKS,2,Honor/Upah,650.1.1.09.05.2.0101
+mak_00253,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.05,Segmentasi status akademik mhs berdasar perolehan SKS,3,Sewa,650.1.1.09.05.3.0101
+mak_00254,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.05,Segmentasi status akademik mhs berdasar perolehan SKS,4,Outsourcing,650.1.1.09.05.4.0101
+mak_00255,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.09,1.09.05,Segmentasi status akademik mhs berdasar perolehan SKS,5,Overhead,650.1.1.09.05.5.0101
+mak_00256,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.10,1.10.01,Ketepatan waktu mulai,1,Bahan habis pakai,650.1.1.10.01.1.0101
+mak_00257,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.10,1.10.01,Ketepatan waktu mulai,2,Honor/Upah,650.1.1.10.01.2.0101
+mak_00258,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.10,1.10.01,Ketepatan waktu mulai,3,Sewa,650.1.1.10.01.3.0101
+mak_00259,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.10,1.10.01,Ketepatan waktu mulai,4,Outsourcing,650.1.1.10.01.4.0101
+mak_00260,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.10,1.10.01,Ketepatan waktu mulai,5,Overhead,650.1.1.10.01.5.0101
+mak_00261,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.10,1.10.02,Ketepatan waktu selesai,1,Bahan habis pakai,650.1.1.10.02.1.0101
+mak_00262,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.10,1.10.02,Ketepatan waktu selesai,2,Honor/Upah,650.1.1.10.02.2.0101
+mak_00263,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.10,1.10.02,Ketepatan waktu selesai,3,Sewa,650.1.1.10.02.3.0101
+mak_00264,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.10,1.10.02,Ketepatan waktu selesai,4,Outsourcing,650.1.1.10.02.4.0101
+mak_00265,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.10,1.10.02,Ketepatan waktu selesai,5,Overhead,650.1.1.10.02.5.0101
+mak_00266,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.11,1.11.01,Jadual ujian skripsi,1,Bahan habis pakai,650.1.1.11.01.1.0101
+mak_00267,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.11,1.11.01,Jadual ujian skripsi,2,Honor/Upah,650.1.1.11.01.2.0101
+mak_00268,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.11,1.11.01,Jadual ujian skripsi,3,Sewa,650.1.1.11.01.3.0101
+mak_00269,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.11,1.11.01,Jadual ujian skripsi,4,Outsourcing,650.1.1.11.01.4.0101
+mak_00270,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.11,1.11.01,Jadual ujian skripsi,5,Overhead,650.1.1.11.01.5.0101
+mak_00271,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.11,1.11.02,Kehadiran pembimbing & penguji,1,Bahan habis pakai,650.1.1.11.02.1.0101
+mak_00272,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.11,1.11.02,Kehadiran pembimbing & penguji,2,Honor/Upah,650.1.1.11.02.2.0101
+mak_00273,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.11,1.11.02,Kehadiran pembimbing & penguji,3,Sewa,650.1.1.11.02.3.0101
+mak_00274,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.11,1.11.02,Kehadiran pembimbing & penguji,4,Outsourcing,650.1.1.11.02.4.0101
+mak_00275,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.11,1.11.02,Kehadiran pembimbing & penguji,5,Overhead,650.1.1.11.02.5.0101
+mak_00276,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.11,1.11.03,Jumlah mhs yg lulus,1,Bahan habis pakai,650.1.1.11.03.1.0101
+mak_00277,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.11,1.11.03,Jumlah mhs yg lulus,2,Honor/Upah,650.1.1.11.03.2.0101
+mak_00278,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.11,1.11.03,Jumlah mhs yg lulus,3,Sewa,650.1.1.11.03.3.0101
+mak_00279,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.11,1.11.03,Jumlah mhs yg lulus,4,Outsourcing,650.1.1.11.03.4.0101
+mak_00280,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,1,1.11,1.11.03,Jumlah mhs yg lulus,5,Overhead,650.1.1.11.03.5.0101
+mak_00281,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.01,Persiapan draft RIP & study banding,1,Bahan habis pakai,650.1.2.01.01.1.0101
+mak_00282,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.01,Persiapan draft RIP & study banding,2,Honor/Upah,650.1.2.01.01.2.0101
+mak_00283,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.01,Persiapan draft RIP & study banding,3,Sewa,650.1.2.01.01.3.0101
+mak_00284,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.01,Persiapan draft RIP & study banding,4,Outsourcing,650.1.2.01.01.4.0101
+mak_00285,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.01,Persiapan draft RIP & study banding,5,Overhead,650.1.2.01.01.5.0101
+mak_00286,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.02,Pengumpulan data dari unit terkait,1,Bahan habis pakai,650.1.2.01.02.1.0101
+mak_00287,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.02,Pengumpulan data dari unit terkait,2,Honor/Upah,650.1.2.01.02.2.0101
+mak_00288,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.02,Pengumpulan data dari unit terkait,3,Sewa,650.1.2.01.02.3.0101
+mak_00289,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.02,Pengumpulan data dari unit terkait,4,Outsourcing,650.1.2.01.02.4.0101
+mak_00290,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.02,Pengumpulan data dari unit terkait,5,Overhead,650.1.2.01.02.5.0101
+mak_00291,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.03,Rapat pendahuluan SC & OC,1,Bahan habis pakai,650.1.2.01.03.1.0101
+mak_00292,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.03,Rapat pendahuluan SC & OC,2,Honor/Upah,650.1.2.01.03.2.0101
+mak_00293,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.03,Rapat pendahuluan SC & OC,3,Sewa,650.1.2.01.03.3.0101
+mak_00294,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.03,Rapat pendahuluan SC & OC,4,Outsourcing,650.1.2.01.03.4.0101
+mak_00295,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.03,Rapat pendahuluan SC & OC,5,Overhead,650.1.2.01.03.5.0101
+mak_00296,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.04,"Raker penyususnan RIP, Panduan dan SOP",1,Bahan habis pakai,650.1.2.01.04.1.0101
+mak_00297,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.04,"Raker penyususnan RIP, Panduan dan SOP",2,Honor/Upah,650.1.2.01.04.2.0101
+mak_00298,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.04,"Raker penyususnan RIP, Panduan dan SOP",3,Sewa,650.1.2.01.04.3.0101
+mak_00299,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.04,"Raker penyususnan RIP, Panduan dan SOP",4,Outsourcing,650.1.2.01.04.4.0101
+mak_00300,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.01,2.01.04,"Raker penyususnan RIP, Panduan dan SOP",5,Overhead,650.1.2.01.04.5.0101
+mak_00301,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.01,Penyusunan panduan penelitian sesuai panduan Dikti,1,Bahan habis pakai,650.1.2.02.01.1.0101
+mak_00302,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.01,Penyusunan panduan penelitian sesuai panduan Dikti,2,Honor/Upah,650.1.2.02.01.2.0101
+mak_00303,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.01,Penyusunan panduan penelitian sesuai panduan Dikti,3,Sewa,650.1.2.02.01.3.0101
+mak_00304,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.01,Penyusunan panduan penelitian sesuai panduan Dikti,4,Outsourcing,650.1.2.02.01.4.0101
+mak_00305,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.01,Penyusunan panduan penelitian sesuai panduan Dikti,5,Overhead,650.1.2.02.01.5.0101
+mak_00306,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.02,Rapat koordinasi,1,Bahan habis pakai,650.1.2.02.02.1.0101
+mak_00307,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.02,Rapat koordinasi,2,Honor/Upah,650.1.2.02.02.2.0101
+mak_00308,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.02,Rapat koordinasi,3,Sewa,650.1.2.02.02.3.0101
+mak_00309,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.02,Rapat koordinasi,4,Outsourcing,650.1.2.02.02.4.0101
+mak_00310,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.02,Rapat koordinasi,5,Overhead,650.1.2.02.02.5.0101
+mak_00311,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.03,Sosialisasi program PP,1,Bahan habis pakai,650.1.2.02.03.1.0101
+mak_00312,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.03,Sosialisasi program PP,2,Honor/Upah,650.1.2.02.03.2.0101
+mak_00313,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.03,Sosialisasi program PP,3,Sewa,650.1.2.02.03.3.0101
+mak_00314,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.03,Sosialisasi program PP,4,Outsourcing,650.1.2.02.03.4.0101
+mak_00315,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.03,Sosialisasi program PP,5,Overhead,650.1.2.02.03.5.0101
+mak_00316,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.04,Penyusunan Company Profile,1,Bahan habis pakai,650.1.2.02.04.1.0101
+mak_00317,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.04,Penyusunan Company Profile,2,Honor/Upah,650.1.2.02.04.2.0101
+mak_00318,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.04,Penyusunan Company Profile,3,Sewa,650.1.2.02.04.3.0101
+mak_00319,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.04,Penyusunan Company Profile,4,Outsourcing,650.1.2.02.04.4.0101
+mak_00320,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.02,2.02.04,Penyusunan Company Profile,5,Overhead,650.1.2.02.04.5.0101
+mak_00321,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.03,2.03.01,Pelatihan pembuatan proposal Penelitian,1,Bahan habis pakai,650.1.2.03.01.1.0101
+mak_00322,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.03,2.03.01,Pelatihan pembuatan proposal Penelitian,2,Honor/Upah,650.1.2.03.01.2.0101
+mak_00323,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.03,2.03.01,Pelatihan pembuatan proposal Penelitian,3,Sewa,650.1.2.03.01.3.0101
+mak_00324,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.03,2.03.01,Pelatihan pembuatan proposal Penelitian,4,Outsourcing,650.1.2.03.01.4.0101
+mak_00325,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.03,2.03.01,Pelatihan pembuatan proposal Penelitian,5,Overhead,650.1.2.03.01.5.0101
+mak_00326,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.03,2.03.10,Pelatihan jurnal ilmiah sesuai saintech bagi dosen,1,Bahan habis pakai,650.1.2.03.10.1.0101
+mak_00327,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.03,2.03.10,Pelatihan jurnal ilmiah sesuai saintech bagi dosen,2,Honor/Upah,650.1.2.03.10.2.0101
+mak_00328,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.03,2.03.10,Pelatihan jurnal ilmiah sesuai saintech bagi dosen,3,Sewa,650.1.2.03.10.3.0101
+mak_00329,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.03,2.03.10,Pelatihan jurnal ilmiah sesuai saintech bagi dosen,4,Outsourcing,650.1.2.03.10.4.0101
+mak_00330,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.03,2.03.10,Pelatihan jurnal ilmiah sesuai saintech bagi dosen,5,Overhead,650.1.2.03.10.5.0101
+mak_00331,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.04,2.04.01,Seminar IPTEK regulair,1,Bahan habis pakai,650.1.2.04.01.1.0101
+mak_00332,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.04,2.04.01,Seminar IPTEK regulair,2,Honor/Upah,650.1.2.04.01.2.0101
+mak_00333,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.04,2.04.01,Seminar IPTEK regulair,3,Sewa,650.1.2.04.01.3.0101
+mak_00334,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.04,2.04.01,Seminar IPTEK regulair,4,Outsourcing,650.1.2.04.01.4.0101
+mak_00335,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.04,2.04.01,Seminar IPTEK regulair,5,Overhead,650.1.2.04.01.5.0101
+mak_00336,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.05,2.05.02,Presentasi seminar ilmiah dosen,1,Bahan habis pakai,650.1.2.05.02.1.0101
+mak_00337,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.05,2.05.02,Presentasi seminar ilmiah dosen,2,Honor/Upah,650.1.2.05.02.2.0101
+mak_00338,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.05,2.05.02,Presentasi seminar ilmiah dosen,3,Sewa,650.1.2.05.02.3.0101
+mak_00339,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.05,2.05.02,Presentasi seminar ilmiah dosen,4,Outsourcing,650.1.2.05.02.4.0101
+mak_00340,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.05,2.05.02,Presentasi seminar ilmiah dosen,5,Overhead,650.1.2.05.02.5.0101
+mak_00341,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.04,2.04.03,Seminar dan workshop nasional,1,Bahan habis pakai,650.1.2.04.03.1.0101
+mak_00342,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.04,2.04.03,Seminar dan workshop nasional,2,Honor/Upah,650.1.2.04.03.2.0101
+mak_00343,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.04,2.04.03,Seminar dan workshop nasional,3,Sewa,650.1.2.04.03.3.0101
+mak_00344,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.04,2.04.03,Seminar dan workshop nasional,4,Outsourcing,650.1.2.04.03.4.0101
+mak_00345,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.04,2.04.03,Seminar dan workshop nasional,5,Overhead,650.1.2.04.03.5.0101
+mak_00346,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.05,2.05.01,Stimulan penelitian bagi dosen,1,Bahan habis pakai,650.1.2.05.01.1.0101
+mak_00347,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.05,2.05.01,Stimulan penelitian bagi dosen,2,Honor/Upah,650.1.2.05.01.2.0101
+mak_00348,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.05,2.05.01,Stimulan penelitian bagi dosen,3,Sewa,650.1.2.05.01.3.0101
+mak_00349,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.05,2.05.01,Stimulan penelitian bagi dosen,4,Outsourcing,650.1.2.05.01.4.0101
+mak_00350,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,2,2.05,2.05.01,Stimulan penelitian bagi dosen,5,Overhead,650.1.2.05.01.5.0101
+mak_00351,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.01,3.01.01,"Penyusunan panduan penelitian, pengabdian & kewirausahaan",1,Bahan habis pakai,650.1.3.01.01.1.0101
+mak_00352,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.01,3.01.01,"Penyusunan panduan penelitian, pengabdian & kewirausahaan",2,Honor/Upah,650.1.3.01.01.2.0101
+mak_00353,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.01,3.01.01,"Penyusunan panduan penelitian, pengabdian & kewirausahaan",3,Sewa,650.1.3.01.01.3.0101
+mak_00354,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.01,3.01.01,"Penyusunan panduan penelitian, pengabdian & kewirausahaan",4,Outsourcing,650.1.3.01.01.4.0101
+mak_00355,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.01,3.01.01,"Penyusunan panduan penelitian, pengabdian & kewirausahaan",5,Overhead,650.1.3.01.01.5.0101
+mak_00356,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.01,3.01.02,Penyusunan peraturan & silabi pelatihan bagi masyarakat,1,Bahan habis pakai,650.1.3.01.02.1.0101
+mak_00357,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.01,3.01.02,Penyusunan peraturan & silabi pelatihan bagi masyarakat,2,Honor/Upah,650.1.3.01.02.2.0101
+mak_00358,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.01,3.01.02,Penyusunan peraturan & silabi pelatihan bagi masyarakat,3,Sewa,650.1.3.01.02.3.0101
+mak_00359,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.01,3.01.02,Penyusunan peraturan & silabi pelatihan bagi masyarakat,4,Outsourcing,650.1.3.01.02.4.0101
+mak_00360,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.01,3.01.02,Penyusunan peraturan & silabi pelatihan bagi masyarakat,5,Overhead,650.1.3.01.02.5.0101
+mak_00361,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.02,3.02.01,Pelatihan pemuatan proposal pengabdian masyarakat,1,Bahan habis pakai,650.1.3.02.01.1.0101
+mak_00362,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.02,3.02.01,Pelatihan pemuatan proposal pengabdian masyarakat,2,Honor/Upah,650.1.3.02.01.2.0101
+mak_00363,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.02,3.02.01,Pelatihan pemuatan proposal pengabdian masyarakat,3,Sewa,650.1.3.02.01.3.0101
+mak_00364,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.02,3.02.01,Pelatihan pemuatan proposal pengabdian masyarakat,4,Outsourcing,650.1.3.02.01.4.0101
+mak_00365,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.02,3.02.01,Pelatihan pemuatan proposal pengabdian masyarakat,5,Overhead,650.1.3.02.01.5.0101
+mak_00366,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.03,3.03.01,Pelatihan penulisan karya ilmiah bagi mhs,1,Bahan habis pakai,650.1.3.03.01.1.0101
+mak_00367,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.03,3.03.01,Pelatihan penulisan karya ilmiah bagi mhs,2,Honor/Upah,650.1.3.03.01.2.0101
+mak_00368,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.03,3.03.01,Pelatihan penulisan karya ilmiah bagi mhs,3,Sewa,650.1.3.03.01.3.0101
+mak_00369,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.03,3.03.01,Pelatihan penulisan karya ilmiah bagi mhs,4,Outsourcing,650.1.3.03.01.4.0101
+mak_00370,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.03,3.03.01,Pelatihan penulisan karya ilmiah bagi mhs,5,Overhead,650.1.3.03.01.5.0101
+mak_00371,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.03,3.03.02,Pelatiahan kewirausahaan mhs,1,Bahan habis pakai,650.1.3.03.02.1.0101
+mak_00372,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.03,3.03.02,Pelatiahan kewirausahaan mhs,2,Honor/Upah,650.1.3.03.02.2.0101
+mak_00373,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.03,3.03.02,Pelatiahan kewirausahaan mhs,3,Sewa,650.1.3.03.02.3.0101
+mak_00374,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.03,3.03.02,Pelatiahan kewirausahaan mhs,4,Outsourcing,650.1.3.03.02.4.0101
+mak_00375,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.03,3.03.02,Pelatiahan kewirausahaan mhs,5,Overhead,650.1.3.03.02.5.0101
+mak_00376,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.04,3.04.01,Pelatiahan kewirausahaan pemuda karang taruna,1,Bahan habis pakai,650.1.3.04.01.1.0101
+mak_00377,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.04,3.04.01,Pelatiahan kewirausahaan pemuda karang taruna,2,Honor/Upah,650.1.3.04.01.2.0101
+mak_00378,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.04,3.04.01,Pelatiahan kewirausahaan pemuda karang taruna,3,Sewa,650.1.3.04.01.3.0101
+mak_00379,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.04,3.04.01,Pelatiahan kewirausahaan pemuda karang taruna,4,Outsourcing,650.1.3.04.01.4.0101
+mak_00380,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.04,3.04.01,Pelatiahan kewirausahaan pemuda karang taruna,5,Overhead,650.1.3.04.01.5.0101
+mak_00381,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.04,3.04.02,Pelatiahan kewirausahaan remaja putus sekolah,1,Bahan habis pakai,650.1.3.04.02.1.0101
+mak_00382,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.04,3.04.02,Pelatiahan kewirausahaan remaja putus sekolah,2,Honor/Upah,650.1.3.04.02.2.0101
+mak_00383,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.04,3.04.02,Pelatiahan kewirausahaan remaja putus sekolah,3,Sewa,650.1.3.04.02.3.0101
+mak_00384,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.04,3.04.02,Pelatiahan kewirausahaan remaja putus sekolah,4,Outsourcing,650.1.3.04.02.4.0101
+mak_00385,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.04,3.04.02,Pelatiahan kewirausahaan remaja putus sekolah,5,Overhead,650.1.3.04.02.5.0101
+mak_00386,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.01,Kegiatan pengabdian masyarakat,1,Bahan habis pakai,650.1.3.05.01.1.0101
+mak_00387,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.01,Kegiatan pengabdian masyarakat,2,Honor/Upah,650.1.3.05.01.2.0101
+mak_00388,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.01,Kegiatan pengabdian masyarakat,3,Sewa,650.1.3.05.01.3.0101
+mak_00389,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.01,Kegiatan pengabdian masyarakat,4,Outsourcing,650.1.3.05.01.4.0101
+mak_00390,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.01,Kegiatan pengabdian masyarakat,5,Overhead,650.1.3.05.01.5.0101
+mak_00391,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.02,Mengadakan seminar dan lokakarya kewirausahaan,1,Bahan habis pakai,650.1.3.05.02.1.0101
+mak_00392,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.02,Mengadakan seminar dan lokakarya kewirausahaan,2,Honor/Upah,650.1.3.05.02.2.0101
+mak_00393,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.02,Mengadakan seminar dan lokakarya kewirausahaan,3,Sewa,650.1.3.05.02.3.0101
+mak_00394,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.02,Mengadakan seminar dan lokakarya kewirausahaan,4,Outsourcing,650.1.3.05.02.4.0101
+mak_00395,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.02,Mengadakan seminar dan lokakarya kewirausahaan,5,Overhead,650.1.3.05.02.5.0101
+mak_00396,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.03,Stimulan kewirausahaan,1,Bahan habis pakai,650.1.3.05.03.1.0101
+mak_00397,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.03,Stimulan kewirausahaan,2,Honor/Upah,650.1.3.05.03.2.0101
+mak_00398,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.03,Stimulan kewirausahaan,3,Sewa,650.1.3.05.03.3.0101
+mak_00399,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.03,Stimulan kewirausahaan,4,Outsourcing,650.1.3.05.03.4.0101
+mak_00400,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.03,Stimulan kewirausahaan,5,Overhead,650.1.3.05.03.5.0101
+mak_00401,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.04,Pengabdian institut/fakultas/prodi,1,Bahan habis pakai,650.1.3.05.04.1.0101
+mak_00402,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.04,Pengabdian institut/fakultas/prodi,2,Honor/Upah,650.1.3.05.04.2.0101
+mak_00403,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.04,Pengabdian institut/fakultas/prodi,3,Sewa,650.1.3.05.04.3.0101
+mak_00404,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.04,Pengabdian institut/fakultas/prodi,4,Outsourcing,650.1.3.05.04.4.0101
+mak_00405,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,3,3.05,3.05.04,Pengabdian institut/fakultas/prodi,5,Overhead,650.1.3.05.04.5.0101
+mak_00406,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,4,4.01,4.01.01,"Membangun & mengembangkan jejaring ke pemerintah, swasta dll",1,Bahan habis pakai,650.1.4.01.01.1.0101
+mak_00407,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,4,4.01,4.01.01,"Membangun & mengembangkan jejaring ke pemerintah, swasta dll",2,Honor/Upah,650.1.4.01.01.2.0101
+mak_00408,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,4,4.01,4.01.01,"Membangun & mengembangkan jejaring ke pemerintah, swasta dll",3,Sewa,650.1.4.01.01.3.0101
+mak_00409,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,4,4.01,4.01.01,"Membangun & mengembangkan jejaring ke pemerintah, swasta dll",4,Outsourcing,650.1.4.01.01.4.0101
+mak_00410,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,4,4.01,4.01.01,"Membangun & mengembangkan jejaring ke pemerintah, swasta dll",5,Overhead,650.1.4.01.01.5.0101
+mak_00411,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,4,4.01,4.01.02,Pelaksanaan MOU,1,Bahan habis pakai,650.1.4.01.02.1.0101
+mak_00412,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,4,4.01,4.01.02,Pelaksanaan MOU,2,Honor/Upah,650.1.4.01.02.2.0101
+mak_00413,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,4,4.01,4.01.02,Pelaksanaan MOU,3,Sewa,650.1.4.01.02.3.0101
+mak_00414,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,4,4.01,4.01.02,Pelaksanaan MOU,4,Outsourcing,650.1.4.01.02.4.0101
+mak_00415,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,4,4.01,4.01.02,Pelaksanaan MOU,5,Overhead,650.1.4.01.02.5.0101
+mak_00416,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,4,4.01,4.01.03,Carrier Center,1,Bahan habis pakai,650.1.4.01.03.1.0101
+mak_00417,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,4,4.01,4.01.03,Carrier Center,2,Honor/Upah,650.1.4.01.03.2.0101
+mak_00418,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,4,4.01,4.01.03,Carrier Center,3,Sewa,650.1.4.01.03.3.0101
+mak_00419,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,4,4.01,4.01.03,Carrier Center,4,Outsourcing,650.1.4.01.03.4.0101
+mak_00420,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,4,4.01,4.01.03,Carrier Center,5,Overhead,650.1.4.01.03.5.0101
+mak_00421,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.01,Penerbitan jurnal scientech,1,Bahan habis pakai,650.1.5.01.01.1.0101
+mak_00422,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.01,Penerbitan jurnal scientech,2,Honor/Upah,650.1.5.01.01.2.0101
+mak_00423,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.01,Penerbitan jurnal scientech,3,Sewa,650.1.5.01.01.3.0101
+mak_00424,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.01,Penerbitan jurnal scientech,4,Outsourcing,650.1.5.01.01.4.0101
+mak_00425,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.01,Penerbitan jurnal scientech,5,Overhead,650.1.5.01.01.5.0101
+mak_00426,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.02,Penerbitan karya pengabdian,1,Bahan habis pakai,650.1.5.01.02.1.0101
+mak_00427,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.02,Penerbitan karya pengabdian,2,Honor/Upah,650.1.5.01.02.2.0101
+mak_00428,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.02,Penerbitan karya pengabdian,3,Sewa,650.1.5.01.02.3.0101
+mak_00429,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.02,Penerbitan karya pengabdian,4,Outsourcing,650.1.5.01.02.4.0101
+mak_00430,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.02,Penerbitan karya pengabdian,5,Overhead,650.1.5.01.02.5.0101
+mak_00431,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.03,Penerbitan proceeding/ karya unggulan,1,Bahan habis pakai,650.1.5.01.03.1.0101
+mak_00432,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.03,Penerbitan proceeding/ karya unggulan,2,Honor/Upah,650.1.5.01.03.2.0101
+mak_00433,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.03,Penerbitan proceeding/ karya unggulan,3,Sewa,650.1.5.01.03.3.0101
+mak_00434,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.03,Penerbitan proceeding/ karya unggulan,4,Outsourcing,650.1.5.01.03.4.0101
+mak_00435,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.03,Penerbitan proceeding/ karya unggulan,5,Overhead,650.1.5.01.03.5.0101
+mak_00436,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.04,Proses akreditasi jurnal scientech,1,Bahan habis pakai,650.1.5.01.04.1.0101
+mak_00437,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.04,Proses akreditasi jurnal scientech,2,Honor/Upah,650.1.5.01.04.2.0101
+mak_00438,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.04,Proses akreditasi jurnal scientech,3,Sewa,650.1.5.01.04.3.0101
+mak_00439,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.04,Proses akreditasi jurnal scientech,4,Outsourcing,650.1.5.01.04.4.0101
+mak_00440,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.04,Proses akreditasi jurnal scientech,5,Overhead,650.1.5.01.04.5.0101
+mak_00441,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.05,Proses portal & web karya ilmih,1,Bahan habis pakai,650.1.5.01.05.1.0101
+mak_00442,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.05,Proses portal & web karya ilmih,2,Honor/Upah,650.1.5.01.05.2.0101
+mak_00443,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.05,Proses portal & web karya ilmih,3,Sewa,650.1.5.01.05.3.0101
+mak_00444,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.05,Proses portal & web karya ilmih,4,Outsourcing,650.1.5.01.05.4.0101
+mak_00445,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.05,Proses portal & web karya ilmih,5,Overhead,650.1.5.01.05.5.0101
+mak_00446,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.06,Pencetakan company profile,1,Bahan habis pakai,650.1.5.01.06.1.0101
+mak_00447,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.06,Pencetakan company profile,2,Honor/Upah,650.1.5.01.06.2.0101
+mak_00448,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.06,Pencetakan company profile,3,Sewa,650.1.5.01.06.3.0101
+mak_00449,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.06,Pencetakan company profile,4,Outsourcing,650.1.5.01.06.4.0101
+mak_00450,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.06,Pencetakan company profile,5,Overhead,650.1.5.01.06.5.0101
+mak_00451,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.07,Pameran Iptek open campus,1,Bahan habis pakai,650.1.5.01.07.1.0101
+mak_00452,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.07,Pameran Iptek open campus,2,Honor/Upah,650.1.5.01.07.2.0101
+mak_00453,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.07,Pameran Iptek open campus,3,Sewa,650.1.5.01.07.3.0101
+mak_00454,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.07,Pameran Iptek open campus,4,Outsourcing,650.1.5.01.07.4.0101
+mak_00455,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.07,Pameran Iptek open campus,5,Overhead,650.1.5.01.07.5.0101
+mak_00456,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.08,Membangun pusat penerbitan ISTN Press,1,Bahan habis pakai,650.1.5.01.08.1.0101
+mak_00457,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.08,Membangun pusat penerbitan ISTN Press,2,Honor/Upah,650.1.5.01.08.2.0101
+mak_00458,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.08,Membangun pusat penerbitan ISTN Press,3,Sewa,650.1.5.01.08.3.0101
+mak_00459,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.08,Membangun pusat penerbitan ISTN Press,4,Outsourcing,650.1.5.01.08.4.0101
+mak_00460,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,5,5.01,5.01.08,Membangun pusat penerbitan ISTN Press,5,Overhead,650.1.5.01.08.5.0101
+mak_00461,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.01,Penyusunan revisi format monevin penelitian & peng.mas,1,Bahan habis pakai,650.1.6.01.01.1.0101
+mak_00462,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.01,Penyusunan revisi format monevin penelitian & peng.mas,2,Honor/Upah,650.1.6.01.01.2.0101
+mak_00463,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.01,Penyusunan revisi format monevin penelitian & peng.mas,3,Sewa,650.1.6.01.01.3.0101
+mak_00464,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.01,Penyusunan revisi format monevin penelitian & peng.mas,4,Outsourcing,650.1.6.01.01.4.0101
+mak_00465,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.01,Penyusunan revisi format monevin penelitian & peng.mas,5,Overhead,650.1.6.01.01.5.0101
+mak_00466,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.02,Memantau & pembinaan wirausaha hasil pelatihan,1,Bahan habis pakai,650.1.6.01.02.1.0101
+mak_00467,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.02,Memantau & pembinaan wirausaha hasil pelatihan,2,Honor/Upah,650.1.6.01.02.2.0101
+mak_00468,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.02,Memantau & pembinaan wirausaha hasil pelatihan,3,Sewa,650.1.6.01.02.3.0101
+mak_00469,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.02,Memantau & pembinaan wirausaha hasil pelatihan,4,Outsourcing,650.1.6.01.02.4.0101
+mak_00470,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.02,Memantau & pembinaan wirausaha hasil pelatihan,5,Overhead,650.1.6.01.02.5.0101
+mak_00471,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.03,Monevin penelitian & pengab. Masyarakat,1,Bahan habis pakai,650.1.6.01.03.1.0101
+mak_00472,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.03,Monevin penelitian & pengab. Masyarakat,2,Honor/Upah,650.1.6.01.03.2.0101
+mak_00473,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.03,Monevin penelitian & pengab. Masyarakat,3,Sewa,650.1.6.01.03.3.0101
+mak_00474,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.03,Monevin penelitian & pengab. Masyarakat,4,Outsourcing,650.1.6.01.03.4.0101
+mak_00475,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.03,Monevin penelitian & pengab. Masyarakat,5,Overhead,650.1.6.01.03.5.0101
+mak_00476,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.04,Pelaporan-pelaporan,1,Bahan habis pakai,650.1.6.01.04.1.0101
+mak_00477,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.04,Pelaporan-pelaporan,2,Honor/Upah,650.1.6.01.04.2.0101
+mak_00478,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.04,Pelaporan-pelaporan,3,Sewa,650.1.6.01.04.3.0101
+mak_00479,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.04,Pelaporan-pelaporan,4,Outsourcing,650.1.6.01.04.4.0101
+mak_00480,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,6,6.01,6.01.04,Pelaporan-pelaporan,5,Overhead,650.1.6.01.04.5.0101
+mak_00481,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,7,7.01,7.01.01,Pengiriman proposal,1,Bahan habis pakai,650.1.7.01.01.1.0101
+mak_00482,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,7,7.01,7.01.01,Pengiriman proposal,2,Honor/Upah,650.1.7.01.01.2.0101
+mak_00483,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,7,7.01,7.01.01,Pengiriman proposal,3,Sewa,650.1.7.01.01.3.0101
+mak_00484,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,7,7.01,7.01.01,Pengiriman proposal,4,Outsourcing,650.1.7.01.01.4.0101
+mak_00485,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,7,7.01,7.01.01,Pengiriman proposal,5,Overhead,650.1.7.01.01.5.0101
+mak_00486,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,7,7.01,7.01.02,Pembayaran iuran forum,1,Bahan habis pakai,650.1.7.01.02.1.0101
+mak_00487,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,7,7.01,7.01.02,Pembayaran iuran forum,2,Honor/Upah,650.1.7.01.02.2.0101
+mak_00488,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,7,7.01,7.01.02,Pembayaran iuran forum,3,Sewa,650.1.7.01.02.3.0101
+mak_00489,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,7,7.01,7.01.02,Pembayaran iuran forum,4,Outsourcing,650.1.7.01.02.4.0101
+mak_00490,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,7,7.01,7.01.02,Pembayaran iuran forum,5,Overhead,650.1.7.01.02.5.0101
+mak_00491,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,7,7.01,7.01.03,Representasi,1,Bahan habis pakai,650.1.7.01.03.1.0101
+mak_00492,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,7,7.01,7.01.03,Representasi,2,Honor/Upah,650.1.7.01.03.2.0101
+mak_00493,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,7,7.01,7.01.03,Representasi,3,Sewa,650.1.7.01.03.3.0101
+mak_00494,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,7,7.01,7.01.03,Representasi,4,Outsourcing,650.1.7.01.03.4.0101
+mak_00495,0101,Unit Kerja PENDIDIKAN KEDOKTERAN,7,7.01,7.01.03,Representasi,5,Overhead,650.1.7.01.03.5.0101

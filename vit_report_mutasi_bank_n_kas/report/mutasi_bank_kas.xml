@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="report_mutasi_bank_kas"
+            string="Report Mutasi Bank/Kas"
+            model="vit.report_mutasi_bank_kas_wizard" 
+            report_type="qweb-pdf"
+            paperformat="vit_report_mutasi_bank_n_kas.paperformat_mutasi_bank_kas_a4"
+            file="vit.report_mutasi_bank_kas_wizard" 
+            name="vit_report_mutasi_bank_n_kas.report_mutasi_bank_kas_temp"
+        />
+
+        
+        <template id="vit_report_mutasi_bank_n_kas.report_mutasi_bank_kas_temp">
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"/>
+            </t>
+
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="vit_report_mutasi_bank_n_kas.external_layout_mutasi">
+                        <div class="page">
+                            <div>
+                                <h4 style="margin-bottom:0;"><strong>PT. &#160; GIEB &#160; INDONESIA</strong></h4>
+                                <h4><strong><span t-field="doc.cabang_id.name"/></strong></h4>
+                            </div>
+
+                            <div class="text-center" style="margin-top:50px;margin-bottom:10px;">
+                                <t t-if="doc.journal_id.type == 'bank'">
+                                    <h5 style="margin-bottom:0;"><strong>Bank &#160; Mutasi &#160; Tanggal &#160;:&#160; </strong><span t-field="doc.date"/></h5>
+                                    <span t-field="doc.journal_id.name"/>
+                                </t>
+                                <t t-if="doc.journal_id.type == 'cash'">
+                                    <h5><strong>Kas &#160; Mutasi &#160; Tanggal &#160;:&#160; </strong><span t-field="doc.date"/></h5>
+                                    <span t-field="doc.journal_id.name"/>
+                                </t>
+                            </div>
+                            <div class="container">                                
+                                <div class="row">
+                                    <table style="width:100%;border-collapse: collapse;">
+                                        <thead>
+                                            <tr>
+                                                <th style="border: 1px solid black; border-left: 1px solid black;  border-left: 1px solid black;text-align:center;width:20%;">No. Bukti</th>
+                                                <th style="border: 1px solid black; border-left: 1px solid black; text-align:center;width:56%;">Terima Dari / Bayar Pada</th>
+                                                <th style="border: 1px solid black; text-align:center; text-align:center;width:12%;">Debet</th>
+                                                <th style="border: 1px solid black; text-align:center; text-align:center;width:12%;">Kredit</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-size:10pt;">
+                                            <tr>
+                                                <td style="border-left: 1px solid black;"></td>
+                                                <td style="border-left: 1px solid black; text-align:right;padding-right:5px;">
+                                                    Saldo Awal Rp.
+                                                </td>
+                                                <td style="border-left: 1px solid black;text-align:right;padding-right:5px;">
+                                                    <span t-field="doc.saldo_awal"/>
+                                                </td>
+                                                <td style="border-left: 1px solid black; border-right: 1px solid black;"></td>
+                                            </tr>
+                                            <t t-foreach="doc.mb_lines" t-as="l">
+                                                <tr>
+                                                    <td style="border-left: 1px solid black;text-align:center;">
+                                                        <span t-field="l.bukti" />
+                                                    </td>
+                                                    <td style="border-left: 1px solid black;padding-left:10px;">
+                                                        <span t-field="l.label"/>
+                                                    </td>
+                                                    <td style="border-left: 1px solid black;text-align:right;padding-right:5px;">
+                                                        <span t-field="l.debit"/>
+                                                    </td>
+                                                    <td style="border-right: 1px solid black;border-left: 1px solid black;text-align:right;padding-right:5px;">
+                                                        <span t-field="l.credit"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                            <tr>
+                                                <td style="border-top: 1px solid black;"></td>
+                                                <td style="border-top: 1px solid black;text-align:right;padding-right:5px;">
+                                                    Mutasi
+                                                </td>
+                                                <td style="border: 1px solid black; text-align:right;padding-right:5px;">
+                                                    <span t-field="doc.total_mutasi_d"/>
+                                                </td>
+                                                <td style="border: 1px solid black; text-align:right;padding-right:5px;">
+                                                    <span t-field="doc.total_mutasi_c"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td style="text-align:right;padding-right:5px;">
+                                                    Saldo Akhir
+                                                </td>
+                                                <td style="border: 1px solid black; ">
+                                                </td>
+                                                <td style="border: 1px solid black;text-align:right;padding-right:5px; ">
+                                                    <span t-field="doc.saldo_akhir"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td style="text-align:right;padding-right:5px;">
+                                                    Total
+                                                </td>
+                                                <td style="border: 1px solid black;text-align:right;padding-right:5px;">
+                                                    <span t-field="doc.total_d"/>
+                                                </td>
+                                                <td style="border: 1px solid black; text-align:right;padding-right:5px;">
+                                                    <span t-field="doc.total_c"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <br/>
+                            <div id="ttd" class="row col-12" style="margin-bottom:75px;">
+                                <div class="col-3 text-center">
+                                    Mengetahui,
+                                </div>
+                                <div class="col-6"></div>
+                                <div class="col-3  text-center">
+                                    Kepala Akuntansi,
+                                </div>
+                            </div>
+                            <div id="ttd" class="row col-12">
+                                <div class="col-3 text-center">
+                                ______________________
+                                </div>
+                                <div class="col-6"></div>
+                                <div class="col-3 text-center">
+                                ______________________
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

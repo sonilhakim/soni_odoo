@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- inherit form asset -->
+        <record id="view_account_asset_asset_form_pemakaian" model="ir.ui.view">
+            <field name="name">account.asset.asset.form.pemakaian</field>
+            <field name="model">account.asset.asset</field>
+            <field name="inherit_id" ref="vit_asset.view_account_asset_asset_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[8]/group/group[3]" position="after">
+                    <group string="Pemakaian" attrs="{'invisible': [('asset_id', '=', False)]}">
+                        <field name="pemakai_id"/>
+                        <field name="unit_kerja_pemakai_id"/>
+                        <field name="used"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <!-- form aset pemakaian -->
+        <record id="view_account_asset_asset_tree_pemakaian" model="ir.ui.view">
+            <field name="name">account.asset.asset.tree.pemakaian</field>
+            <field name="model">account.asset.asset</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Assets" create="false">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="category_id"/>
+                    <field name="pemakai_id"/>
+                    <field name="unit_kerja_pemakai_id"/>
+                    <field name="last_location_id"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_account_asset_asset_detail_search_pemakaian" model="ir.ui.view">
+            <field name="name">account.asset.asset.detail.search.pemakaian</field>
+            <field name="model">account.asset.asset</field>
+            <field name="type">search</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Asset">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="category_id"/>
+                    <field name="pemakai_id"/>
+                    <field name="unit_kerja_pemakai_id"/>
+                    <field name="last_location_id"/>
+                    <field name="used"/>
+                    <!-- <filter string="Dipakai" name="used"/>
+                    <filter string="Nama" name="name"/>
+                    <filter string="Karyawan Pemakai Aset" name="pemakai_id"/>
+                    <filter string="SUBSATKER Pemakai Aset" name="unit_kerja_pemakai_id"/>
+                    <filter string="Lokasi" name="last_location_id"/> -->
+                    <group expand="0" string="Group By">
+                        <filter string="Category" name="group_by_category_id" context="{'group_by':'category_id'}"/>
+                        <filter string="Karyawan Pemakai Aset" name="group_by_pemakai_id" context="{'group_by':'pemakai_id'}"/>
+                        <filter string="SUBSATKER Pemakai Aset" name="group_by_unit_kerja_pemakai_id" context="{'group_by':'unit_kerja_pemakai_id'}"/>
+                        <filter string="Parent Asset" name="group_by_asset_id" context="{'group_by':'asset_id'}"/>
+                        <filter string="Lokasi" name="group_by_last_location_id" context="{'group_by':'condition'}"/>
+                        <filter string="Status Pemakaian" name="group_by_used" context="{'group_by':'used'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_account_penyusutan_detail_view_pemakaian">
+            <field name="name">Data Aset</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.asset.asset</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_account_asset_asset_tree_pemakaian"/>
+            <field name="search_view_id" ref="view_account_asset_asset_detail_search_pemakaian"/>
+            <field name="domain">[('asset_id','!=',False)]</field>
+            <field name="context">{'search_default_group_by_asset_id': 1,'search_default_group_by_used': 1}</field>
+        </record>
+
+        <menuitem name="Data aset" id="vit_pemakaian_aset_menu2" parent="vit_pemakaian_aset_menu"
+                  action="act_open_account_penyusutan_detail_view_pemakaian" groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+
+    </data>
+</odoo>

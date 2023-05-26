@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_riwayat_bkd_tree9" model="ir.ui.view">
+            <field name="name">vit_riwayat_bkd_tree9</field>
+            <field name="model">vit.riwayat_bkd</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_bkd_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="date_start" position="attributes">
+                    <attribute name="string">Date</attribute>
+                </field>
+                <field name="date_from" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_riwayat_bkd_form2" model="ir.ui.view">
+            <field name="name">vit_riwayat_bkd_form2</field>
+            <field name="model">vit.riwayat_bkd</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_bkd_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="date_start" position="attributes">
+                    <attribute name="string">Date</attribute>
+                </field>
+                <field name="date_from" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

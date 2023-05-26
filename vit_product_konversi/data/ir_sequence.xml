@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		
+		<record id="seq_konversi" model="ir.sequence">
+			<field name="name">Konversi Product</field>
+			<field name="code">vit.konversi.product</field>
+			<field name="prefix">Konv/%(month)s%(year)s</field>
+			<field name="padding">3</field>
+			<field name="next_number_actual">1</field>
+			<field name="number_increment">1</field>
+			<field name="implementation">standard</field>
+		</record>
+		
+	</data>
+</openerp>

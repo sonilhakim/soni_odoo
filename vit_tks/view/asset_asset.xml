@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_account_asset_tree" model="ir.ui.view">
+            <field name="name">account_asset_tree</field>
+            <field name="model">account.asset.asset</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Asset asset">
+                    <field name="tipe_barang" />
+                    <field name="tahun_pembuatan" />
+                    <field name="asal" />
+                    <field name="kelengkapan_dokumen" />
+                    <field name="tgl_penyerahan_brg" />
+                    <field name="satuan_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_account_asset_form" model="ir.ui.view">
+            <field name="name">account_asset_form</field>
+            <field name="model">account.asset.asset</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Asset asset">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Asset asset Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tipe_barang" />
+                                <field name="tahun_pembuatan" />
+                                <field name="asal" />
+                                <field name="kelengkapan_dokumen" />
+                                <field name="tgl_penyerahan_brg" />
+                            </group>
+                            <group>
+                                <field name="satuan_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_account_asset_search" model="ir.ui.view">
+            <field name="name">account_asset</field>
+            <field name="model">account.asset.asset</field>
+            <field name="arch" type="xml">
+                <search string="Asset asset">
+
+                    <filter string="Tipe barang" name="filter_by_tipe_barang" domain="[('tipe_barang','=','')]" />
+                    <filter string="Tahun pembuatan" name="filter_by_tahun_pembuatan" domain="[('tahun_pembuatan','=','')]" />
+                    <filter string="Asal" name="filter_by_asal" domain="[('asal','=','')]" />
+                    <filter string="Kelengkapan dokumen" name="filter_by_kelengkapan_dokumen" domain="[('kelengkapan_dokumen','=','')]" />
+                    <filter string="Tgl penyerahan brg" name="filter_by_tgl_penyerahan_brg" domain="[('tgl_penyerahan_brg','=','')]" />
+                    <field name="tipe_barang" select="True"/>
+                    <field name="tahun_pembuatan" select="True"/>
+                    <field name="asal" select="True"/>
+                    <field name="kelengkapan_dokumen" select="True"/>
+                    <field name="tgl_penyerahan_brg" select="True"/>
+                    <field name="satuan_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Satuan" domain="[]" name="group_by_satuan_id" context="{'group_by':'satuan_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_account_asset_kanban" model="ir.ui.view" >
+            <field name="name">account_asset</field>
+            <field name="model">account.asset.asset</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="tipe_barang" />
+                    <field name="tahun_pembuatan" />
+                    <field name="asal" />
+                    <field name="kelengkapan_dokumen" />
+                    <field name="tgl_penyerahan_brg" />
+                    <field name="satuan_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Satuan</span> <field name="satuan_id"></field>
+                                        </li>
+
+                                        <li>
+                                            <span class="text-muted">Tgl penyerahan brg</span> <field name="tgl_penyerahan_brg"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_account_asset_cal" model="ir.ui.view">
+            <field name="name">account_asset_cal</field>
+            <field name="model">account.asset.asset</field>
+            <field name="arch" type="xml">
+                <calendar string="Asset asset" date_start="tgl_penyerahan_brg">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record>
+        <!-- graph -->
+        <record id="view_account_asset_graph" model="ir.ui.view">
+            <field name="name">account_asset</field>
+            <field name="model">account.asset.asset</field>
+            <field name="arch" type="xml">
+                <graph string="Asset asset" type="bar">
+                    <field name="satuan_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_account_asset" model="ir.actions.act_window">
+            <field name="name">Asset asset</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.asset.asset</field>
+            <field name="view_mode">kanban,tree,form,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Asset asset
+                </p><p>
+                Click the Create button to add a new Asset asset
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_account_asset" name="Asset asset" parent="vit_tks_config_menu" action="action_account_asset" sequence="90"/>
+    </data>
+</odoo>

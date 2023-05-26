@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_pemakaian_aset_menu" string="Vit - Pemakaian aset"
+         model="vit.pemakaian_aset" report_type="qweb-pdf" 
+         file="vit.pemakaian_aset"  name="vit_pemakaian_aset.vit_pemakaian_aset_report" />
+
+        <!-- document template -->
+        <template id="vit_pemakaian_aset.vit_pemakaian_aset_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Pemakaian aset: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Date</strong>
+                            <p class="m-0" t-field="doc.date" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Penanggung jawab</strong>
+                            <p class="m-0" t-field="doc.penanggung_jawab_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Unit kerja</strong>
+                            <p class="m-0" t-field="doc.unit_kerja_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jurusan</strong>
+                            <p class="m-0" t-field="doc.jurusan_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Fakultas</strong>
+                            <p class="m-0" t-field="doc.fakultas_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Aset</h2>
+                <table class="table table-sm o_main_table" name="aset_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Reference</td>
+                            <td>Qty</td>
+                            <td>Aset</td>
+                            <td>Pemakaian</td>
+                            <td>Kategori</td>
+                            <td>Lokasi</td>
+                        </tr>
+                    </thead>
+                    <tbody class="aset_ids_tbody">
+                        <tr t-foreach="doc.aset_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.reference" /></td>
+                            <td><span t-field="line.qty" /></td>
+                            <td><span t-field="line.aset_id" /></td>
+                            <td><span t-field="line.pemakaian_id" /></td>
+                            <td><span t-field="line.kategori_id" /></td>
+                            <td><span t-field="line.lokasi_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_pemakaian_aset.vit_pemakaian_aset_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_pemakaian_aset.vit_pemakaian_aset_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

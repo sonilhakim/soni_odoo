@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_product_request_modif" model="ir.sequence">
+            <field name="name">Product Request Modif</field>
+            <field name="code">vit.product.request.modif</field>
+            <field name="prefix">PR/</field>
+            <field name="padding">5</field>
+        </record>
+    </data>
+</odoo>

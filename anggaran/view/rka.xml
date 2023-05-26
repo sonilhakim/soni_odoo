@@ -1,0 +1,425 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- RKA  tree -->
+        <record id="view_rka_tree" model="ir.ui.view">
+            <field name="name">anggaran_rka_tree</field>
+            <field name="model">anggaran.rka</field>
+            <field name="arch" type="xml">
+                <tree string="list rka">
+                    <field name="no" invisible="1"/>
+                    <!-- <field name="name"/> -->
+                    <field name="unit_id"/>
+                    <field name="tahun"/>
+                    <field name="period_id"/>
+                    <field name="alokasi"/>
+                    <field name="anggaran"/>       
+                    <field name="realisasi" readonly="1"/>      
+                    <field name="sisa" />      
+                    <field name="definitif" />
+                    <field name="state" />
+                </tree>    
+            </field>
+        </record>
+
+        <!-- ini definisi search rka -->
+        <record id="view_rka_filter" model="ir.ui.view">
+            <field name="name">rka.filter</field>
+            <field name="model">anggaran.rka</field>
+            <field name="arch" type="xml">
+                <search string="Search RKA">
+        
+                    <!-- <filter icon="terp-mail-message-new" 
+                        string="Non zero duration" 
+                         name="nonzero" domain="[('duration','>',0)]"/>
+                    <separator/> -->
+                    
+                    <!-- <field name="fakultas_id"/> -->
+                    <field name="unit_id"/>
+                    <field name="tahun"/>
+                    <field name="period_id"/>
+                    <field name="alokasi"/>
+
+                    <group expand="1" string="Group By...">
+                        
+                        <filter string="Fakultas" icon="terp-personal" 
+                            domain="[]" name="group_by_fakultas"
+                             context="{'group_by':'fakultas_id'}"/>
+
+                        <filter string="Unit Kerja" icon="terp-personal" 
+                            domain="[]" name="group_by_unit"
+                             context="{'group_by':'unit_id'}"/>
+
+                        <filter string="Tahun" icon="terp-personal" 
+                            domain="[]" name="group_by_tahun"
+                             context="{'group_by':'tahun'}"/>
+
+                        <filter string="Perioda" icon="terp-personal" 
+                            domain="[]" name="group_by_period"
+                             context="{'group_by':'period_id'}"/>
+
+        
+                    </group>                                        
+        
+                </search>
+            </field>
+        </record>
+
+        <!-- RKA form -->
+        <record id="view_rka_form" model="ir.ui.view">
+            <field name="name">anggaran_rka_form</field>
+            <field name="model">anggaran.rka</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="rka form" >
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" class="oe_highlight" states="draft" />
+                        <button name="print_renbut" string="Cetak RENBUT" type="object" states="draft"/>
+                        <button name="print_renbut_detail" string="Cetak RENBUT Detail" type="object" states="draft"/>
+
+                        <button string="Submit" type="object" name="action_submit" class="oe_highlight" states="open" />
+                        <button name="print_rarenja" string="Cetak RARENJA" type="object" states="open"/>
+                        <button name="print_rarenja_detail" string="Cetak RARENJA Detail" type="object" states="open"/>
+
+                        <!-- <button string="Isi MAK Otomatis" type="object" name="action_fill_mak" /> -->
+                                <!-- attrs="{'invisible': [('mak_terisi', '=', True)]}" -->
+                        
+                        <button string="Setuju" type="object" name="action_done" class="oe_highlight btn-success" states="submit" />
+                        <button string="Tidak Setuju" type="object" name="action_notdone" class="btn-danger" states="submit" />
+                        <button name="print_renja" string="Cetak RENJA" type="object" states="submit"/>
+                        <button name="print_renja_detail" string="Cetak RENJA Detail" type="object" states="submit"/>
+
+                        <button string="Selesai" type="object" name="action_lock" class="oe_highlight" states="done" />
+                        <button string="Revisi" icon="fa-files-o" states="done" type="action" name="%(revisi_wizard_action2)d"/>
+                        <button name="print_rka" string="Cetak RKA" type="object" states="done"/>
+                        <button name="print_rka_detail" string="Cetak RKA Detail" type="object" states="done"/>
+
+                        <button string="Cancel" type="object" name="action_cancel" states="submit,done" />
+                        <button string="Kembali ke Rancangan" type="object" name="action_draft" states="open,submit" />
+
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_revisi"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-book"
+                                attrs="{'invisible': [('is_revisi', '=', False)]}">
+                                <field name="revisi_count" widget="statinfo" string="REVISI"/>
+                            </button>
+                        </div>
+                        <div class="oe_title" >
+                            <label for="unit_id" class="oe_edit_only" 
+                                string="SUBSATKER" />
+                            <h1>
+                                <field name="unit_id" colspan="4"/>
+                            </h1>
+                        </div>
+                        
+                        <group>
+                            <group>
+                                <field name="no" invisible="1"/>
+                                <field name="name"  invisible="1"/>
+                                <field name="tahun"/>
+                                <field name="period_id" string='Periode RENBUT' attrs="{'invisible': [('state','!=','draft')]}"/>
+                                <field name="period_id" string='Periode RARENJA' attrs="{'invisible': [('state','!=','open')]}"/>
+                                <field name="period_id" attrs="{'invisible': [('state','in',('draft','open'))]}"/>
+                                <!-- <field name="kepala_sub_id"/> -->
+                                <field name="mak_terisi" invisible="1"/>
+                                <field name="date_open" invisible="1"/>
+                            </group>
+                            <group>
+                                <!-- <field name="alokasi" string='Alokasi Tahun Sebelumnya' attrs="{'invisible': [('state','not in',('draft','open'))]}"/> -->
+                                <field name="alokasi" attrs="{'invisible': [('state','in',('draft','open'))]}"/>
+                                <field name="anggaran" string='Anggaran RENBUT' attrs="{'invisible': [('state','!=','draft')]}"/>
+                                <field name="anggaran" string='Anggaran RARENJA' attrs="{'invisible': [('state','!=','open')]}"/>
+                                <field name="anggaran" attrs="{'invisible': [('state','in',('draft','open'))]}"/>
+                                <field name="realisasi"  attrs="{'invisible': [('state','in',('draft','open'))]}" readonly="1"/>      
+                                <field name="sisa"  attrs="{'invisible': [('state','in',('draft','open'))]}"/>      
+                                <field name="definitif"  attrs="{'invisible': [('state','in',('draft','open'))]}"/>          
+                            </group>
+                        </group>
+
+                        <group>
+                            <group>
+                                <field name="ttd_id"/>
+                                <field name="pos_ttd"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+
+                        <group colspan="4">
+                            <field name="note"/>				        	
+                        </group>
+
+                        <notebook>
+                            <page string="Kegiatan">
+                                <field name="rka_kegiatan_ids">
+                                    <tree string="Rincian Kegiatan">
+                                        <!-- <field name="tridharma_id" />  
+                                        <field name="category_id" /> -->   
+                                        <!-- <field name="kegiatan_id" />    -->
+                                        <field name="indikator" string="Kegiatan"/>
+                                        <field name="target_capaian" />
+                                        <field name="target_capaian_uom" />
+                                        <field name="anggaran" />      
+                                        <field name="realisasi" />      
+                                        <field name="sisa" />      
+                                        <!-- <field name="definitif" />       -->
+                                        <field name="rka_coa_ids" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <!-- <page string="Report">
+                                <field name="rka_kegiatan_tds">
+                                    <tree string="Rincian Kegiatan"> -->
+                                        <!-- <field name="kebijakan_id" />   -->
+                                        <!-- <field name="program_id" />    -->
+                                        <!-- <field name="kegiatan_id" />    -->
+                                        <!-- <field name="indikator" />     
+                                        <field name="target_capaian" />
+                                        <field name="target_capaian_uom" />
+                                        <field name="anggaran" />      
+                                        <field name="realisasi" />      
+                                        <field name="sisa" />      
+                                        <field name="definitif" />     -->  
+                                        <!-- <field name="rka_coa_ids" /> -->
+                                    <!-- </tree> -->
+                                <!-- </field> -->
+                            <!-- </page> -->
+                            <!-- <page string="Investasi">
+                                <field name="rka_kegiatan_ids3">
+                                    <tree string="Rincian Kegiatan"> -->
+                                        <!-- <field name="kebijakan_id" />   -->
+                                        <!-- <field name="program_id" />    -->
+                                        <!-- <field name="kegiatan_id" />   
+                                        <field name="indikator" />     
+                                        <field name="target_capaian" />
+                                        <field name="target_capaian_uom" />
+                                        <field name="anggaran" />      
+                                        <field name="realisasi" />      
+                                        <field name="sisa" />      
+                                        <field name="definitif" /> -->      
+                                        <!-- <field name="rka_coa_ids" /> -->
+                                    <!-- </tree>
+                                </field>
+                            </page>
+                            <page string="Overhead">
+                                <field name="rka_kegiatan_ids4">
+                                    <tree string="Rincian Kegiatan"> -->
+                                        <!-- <field name="kebijakan_id" />   -->
+                                        <!-- <field name="program_id" />    -->
+                                        <!-- <field name="kegiatan_id" />   
+                                        <field name="indikator" />     
+                                        <field name="target_capaian" />
+                                        <field name="target_capaian_uom" />
+                                        <field name="anggaran" />      
+                                        <field name="realisasi" />      
+                                        <field name="sisa" />      
+                                        <field name="definitif" />      --> 
+                                        <!-- <field name="rka_coa_ids" /> -->
+                                    <!-- </tree>
+                                </field>
+                            </page> -->
+                            <page string="Revisi">
+                                <group>
+                                    <group>
+                                        <field name="source_rka_id"/>
+                                        <field name="revised_by_id"/>
+                                        <field name="dest_rka_id"/>
+                                        <field name="is_revisi" invisible="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="no_revisi"/>
+                                        <field name="revised_date"/>
+                                        <field name="origin"/>
+                                    </group>
+                                </group>
+                                <group colspan="4">
+                                    <field name="revised_notes"/>                            
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+        <!-- RKA kegiatan form -->
+        <record id="view_rka_kegiatan_form" model="ir.ui.view">
+            <field name="name">anggaran_rka_kegiatan_form</field>
+            <field name="model">anggaran.rka_kegiatan</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="rka_kegiatan form" >
+                    <sheet>
+                        <group>
+                            <!-- <field name="kebijakan_id" /> -->
+                            <!-- <field name="program_id" /> -->
+                            <field name="tridharma_id" />
+                            <field name="category_id" />
+                            <!-- <field name="kegiatan_id"/> -->
+                        </group>
+
+                        <!-- <div class="oe_title" colspan="4">
+                            <label for="kegiatan_id" class="oe_edit_only" 
+                                 string="Kegiatan" />
+                            <h1>
+                                <field name="kegiatan_id" domain="[('program_id','=', program_id)]"/>
+                            </h1>
+                        </div> -->
+                        <group>
+                            <group>
+                                <field name="unit_id" string='SUBSATKER'/>       
+                                <field name="target_capaian"/>       
+                                <field name="target_capaian_uom"/>       
+                            </group>
+                            <group>
+                                <field name="anggaran" />       
+                                <field name="realisasi"  readonly="1"/>      
+                                <field name="sisa"  readonly="1"/>      
+                                <!-- <field name="definitif"  readonly="1"/>    -->
+                            </group>
+                        </group>
+                        <group colspan="4">
+                            <field name="indikator"/>       
+                        </group>
+
+                        <notebook>
+                            <page string="Rincian MAK">
+                                <!-- <field name="rka_coa_ids" on_change="onchange_rka_coa(rka_coa_ids)"> -->
+                                <field name="rka_coa_ids">
+                                    <tree string="Rincian MAK">
+                                        <field name="mak_id" />
+                                        <field name="total" />        
+                                        <field name="realisasi"/>         
+                                        <field name="sisa"/>         
+                                        <!-- <field name="definitif"/>   -->
+                                        <!-- <field name="sumber_dana_id" /> -->
+                                        <!-- <field name="bulan" /> -->
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>      
+
+        <!-- RKA MAK form -->
+        <record id="view_rka_coa_form" model="ir.ui.view">
+            <field name="name">anggaran_rka_coa_form</field>
+            <field name="model">anggaran.rka_coa</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="rka_coa form" >
+                    <sheet>
+                    
+                        <group>
+                            <group>
+                                <!-- <field name="rka_kegiatan_id" /> -->
+                                <field name="mak_id" />
+                                    <!-- domain="[('kegiatan_id','=', parent.kegiatan_id),('unit_id','=',parent.unit_id)]"/> -->
+                                <!-- <field name="sumber_dana_id" /> -->
+                                <!-- <field name="bulan" /> -->
+                                <field name="komponen_id" />
+                                <field name="subkomponen_id" />
+                            </group>
+                            <group>
+                                <field name="total" />         
+                                <field name="realisasi"  readonly="1"/>         
+                                <field name="sisa"  readonly="1"/>         
+                                <!-- <field name="definitif"  readonly="1"/>          -->
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Rincian">
+                                <field name="rka_detail_ids">
+                                <!-- <field name="rka_detail_ids" on_change="calculate_total(rka_detail_ids)"> -->
+                                    <tree string="Rincian">		
+                                        <field name="keterangan" />	
+                                        <field name="tarif" />         
+                                        <field name="jumlah" />  
+                                        <field name="volume_total" />         
+                                        <!-- <field name="realisasi" />         
+                                        <field name="sisa" />          -->
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>    
+
+        <!-- RKA detail form -->
+        <record id="view_rka_detail_form" model="ir.ui.view">
+            <field name="name">anggaran_rka_detail_form</field>
+            <field name="model">anggaran.rka_detail</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="rka_detail form" >
+                    <sheet>
+                      
+                        <div class="oe_title">
+                            <label for="keterangan" class="oe_edit_only" 
+                                 string="Detail" />
+                            <h1>
+                                <field name="keterangan" />
+                            </h1>
+                                <field name="satuan_volume" nolabel="1"/>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tarif" />   
+                                <field name="rka_volume_ids" >
+                                     <tree string="Volume" editable="bottom" >		
+                                        <field name="volume" /> 		
+                                        <field name="volume_uom" />	
+                                    </tree>
+                                </field>
+                            </group>
+                            <group>
+                                <field name="jumlah" />
+                                <field name="uom_volume" />
+                                <field name="volume_total" />
+                                <!-- <field name="realisasi" readonly="1"/>
+                                <field name="sisa" readonly="1"/> -->
+                            </group>
+                        </group>
+
+
+                    </sheet>
+                </form>
+            </field>
+        </record>    
+
+
+        <!-- graph -->
+        <record id="view_anggaran_rka_per_unit_graph" model="ir.ui.view">
+            <field name="name">anggaran_rka_per_unit_graph</field>
+            <field name="model">anggaran.rka</field>
+            <field name="arch" type="xml">
+                <graph string="rka graph" type="bar">
+                    <field name="period_id"/>
+                    <field name="unit_id"/>
+                    <field name="alokasi" operator="+"/>
+                    <field name="anggaran" operator="+"/>
+                    <field name="realisasi" operator="+"/>
+                    <field name="sisa" operator="+"/>
+                </graph>
+            </field>
+        </record>
+
+    </data>
+</odoo>

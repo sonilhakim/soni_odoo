@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_vit_mutasi_gaji_detail_form" model="ir.ui.view">
+            <field name="name">vit_mutasi_gaji_detail_form</field>
+            <field name="model">vit.mutasi_gaji_detail</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="employee_id" >
+                    <field name="company_id" invisible="1"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

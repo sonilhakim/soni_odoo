@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="vit_pemakaian_aset_top_menu" name="Pemakaian" sequence="20" web_icon="vit_pemakaian_aset,static/description/icon.png" />
+		<menuitem id="vit_pemakaian_aset_sub_menu" name="Operations" sequence="40" parent="vit_pemakaian_aset_top_menu" />
+		<menuitem id="vit_pemakaian_aset_config_menu" name="Configurations" sequence="50" parent="vit_pemakaian_aset_top_menu" />
+	</data>
+</odoo>

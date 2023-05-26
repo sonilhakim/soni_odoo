@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        
+        <record id="inherit_stock_move_line_karyawan_form" model="ir.ui.view">
+            <field name="name">inherit_stock_move_line_karyawan.form</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="vit_package.inherit_stock_move_line_form" />
+            <field name="arch" type="xml">
+                <field name="lot_id" position="after">
+                    <field name="nama_karyawan"/>
+                </field>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

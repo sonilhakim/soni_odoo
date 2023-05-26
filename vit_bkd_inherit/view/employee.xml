@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- form view -->
+        <record id="view_hr_employee_form" model="ir.ui.view">
+            <field name="name">hr_employee_form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="study_field" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <xpath expr="//field[@name='study_school']" position="after">
+                    <field name="bidang_ilmu" />
+                    <field name="gelar_depan" />
+                    <field name="gelar_belakang" />
+                    <field name="s1" />
+                    <field name="s1_ijasah" />
+                    <field name="s2" />
+                    <field name="s2_ijasah" />
+                    <field name="s3" />
+                    <field name="s3_ijasah" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

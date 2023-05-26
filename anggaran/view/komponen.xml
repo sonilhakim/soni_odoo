@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <record id="view_komponen_tree" model="ir.ui.view">
+            <field name="name">anggaran_komponen_tree</field>
+            <field name="model">anggaran.komponen</field>
+            <field name="arch" type="xml">
+                <tree string="List Status" >
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>    
+            </field>
+        </record>
+
+        <!-- ini definisi search tridharma -->
+        <record id="view_status_filter" model="ir.ui.view">
+            <field name="name">komponen.filter</field>
+            <field name="model">anggaran.komponen</field>
+            <field name="arch" type="xml">
+                <search string="Search Status">
+                    <field name="code"/>
+                    <field name="name"/>            
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

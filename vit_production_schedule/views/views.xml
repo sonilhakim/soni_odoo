@@ -1,0 +1,217 @@
+<odoo>
+    <data>
+        <!-- Masterdata tree view -->
+        <record id="masterdata_jpp_view_tree" model="ir.ui.view">
+            <field name="name">vit.masterdata.jpp.view.tree</field>
+            <field name="model">vit.masterdata.jpp</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence" widget="handle" invisible="1"/>
+                    <field name="description" />
+                </tree>
+            </field>
+        </record>
+        <!-- masterdata form view -->
+        <record id="masterdata_jpp_view_form" model="ir.ui.view">
+            <field name="name">vit.masterdata.jpp.view.form</field>
+            <field name="model">vit.masterdata.jpp</field>
+            <field name="arch" type="xml">
+                <form string="Master Data">
+                    <sheet>
+                        <group>
+                            <field name="sequence" />
+                            <field name="description" />
+                            <!-- <field name="type" /> -->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Master Data action window -->
+        <record id="action_view_masterdata_jpp" model="ir.actions.act_window">
+            <field name="name">Master Data</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.masterdata.jpp</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add a new Master Data
+                </p><p>
+                    Click the Create button to add a new Master Data
+                </p>
+            </field>
+        </record>
+        <!-- pelaksanaan produksi tree view -->
+        <record id="pelaksanaan_produksi_view_tree" model="ir.ui.view">
+            <field name="name">vit.pelaksanaan_produksi.view.tree</field>
+            <field name="model">vit.pelaksanaan_produksi</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="user_id" />
+                    <field name="company_id" />
+                    <field name="partner_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- pelaksanaan order form view -->
+        <record id="pelaksanaan_produksi_view_form" model="ir.ui.view">
+            <field name="name">vit.pelaksanaan_produksi.view.form</field>
+            <field name="model">vit.pelaksanaan_produksi</field>
+            <field name="arch" type="xml">
+                <form string="Jadwal Pelaksanaan Produksi">
+                    <header>
+                        <button string="Confirm" type="object" class="oe_highlight" name="action_confirm" states="draft"/>
+                        <button string="Done" type="object" class="oe_highlight" name="action_done" states="confirm"/>
+                        <button string="Set To Draft" type="object" name="action_draft" states="confirm" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="date" />
+                                <field name="partner_id" options="{'no_create': True}" domain="[('customer','=',True)]"/>
+                                <field name="sph_id" options="{'no_create': True}" domain="[('partner_id','=',partner_id),('state','in',('approved','tender'))]"/>
+                            </group>
+                            <group>
+                                <field name="user_id" options="{'no_create': True}"/>
+                                <field name="company_id" options="{'no_create': True}"/>
+                                <field name="project" readonly="1"/>
+                                <field name="desc_style" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Master Data">
+                                <field name="line_ids">
+                                    <tree editable="bottom" create="0" delete="0">
+                                        <field name="sequence" widget="handle" force_save="1" readonly="1" invisible="1"/>
+                                        <field name="name" force_save="1" readonly="1" string="Description"/>
+                                        <!-- <field name="type" force_save="1" readonly="1" invisible="1"/> -->
+                                        <field name="is_confirm" invisible="1"/>
+                                        <field name="plan"/>
+                                        <field name="actual"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- pelaksanaan_produksi search view -->
+        <record id="pelaksanaan_produksi_view_search" model="ir.ui.view">
+            <field name="name">vit.pelaksanaan_produksi.view.search</field>
+            <field name="model">vit.pelaksanaan_produksi</field>
+            <field name="arch" type="xml">
+                <search string="Search Description">
+                    <!-- Add your fields here -->
+                    <field name="name" select="True"/>
+                    <field name="date" select="True"/>
+                    <field name="partner_id" select="True" />
+                    <group string="Group By..">
+                        <filter string="Buyer" domain="[]" name="group_by_partner_id" context="{'group_by':'partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- pelaksanaan_produksi kanban view -->
+        <record id="pelaksanaan_produksi_view_kanban" model="ir.ui.view">
+            <field name="name">vit.pelaksanaan_produksi.view.kanban</field>
+            <field name="model">vit.pelaksanaan_produksi</field>
+            <field name="arch" type="xml">
+                <kanban string="Kanban Description">
+                    <!-- Add your fields here -->
+                    <field name="name" />
+                    <field name="date" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            Date: <field name="date"></field>
+                                        </li>
+                                        <li>
+                                            Buyer: <field name="partner_id"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- pelaksanaan_produksi calendar view -->
+        <record id="pelaksanaan_produksi_view_calendar" model="ir.ui.view">
+            <field name="name">vit.pelaksanaan_produksi.view.calendar</field>
+            <field name="model">vit.pelaksanaan_produksi</field>
+            <field name="arch" type="xml">
+                <calendar string="Calendar Description" date_start="date" color="partner_id" event_open_popup="True">
+                    <!-- Add your fields here -->
+                    <field name="name" />
+                    <field name="partner_id" />
+                </calendar>
+            </field>
+        </record>
+        <!-- pelaksanaan_produksi graph view -->
+        <record id="pelaksanaan_produksi_view_graph" model="ir.ui.view">
+            <field name="name">vit.pelaksanaan_produksi.view.graph</field>
+            <field name="model">vit.pelaksanaan_produksi</field>
+            <field name="arch" type="xml">
+                <graph string="Graph Description">
+                    <!-- Add your fields here -->
+                    <field name="name" />
+                    <field name="partner_id" />
+                </graph>
+            </field>
+        </record>
+        <!-- Pelaksanaan Produksi action window -->
+        <record id="action_view_pelaksanaan_produksi" model="ir.actions.act_window">
+            <field name="name">Jadwal Pelaksanaan Produksi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.pelaksanaan_produksi</field>
+            <field name="view_mode">tree,form,kanban,calendar,graph</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add a new Pelaksanaan Produksi
+                </p><p>
+                    Click the Create button to add a new Pelaksanaan Produksi
+                </p>
+            </field>
+        </record>
+        
+        <menuitem
+            id="pelaksanaan_produksi_menu_ppic"
+            name="Production Schedule"
+            parent="vit_ppic.vit_ppic_sub_menu_monitoring"
+            action="action_view_pelaksanaan_produksi"
+            groups="vit_production_schedule.group_masterdata_jpp_ppic"
+            sequence="110"
+        />
+        <menuitem
+            id="masterdata_sub_menu"
+            name="Master Data Pelaksanaan Produksi"
+            action="action_view_masterdata_jpp"
+            parent="mrp.menu_mrp_bom"
+            groups="vit_production_schedule.group_masterdata_jpp_ppic"
+            sequence="100"
+        />
+    </data>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_vit_kenaikan_pangkat_form2" model="ir.ui.view">
+            <field name="name">vit_kenaikan_pangkat_form2</field>
+            <field name="model">vit.kenaikan_pangkat</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_laporan.view_vit_kenaikan_pangkat_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <button string="Reload" type="object" name="action_reload" states="draft" />
+                </header>
+            </field>
+        </record>
+    </data>
+</odoo>

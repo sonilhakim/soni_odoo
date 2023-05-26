@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!--
+             Precisions
+        -->
+        <record forcecreate="True" id="decimal_cuti" model="decimal.precision">
+            <field name="name">Cuti</field>
+            <field name="digits">0</field>
+        </record>
+
+
+    </data>
+</odoo>

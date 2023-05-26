@@ -1,0 +1,47 @@
+<odoo>
+  <data>
+	<!-- action_Data_Pribadi -->
+	<record id="action_Data_Pribadi" model="ir.actions.act_window">
+		<field name="name">Data Pribadi</field>
+		<field name="res_model">hr.employee</field>
+		<field name="view_mode">tree,form,graph</field>
+		<field name="domain">[('user_id','=',uid)]</field>
+	</record>
+
+    <menuitem name="Front Office" id="vit_kepegawaian_front_office" 
+      web_icon="vit_kepegawaian,static/description/icon.png"
+      groups="vit_kepegawaian.group_kepegawaian_user"/>
+
+    
+	<menuitem id="menu_Data_Pribadi"
+			action="action_Data_Pribadi"
+			name="Data Pribadi"
+			sequence="120"
+			parent="vit_kepegawaian_front_office"/>
+
+	<menuitem id="menu_Riwayat"
+			name="Riwayat"
+			sequence="130"
+			parent="vit_kepegawaian_front_office"/>
+	<menuitem id="menu_vit_riwayat_izin_belajar" name="Riwayat izin belajar" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_izin_belajar" sequence="20"/>
+	<menuitem id="menu_vit_riwayat_tugas_belajar" name="Riwayat tugas belajar" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_tugas_belajar" sequence="30"/>
+	<menuitem id="menu_vit_riwayat_study_lanjutan" name="Riwayat study lanjutan" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_study_lanjutan" sequence="40"/>
+	<menuitem id="menu_vit_riwayat_bkd" name="Riwayat bkd" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_bkd" sequence="50"/>
+	<menuitem id="menu_vit_riwayat_pengabdian_masyarakat" name="Riwayat pengabdian masyarakat" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_pengabdian_masyarakat" sequence="60"/>
+	<menuitem id="menu_vit_riwayat_pekerjaan" name="Riwayat pekerjaan" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_pekerjaan" sequence="70"/>
+	<menuitem id="menu_vit_riwayat_beasiswa" name="Riwayat beasiswa" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_beasiswa" sequence="80"/>
+	<menuitem id="menu_vit_riwayat_diklat" name="Riwayat diklat" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_diklat" sequence="90"/>
+	<menuitem id="menu_vit_riwayat_pendidikan" name="Riwayat pendidikan" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_pendidikan" sequence="100"/>
+	<menuitem id="menu_vit_riwayat_penghargaan" name="Riwayat penghargaan" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_penghargaan" sequence="110"/>
+	<menuitem id="menu_vit_riwayat_penelitian_karya_imliah" name="Riwayat penelitian karya imliah" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_penelitian_karya_imliah" sequence="120"/>
+	<menuitem id="menu_vit_riwayat_dosen_mengajar_diluar" name="Riwayat dosen mengajar diluar" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_dosen_mengajar_diluar" sequence="130"/>
+	<menuitem id="menu_vit_riwayat_seminar" name="Riwayat seminar" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_seminar" sequence="140"/>
+	<menuitem id="menu_vit_riwayat_organisasi_pegawai" name="Riwayat organisasi pegawai" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_organisasi_pegawai" sequence="150"/>
+	<menuitem id="menu_vit_riwayat_pelatihan" name="Riwayat pelatihan" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_pelatihan" sequence="160"/>
+	<menuitem id="menu_vit_riwayat_kunjungan_ke_luar_negeri" name="Riwayat kunjungan ke luar negeri" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_kunjungan_ke_luar_negeri" sequence="170"/>
+	<menuitem id="menu_vit_riwayat_kepakaran_dosen" name="Riwayat kepakaran dosen" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_kepakaran_dosen" sequence="180"/>
+	<menuitem id="menu_vit_riwayat_mengajar" name="Riwayat mengajar" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_mengajar" sequence="190"/>
+	<menuitem id="menu_vit_riwayat_membimbing" name="Riwayat membimbing" parent="menu_Riwayat" action="vit_riwayat.action_vit_riwayat_membimbing" sequence="200"/>
+
+  </data>
+</odoo>

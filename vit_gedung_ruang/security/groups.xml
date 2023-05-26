@@ -1,0 +1,17 @@
+<odoo>
+	<data>
+		<record model="ir.module.category" id="module_category_gedung dan ruang">
+			<field name="name">Gedung dan Ruang</field>
+			<field name="description">Gedung dan Ruang Groups</field>
+			<field name="sequence">10</field>
+		</record>
+		<record id="group_gedung dan ruang_user" model="res.groups">
+			<field name="name">User</field>
+			<field name="category_id" ref="module_category_gedung dan ruang"/>
+		</record>
+		<record id="group_gedung dan ruang_manager" model="res.groups">
+			<field name="name">Manager</field>
+			<field name="category_id" ref="module_category_gedung dan ruang"/>
+		</record>
+	</data>
+</odoo>

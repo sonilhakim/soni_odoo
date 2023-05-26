@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_duk_tree" model="ir.ui.view">
+            <field name="name">vit_duk_tree</field>
+            <field name="model">vit.duk</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Duk">
+                    <field name="name" />
+                    <field name="state" />
+                    <field name="fakultas_id" />
+                    <field name="matra_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_duk_form2" model="ir.ui.view">
+            <field name="name">vit_duk_form2</field>
+            <field name="model">vit.duk</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_laporan.view_vit_duk_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <button string="Reload" type="object" name="action_reload" states="draft" />
+                </header>
+            </field>
+        </record>
+    </data>
+</odoo>

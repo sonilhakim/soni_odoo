@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_kpi_lines_tree" model="ir.ui.view">
+            <field name="name">vit_kpi_lines_tree</field>
+            <field name="model">vit.kpi_lines</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Kpi lines" decoration-success="(score &gt;= bobot)" decoration-danger="(score &lt; bobot)" decoration-info="(display_type == 'line_section')">
+                    <field name="name" invisible="1"/>
+                    <field name="aspek_id" />
+                    <field name="satuan" />
+                    <field name="bobot" />
+                    <field name="target" />
+                    <field name="realisasi" />
+                    <field name="nilai" />
+                    <field name="score" />
+                    <field name="company_id" invisible="1"/>
+                    <field name="kpi_id" invisible="1"/>
+                    <field name="parent_aspek_id" invisible="1"/>
+                    <field name="display_type" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kpi_lines_form" model="ir.ui.view">
+            <field name="name">vit_kpi_lines_form</field>
+            <field name="model">vit.kpi_lines</field>
+            <field name="arch" type="xml">
+                <form string="Kpi lines" create="false" edit="false">
+                    <field name="display_type" invisible="1"/>
+                    <field name="sequence" invisible="1"/>
+                    <group attrs="{'invisible': [('display_type', '!=', False)]}">
+                        <group>
+                            <field name="aspek_id"/>
+                            <field name="satuan" />
+                            <field name="bobot" />
+                            <field name="target" />
+                            <field name="start_date" invisible="1" />
+                            <field name="end_date" invisible="1" />
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="realisasi" />
+                            <field name="nilai" />
+                            <field name="score" />
+                            <field name="kpi_id" invisible="1"/>
+                            <field name="parent_aspek_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <label for="name" string="Description" attrs="{'invisible': [('display_type', '!=', False)]}"/>
+                    <label for="name" string="Section" attrs="{'invisible': [('display_type', '!=', 'line_section')]}"/>
+                    <!-- <label for="name" string="Note" attrs="{'invisible': [('display_type', '!=', 'line_note')]}"/> -->
+                    <field name="name"/>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_kpi_lines_search" model="ir.ui.view">
+            <field name="name">vit_kpi_lines</field>
+            <field name="model">vit.kpi_lines</field>
+            <field name="arch" type="xml">
+                <search string="Kpi lines">
+
+                    <!-- filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Satuan" name="filter_by_satuan" domain="[('satuan','=','')]" />
+                    <filter string="Bobot" name="filter_by_bobot" domain="[('bobot','=','')]" />
+                    <filter string="Target" name="filter_by_target" domain="[('target','=','')]" />
+                    <filter string="Nilai" name="filter_by_nilai" domain="[('nilai','=','')]" />
+                    <filter string="Score" name="filter_by_score" domain="[('score','=','')]" /> -->
+                    <field name="aspek_id" select="True"/>
+                    <field name="satuan" select="True"/>
+                    <field name="bobot" select="True"/>
+                    <field name="target" select="True"/>
+                    <field name="realisasi" select="True"/>
+                    <field name="nilai" select="True"/>
+                    <field name="score" select="True"/>
+                    <field name="kpi_id" select="True"/>
+                    <field name="start_date" select="True"/>
+                    <field name="end_date" select="True"/>
+                    <field name="company_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="KPI" domain="[]" name="group_by_kpi_id" context="{'group_by':'kpi_id'}"/>
+                        <filter string="Aspek" domain="[]" name="group_by_aspek_id" context="{'group_by':'aspek_id'}"/>
+                        <filter string="Company" domain="[]" name="group_by_company_id" context="{'group_by':'company_id'}"/>
+                        <filter string="Parent Aspek" domain="[]" name="group_by_parent_aspek_id" context="{'group_by':'parent_aspek_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_kpi_lines_kanban" model="ir.ui.view" >
+            <field name="name">vit_kpi_lines</field>
+            <field name="model">vit.kpi_lines</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="aspek_id" />
+                    <field name="satuan" />
+                    <field name="bobot" />
+                    <field name="target" />
+                    <field name="realisasi" />
+                    <field name="nilai" />
+                    <field name="score" />
+                    <field name="company_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="aspek_id"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">KPI</span> <field name="kpi_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Company</span> <field name="company_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- pivot -->
+        <record id="view_kpi_lines_pivot" model="ir.ui.view">
+            <field name="name">vit_kpi_lines.pivot</field>
+            <field name="model">vit.kpi_lines</field>
+            <field name="arch" type="xml">
+                <pivot string="Detail">
+                    <field name="aspek_id" type="row"/>
+                    <field name="bobot" type="measure"/>
+                    <field name="target" type="measure"/>
+                    <field name="realisasi" type="measure"/>
+                    <field name="nilai" type="measure"/>
+                    <field name="score" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+        <!-- graph -->
+        <record id="view_vit_kpi_lines_graph" model="ir.ui.view">
+            <field name="name">vit_kpi_lines</field>
+            <field name="model">vit.kpi_lines</field>
+            <field name="arch" type="xml">
+                <graph string="Kpi lines" type="bar">
+                    <field name="start_date" />
+                    <field name="end_date" />
+                    <field name="score" operator="+" type='measure'/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_kpi_lines" model="ir.actions.act_window">
+            <field name="name">KPI Detail</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.kpi_lines</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new KPI Detail
+                </p><p>
+                Click the Create button to add a new KPI Detail
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_kpi_lines" name="KPI Detail" parent="vit_kpi_gsp_sub_menu" action="action_vit_kpi_lines" sequence="20"/>
+    </data>
+</odoo>

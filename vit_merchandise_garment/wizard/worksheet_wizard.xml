@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_md_ws_wizard" model="ir.ui.view">
+            <field name="name">md.ws.wizard</field>
+            <field name="model">md.ws.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Generate Worksheet">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date_planned"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="location_src_id" domain="[('usage','=','internal'),('company_id','=',company_id)]" options="{'no_create':True}"/>
+                                <field name="location_dest_id" domain="[('usage','=','internal'),('company_id','=',company_id)]" options="{'no_create':True}"/>
+                            </group>
+                            <group>
+                                <field name="picking_type_id" options="{'no_create':True}"/>
+                                <field name="spec_type" required="1" />
+                                <field name="generate_type" required="1"/>
+                                <field name="start_number" attrs="{'invisible': [('generate_type','=','lot')]}"/>
+                                <field name="end_number" attrs="{'invisible': [('generate_type','=','lot')]}"/>
+                                <field name="lot" attrs="{'invisible': [('generate_type','=','numbering')]}"/>
+                            </group>
+                        </group>  
+                    </sheet>
+                    <footer>
+                        <button name="create_worksheet" string="Generate Worksheet" type="object" class="btn-primary"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="show_create_worksheet_wizard">
+            <field name="name">Generate Worksheet</field>
+            <field name="res_model">md.ws.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+           
+</odoo>

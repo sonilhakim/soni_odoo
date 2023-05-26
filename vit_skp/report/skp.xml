@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_skp_menu" string="Vit - Skp"
+         model="vit.skp" report_type="qweb-pdf" 
+         file="vit.skp"  name="vit_skp.vit_skp_report" />
+
+        <!-- document template -->
+        <template id="vit_skp.vit_skp_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Skp: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jumlah 10 sks pertama</strong>
+                            <p class="m-0" t-field="doc.jumlah_10_sks_pertama" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jumlah sks berikutnya</strong>
+                            <p class="m-0" t-field="doc.jumlah_sks_berikutnya" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tanggal</strong>
+                            <p class="m-0" t-field="doc.tanggal" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pns nip</strong>
+                            <p class="m-0" t-field="doc.pns_nip" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pns pangkat gol ruang</strong>
+                            <p class="m-0" t-field="doc.pns_pangkat_gol_ruang" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pejabat penilai nip</strong>
+                            <p class="m-0" t-field="doc.pejabat_penilai_nip" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pejabat penilai pangkat gol ruang</strong>
+                            <p class="m-0" t-field="doc.pejabat_penilai_pangkat_gol_ruang" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Lokasi</strong>
+                            <p class="m-0" t-field="doc.lokasi" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tahun akademik</strong>
+                            <p class="m-0" t-field="doc.tahun_akademik_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pns</strong>
+                            <p class="m-0" t-field="doc.pns_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pejabat penilai</strong>
+                            <p class="m-0" t-field="doc.pejabat_penilai_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pns jabatan</strong>
+                            <p class="m-0" t-field="doc.pns_jabatan_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pns unit kerja</strong>
+                            <p class="m-0" t-field="doc.pns_unit_kerja_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pejabat penilai unit kerja</strong>
+                            <p class="m-0" t-field="doc.pejabat_penilai_unit_kerja_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pejabat penilai jabatan</strong>
+                            <p class="m-0" t-field="doc.pejabat_penilai_jabatan_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Perkuliahan</h2>
+                <table class="table table-sm o_main_table" name="perkuliahan_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Sks</td>
+                            <td>Jumlah kelas</td>
+                            <td>Jumlah dosen pengampu</td>
+                            <td>Totak sks per smt</td>
+                            <td>Skp</td>
+                            <td>Semester</td>
+                        </tr>
+                    </thead>
+                    <tbody class="perkuliahan_ids_tbody">
+                        <tr t-foreach="doc.perkuliahan_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.sks" /></td>
+                            <td><span t-field="line.jumlah_kelas" /></td>
+                            <td><span t-field="line.jumlah_dosen_pengampu" /></td>
+                            <td><span t-field="line.totak_sks_per_smt" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                            <td><span t-field="line.semester_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Seminar</h2>
+                <table class="table table-sm o_main_table" name="seminar_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Pelaksanaan</td>
+                            <td>Ak</td>
+                            <td>Skp</td>
+                            <td>Semester</td>
+                        </tr>
+                    </thead>
+                    <tbody class="seminar_ids_tbody">
+                        <tr t-foreach="doc.seminar_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.pelaksanaan" /></td>
+                            <td><span t-field="line.ak" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                            <td><span t-field="line.semester_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Kkn pkn pkl</h2>
+                <table class="table table-sm o_main_table" name="kkn_pkn_pkl_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Semester genap</td>
+                            <td>Semester ganjil</td>
+                            <td>Jumlah</td>
+                            <td>Ak</td>
+                            <td>Skp</td>
+                            <td>Jenis kkn</td>
+                        </tr>
+                    </thead>
+                    <tbody class="kkn_pkn_pkl_ids_tbody">
+                        <tr t-foreach="doc.kkn_pkn_pkl_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.semester_genap" /></td>
+                            <td><span t-field="line.semester_ganjil" /></td>
+                            <td><span t-field="line.jumlah" /></td>
+                            <td><span t-field="line.ak" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                            <td><span t-field="line.jenis_kkn_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Disertasi thesis skripsi</h2>
+                <table class="table table-sm o_main_table" name="disertasi_thesis_skripsi_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Jumlah lulusan pembimbing utama</td>
+                            <td>Jumlah lulusan pembimbing pembantu</td>
+                            <td>Ak pembimbing utama</td>
+                            <td>Ak pembimbing pembantu</td>
+                            <td>Ak total</td>
+                            <td>Skp</td>
+                            <td>Jenis disertasi</td>
+                            <td>Semester</td>
+                        </tr>
+                    </thead>
+                    <tbody class="disertasi_thesis_skripsi_ids_tbody">
+                        <tr t-foreach="doc.disertasi_thesis_skripsi_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.jumlah_lulusan_pembimbing_utama" /></td>
+                            <td><span t-field="line.jumlah_lulusan_pembimbing_pembantu" /></td>
+                            <td><span t-field="line.ak_pembimbing_utama" /></td>
+                            <td><span t-field="line.ak_pembimbing_pembantu" /></td>
+                            <td><span t-field="line.ak_total" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                            <td><span t-field="line.jenis_disertasi_id" /></td>
+                            <td><span t-field="line.semester_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Penguji</h2>
+                <table class="table table-sm o_main_table" name="penguji_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Jumlah mhs ketua penguji</td>
+                            <td>Jumlah mhs anggota penguji</td>
+                            <td>Ak ketua penguji</td>
+                            <td>Ak anggota penguji</td>
+                            <td>Ak total</td>
+                            <td>Skp</td>
+                            <td>Semester</td>
+                        </tr>
+                    </thead>
+                    <tbody class="penguji_ids_tbody">
+                        <tr t-foreach="doc.penguji_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.jumlah_mhs_ketua_penguji" /></td>
+                            <td><span t-field="line.jumlah_mhs_anggota_penguji" /></td>
+                            <td><span t-field="line.ak_ketua_penguji" /></td>
+                            <td><span t-field="line.ak_anggota_penguji" /></td>
+                            <td><span t-field="line.ak_total" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                            <td><span t-field="line.semester_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Membina</h2>
+                <table class="table table-sm o_main_table" name="membina_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Semester genap</td>
+                            <td>Semester ganjil</td>
+                            <td>Jumlah</td>
+                            <td>Ak</td>
+                            <td>Skp</td>
+                        </tr>
+                    </thead>
+                    <tbody class="membina_ids_tbody">
+                        <tr t-foreach="doc.membina_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.semester_genap" /></td>
+                            <td><span t-field="line.semester_ganjil" /></td>
+                            <td><span t-field="line.jumlah" /></td>
+                            <td><span t-field="line.ak" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Mengembangkan program kuliah</h2>
+                <table class="table table-sm o_main_table" name="mengembangkan_program_kuliah_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Semester genap</td>
+                            <td>Semester ganjil</td>
+                            <td>Jumlah</td>
+                            <td>Ak</td>
+                            <td>Skp</td>
+                        </tr>
+                    </thead>
+                    <tbody class="mengembangkan_program_kuliah_ids_tbody">
+                        <tr t-foreach="doc.mengembangkan_program_kuliah_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.semester_genap" /></td>
+                            <td><span t-field="line.semester_ganjil" /></td>
+                            <td><span t-field="line.jumlah" /></td>
+                            <td><span t-field="line.ak" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Mengembangkan bahan kuliah</h2>
+                <table class="table table-sm o_main_table" name="mengembangkan_bahan_kuliah_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Jumlah</td>
+                            <td>Ak per bahan kuliah</td>
+                            <td>Ak jumlah</td>
+                            <td>Skp</td>
+                            <td>Semester</td>
+                        </tr>
+                    </thead>
+                    <tbody class="mengembangkan_bahan_kuliah_ids_tbody">
+                        <tr t-foreach="doc.mengembangkan_bahan_kuliah_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.jumlah" /></td>
+                            <td><span t-field="line.ak_per_bahan_kuliah" /></td>
+                            <td><span t-field="line.ak_jumlah" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                            <td><span t-field="line.semester_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Orasi ilmiah</h2>
+                <table class="table table-sm o_main_table" name="orasi_ilmiah_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Semester genap</td>
+                            <td>Semester ganjil</td>
+                            <td>Jumlah</td>
+                            <td>Ak</td>
+                            <td>Skp</td>
+                        </tr>
+                    </thead>
+                    <tbody class="orasi_ilmiah_ids_tbody">
+                        <tr t-foreach="doc.orasi_ilmiah_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.semester_genap" /></td>
+                            <td><span t-field="line.semester_ganjil" /></td>
+                            <td><span t-field="line.jumlah" /></td>
+                            <td><span t-field="line.ak" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Jabatan pt</h2>
+                <table class="table table-sm o_main_table" name="jabatan_pt_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Hasil</td>
+                            <td>Satuan hasil</td>
+                            <td>Angka kredit</td>
+                            <td>Jumlah angka kredit</td>
+                            <td>Skp</td>
+                            <td>Semester</td>
+                        </tr>
+                    </thead>
+                    <tbody class="jabatan_pt_ids_tbody">
+                        <tr t-foreach="doc.jabatan_pt_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.hasil" /></td>
+                            <td><span t-field="line.satuan_hasil" /></td>
+                            <td><span t-field="line.angka_kredit" /></td>
+                            <td><span t-field="line.jumlah_angka_kredit" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                            <td><span t-field="line.semester_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Membimbing dosen</h2>
+                <table class="table table-sm o_main_table" name="membimbing_dosen_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Semester genap</td>
+                            <td>Semester ganjil</td>
+                            <td>Jumlah</td>
+                            <td>Ak</td>
+                            <td>Skp</td>
+                        </tr>
+                    </thead>
+                    <tbody class="membimbing_dosen_ids_tbody">
+                        <tr t-foreach="doc.membimbing_dosen_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.semester_genap" /></td>
+                            <td><span t-field="line.semester_ganjil" /></td>
+                            <td><span t-field="line.jumlah" /></td>
+                            <td><span t-field="line.ak" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Detasering</h2>
+                <table class="table table-sm o_main_table" name="detasering_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Semester genap</td>
+                            <td>Semester ganjil</td>
+                            <td>Jumlah</td>
+                            <td>Ak</td>
+                            <td>Skp</td>
+                        </tr>
+                    </thead>
+                    <tbody class="detasering_ids_tbody">
+                        <tr t-foreach="doc.detasering_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.semester_genap" /></td>
+                            <td><span t-field="line.semester_ganjil" /></td>
+                            <td><span t-field="line.jumlah" /></td>
+                            <td><span t-field="line.ak" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Pengembangan diri</h2>
+                <table class="table table-sm o_main_table" name="pengembangan_diri_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Semester genap</td>
+                            <td>Semester ganjil</td>
+                            <td>Jumlah</td>
+                            <td>Ak</td>
+                            <td>Jumlah ak</td>
+                            <td>Skp</td>
+                        </tr>
+                    </thead>
+                    <tbody class="pengembangan_diri_ids_tbody">
+                        <tr t-foreach="doc.pengembangan_diri_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.semester_genap" /></td>
+                            <td><span t-field="line.semester_ganjil" /></td>
+                            <td><span t-field="line.jumlah" /></td>
+                            <td><span t-field="line.ak" /></td>
+                            <td><span t-field="line.jumlah_ak" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Penelitian</h2>
+                <table class="table table-sm o_main_table" name="penelitian_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Jumlah peneliti mandiri</td>
+                            <td>Jumlah peneliti utama</td>
+                            <td>Jumlah peneliti anggota</td>
+                            <td>Ak karya ilmiah jurnal</td>
+                            <td>Ak jumlah peneliti mandiri</td>
+                            <td>Ak jumlah peneliti utama</td>
+                            <td>Ak jumlah peneliti anggota</td>
+                            <td>Ak jumlah</td>
+                            <td>Skp</td>
+                        </tr>
+                    </thead>
+                    <tbody class="penelitian_ids_tbody">
+                        <tr t-foreach="doc.penelitian_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.jumlah_peneliti_mandiri" /></td>
+                            <td><span t-field="line.jumlah_peneliti_utama" /></td>
+                            <td><span t-field="line.jumlah_peneliti_anggota" /></td>
+                            <td><span t-field="line.ak_karya_ilmiah_jurnal" /></td>
+                            <td><span t-field="line.ak_jumlah_peneliti_mandiri" /></td>
+                            <td><span t-field="line.ak_jumlah_peneliti_utama" /></td>
+                            <td><span t-field="line.ak_jumlah_peneliti_anggota" /></td>
+                            <td><span t-field="line.ak_jumlah" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Pengabdian</h2>
+                <table class="table table-sm o_main_table" name="pengabdian_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Jumlah program</td>
+                            <td>Ak program</td>
+                            <td>Ak jumlah</td>
+                            <td>Skp</td>
+                        </tr>
+                    </thead>
+                    <tbody class="pengabdian_ids_tbody">
+                        <tr t-foreach="doc.pengabdian_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.jumlah_program" /></td>
+                            <td><span t-field="line.ak_program" /></td>
+                            <td><span t-field="line.ak_jumlah" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Rekapitulasi</h2>
+                <table class="table table-sm o_main_table" name="rekapitulasi_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Sks</td>
+                            <td>Sks riil</td>
+                            <td>Ak 10 sks pertama</td>
+                            <td>Ak sks berikutnya</td>
+                            <td>Ak jumlah</td>
+                            <td>Skp</td>
+                            <td>Semester</td>
+                        </tr>
+                    </thead>
+                    <tbody class="rekapitulasi_ids_tbody">
+                        <tr t-foreach="doc.rekapitulasi_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.sks" /></td>
+                            <td><span t-field="line.sks_riil" /></td>
+                            <td><span t-field="line.ak_10_sks_pertama" /></td>
+                            <td><span t-field="line.ak_sks_berikutnya" /></td>
+                            <td><span t-field="line.ak_jumlah" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                            <td><span t-field="line.semester_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Rekapitulasi mengembangkan bahan kuliah</h2>
+                <table class="table table-sm o_main_table" name="rekapitulasi_mengembangkan_bahan_kuliah_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Naskah</td>
+                            <td>Ak</td>
+                            <td>Skp</td>
+                        </tr>
+                    </thead>
+                    <tbody class="rekapitulasi_mengembangkan_bahan_kuliah_ids_tbody">
+                        <tr t-foreach="doc.rekapitulasi_mengembangkan_bahan_kuliah_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.naskah" /></td>
+                            <td><span t-field="line.ak" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Rekapitulasi jabatan pt</h2>
+                <table class="table table-sm o_main_table" name="rekapitulasi_jabatan_pt_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Satuan hasil</td>
+                            <td>Jumlah angka kredit</td>
+                            <td>Skp</td>
+                        </tr>
+                    </thead>
+                    <tbody class="rekapitulasi_jabatan_pt_ids_tbody">
+                        <tr t-foreach="doc.rekapitulasi_jabatan_pt_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.satuan_hasil" /></td>
+                            <td><span t-field="line.jumlah_angka_kredit" /></td>
+                            <td><span t-field="line.skp_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_skp.vit_skp_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_skp.vit_skp_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

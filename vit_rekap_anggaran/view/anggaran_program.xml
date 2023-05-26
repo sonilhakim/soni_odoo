@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_anggaran_program_tree" model="ir.ui.view">
+            <field name="name">vit_anggaran_program_tree</field>
+            <field name="model">vit.anggaran_program</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Anggaran program">
+                    <field name="indikator" />
+                    <field name="target_capaian" />
+                    <field name="satuan_target" />
+                    <field name="anggaran" />
+                    <field name="realisasi" />
+                    <field name="sisa" />
+                    <field name="definitif" />
+                    <!-- <field name="rekap_program_id" /> -->
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_anggaran_program_form" model="ir.ui.view">
+            <field name="name">vit_anggaran_program_form</field>
+            <field name="model">vit.anggaran_program</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Anggaran program">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <!-- <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Anggaran program Name"/>
+                            <h1><field name="name"/></h1>
+                        </div> -->
+                        <group>
+                            <group>
+                                <field name="target_capaian" />
+                                <field name="satuan_target" />
+                                <field name="anggaran" />
+                                <field name="realisasi" />
+                                <field name="sisa" />
+                                <field name="definitif" />
+                            </group>
+                            <group>                                
+                                <field name="indikator" />
+                                <field name="rekap_anggaran_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <!-- <record id="view_vit_anggaran_program_search" model="ir.ui.view">
+            <field name="name">vit_anggaran_program</field>
+            <field name="model">vit.anggaran_program</field>
+            <field name="arch" type="xml">
+                <search string="Anggaran program">
+
+                    <filter string="Target capaian" name="filter_by_target_capaian" domain="[('target_capaian','=','')]" />
+                    <filter string="Anggaran" name="filter_by_anggaran" domain="[('anggaran','=','')]" />
+                    <filter string="Realisasi" name="filter_by_realisasi" domain="[('realisasi','=','')]" />
+                    <filter string="Sisa" name="filter_by_sisa" domain="[('sisa','=','')]" />
+                    <filter string="Definitif" name="filter_by_definitif" domain="[('definitif','=','')]" />
+                    <field name="target_capaian" select="True"/>
+                    <field name="anggaran" select="True"/>
+                    <field name="realisasi" select="True"/>
+                    <field name="sisa" select="True"/>
+                    <field name="definitif" select="True"/>
+                    <field name="satuan_target" select="True"/>
+                    <field name="indikator" select="True"/>
+                    <field name="rekap_program_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Satuan target" domain="[]" name="group_by_satuan_target" context="{'group_by':'satuan_target'}"/>
+                        <filter string="Program" domain="[]" name="group_by_indikator" context="{'group_by':'indikator'}"/>
+                        <filter string="Rekap program" domain="[]" name="group_by_rekap_anggaran_id" context="{'group_by':'rekap_anggaran_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record> -->
+        <!-- kanban , to show image, please add image_small in the model -->
+        <!-- <record id="view_vit_anggaran_program_kanban" model="ir.ui.view" >
+            <field name="name">vit_anggaran_program</field>
+            <field name="model">vit.anggaran_program</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="target_capaian" />
+                    <field name="anggaran" />
+                    <field name="realisasi" />
+                    <field name="sisa" />
+                    <field name="definitif" />
+                    <field name="satuan_target" />
+                    <field name="indikator" />
+                    <field name="rekap_program_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Satuan target</span> <field name="satuan_target"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Program</span> <field name="indikator"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Rekap program</span> <field name="rekap_program_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record> -->
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <!-- <record id="view_vit_anggaran_program_graph" model="ir.ui.view">
+            <field name="name">vit_anggaran_program</field>
+            <field name="model">vit.anggaran_program</field>
+            <field name="arch" type="xml">
+                <graph string="Anggaran program" type="bar">
+                    <field name="satuan_target"/>
+                </graph>
+            </field>
+        </record> -->
+        <!-- action window -->
+        <!-- <record id="action_vit_anggaran_program" model="ir.actions.act_window">
+            <field name="name">Anggaran program</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.anggaran_program</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Anggaran program
+                </p><p>
+                Click the Create button to add a new Anggaran program
+                </p>
+            </field>
+        </record> -->
+
+        <!-- <menuitem id="menu_vit_anggaran_program" name="Anggaran program" parent="vit_rekap_anggaran_config_menu" action="action_vit_anggaran_program" sequence="100"/> -->
+    </data>
+</odoo>

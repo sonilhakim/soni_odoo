@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+
+        <record id="template_variant_form_product" model="ir.ui.view">
+            <field name="name">template.variant.form.product</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='standard_price_uom']" position="after">
+                    <!-- <field name="harga_jual" class="oe_inline"/> -->
+                    <field name="harga_discount" class="oe_inline"/>
+                    <field name="harga_beli" class="oe_inline"/>
+                    <field name="profit" class="oe_inline"/>
+                </xpath>
+                <xpath expr="//group/group[@name='bill']" position="after">
+                    <group name="discount_bertingkat_id" string="Discount Bertingkat">
+                        <field name="discount_bertingkat_id" class="oe_inline"/>
+                    </group>
+                </xpath>
+                <xpath expr="//group[@name='konversi_product']/field[@name='conv_value']" position="before">
+                    <field name="sequence"/>
+                </xpath>
+                <xpath expr="//group[@name='konversi_product']/field[@name='conv_value']" position="after">
+                    <field name="satuan_product" class="oe_inline"/>
+                </xpath>
+                <xpath expr="//group[@name='konversi_product']" position="after">
+                    <group>
+                        <group name="min_stock" string="Stock">
+                            <field name="min_stock" class="oe_inline"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

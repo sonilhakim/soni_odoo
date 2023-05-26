@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="purchase_order_product_varian" model="ir.ui.view">
+            <field name="name">purchase.order.product.varian.inherit.form</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="model">purchase.order</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='incoterm_id']" position="after">
+                    <!-- <field name="termin"/> -->
+                    <field name="up" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                    <field name="expedisi" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="cara_bayar" attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                </xpath>
+
+                <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                    <field name="default_code"/>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_uom']" position="after">
+                    <field name="satuan_product"/>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                    <!-- <field name="harga_satuan"/> -->
+                    <field name="discount_bertingkat_id"/>
+                    <field name="harga_discount"/>
+                </xpath>
+
+                <xpath expr="//field[@name='amount_untaxed']" position="before">
+                    <field name="amount_subtotal" readonly="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="discount_total" readonly="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </xpath>
+
+                <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_uom']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='account_analytic_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <!-- <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath> -->
+            </field>
+        </record>
+    </data>
+</odoo>

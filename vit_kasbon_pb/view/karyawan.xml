@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- action window -->
+        <record id="action_karyawan" model="ir.actions.act_window">
+            <field name="name">Karyawan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Karyawan
+                </p><p>
+                Click the Create button to add a new Karyawan
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_karyawan" name="Karyawan" parent="vit_kasbon_pb_config_menu" action="action_karyawan" sequence="30"/>
+    </data>
+</odoo>

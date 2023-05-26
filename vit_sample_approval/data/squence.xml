@@ -1,0 +1,12 @@
+<odoo>
+	<data noupdate="1">		
+		<record id="sample_approval_sequence_desain" model="ir.sequence">
+			<field name="name">Sample Approval squence</field>
+			<field name="code">vit.sample_approval</field>
+			<field name="prefix">SA/XII/%(year)s</field>
+			<field name="padding">3</field>
+			<field eval="1" name="number_next"/>
+			<field eval="1" name="number_increment"/>
+		</record>
+	</data>
+</odoo>

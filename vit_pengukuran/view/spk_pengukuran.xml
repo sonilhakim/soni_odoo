@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- form view -->
+    <record id="view_vit_spk_pengukuran_form_inherit" model="ir.ui.view">
+        <field name="name">vit_spk_pengukuran_form_inherit</field>
+        <field name="model">vit.spk_pengukuran</field>
+        <field name="inherit_id" ref="vit_spk_pengukuran.view_vit_spk_pengukuran_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='po_id']" position="after">
+                <field name="pengukuran_header_id" readonly="1" string="No. Pengukuran" attrs="{'invisible':[('pengukuran_header_id','=',False)]}"/>
+            </xpath>
+            <xpath expr="//notebook/page[2]/field[@name='spk_product_ids']/tree/field[@name='size_ids']" position="after">
+                <field name="template_id" options="{'no_create': True}" invisible="1"/>
+                <field name="pengukuran_id" readonly="1" string="No. Pengukuran (Project)"/>
+            </xpath>
+            <xpath expr="//notebook/page/field[@name='spk_line_ids']/tree/field[@name='method']" position="replace">
+                <field name="method_id" options="{'no_create': True}" domain="[('active', '=', True)]" required="1"/>
+            </xpath>
+            <!-- <xpath expr="//notebook/page[2]" position="after">
+                <page string="Data Karyawan">
+                    <field name="file" filename="filename" />
+                    <field name="filename" readonly="1" force_save="1" invisible="1"/>
+                    <label for="filename" string=" - " attrs="{'invisible':[('filename','=',False)]}"/>
+                    <button string="Import Data" type="object" name="action_import" groups="vit_pengukuran.group_edp_pengukuran" class="oe_highlight" attrs="{'invisible':['|',('filename','=',False),('state','!=','draft')]}"/> -->
+                    <!-- <separator/> -->
+                    <!-- <p class="oe_grey">Posisi header dan penulisan pada file excel harus seperti ini ('NAMA','NIK','DIVISI','JABATAN','LOKASI','GENDER')</p>
+                    <field name="karyawan_ids" attrs="{'readonly': [('state','in',['cancel','done'])]}">
+                        <tree string="karyawan" decoration-success="state == 'confirmed'" >
+                            <field name="karyawan" />
+                            <field name="nik" />
+                            <field name="divisi_id" />
+                            <field name="jabatan_id" />
+                            <field name="lokasi_id" />
+                            <field name="gender" />
+                            <field name="state" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath> -->
+        </field>
+    </record>
+
+</odoo>

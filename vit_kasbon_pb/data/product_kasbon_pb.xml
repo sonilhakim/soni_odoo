@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+
+        <record id="product_kasbon_pb" model="product.product">
+            <field name="name">Kasbon</field>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">True</field>
+            <field name="type">service</field>
+            <field name="product_type">other</field>
+            <field name="taxes_id">False</field>
+            <field name="supplier_taxes_id">False</field>
+        </record> 
+
+    </data>
+</odoo>

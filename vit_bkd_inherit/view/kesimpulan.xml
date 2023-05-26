@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_kesimpulan_kinerja_dosen_tree2" model="ir.ui.view">
+            <field name="name">vit_kesimpulan_kinerja_dosen_tree2</field>
+            <field name="model">vit.kesimpulan_kinerja_dosen</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_kesimpulan_kinerja_dosen_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="Kesimpulan kinerja dosen">
+                        <field name="name" />
+                        <field name="dosen_id" />
+                        <field name="nip" />
+                        <field name="status_dosen_id" />
+                        <field name="tahun_akademik_id" />
+                        <field name="semester_id" />
+                        <field name="state" />
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kesimpulan_kinerja_dosen_form2" model="ir.ui.view">
+            <field name="name">vit_kesimpulan_kinerja_dosen_form2</field>
+            <field name="model">vit.kesimpulan_kinerja_dosen</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_kesimpulan_kinerja_dosen_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="action_confirm" position="after">
+                    <button string="Reload" type="object" name="action_reload" states="draft" />
+                </button>
+                <button name="action_confirm" position="attributes" >
+                    <attribute name="string">Konfirmasi</attribute>
+                </button>
+                <button name="action_done" position="attributes" >
+                    <attribute name="string">Validasi</attribute>
+                    <attribute name="groups">vit_bkd.group_bkd_manager</attribute>
+                </button>
+                <button name="action_done" position="after" >
+                    <button string="Tolak" type="object" name="action_reject" states="open"  groups="vit_bkd.group_bkd_manager"/>
+                </button>
+                <xpath expr="//group" position="replace">
+                    <group>
+                        <group>
+                            <field name="dosen_id" />
+                            <field name="nip" />
+                            <field name="status_dosen_id" />
+                            <field name="jabatan_fungsional_id" />
+                            <field name="jabatan_fungsional_name" invisible="1"/>
+                        </group>
+                        <group>                            
+                            <field name="tahun_akademik_id" />
+                            <field name="semester_id" />
+                            <field name="asesor1_id" />
+                            <field name="asesor2_id" />
+                        </group>
+                    </group>
+                </xpath>
+                <xpath expr="//notebook" position="replace">
+                    <notebook>
+                        <page string="Kinerja">
+                            <field name="line_ids"/>
+                            <group>
+                                <field name="kesimpulan_kinerja" />
+                            </group>
+                        </page>
+                        <page string="Kewajiban Khusus" attrs="{'invisible': [('jabatan_fungsional_name', 'not in', ['Lektor Kepala', 'Profesor'])]}">
+                            <group>
+                                <div>
+                                    <b>WAJIB KHUSUS PERIODE TAHUN  &#160;</b>
+                                    <field name="periode_dari" style="width: 5%"/>
+                                    <b>SAMPAI  &#160;</b>
+                                    <field name="periode_sampai" style="width: 25%"/>
+                                </div>
+                            </group>
+                            <field name="line_khusus_ids"/>
+                            <group>
+                                <field name="kesimpulan_khusus" />
+                            </group>
+                        </page>
+                    </notebook>
+                </xpath>
+                <xpath expr="//sheet" position="after">
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="view_vit_kesimpulan_kinerja_dosen_line_tree2" model="ir.ui.view">
+            <field name="name">vit_kesimpulan_kinerja_dosen_line_tree2</field>
+            <field name="model">vit.kesimpulan_kinerja_dosen_line</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_kesimpulan_kinerja_dosen_line_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="Kesimpulan kinerja dosen line">
+                        <field name="name" />
+                        <field name="syarat" />
+                        <field name="kinerja" />
+                        <field name="kesimpulan" />
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kesimpulan_kinerja_dosen_line_form2" model="ir.ui.view">
+            <field name="name">vit_kesimpulan_kinerja_dosen_line_form2</field>
+            <field name="model">vit.kesimpulan_kinerja_dosen_line</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_kesimpulan_kinerja_dosen_line_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="replace">
+                    <group>
+                        <group>
+                            <field name="syarat" />
+                            <field name="kinerja" />
+                        </group>
+                        <group>
+                            <field name="kesimpulan" />
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <!-- tree view -->
+        <record id="view_vit_kesimpulan_kewajiban_khusus_line_tree" model="ir.ui.view">
+            <field name="name">vit_kesimpulan_kewajiban_khusus_line_tree</field>
+            <field name="model">vit.kesimpulan_kewajiban_khusus_line</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Kesimpulan kewajiban khusus line">
+                    <field name="tahun" />
+                    <field name="kewajiban_khusus_id" />
+                    <field name="ceklist_asesor" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kesimpulan_kewajiban_khusus_line_form" model="ir.ui.view">
+            <field name="name">vit_kesimpulan_kewajiban_khusus_line_form</field>
+            <field name="model">vit.kesimpulan_kewajiban_khusus_line</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Kesimpulan kewajiban khusus line">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="tahun" />
+                                <field name="kewajiban_khusus_id" />
+                                <field name="ceklist_asesor" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

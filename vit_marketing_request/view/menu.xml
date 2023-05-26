@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <!-- act window request design -->
+        <!-- <record id="action_vit_marketing_request_design" model="ir.actions.act_window">
+            <field name="name">Request Design</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.marketing_request</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form,calendar,graph</field>
+            <field name="domain">[('type','=','design')]</field>
+            <field name="context">{'type':'design', 'search_default_fieldname':1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Request Design
+                </p><p>
+                Click the Create button to add a new Request Design
+                </p>
+            </field>
+        </record> -->
+        <!-- act window request sample -->
+        <!-- <record id="action_vit_marketing_request_sample" model="ir.actions.act_window">
+            <field name="name">Request Sample</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.marketing_request</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form,calendar,graph</field>
+            <field name="domain">[('type','=','sample')]</field>
+            <field name="context">{'type':'sample', 'search_default_fieldname':1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Request Sample
+                </p><p>
+                Click the Create button to add a new Request Sample
+                </p>
+            </field>
+        </record> -->
+        
+        
+        <menuitem id="vit_marketing_request_sub_menu" name="Desain" sequence="60" parent="vit_marketing.vit_marketing_top_menu" web_icon="vit_marketing_request,static/description/icon.png" />
+        <!-- <menuitem id="menu_vit_marketing_request_design" name="Request Design" parent="vit_marketing_request.vit_marketing_request_sub_menu" action="action_vit_marketing_request_design" sequence="20"/>
+        <menuitem id="menu_vit_marketing_request_sample" name="Request Sample" parent="vit_marketing_request.vit_marketing_request_sub_menu" action="action_vit_marketing_request_sample" sequence="30"/> -->
+
+        <record model="ir.ui.menu" id="vit_marketing_request_sub_menu">
+            <field name="groups_id" eval="[(6,0,[ref('vit_marketing_inherit.group_hiden_menu_marketing')])]"/>
+        </record>
+    </data>
+</odoo>

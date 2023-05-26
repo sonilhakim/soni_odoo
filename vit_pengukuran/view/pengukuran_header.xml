@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_pengukuran_header_tree" model="ir.ui.view">
+            <field name="name">vit_pengukuran_header_tree</field>
+            <field name="model">vit.pengukuran.header</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Pengukuran" create='false'>
+                    <field name="name" />
+                    <field name="project" />
+                    <field name="date" />
+                    <field name="partner_id" />
+                    <field name="company_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_pengukuran_header_form" model="ir.ui.view">
+            <field name="name">vit_pengukuran_header_form</field>
+            <field name="model">vit.pengukuran.header</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Pengukuran" create='false'>
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" groups="vit_pengukuran.group_user_pengukuran"/>
+                        <button string="Generate Import Pengukuran" type="object" name="create_import_pengukuran" states="confirmed" groups="vit_pengukuran.group_edp_pengukuran" confirm="Anda yakin akan membuat Import Pengukuran Karyawan ?"/>
+                        <button string="Validate" type="object" name="action_done" states="confirmed" groups="vit_pengukuran.group_edp_pengukuran" confirm="Anda yakin akan memvalidasi Instruksi Pengukuran ?"/>
+                        <!-- <button string="Validate2" type="object" name="action_done"/> -->
+                        <button string="Reset to Draft" type="object" name="action_draft" states="confirmed" groups="vit_pengukuran.group_manager_pengukuran"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_import"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-book"
+                                attrs="{'invisible': [('import_count', '=', 0)]}">
+                                <field name="import_count" widget="statinfo" string="Import Pengukuran Karyawan"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Pengukuran Number"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="project" required="1" string="Project Name"/>
+                                <field name="date" />
+                                <field name="user_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="partner_id" domain="[('customer','=',True)]" options="{'no_create':True}"/>
+                                <field name="company_id" options="{'no_create':True}"/>
+                                <field name="spk_id" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Karyawan">
+                                <field name="karyawan_ids">
+                                    <tree string="karyawan" decoration-success="state == 'confirmed'" >
+                                        <field name="karyawan" />
+                                        <field name="nik" />
+                                        <field name="divisi_id" />
+                                        <field name="jabatan_id" />
+                                        <field name="lokasi_id" />
+                                        <field name="gender" />
+                                        <field name="state" invisible="0"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Style(s)" invisible="1">
+                                <field name="pengukuran_ids" attrs="{'readonly': [('state','=','done')]}">
+                                    <tree string="pengukuran">
+                                        <field name="name" />
+                                        <field name="project" />
+                                        <field name="date" />
+                                        <field name="partner_id" />
+                                        <field name="company_id" />
+                                        <field name="state" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_pengukuran_header_search" model="ir.ui.view">
+            <field name="name">vit_pengukuran_header</field>
+            <field name="model">vit.pengukuran.header</field>
+            <field name="arch" type="xml">
+                <search string="pengukuran">
+                    <field name="name"/>
+                    <field name="project"/>
+                    <field name="partner_id"/>
+                    <field name="spk_id"/>
+                    <group string="Group By..">
+                        <filter name="group_partner_id" string="Customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- action window Pengukuran-->
+        <record id="action_vit_pengukuran_header" model="ir.actions.act_window">
+            <field name="name">Intruksi Pengukuran</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.pengukuran.header</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_vit_pengukuran_header_tree"/>
+            <!-- <field name="context">{"search_default_fieldname":1}</field> -->
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new pengukuran
+                </p><p>
+                Click the Create button to add a new pengukuran
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_pengukuran_header" name="Intruksi Pengukuran" sequence="79" parent="vit_pengukuran.vit_pengukuran_top_menu" action="action_vit_pengukuran_header" groups="group_edp_pengukuran"/>
+    </data>
+</odoo>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="header">
+      <html>            
+        <div class="main-header-area header-sticky box-shadow">
+          <div class="container">
+            <div class="classy-nav-container breakpoint-off">
+              <nav class="classy-navbar justify-content-between" id="EduStudyNav">
+                <a class="nav-brand" href="/elearning">
+                  <img src="https://toffin.id/wp-content/uploads/2020/01/Toffin-Logo-02.png" style="width:150px" alt="logo"/>
+                  <!-- <img t-attf-src="data:image/*;base64,{{user_id.company_id.logo}}" style="width:150px" alt="logo"/> -->
+                </a>
+                <div class="classy-navbar-toggler"><span class="navbarToggler"><span></span><span></span><span></span></span></div>
+                <div class="classy-menu">
+                  <div class="classycloseIcon">
+                     <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                  </div>
+                  <div class="classynav">
+                    <ul>
+                      <li>
+                         <a href="/elearning">Toffin Home</a> 
+                      </li>
+                      <li>
+                         <a href="/kelasonline?offset=0">Kelas Online</a> 
+                      </li>
+                      <li>
+                         <!-- <a href="/seminaronline?offset=0">Seminar Online</a> -->
+                         <a>Seminar Online</a> 
+                      </li>
+                      <li>
+                         <a href="/artikel?offset=0">Artikel</a> 
+                      </li>
+                      <li>
+                         <a href="/about">About E-learning</a> 
+                      </li>
+                      <li><a href="#search" class="search-btn"><i class="icofont-search-2"></i></a></li>
+                      <li t-if="user_id._is_public()">
+                        <a href="/admission" class="search-btn">
+                          <i class="icofont-ui-user"></i>
+                          <span>Akun Saya</span>
+                        </a>
+                      </li>
+                      <li class="dropdown" t-if="not user_id._is_public()">
+                        <img t-attf-src="data:image/*;base64,{{user_id.partner_id.image}}" alt="{{user_id.name}}"/>
+                        <!-- <i class="icofont-ui-user" style="margin-right:5px;"></i> -->
+                        <!-- <span class="dropdown-toggle" data-toggle="dropdown">Akun Saya</span> -->
+                        <span class="dropdown-toggle" data-toggle="dropdown" t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                        <div class="dropdown-content dropdown-menu">
+                          <ul>
+                            <li><a href="#" role="menuitem">Akun Saya</a></li>
+                            <!-- <li t-if="user_id._is_public()"><a href="/admission">Login</a></li> -->
+                            <li id="o_logout"><a t-attf-href="/web/session/logout?redirect=/admission" role="menuitem">Logout</a></li>
+                          </ul>
+                        </div>
+                      </li>
+
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div id="search-area">
+          <button type="button" class="close">×</button> 
+          <form role="form" t-attf-action="/search_page" method="POST">
+              <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+              <input type="text" name="name" t-att-value="name" id="name" class="form-control" placeholder="Search Keyword(s)"/>
+              <button type="submit" class="btn btn-primary">Cari</button>
+          </form>
+          <!-- <form> <input type="search" id="search" placeholder="Search Keyword(s)"/> <button onclick="search()" class="btn btn-primary">Cari</button> </form> -->
+        </div>
+
+      </html>
+    </template>
+  </data>
+</odoo>

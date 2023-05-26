@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_vit_ruang_menu" string="Vit - Vit ruang"
+         model="vit.vit_ruang" report_type="qweb-pdf" 
+         file="vit.vit_ruang"  name="vit_gedung_ruang.vit_vit_ruang_report" />
+
+        <!-- document template -->
+        <template id="vit_gedung_ruang.vit_vit_ruang_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Vit ruang: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Kode ruang</strong>
+                            <p class="m-0" t-field="doc.kode_ruang" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Luas</strong>
+                            <p class="m-0" t-field="doc.luas" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Lantai</strong>
+                            <p class="m-0" t-field="doc.lantai" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tanggal awal</strong>
+                            <p class="m-0" t-field="doc.tanggal_awal" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tanggal akhir</strong>
+                            <p class="m-0" t-field="doc.tanggal_akhir" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Gedung</strong>
+                            <p class="m-0" t-field="doc.gedung_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Penanggung jawab</strong>
+                            <p class="m-0" t-field="doc.penanggung_jawab_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pengguna</strong>
+                            <p class="m-0" t-field="doc.pengguna_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jenis penggunaan</strong>
+                            <p class="m-0" t-field="doc.jenis_penggunaan_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_gedung_ruang.vit_vit_ruang_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_gedung_ruang.vit_vit_ruang_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

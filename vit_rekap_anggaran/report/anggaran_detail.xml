@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_anggaran_detail_menu" string="Vit - Anggaran detail"
+         model="vit.anggaran_detail" report_type="qweb-pdf" 
+         file="vit.anggaran_detail"  name="vit_rekap_anggaran.vit_anggaran_detail_report" />
+
+        <!-- document template -->
+        <template id="vit_rekap_anggaran.vit_anggaran_detail_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Anggaran detail: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Target capaian</strong>
+                            <p class="m-0" t-field="doc.target_capaian" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Anggaran</strong>
+                            <p class="m-0" t-field="doc.anggaran" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Realisasi</strong>
+                            <p class="m-0" t-field="doc.realisasi" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Sisa</strong>
+                            <p class="m-0" t-field="doc.sisa" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Definitif</strong>
+                            <p class="m-0" t-field="doc.definitif" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Kegiatan</strong>
+                            <p class="m-0" t-field="doc.kegiatan_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Rekapitulasi</strong>
+                            <p class="m-0" t-field="doc.rekapitulasi_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Satuan target</strong>
+                            <p class="m-0" t-field="doc.satuan_target"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_rekap_anggaran.vit_anggaran_detail_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_rekap_anggaran.vit_anggaran_detail_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

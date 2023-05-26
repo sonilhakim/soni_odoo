@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_kinerja_bidang_pendidikan_tree" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_pendidikan_tree</field>
+            <field name="model">vit.kinerja_bidang_pendidikan</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Kinerja bidang pendidikan">
+                    <field name="name" />
+                    <field name="uraian_jenis_kegiatan" />
+                    <field name="bukti_penugasan" />
+                    <field name="file_bukti_penugasan" />
+                    <field name="file_bukti_penugasan_filename" />
+                    <field name="beban_sks" />
+                    <field name="masa_penugasan" />
+                    <field name="bukti_dokumen" />
+                    <field name="file_bukti_dokumen" />
+                    <field name="file_bukti_dokumen_filename" />
+                    <field name="kinerja_sks" />
+                    <field name="kinerja_sks_persen" />
+                    <field name="bkd_id" />
+                    <field name="jenis_kegiatan_id" />
+                    <field name="rekomendasi_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kinerja_bidang_pendidikan_form" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_pendidikan_form</field>
+            <field name="model">vit.kinerja_bidang_pendidikan</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Kinerja bidang pendidikan">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Kinerja bidang pendidikan Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="uraian_jenis_kegiatan" />
+                                <field name="bukti_penugasan" />
+                                <field name="file_bukti_penugasan" />
+                                <field name="file_bukti_penugasan_filename" />
+                                <field name="beban_sks" />
+                                <field name="masa_penugasan" />
+                                <field name="bukti_dokumen" />
+                                <field name="file_bukti_dokumen" />
+                                <field name="file_bukti_dokumen_filename" />
+                                <field name="kinerja_sks" />
+                                <field name="kinerja_sks_persen" />
+                            </group>
+                            <group>
+                                <field name="bkd_id" />
+                                <field name="jenis_kegiatan_id" />
+                                <field name="rekomendasi_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_kinerja_bidang_pendidikan_search" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_pendidikan</field>
+            <field name="model">vit.kinerja_bidang_pendidikan</field>
+            <field name="arch" type="xml">
+                <search string="Kinerja bidang pendidikan">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Uraian jenis kegiatan" name="filter_by_uraian_jenis_kegiatan" domain="[('uraian_jenis_kegiatan','=','')]" />
+                    <filter string="Bukti penugasan" name="filter_by_bukti_penugasan" domain="[('bukti_penugasan','=','')]" />
+                    <filter string="File bukti penugasan" name="filter_by_file_bukti_penugasan" domain="[('file_bukti_penugasan','=','')]" />
+                    <filter string="File bukti penugasan filename" name="filter_by_file_bukti_penugasan_filename" domain="[('file_bukti_penugasan_filename','=','')]" />
+                    <filter string="Beban sks" name="filter_by_beban_sks" domain="[('beban_sks','=','')]" />
+                    <filter string="Masa penugasan" name="filter_by_masa_penugasan" domain="[('masa_penugasan','=','')]" />
+                    <filter string="Bukti dokumen" name="filter_by_bukti_dokumen" domain="[('bukti_dokumen','=','')]" />
+                    <filter string="File bukti dokumen" name="filter_by_file_bukti_dokumen" domain="[('file_bukti_dokumen','=','')]" />
+                    <filter string="File bukti dokumen filename" name="filter_by_file_bukti_dokumen_filename" domain="[('file_bukti_dokumen_filename','=','')]" />
+                    <filter string="Kinerja sks" name="filter_by_kinerja_sks" domain="[('kinerja_sks','=','')]" />
+                    <filter string="Kinerja sks persen" name="filter_by_kinerja_sks_persen" domain="[('kinerja_sks_persen','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="uraian_jenis_kegiatan" select="True"/>
+                    <field name="bukti_penugasan" select="True"/>
+                    <field name="file_bukti_penugasan" select="True"/>
+                    <field name="file_bukti_penugasan_filename" select="True"/>
+                    <field name="beban_sks" select="True"/>
+                    <field name="masa_penugasan" select="True"/>
+                    <field name="bukti_dokumen" select="True"/>
+                    <field name="file_bukti_dokumen" select="True"/>
+                    <field name="file_bukti_dokumen_filename" select="True"/>
+                    <field name="kinerja_sks" select="True"/>
+                    <field name="kinerja_sks_persen" select="True"/>
+                    <field name="bkd_id" select="True"/>
+                    <field name="jenis_kegiatan_id" select="True"/>
+                    <field name="rekomendasi_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Bkd" domain="[]" name="group_by_bkd_id" context="{'group_by':'bkd_id'}"/>
+                        <filter string="Jenis kegiatan" domain="[]" name="group_by_jenis_kegiatan_id" context="{'group_by':'jenis_kegiatan_id'}"/>
+                        <filter string="Rekomendasi" domain="[]" name="group_by_rekomendasi_id" context="{'group_by':'rekomendasi_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_kinerja_bidang_pendidikan_kanban" model="ir.ui.view" >
+            <field name="name">vit_kinerja_bidang_pendidikan</field>
+            <field name="model">vit.kinerja_bidang_pendidikan</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="uraian_jenis_kegiatan" />
+                    <field name="bukti_penugasan" />
+                    <field name="file_bukti_penugasan" />
+                    <field name="file_bukti_penugasan_filename" />
+                    <field name="beban_sks" />
+                    <field name="masa_penugasan" />
+                    <field name="bukti_dokumen" />
+                    <field name="file_bukti_dokumen" />
+                    <field name="file_bukti_dokumen_filename" />
+                    <field name="kinerja_sks" />
+                    <field name="kinerja_sks_persen" />
+                    <field name="bkd_id" />
+                    <field name="jenis_kegiatan_id" />
+                    <field name="rekomendasi_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Bkd</span> <field name="bkd_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Jenis kegiatan</span> <field name="jenis_kegiatan_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Rekomendasi</span> <field name="rekomendasi_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_kinerja_bidang_pendidikan_graph" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_pendidikan</field>
+            <field name="model">vit.kinerja_bidang_pendidikan</field>
+            <field name="arch" type="xml">
+                <graph string="Kinerja bidang pendidikan" type="bar">
+                    <field name="bkd_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_kinerja_bidang_pendidikan" model="ir.actions.act_window">
+            <field name="name">Kinerja bidang pendidikan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.kinerja_bidang_pendidikan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Kinerja bidang pendidikan
+                </p><p>
+                Click the Create button to add a new Kinerja bidang pendidikan
+                </p>
+            </field>
+        </record>
+
+        <!-- <menuitem id="menu_vit_kinerja_bidang_pendidikan" name="Kinerja bidang pendidikan" parent="vit_bkd_config_menu" action="action_vit_kinerja_bidang_pendidikan" sequence="130"/> -->
+    </data>
+</odoo>

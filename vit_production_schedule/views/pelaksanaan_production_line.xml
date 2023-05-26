@@ -1,0 +1,163 @@
+<odoo>
+    <data>
+        <!-- pelaksanaan_produksi line tree view -->
+        <record id="pelaksanaan_produksi_line_view_tree" model="ir.ui.view">
+            <field name="name">vit.pelaksanaan_produksi.line.view.tree</field>
+            <field name="model">vit.pelaksanaan_produksi.line</field>
+            <field name="arch" type="xml">
+                <tree create="0">
+                    <field name="produksi_line_id" />
+                    <field name="partner_id" />
+                    <field name="name" />
+                    <field name="plan" />
+                    <field name="actual" />
+                </tree>
+            </field>
+        </record>
+        <!-- pelaksanaan_produksi line form view -->
+        <record id="pelaksanaan_produksi_view_line_form" model="ir.ui.view">
+            <field name="name">vit.pelaksanaan_produksi.line.view.form</field>
+            <field name="model">vit.pelaksanaan_produksi.line</field>
+            <field name="arch" type="xml">
+                <form string="Jadwal Pelaksanaan Produksi" create="0" edit="0">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="produksi_line_id" />
+                                <field name="partner_id" />
+                            </group>
+                            <group>
+                                <field name="plan" />
+                                <field name="actual" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- pelaksanaan_produksi_line search view -->
+        <record id="pelaksanaan_produksi_line_view_search" model="ir.ui.view">
+            <field name="name">vit.pelaksanaan_produksi.line.view.search</field>
+            <field name="model">vit.pelaksanaan_produksi.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Description">
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Pelaksanaan Produksi" name="filter_by_produksi_line_id" domain="[('produksi_line_id','=','')]" />
+                    <filter string="Buyer" name="filter_by_partner_id" domain="[('partner_id','=','')]" />
+                    <filter string="Start Date" name="filter_by_date_start" domain="[('plan','=','')]" />
+                    <filter string="End Date" name="filter_by_date_end" domain="[('actual','=','')]" />
+                    <!-- Add your fields here -->
+                    <field name="name" select="True"/>
+                    <field name="produksi_line_id" select="True"/>
+                    <field name="partner_id" select="True"/>
+                    <field name="plan"  select="True"/>
+                    <field name="actual"  select="True"/>
+                    <group string="Group By..">
+                        <filter string="Pelaksanaan Produksi" domain="[]" name="group_by_produksi_line_id" context="{'group_by':'produksi_line_id'}"/>
+                        <filter string="Buyer" domain="[]" name="group_by_partner_id" context="{'group_by':'partner_id'}"/>
+                        <filter string="Name" domain="[]" name="group_by_name" context="{'group_by':'name'}"/>
+                        <filter string="Plan" domain="[]" name="group_by_plan" context="{'group_by':'plan'}"/>
+                        <filter string="Actual" domain="[]" name="group_by_actual" context="{'group_by':'actual'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- pelaksanaan_produksi_line kanban view -->
+        <record id="pelaksanaan_produksi_line_view_kanban" model="ir.ui.view">
+            <field name="name">vit.pelaksanaan_produksi.line.view.kanban</field>
+            <field name="model">vit.pelaksanaan_produksi.line</field>
+            <field name="arch" type="xml">
+                <kanban string="Kanban Description">
+                    <!-- Add your fields here -->
+                    <field name="name" />
+                    <field name="produksi_line_id" />
+                    <field name="partner_id" />
+                    <field name="plan" />
+                    <field name="actual" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            Pelaksanaan Produksi: <field name="produksi_line_id"></field>
+                                        </li>
+                                        <li>
+                                            Buyer: <field name="partner_id"></field>
+                                        </li>
+                                        <li>
+                                            Plan: <field name="plan"></field>
+                                        </li>
+                                        <li>
+                                            Actual: <field name="actual"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- pelaksanaan_produksi_line calendar view -->
+        <record id="pelaksanaan_produksi_line_view_calendar" model="ir.ui.view">
+            <field name="name">vit.pelaksanaan_produksi.line.view.calendar</field>
+            <field name="model">vit.pelaksanaan_produksi.line</field>
+            <field name="arch" type="xml">
+                <calendar string="Calendar Description" date_stop="actual" date_start="plan" color="name" event_open_popup="True">
+                    <!-- Add your fields here -->
+                    <field name="name" />
+                    <field name="produksi_line_id" />
+                    <field name="partner_id" />
+                </calendar>
+            </field>
+        </record>
+        <!-- pelaksanaan_produksi_line graph view -->
+        <record id="pelaksanaan_produksi_line_view_graph" model="ir.ui.view">
+            <field name="name">vit.pelaksanaan_produksi.line.view.graph</field>
+            <field name="model">vit.pelaksanaan_produksi.line</field>
+            <field name="arch" type="xml">
+                <graph string="Graph Description">
+                    <!-- Add your fields here -->
+                    <field name="name" />
+                    <field name="plan" />
+                    <field name="actual" />
+                </graph>
+            </field>
+        </record>
+        <!-- Pelaksanaan Produksi Line action window -->
+        <record id="action_view_pelaksanaan_produksi_line" model="ir.actions.act_window">
+            <field name="name">Jadwal Pelaksanaan Produksi Line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.pelaksanaan_produksi.line</field>
+            <field name="view_mode">tree,form,kanban,calendar,graph</field>
+            <field name="view_type">form</field>
+            <field name="context">{'search_default_group_by_produksi_line_id':1,'search_default_group_by_name':1,'search_default_group_by_plan':1,'search_default_group_by_actual':1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create Pelaksanaan Produksi Line from Pelaksanaan Produksi
+                </p>
+            </field>
+        </record>
+        <menuitem
+            id="pelaksanaan_produksi_line_menu_ppic"
+            name="Production Line Schedule"
+            parent="vit_ppic.vit_ppic_sub_menu_monitoring"
+            action="action_view_pelaksanaan_produksi_line"
+            groups="vit_production_schedule.group_masterdata_jpp_ppic"
+            sequence="120"
+        />
+    </data>
+</odoo>

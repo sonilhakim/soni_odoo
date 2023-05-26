@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_bkd_tree" model="ir.ui.view">
+            <field name="name">vit_bkd_tree</field>
+            <field name="model">vit.bkd</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="BKD">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="nip" />
+                    <field name="nidn" />
+                    <field name="s1" />
+                    <field name="s2" />
+                    <field name="s3" />
+                    <field name="bidang_ilmu" />
+                    <field name="mobile" />
+                    <field name="email" />
+                    <field name="state" />
+                    <field name="employee_id" />
+                    <field name="institusi_id" />
+                    <field name="tahun_akademik_id" />
+                    <field name="semester_id" />
+                    <field name="wakil_dekan_id" />
+                    <field name="status_dosen_id" />
+                    <field name="jabatan_fungsional_id" />
+                    <field name="fakultas_id" />
+                    <field name="jurusan_id" />
+                    <field name="program_studi_id" />
+                    <field name="golongan_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_bkd_form" model="ir.ui.view">
+            <field name="name">vit_bkd_form</field>
+            <field name="model">vit.bkd</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="BKD">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" />
+                        <button string="Mark as Done" type="object" name="action_done" states="open" />
+                        <button string="Reset to Draft" type="object" name="action_draft" states="open,done" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="BKD Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="date" />
+                                <field name="nip" />
+                                <field name="nidn" />
+                                <field name="s1" />
+                                <field name="s2" />
+                                <field name="s3" />
+                                <field name="bidang_ilmu" />
+                                <field name="mobile" />
+                                <field name="email" />
+                            </group>
+                            <group>
+                                <field name="employee_id" />
+                                <field name="institusi_id" />
+                                <field name="tahun_akademik_id" />
+                                <field name="semester_id" />
+                                <field name="wakil_dekan_id" />
+                                <field name="status_dosen_id" />
+                                <field name="jabatan_fungsional_id" />
+                                <field name="fakultas_id" />
+                                <field name="jurusan_id" />
+                                <field name="program_studi_id" />
+                                <field name="golongan_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Kinerja bidang pendidikan">
+                                <field name="kinerja_bidang_pendidikan_ids"/>
+                            </page>
+                            <page string="Kinerja bidang penelitian">
+                                <field name="kinerja_bidang_penelitian_ids"/>
+                            </page>
+                            <page string="Kinerja bidang pengabdian">
+                                <field name="kinerja_bidang_pengabdian_ids"/>
+                            </page>
+                            <page string="Kinerja kewajiban khusus">
+                                <field name="kinerja_kewajiban_khusus_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_bkd_search" model="ir.ui.view">
+            <field name="name">vit_bkd</field>
+            <field name="model">vit.bkd</field>
+            <field name="arch" type="xml">
+                <search string="BKD">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Date" name="filter_by_date" domain="[('date','=','')]" />
+                    <filter string="Nip" name="filter_by_nip" domain="[('nip','=','')]" />
+                    <filter string="Nidn" name="filter_by_nidn" domain="[('nidn','=','')]" />
+                    <filter string="S1" name="filter_by_s1" domain="[('s1','=','')]" />
+                    <filter string="S2" name="filter_by_s2" domain="[('s2','=','')]" />
+                    <filter string="S3" name="filter_by_s3" domain="[('s3','=','')]" />
+                    <filter string="Bidang ilmu" name="filter_by_bidang_ilmu" domain="[('bidang_ilmu','=','')]" />
+                    <filter string="Mobile" name="filter_by_mobile" domain="[('mobile','=','')]" />
+                    <filter string="Email" name="filter_by_email" domain="[('email','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="date" select="True"/>
+                    <field name="nip" select="True"/>
+                    <field name="nidn" select="True"/>
+                    <field name="s1" select="True"/>
+                    <field name="s2" select="True"/>
+                    <field name="s3" select="True"/>
+                    <field name="bidang_ilmu" select="True"/>
+                    <field name="mobile" select="True"/>
+                    <field name="email" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="employee_id" select="True"/>
+                    <field name="institusi_id" select="True"/>
+                    <field name="tahun_akademik_id" select="True"/>
+                    <field name="semester_id" select="True"/>
+                    <field name="wakil_dekan_id" select="True"/>
+                    <field name="status_dosen_id" select="True"/>
+                    <field name="jabatan_fungsional_id" select="True"/>
+                    <field name="fakultas_id" select="True"/>
+                    <field name="jurusan_id" select="True"/>
+                    <field name="program_studi_id" select="True"/>
+                    <field name="golongan_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Employee" domain="[]" name="group_by_employee_id" context="{'group_by':'employee_id'}"/>
+                        <filter string="Institusi" domain="[]" name="group_by_institusi_id" context="{'group_by':'institusi_id'}"/>
+                        <filter string="Tahun akademik" domain="[]" name="group_by_tahun_akademik_id" context="{'group_by':'tahun_akademik_id'}"/>
+                        <filter string="Semester" domain="[]" name="group_by_semester_id" context="{'group_by':'semester_id'}"/>
+                        <filter string="Wakil dekan" domain="[]" name="group_by_wakil_dekan_id" context="{'group_by':'wakil_dekan_id'}"/>
+                        <filter string="Status dosen" domain="[]" name="group_by_status_dosen_id" context="{'group_by':'status_dosen_id'}"/>
+                        <filter string="Jabatan fungsional" domain="[]" name="group_by_jabatan_fungsional_id" context="{'group_by':'jabatan_fungsional_id'}"/>
+                        <filter string="Fakultas" domain="[]" name="group_by_fakultas_id" context="{'group_by':'fakultas_id'}"/>
+                        <filter string="Jurusan" domain="[]" name="group_by_jurusan_id" context="{'group_by':'jurusan_id'}"/>
+                        <filter string="Program studi" domain="[]" name="group_by_program_studi_id" context="{'group_by':'program_studi_id'}"/>
+                        <filter string="Golongan" domain="[]" name="group_by_golongan_id" context="{'group_by':'golongan_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_bkd_kanban" model="ir.ui.view" >
+            <field name="name">vit_bkd</field>
+            <field name="model">vit.bkd</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="nip" />
+                    <field name="nidn" />
+                    <field name="s1" />
+                    <field name="s2" />
+                    <field name="s3" />
+                    <field name="bidang_ilmu" />
+                    <field name="mobile" />
+                    <field name="email" />
+                    <field name="state" />
+                    <field name="employee_id" />
+                    <field name="institusi_id" />
+                    <field name="tahun_akademik_id" />
+                    <field name="semester_id" />
+                    <field name="wakil_dekan_id" />
+                    <field name="status_dosen_id" />
+                    <field name="jabatan_fungsional_id" />
+                    <field name="fakultas_id" />
+                    <field name="jurusan_id" />
+                    <field name="program_studi_id" />
+                    <field name="golongan_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Employee</span> <field name="employee_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Institusi</span> <field name="institusi_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Tahun akademik</span> <field name="tahun_akademik_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Semester</span> <field name="semester_id"></field>
+                                        </li>
+
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Wakil dekan</span> <field name="wakil_dekan_id"></field>
+                                        </li>
+                                        -->
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Status dosen</span> <field name="status_dosen_id"></field>
+                                        </li>
+                                        -->
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Jabatan fungsional</span> <field name="jabatan_fungsional_id"></field>
+                                        </li>
+                                        -->
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Fakultas</span> <field name="fakultas_id"></field>
+                                        </li>
+                                        -->
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Jurusan</span> <field name="jurusan_id"></field>
+                                        </li>
+                                        -->
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Program studi</span> <field name="program_studi_id"></field>
+                                        </li>
+                                        -->
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Golongan</span> <field name="golongan_id"></field>
+                                        </li>
+                                        -->
+                                        <li>
+                                            <span class="text-muted">Date</span> <field name="date"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_vit_bkd_cal" model="ir.ui.view">
+            <field name="name">vit_bkd_cal</field>
+            <field name="model">vit.bkd</field>
+            <field name="arch" type="xml">
+                <calendar string="BKD" date_start="date">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record>
+        <!-- graph -->
+        <record id="view_vit_bkd_graph" model="ir.ui.view">
+            <field name="name">vit_bkd</field>
+            <field name="model">vit.bkd</field>
+            <field name="arch" type="xml">
+                <graph string="BKD" type="bar">
+                    <field name="employee_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <!-- <record id="action_vit_bkd" model="ir.actions.act_window">
+            <field name="name">Bkd</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.bkd</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Bkd
+                </p><p>
+                Click the Create button to add a new Bkd
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_bkd" name="Bkd" parent="vit_bkd_sub_menu" action="action_vit_bkd" sequence="20"/> -->
+    </data>
+</odoo>

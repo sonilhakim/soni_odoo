@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_hr_employee_menu" string="Vit - Employee"
+         model="hr.employee" report_type="qweb-pdf" 
+         file="hr.employee"  name="vit_riwayat.hr_employee_report" />
+
+        <!-- document template -->
+        <template id="vit_riwayat.hr_employee_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Employee: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Riwayat izin belajars</h2>
+                <table class="table table-sm o_main_table" name="riwayat_izin_belajar_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date</td>
+                            <td>Employee</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_izin_belajar_ids_tbody">
+                        <tr t-foreach="doc.riwayat_izin_belajar_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat tugas belajars</h2>
+                <table class="table table-sm o_main_table" name="riwayat_tugas_belajar_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date</td>
+                            <td>Employee</td>
+                            <td>Country</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_tugas_belajar_ids_tbody">
+                        <tr t-foreach="doc.riwayat_tugas_belajar_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                            <td><span t-field="line.country_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat study lanjutans</h2>
+                <table class="table table-sm o_main_table" name="riwayat_study_lanjutan_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Major</td>
+                            <td>Date start</td>
+                            <td>Date end</td>
+                            <td>Employee</td>
+                            <td>Country</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_study_lanjutan_ids_tbody">
+                        <tr t-foreach="doc.riwayat_study_lanjutan_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.major" /></td>
+                            <td><span t-field="line.date_start" /></td>
+                            <td><span t-field="line.date_end" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                            <td><span t-field="line.country_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat membimbings</h2>
+                <table class="table table-sm o_main_table" name="riwayat_membimbing_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date start</td>
+                            <td>Date end</td>
+                            <td>Mahasiswa</td>
+                            <td>Jurusan</td>
+                            <td>Judul thesis</td>
+                            <td>Employee</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_membimbing_ids_tbody">
+                        <tr t-foreach="doc.riwayat_membimbing_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date_start" /></td>
+                            <td><span t-field="line.date_end" /></td>
+                            <td><span t-field="line.mahasiswa" /></td>
+                            <td><span t-field="line.jurusan" /></td>
+                            <td><span t-field="line.judul_thesis" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat mengajars</h2>
+                <table class="table table-sm o_main_table" name="riwayat_mengajar_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date from</td>
+                            <td>Date end</td>
+                            <td>Matakuliah</td>
+                            <td>Employee</td>
+                            <td>Institusi</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_mengajar_ids_tbody">
+                        <tr t-foreach="doc.riwayat_mengajar_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date_from" /></td>
+                            <td><span t-field="line.date_end" /></td>
+                            <td><span t-field="line.matakuliah" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                            <td><span t-field="line.institusi_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat beasiswas</h2>
+                <table class="table table-sm o_main_table" name="riwayat_beasiswa_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date start</td>
+                            <td>Date end</td>
+                            <td>Pemberi beasiswa</td>
+                            <td>Employee</td>
+                            <td>Country</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_beasiswa_ids_tbody">
+                        <tr t-foreach="doc.riwayat_beasiswa_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date_start" /></td>
+                            <td><span t-field="line.date_end" /></td>
+                            <td><span t-field="line.pemberi_beasiswa" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                            <td><span t-field="line.country_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat pekerjaans</h2>
+                <table class="table table-sm o_main_table" name="riwayat_pekerjaan_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date start</td>
+                            <td>Date end</td>
+                            <td>Jabatan</td>
+                            <td>Employee</td>
+                            <td>Institusi</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_pekerjaan_ids_tbody">
+                        <tr t-foreach="doc.riwayat_pekerjaan_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date_start" /></td>
+                            <td><span t-field="line.date_end" /></td>
+                            <td><span t-field="line.jabatan" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                            <td><span t-field="line.institusi_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat pengabdian masyarakats</h2>
+                <table class="table table-sm o_main_table" name="riwayat_pengabdian_masyarakat_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date start</td>
+                            <td>Date end</td>
+                            <td>Description</td>
+                            <td>Employee</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_pengabdian_masyarakat_ids_tbody">
+                        <tr t-foreach="doc.riwayat_pengabdian_masyarakat_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date_start" /></td>
+                            <td><span t-field="line.date_end" /></td>
+                            <td><span t-field="line.description" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat bkds</h2>
+                <table class="table table-sm o_main_table" name="riwayat_bkd_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date start</td>
+                            <td>Date from</td>
+                            <td>Description</td>
+                            <td>Employee</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_bkd_ids_tbody">
+                        <tr t-foreach="doc.riwayat_bkd_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date_start" /></td>
+                            <td><span t-field="line.date_from" /></td>
+                            <td><span t-field="line.description" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat kunjungan ke luar negeris</h2>
+                <table class="table table-sm o_main_table" name="riwayat_kunjungan_ke_luar_negeri_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date start</td>
+                            <td>Date end</td>
+                            <td>Employee</td>
+                            <td>Country</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_kunjungan_ke_luar_negeri_ids_tbody">
+                        <tr t-foreach="doc.riwayat_kunjungan_ke_luar_negeri_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date_start" /></td>
+                            <td><span t-field="line.date_end" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                            <td><span t-field="line.country_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat pelatihans</h2>
+                <table class="table table-sm o_main_table" name="riwayat_pelatihan_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date start</td>
+                            <td>Date end</td>
+                            <td>Description</td>
+                            <td>Certificate</td>
+                            <td>Employee</td>
+                            <td>Country</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_pelatihan_ids_tbody">
+                        <tr t-foreach="doc.riwayat_pelatihan_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date_start" /></td>
+                            <td><span t-field="line.date_end" /></td>
+                            <td><span t-field="line.description" /></td>
+                            <td><span t-field="line.certificate" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                            <td><span t-field="line.country_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat kepakaran dosens</h2>
+                <table class="table table-sm o_main_table" name="riwayat_kepakaran_dosen_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Description</td>
+                            <td>Employee</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_kepakaran_dosen_ids_tbody">
+                        <tr t-foreach="doc.riwayat_kepakaran_dosen_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.description" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat diklats</h2>
+                <table class="table table-sm o_main_table" name="riwayat_diklat_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date start</td>
+                            <td>Date end</td>
+                            <td>Description</td>
+                            <td>Certificate</td>
+                            <td>Employee</td>
+                            <td>Institusi</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_diklat_ids_tbody">
+                        <tr t-foreach="doc.riwayat_diklat_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date_start" /></td>
+                            <td><span t-field="line.date_end" /></td>
+                            <td><span t-field="line.description" /></td>
+                            <td><span t-field="line.certificate" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                            <td><span t-field="line.institusi_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat pendidikans</h2>
+                <table class="table table-sm o_main_table" name="riwayat_pendidikan_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date from</td>
+                            <td>Date end</td>
+                            <td>Major</td>
+                            <td>Employee</td>
+                            <td>Institusi</td>
+                            <td>Strata</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_pendidikan_ids_tbody">
+                        <tr t-foreach="doc.riwayat_pendidikan_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date_from" /></td>
+                            <td><span t-field="line.date_end" /></td>
+                            <td><span t-field="line.major" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                            <td><span t-field="line.institusi_id" /></td>
+                            <td><span t-field="line.strata_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat penghargaans</h2>
+                <table class="table table-sm o_main_table" name="riwayat_penghargaan_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date</td>
+                            <td>Description</td>
+                            <td>Employee</td>
+                            <td>Country</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_penghargaan_ids_tbody">
+                        <tr t-foreach="doc.riwayat_penghargaan_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date" /></td>
+                            <td><span t-field="line.description" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                            <td><span t-field="line.country_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat seminars</h2>
+                <table class="table table-sm o_main_table" name="riwayat_seminar_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date start</td>
+                            <td>Date end</td>
+                            <td>Description</td>
+                            <td>Employee</td>
+                            <td>Penyelenggara</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_seminar_ids_tbody">
+                        <tr t-foreach="doc.riwayat_seminar_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date_start" /></td>
+                            <td><span t-field="line.date_end" /></td>
+                            <td><span t-field="line.description" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                            <td><span t-field="line.penyelenggara_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat organisasi pegawais</h2>
+                <table class="table table-sm o_main_table" name="riwayat_organisasi_pegawai_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date</td>
+                            <td>Description</td>
+                            <td>Employee</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_organisasi_pegawai_ids_tbody">
+                        <tr t-foreach="doc.riwayat_organisasi_pegawai_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date" /></td>
+                            <td><span t-field="line.description" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat penelitian karya imliahs</h2>
+                <table class="table table-sm o_main_table" name="riwayat_penelitian_karya_imliah_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Description</td>
+                            <td>Date</td>
+                            <td>Employee</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_penelitian_karya_imliah_ids_tbody">
+                        <tr t-foreach="doc.riwayat_penelitian_karya_imliah_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.description" /></td>
+                            <td><span t-field="line.date" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat dosen mengajar diluars</h2>
+                <table class="table table-sm o_main_table" name="riwayat_dosen_mengajar_diluar_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date start</td>
+                            <td>Date end</td>
+                            <td>Mata kuliah</td>
+                            <td>Employee</td>
+                            <td>Institusi</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_dosen_mengajar_diluar_ids_tbody">
+                        <tr t-foreach="doc.riwayat_dosen_mengajar_diluar_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date_start" /></td>
+                            <td><span t-field="line.date_end" /></td>
+                            <td><span t-field="line.mata_kuliah" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                            <td><span t-field="line.institusi_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Riwayat perjalanan dinass</h2>
+                <table class="table table-sm o_main_table" name="riwayat_perjalanan_dinas_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date start</td>
+                            <td>Date end</td>
+                            <td>Description</td>
+                            <td>Country</td>
+                            <td>Employee</td>
+                        </tr>
+                    </thead>
+                    <tbody class="riwayat_perjalanan_dinas_ids_tbody">
+                        <tr t-foreach="doc.riwayat_perjalanan_dinas_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date_start" /></td>
+                            <td><span t-field="line.date_end" /></td>
+                            <td><span t-field="line.description" /></td>
+                            <td><span t-field="line.country_id" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_riwayat.hr_employee_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_riwayat.hr_employee_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

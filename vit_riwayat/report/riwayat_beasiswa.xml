@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_riwayat_beasiswa_menu" string="Vit - Riwayat beasiswa"
+         model="vit.riwayat_beasiswa" report_type="qweb-pdf" 
+         file="vit.riwayat_beasiswa"  name="vit_riwayat.vit_riwayat_beasiswa_report" />
+
+        <!-- document template -->
+        <template id="vit_riwayat.vit_riwayat_beasiswa_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Riwayat beasiswa: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Date start</strong>
+                            <p class="m-0" t-field="doc.date_start" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Date end</strong>
+                            <p class="m-0" t-field="doc.date_end" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pemberi beasiswa</strong>
+                            <p class="m-0" t-field="doc.pemberi_beasiswa" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Employee</strong>
+                            <p class="m-0" t-field="doc.employee_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Country</strong>
+                            <p class="m-0" t-field="doc.country_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_riwayat.vit_riwayat_beasiswa_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_riwayat.vit_riwayat_beasiswa_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="mutasi_stock_tmpl">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="doc">
+                        <div class="page">
+                            <div>
+                                <h4 class="text-center">
+                                    <strong>RINGKASAN MUTASI PER GUDANG PER BARANG</strong>
+                                </h4>
+                            </div>
+                            <div class="col-md-12 text-center"><h5><span t-field="doc.location_id.display_name" /></h5></div>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <span t-esc="doc.date_from.strftime('%d-%m-%Y')" />
+                                    &#160;&#160;-&#160;&#160;
+                                    <span t-esc="doc.date_to.strftime('%d-%m-%Y')" />
+                                </div>
+                            </div>
+                            <table class="text-center" style="width:100%;font-size:14px;">
+                                <thead style="background-color: #ebebeb;">
+                                    <tr>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:10%;">No. Barang</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:30%;">Deskripsi Barang</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:15%;">Opening Balance</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:15%;">Kts Masuk</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:15%;">Kts Keluar</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;width:15%;">Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="doc.mutasi_lines" t-as="dat">
+                                        <tr>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat.no_stock" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat.des_stock" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat.opening" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat.kts_masuk" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat.kts_out" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat.balance" />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+
+        </template>
+
+    </data>
+</openerp>

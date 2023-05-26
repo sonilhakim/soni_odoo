@@ -1,0 +1,41 @@
+<odoo>
+	<data>
+		<!-- action window -->
+        <record id="action_vit_skp_harian" model="ir.actions.act_window">
+            <field name="name">SKP Harian</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.skp</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk menambahkan Skp Harian baru
+                </p><p>
+                Klik tombol Buat untuk menambahkan Skp Harian baru
+                </p>
+            </field>
+        </record>
+
+		<menuitem id="vit_skp_kegiatan_menu" name="Kegiatan" sequence="40" parent="vit_skp.vit_skp_top_menu" />
+
+		<menuitem id="menu_vit_skp" name="Skp" parent="vit_skp.vit_skp_top_menu" action="vit_skp.action_vit_skp" sequence="10"/>
+
+		<menuitem id="menu_vit_skp_harian" name="SKP harian" parent="vit_skp.vit_skp_top_menu" action="vit_skp_inherit.action_vit_skp_harian" sequence="35"/>
+
+		<menuitem id="menu_vit_skp_detasering" name="Skp detasering" parent="vit_skp_kegiatan_menu" action="vit_skp.action_vit_skp_detasering" sequence="160"/>
+		<menuitem id="menu_vit_skp_disertasi" name="Skp disertasi" parent="vit_skp_kegiatan_menu" action="vit_skp.action_vit_skp_disertasi" sequence="80"/>
+		<menuitem id="menu_vit_skp_jabatan_pt" name="Skp jabatan pt" parent="vit_skp_kegiatan_menu" action="vit_skp.action_vit_skp_jabatan_pt" sequence="140"/>
+		<menuitem id="menu_vit_skp_kkn_pkn_pkl" name="Skp kkn pkn pkl" parent="vit_skp_kegiatan_menu" action="vit_skp.action_vit_skp_kkn_pkn_pkl" sequence="70"/>
+		<menuitem id="menu_vit_skp_membimbing_dosen" name="Skp membimbing dosen" parent="vit_skp_kegiatan_menu" action="vit_skp.action_vit_skp_membimbing_dosen" sequence="150"/>
+		<menuitem id="menu_vit_skp_membina" name="Skp membina" parent="vit_skp_kegiatan_menu" action="vit_skp.action_vit_skp_membina" sequence="100"/>
+		<menuitem id="menu_vit_skp_mengembangkan_bahan_kuliah" name="Skp mengembangkan bahan kuliah" parent="vit_skp_kegiatan_menu" action="vit_skp.action_vit_skp_mengembangkan_bahan_kuliah" sequence="120"/>
+		<menuitem id="menu_vit_skp_mengembangkan_program_kuliah" name="Skp mengembangkan program kuliah" parent="vit_skp_kegiatan_menu" action="vit_skp.action_vit_skp_mengembangkan_program_kuliah" sequence="110"/>
+		<menuitem id="menu_vit_skp_orasi_ilmiah" name="Skp orasi ilmiah" parent="vit_skp_kegiatan_menu" action="vit_skp.action_vit_skp_orasi_ilmiah" sequence="130"/>
+		<menuitem id="menu_vit_skp_penelitian" name="Skp penelitian" parent="vit_skp_kegiatan_menu" action="vit_skp.action_vit_skp_penelitian" sequence="180"/>
+		<menuitem id="menu_vit_skp_pengabdian" name="Skp pengabdian" parent="vit_skp_kegiatan_menu" action="vit_skp.action_vit_skp_pengabdian" sequence="190"/>
+		<menuitem id="menu_vit_skp_pengembangan_diri" name="Skp pengembangan diri" parent="vit_skp_kegiatan_menu" action="vit_skp.action_vit_skp_pengembangan_diri" sequence="170"/>
+		<menuitem id="menu_vit_skp_penguji" name="Skp penguji" parent="vit_skp_kegiatan_menu" action="vit_skp.action_vit_skp_penguji" sequence="90"/>
+		<menuitem id="menu_vit_skp_perkuliahan" name="Skp perkuliahan" parent="vit_skp_kegiatan_menu" action="vit_skp.action_vit_skp_perkuliahan" sequence="50"/>
+		<menuitem id="menu_vit_skp_seminar" name="Skp seminar" parent="vit_skp_kegiatan_menu" action="vit_skp.action_vit_skp_seminar" sequence="60"/>
+	</data>
+</odoo>

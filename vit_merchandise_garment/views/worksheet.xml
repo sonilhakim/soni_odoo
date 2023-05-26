@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="vit_mrp_production_md" model="ir.ui.view">
+            <field name="name">mrp.production.md.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="partner_id"/>
+                    <field name="spec_type" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='availability']" position="after">
+                    <field name="worksheet" readonly="True" attrs="{'invisible':[('worksheet','=',False)]}"/>
+                    <field name="boq_po_line_id" readonly="True" attrs="{'invisible':[('boq_po_line_id','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- search mrp inherit -->
+        <record id="view_mrp_production_filter_md" model="ir.ui.view">
+            <field name="name">mrp.production.select.md</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='routing_id']" position="after">
+                    <field name="partner_id"/>
+                    <field name="origin" string="No. OR"/>
+                    <field name="boq_po_line_id"/>
+                </xpath>
+                <xpath expr="//group/filter[@name='scheduled_date']" position="after">
+                    <filter string="Customer" name="partner_id" domain="[]" context="{'group_by':'partner_id'}"/>
+                    <filter string="No. OR" name="origin" domain="[]" context="{'group_by':'origin'}"/>
+                    <filter string="Style List" name="boq_po_line_id" domain="[]" context="{'group_by':'boq_po_line_id'}"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- menu mo sample marketing request -->
+        <record id="mrp_action_worksheet" model="ir.actions.act_window">
+            <field name="name">Worksheet</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.production</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="False"/>
+            <field name="domain">[('worksheet','=',True)]</field>
+            <field name="search_view_id" ref="mrp.view_mrp_production_filter"/>
+            <field name="context">{'search_default_todo': True,'default_worksheet':True}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a worksheet.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_worksheet_md" name="Worksheet" parent="vit_merchandise_garment.submenu_merchandise" action="mrp_action_worksheet" sequence="70"/>
+        
+   </data>
+</odoo>

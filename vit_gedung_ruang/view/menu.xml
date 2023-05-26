@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="vit_gedung_ruang_top_menu" name="Gedung dan Ruang" sequence="20" web_icon="vit_gedung_ruang,static/description/icon.png" />
+		<!-- <menuitem id="vit_gedung_ruang_sub_menu" name="Operations" sequence="40" parent="vit_gedung_ruang_top_menu" />
+		<menuitem id="vit_gedung_ruang_config_menu" name="Configurations" sequence="50" parent="vit_gedung_ruang_top_menu" /> -->
+	</data>
+</odoo>

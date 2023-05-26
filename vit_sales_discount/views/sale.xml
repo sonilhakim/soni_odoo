@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+        <!-- SO -->
+        <record id="view_order_form_disc_val" model="ir.ui.view">
+            <field name="name">sale.order.form.disc.val</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page[@name='order_lines']/field[@name='order_line']/form/group/group/div[@name='discount']" position="after">
+                    <label for="discount_val" groups="sale.group_discount_per_so_line"/>
+                    <div name="discount_val" groups="sale.group_discount_per_so_line">
+                        <field name="discount_val"/>
+                    </div>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page[@name='order_lines']/field[@name='order_line']/tree/field[@name='discount']" position="after">
+                    <field name="discount_val" groups="sale.group_discount_per_so_line"/>
+                </xpath>
+
+                <xpath expr="/form/sheet/notebook/page[@name='order_lines']/group[@name='sale_total']/field[@name='amount_untaxed']" position="before">
+                    <field name="amount_undisc" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <field name="amount_disc" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                </xpath>
+
+                <xpath expr="/form/sheet/notebook/page[@name='order_lines']/group[@name='sale_total']" position="after">
+                    <group class="oe_inline col-2">
+                        <field name="discount_global_val" class="oe_inline" attrs="{'invisible': [('discount_global_persen', '!=', 0.0)]}"/>
+                        <field name="discount_global_persen" class="oe_inline" attrs="{'invisible': [('discount_global_val', '!=', 0.0)]}"/>
+                    </group>
+                    <br/>
+                </xpath>
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="cara_bayar"/>
+                </xpath>
+
+                <!-- <field name="fiscal_position_id" position="after">
+                    <field name="global_discount_account"/>
+                </field> -->
+            </field>
+        </record>
+
+    </data>
+</odoo>

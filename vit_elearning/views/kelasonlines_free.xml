@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="kelasonlines_free">
+      <html>
+        <head>
+          <meta charset="utf-8"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/bootstrap.min.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/icofont.min.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/classy-nav.min.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/animate.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/owl.carousel.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/magnific-popup.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/owl.theme.default.min.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/style.css"/>
+          <link rel="stylesheet" href="/vit_elearning/static/src/css/responsive.css"/>
+          <!-- <title>Toffin Indonesia - E-Learning</title> -->
+          <link rel="icon" type="image/png" href="https://toffin.id/wp-content/uploads/2019/12/cropped-ic-192x192.png"/>
+        </head>
+        <body>
+          <div class="preloader-area">
+              <div class="loader">
+                 <div class="dots"> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-up"></i> </div>
+              </div>
+          </div>
+          <t t-call="vit_elearning.header"/>
+            
+            <!-- Start Page Title Area -->
+          <div class="page-title">
+              <div class="d-table">
+                  <div class="d-table-cell">
+                      <div class="container">
+                          <h3>Kelas Online</h3>
+                      </div>
+                  </div>
+              </div>
+          </div>
+            <!-- End Page Title Area -->
+            
+            <!-- Start Courses Area -->
+          <section class="courses-area" style="padding-top:0px;padding-bottom:100px">
+            <div class="container">
+              <div class="row">
+                <div id="myDiv" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 tabulate" align="center">
+                    <a t-attf-href="/kelasonline_free?offset=0">
+                      <button class="btn btn-default filter-button" data-filter="all">All</button>
+                    </a>
+                    <t t-foreach="e_categories" t-as="e_category">
+                      <t t-if="e_category == e_category_id">
+                        <button class="btn btn-default filter-button active" t-att-data-filter="e_category.id"><span t-field="e_category.name"/></button>
+                      </t>
+                      <t t-else="">
+                        <a t-attf-href="/kelasonlines_free/{{e_category.id}}?offset=0">
+                          <button class="btn btn-default filter-button" t-att-data-filter="e_category.id"><span t-field="e_category.name"/></button>
+                        </a>
+                      </t>
+                    </t>
+                </div>
+                <br/>
+                
+                <div class="row">
+                  <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6"  t-foreach="e_learning_ids" t-as="e_learning_id">
+                    <div t-attf-class="single-courses-item filter {{e_learning_id.e_learning_category_id.id}}">
+                      <div class="portrait">
+                        <a t-attf-href="/single-courses/{{e_learning_id.id}}">
+                          <img t-attf-src="data:image/*;base64,{{e_learning_id.image_small}}" t-attf-alt="{{e_learning_id.name}}" class="img-fluid" />
+                        </a>
+                        <!-- <h2><span t-field="e_learning_id.teachers_id.name"/></h2>
+                        <h4>"<span t-field="e_learning_id.name"/>"</h4> -->
+                      </div>
+                      <div class="courses-content">
+                        <h3><a t-attf-href="/single-courses/{{e_learning_id.id}}"><span t-field="e_learning_id.name"/></a></h3>
+                        <p><span t-esc="e_learning_id.description[:50] + '\n' + e_learning_id.description[50:100] if e_learning_id.description else ''"/></p>
+                      </div>
+                      <div class="courses-content-bottom">
+                        <t t-if="e_learning_id.total_price==0">
+                          <h4 class="price">Gratis</h4>
+                        </t>
+                        <t t-else="">
+                          <h4 class="price">Rp &#160;<span t-field="e_learning_id.total_price"/></h4>
+                        </t>
+                        <h4><a t-attf-href="/single-courses/{{e_learning_id.id}}" class="btn btn-primary btn-course">Read More</a></h4>
+                      </div>
+                    </div>
+                  <!-- </t> -->
+                  </div>
+                </div>
+                
+                <div class="col-lg-12 col-md-12">
+                  <div class="pagination-area">
+                    <nav aria-label="Page navigation">
+                      <ul class="pagination justify-content-center">
+                        <t t-foreach="pages" t-as="page">
+                          <t t-set="i" t-value="page_index+1"/>
+                          <t t-set="port" t-value="page_index*9"/>
+                          <t t-if="url == port">
+                            <li class="page-item">                              
+                              <a class="page-link" style="font-size:30px; padding-top:6px;" t-attf-href="/kelasonlines_free/{{e_category_id.id}}?offset={{page_index*9-9}}" aria-label="Previous">
+                                  <i class="icofont-stylish-left"></i>
+                              </a>
+                            </li>
+                          </t>
+                        </t>
+                        
+                        <t t-foreach="pages" t-as="page">
+                          <t t-set="i" t-value="page_index+1"/>
+                          <t t-set="port" t-value="page_index*9"/>
+                          <t t-if="url == port">
+                            <li class="page-item active"><a class="page-link" t-attf-href="/kelasonlines_free/{{e_category_id.id}}?offset={{page_index*9}}"><span t-esc='i'/></a></li>
+                          </t>
+                          <t t-else="">
+                            <li class="page-item"><a class="page-link" t-attf-href="/kelasonlines_free/{{e_category_id.id}}?offset={{page_index*9}}"><span t-esc='i'/></a></li>
+                          </t>
+                        </t>
+
+                        <t t-foreach="pages" t-as="page">
+                          <t t-set="i" t-value="page_index+1"/>
+                          <t t-set="port" t-value="page_index*9"/>
+                          <t t-if="url == port">                      
+                            <li class="page-item">
+                              <a class="page-link" style="font-size:30px; padding-top:6px;" t-attf-href="/kelasonlines_free/{{e_category_id.id}}?offset={{page_index*9+9}}" aria-label="Next">
+                                  <i class="icofont-stylish-right"></i>
+                              </a>
+                            </li>
+                          </t>
+                        </t> 
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+                
+            <!-- End Courses Area -->
+            
+            <!-- Start Footer Area -->
+          <t t-call="vit_elearning.footer"/>
+            <!-- End Footer Area -->
+            
+            <!-- Back to top -->
+            <a class="scrolltop" href="#top"><i class="icofont-hand-drawn-up"></i></a>
+            <!-- End Back to top -->
+
+            <!-- jQuery Min JS -->
+            <script src="/vit_elearning/static/src/js/jquery.min.js"></script>
+            <!-- Prpper JS -->
+            <script src="/vit_elearning/static/src/js/popper.min.js"></script>
+            <!-- Bootstrap Min JS -->
+            <script src="/vit_elearning/static/src/js/bootstrap.min.js"></script>
+            <!-- Classy Nav Min Js -->
+            <script src="/vit_elearning/static/src/js/classy-nav.min.js"></script>
+            <!-- Owl Carousel Min Js -->
+            <script src="/vit_elearning/static/src/js/owl.carousel.min.js"></script>
+            <!-- Magnific Popup JS -->
+            <script src="/vit_elearning/static/src/js/jquery.magnific-popup.min.js"></script>
+            <!-- CounterUp JS -->
+            <script src="/vit_elearning/static/src/js/jquery.counterup.min.js"></script>
+            <!-- Waypoints JS -->
+            <script src="/vit_elearning/static/src/js/waypoints.min.js"></script>
+            <!-- Form Validator Min JS -->
+            <script src="/vit_elearning/static/src/js/form-validator.min.js"></script>
+            <!-- Contact Form Min JS -->
+            <script src="/vit_elearning/static/src/js/contact-form-script.js"></script>
+            <!-- Main JS -->
+            <script src="/vit_elearning/static/src/js/main.js"></script>
+            <script src="/vit_elearning/static/src/js/new.js"></script>
+        </body>
+      </html>
+    </template>
+
+
+  </data>
+</odoo>

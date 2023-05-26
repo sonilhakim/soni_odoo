@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- <record id="maintenance_equipment_view_form_inherit_pemakaian" model="ir.ui.view">
+        <field name="name">maintenance.equipment.view.form.inherit.pemakaian</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/div[2]" position="replace">
+                <div class="oe_title">
+                    <label for="aset_id" class="oe_edit_only"/>
+                    <h1><field name="aset_id" string="Aset" placeholder="Nama Aset" domain="[('state','=','open'),('asset_id','=',False)]"/></h1>
+                    <field name="name" invisible="1"/>
+                </div>                
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="replace">
+                <field name="kategori_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="maintenance_equipment_view_form_inherit_hr_pemakaian" model="ir.ui.view">
+        <field name="name">maintenance.equipment.view.form.inherit.hr.pemakaian</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="hr_maintenance.maintenance_equipment_view_form_inherit_hr"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='equipment_assign_to']" position="replace">
+                <field name="asset_assign_to" string="Digunakan Oleh" widget="radio"/>
+            </xpath>
+            <xpath expr="//field[@name='employee_id']" position="replace">
+                <field name="employee_id" string="Karyawan" attrs="{'invisible': ['|', ('asset_assign_to', '=', 'subsatker'), ('asset_assign_to', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='department_id']" position="replace">
+                <field name="unit_kerja_id" string="SUBSATKER" attrs="{'invisible': ['|', ('asset_assign_to', '=', 'employee'), ('asset_assign_to', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+ -->
+    <!-- equiment : views -->
+    <record id="hr_equipment_view_form_pemakaian" model="ir.ui.view">
+        <field name="name">equipment.form</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="arch" type="xml">
+            <form string="Equipments">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="toggle_active" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="aset_id" class="oe_edit_only"/>
+                        <h1><field name="aset_id" string="Aset" placeholder="Nama Aset" domain="[('asset_id','!=',False),('used','=','belum')]"/></h1>
+                        <field name="name" invisible="1"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="kategori_id"/>
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                            <field name="asset_assign_to" string="Digunakan Oleh" widget="radio"/>
+                            <field name="employee_id" string="Karyawan" attrs="{'invisible': ['|', ('asset_assign_to', '=', 'subsatker'), ('asset_assign_to', '=', False)]}"/>
+                            <field name="unit_kerja_id" string="SUBSATKER" attrs="{'invisible': ['|', ('asset_assign_to', '=', 'employee'), ('asset_assign_to', '=', False)]}"/>
+                        </group>
+                        <group>
+                            <field name="assign_date"/>
+                            <field name="scrap_date"/>
+                            <field name="location_id" string="Digunakan di Lokasi"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Deskripsi">
+                            <field name="note"/>
+                        </page>
+                        <page string="Informasi Aset">
+                            <group>
+                                <group>
+                                    <field name="partner_id" context="{'default_supplier': True, 'default_customer': False}"/>
+                                    <field name="partner_ref"/>
+                                    <field name="model"/>
+                                    <field name="serial_no"/>
+                                </group><group>
+                                    <field name="effective_date"/>
+                                    <!-- <field name="cost"/> -->
+                                    <field name="warranty_date"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- <record id="hr_equipment_view_kanban_pemakaian" model="ir.ui.view">
+        <field name="name">equipment.kanban</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="color"/>
+                <field name="kategori_id"/>
+                <field name="serial_no"/>
+                <field name="model"/>
+                <templates>
+                    <t t-name="kanban-tooltip">
+                        <ul class="oe_kanban_tooltip">
+                            <li t-if="record.serial_no.raw_value"><b>Serial Number:</b> <t t-esc="record.serial_no.value"/></li>
+                            <li t-if="record.model.raw_value"><b>Model Number:</b> <t t-esc="record.model.value"/></li>
+                        </ul>
+                    </t>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+                            <div class="o_dropdown_kanban dropdown">
+
+                                <a role="button" class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                    <span class="fa fa-ellipsis-v"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit...</a></t>
+                                    <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                                    <div role="separator" class="dropdown-divider"></div>
+                                    <div role="separator" class="dropdown-header">Record Colour</div>
+                                    <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                </div>
+                            </div>
+                            <div class="oe_kanban_content" tooltip="kanban-tooltip">
+                                <div class="o_kanban_record_top">
+                                    <b class="o_kanban_record_title"><field name="name"/><small><span t-if="record.model.raw_value"> (<field name="model"/>)</span></small></b>
+                                </div>
+                                <div class="o_kanban_record_body">
+                                    <div t-if="record.serial_no.raw_value"><field name="serial_no"/></div>
+                                </div>
+                            </div>
+                            <div class="oe_clear"></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record> -->
+
+    <record id="hr_equipment_view_tree_pemakaian" model="ir.ui.view">
+        <field name="name">equipment.tree</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="arch" type="xml">
+            <tree string="Pemakaian">
+                <field name="aset_id"/>
+                <!-- <field name="active" invisible="1"/> -->
+                <field name="employee_id" string="Karyawan"/>
+                <field name="unit_kerja_id"/>
+                <field name="assign_date" groups="base.group_no_one"/>
+                <field name="serial_no"/>
+                <field name="kategori_id"/>
+                <field name="partner_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_equipment_view_search_pemakaian" model="ir.ui.view">
+        <field name="name">equipment.search</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="arch" type="xml">
+            <search string="Search">
+                <field name="aset_id"/>
+                <field name="kategori_id"/>
+                <field name="employee_id"/>
+                <field name="unit_kerja_id"/>
+                <filter string="Archived" domain="[('active', '=', False)]" name="inactive"/>
+                <separator/>
+                <group  expand='0' string='Group by...'>
+                    <filter string='Aset' name="aset_id" domain="[]" context="{'group_by': 'aset_id'}"/>
+                    <filter string='Kategori' name="category" domain="[]" context="{'group_by': 'kategori_id'}"/>
+                    <filter string='Karyawan' name="employee_id" domain="[]" context="{'group_by': 'employee_id'}"/>
+                    <filter string='SUBSATKER' name="unit_kerja_id" domain="[]" context="{'group_by': 'unit_kerja_id'}"/>
+                    <filter string='Vendor' name="vendor" domain="[]" context="{'group_by': 'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_vit_pemakaian_aset2" model="ir.actions.act_window">
+        <field name="name">Pemakaian</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">maintenance.equipment</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="hr_equipment_view_search_pemakaian"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Klik Untuk Membuat Data Pemakaian Baru
+            </p><p>
+            Klik tombol Buat untuk Membuat Data Pemakaian Baru
+            </p>
+        </field>
+    </record>
+    <record id="action_vit_pemakaian_aset2tree" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="hr_equipment_view_tree_pemakaian"/>
+        <field name="act_window_id" ref="action_vit_pemakaian_aset2"/>
+    </record>
+    <record id="action_vit_pemakaian_aset2form" model="ir.actions.act_window.view">
+        <field eval="20" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="hr_equipment_view_form_pemakaian"/>
+        <field name="act_window_id" ref="action_vit_pemakaian_aset2"/>
+    </record>
+
+    <menuitem name="Pemakaian" id="vit_pemakaian_aset_menu1" parent="vit_pemakaian_aset_menu"
+                  action="action_vit_pemakaian_aset2" groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+</odoo>

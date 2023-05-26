@@ -1,0 +1,23 @@
+<odoo>
+	<data noupdate="0">
+		<record model="ir.module.category" id="module_pengukuran">
+			<field name="name">Module Pengukuran</field>
+			<field name="sequence">100</field>
+		</record>
+
+		<record id="group_user_pengukuran" model="res.groups">
+			<field name="name">User Pengukuran</field>
+			<field name="category_id" ref="vit_pengukuran.module_pengukuran"/>
+		</record>
+		<record id="group_manager_pengukuran" model="res.groups">
+			<field name="name">Manager Pengukuran</field>
+			<field name="category_id" ref="vit_pengukuran.module_pengukuran"/>
+		</record>
+
+		<record id="group_edp_pengukuran" model="res.groups">
+			<field name="name">EDP</field>
+			<field name="category_id" ref="vit_pengukuran.module_pengukuran"/>
+		</record>
+
+	</data>
+</odoo>

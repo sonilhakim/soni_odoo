@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- form view -->
+        <record id="view_vit_rekap_fakultas_form2" model="ir.ui.view">
+            <field name="name">vit_rekap_fakultas_form2</field>
+            <field name="model">vit.rekap_fakultas</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_rekap_fakultas_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="action_confirm" position="after">
+                    <button string="Reload" type="object" name="action_reload" states="draft" />
+                </button>
+                <button name="action_confirm" position="attributes" >
+                    <attribute name="string">Konfirmasi</attribute>
+                </button>
+                <button name="action_done" position="attributes" >
+                    <attribute name="string">Validasi</attribute>
+                    <attribute name="groups">vit_bkd.group_bkd_manager</attribute>
+                </button>
+                <button name="action_done" position="after" >
+                    <button string="Tolak" type="object" name="action_reject" states="open"  groups="vit_bkd.group_bkd_manager"/>
+                </button>
+                <xpath expr="//group" position="replace">
+                    <group>
+                        <group>
+                            <field name="date" />
+                            <field name="tahun_akademik_id" />
+                            
+                        </group>
+                        <group>
+                            <field name="institusi_id" />                            
+                            <field name="fakultas_id" />
+                            <field name="dekan_id" />
+                            <field name="nip_dekan" />                            
+                        </group>
+                    </group>
+                </xpath>
+                <xpath expr="//notebook/page" position="replace">
+                    <page string="Rekap">
+                        <field name="line_ids" mode="tree">
+                            <tree string="Rekap" editable="bottom">
+                                <field name="no_sertifikat" />
+                                <field name="nama_dosen" />
+                                <field name="semester_gasal_pd" string= "Semester Gasal Pendidikan"/>
+                                <field name="semester_gasal_pl"  string= "Semester Gasal Penelitian"/>
+                                <field name="semester_gasal_pg"  string= "Semester Gasal Pengabdian"/>
+                                <field name="semester_gasal_pk"  string= "Semester Gasal Penunjang"/>
+                                <field name="semester_genap_pd"  string= "Semester Genap Pendidikan"/>
+                                <field name="semester_genap_pl"  string= "Semester Genap Penelitian"/>
+                                <field name="semester_genap_pg"  string= "Semester Genap Pengabdian"/>
+                                <field name="semester_genap_pk"  string= "Semester Genap Penunjang"/>
+                                <field name="kewajiban_khusus" />
+                                <field name="status" />
+                                <field name="kesimpulan" />
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//sheet" position="after">
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_rekap_fakultas_line_form2" model="ir.ui.view">
+            <field name="name">vit_rekap_fakultas_line_form2</field>
+            <field name="model">vit.rekap_fakultas_line</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_rekap_fakultas_line_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="replace">
+                    <group>
+                        <group>
+                            <field name="no_sertifikat" />
+                            <field name="semester_gasal_pd" string= "Semester Gasal Pendidikan"/>
+                            <field name="semester_gasal_pl"  string= "Semester Gasal Penelitian"/>
+                            <field name="semester_gasal_pg"  string= "Semester Gasal Pengabdian"/>
+                            <field name="semester_gasal_pk"  string= "Semester Gasal Penunjang"/>
+                            <field name="kewajiban_khusus" />
+                            <field name="status" />                                    
+                        </group>
+                        <group>
+                            <field name="nama_dosen" />
+                            <field name="semester_genap_pd"  string= "Semester Genap Pendidikan"/>
+                            <field name="semester_genap_pl"  string= "Semester Genap Penelitian"/>
+                            <field name="semester_genap_pg"  string= "Semester Genap Pengabdian"/>
+                            <field name="semester_genap_pk"  string= "Semester Genap Penunjang"/>
+                            <field name="kesimpulan" />
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="view_vit_rekap_perguruan_tinggi_tree2" model="ir.ui.view">
+            <field name="name">vit_rekap_perguruan_tinggi_tree2</field>
+            <field name="model">vit.rekap_perguruan_tinggi</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_rekap_perguruan_tinggi_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="Rekap perguruan tinggi">
+                        <field name="name" />
+                        <field name="date" />
+                        <field name="rektor_id" />
+                        <field name="nip_rektor" />                        
+                        <field name="institusi_id" />
+                        <field name="alamat_perguruan_tinggi" />
+                        <field name="tahun_akademik_id" />
+                        <field name="state" />                        
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_rekap_perguruan_tinggi_form2" model="ir.ui.view">
+            <field name="name">vit_rekap_perguruan_tinggi_form2</field>
+            <field name="model">vit.rekap_perguruan_tinggi</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_rekap_perguruan_tinggi_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="action_confirm" position="after">
+                    <button string="Reload" type="object" name="action_reload" states="draft" />
+                </button>
+                <button name="action_confirm" position="attributes" >
+                    <attribute name="string">Konfirmasi</attribute>
+                </button>
+                <button name="action_done" position="attributes" >
+                    <attribute name="string">Validasi</attribute>
+                    <attribute name="groups">vit_bkd.group_bkd_manager</attribute>
+                </button>
+                <button name="action_done" position="after" >
+                    <button string="Tolak" type="object" name="action_reject" states="open"  groups="vit_bkd.group_bkd_manager"/>
+                </button>
+                <xpath expr="//group" position="replace">
+                    <group>
+                        <group>
+                            <field name="date" />
+                            <field name="tahun_akademik_id" />
+                        </group>
+                        <group>
+                            <field name="institusi_id" />
+                            <field name="rektor_id" />
+                            <field name="nip_rektor" />
+                            <field name="alamat_perguruan_tinggi" />
+                        </group>
+                    </group>
+                </xpath>
+                <xpath expr="//notebook/page" position="replace">
+                    <page string="Rekap">
+                        <field name="line_ids" mode="tree">
+                            <tree string="Rekap" editable="bottom">
+                                <field name="no_sertifikat" />
+                                <field name="nama_dosen" />
+                                <field name="semester_gasal_pd" string= "Semester Gasal Pendidikan"/>
+                                <field name="semester_gasal_pl"  string= "Semester Gasal Penelitian"/>
+                                <field name="semester_gasal_pg"  string= "Semester Gasal Pengabdian"/>
+                                <field name="semester_gasal_pk"  string= "Semester Gasal Penunjang"/>
+                                <field name="semester_genap_pd"  string= "Semester Genap Pendidikan"/>
+                                <field name="semester_genap_pl"  string= "Semester Genap Penelitian"/>
+                                <field name="semester_genap_pg"  string= "Semester Genap Pengabdian"/>
+                                <field name="semester_genap_pk"  string= "Semester Genap Penunjang"/>
+                                <field name="kewajiban_khusus" />
+                                <field name="status" />
+                                <field name="kesimpulan" />
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//sheet" position="after">
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_rekap_perguruan_tinggi_line_form2" model="ir.ui.view">
+            <field name="name">vit_rekap_perguruan_tinggi_line_form2</field>
+            <field name="model">vit.rekap_perguruan_tinggi_line</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_rekap_perguruan_tinggi_line_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="replace">
+                    <group>
+                        <group>
+                            <field name="no_sertifikat" />
+                            <field name="semester_gasal_pd" string= "Semester Gasal Pendidikan"/>
+                            <field name="semester_gasal_pl"  string= "Semester Gasal Penelitian"/>
+                            <field name="semester_gasal_pg"  string= "Semester Gasal Pengabdian"/>
+                            <field name="semester_gasal_pk"  string= "Semester Gasal Penunjang"/>
+                            <field name="kewajiban_khusus" />
+                            <field name="status" />                                    
+                        </group>
+                        <group>
+                            <field name="nama_dosen" />
+                            <field name="semester_genap_pd"  string= "Semester Genap Pendidikan"/>
+                            <field name="semester_genap_pl"  string= "Semester Genap Penelitian"/>
+                            <field name="semester_genap_pg"  string= "Semester Genap Pengabdian"/>
+                            <field name="semester_genap_pk"  string= "Semester Genap Penunjang"/>
+                            <field name="kesimpulan" />
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

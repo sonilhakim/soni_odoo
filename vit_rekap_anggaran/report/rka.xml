@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="report_rka_uni"
+            string="Rincian Kegiatan dan Anggaran"
+            model="vit.rekap_unit" 
+            report_type="qweb-pdf"
+            paperformat="anggaran.paperformat_anggaran"
+            file="vit_rekap_anggaran.rka_uni" 
+            name="vit_rekap_anggaran.rka_uni_report"
+        />
+
+        <!-- paper_format="paperformat_a4_landscape"  -->
+        
+        <template id="report_rka_uni_document">
+            <t t-call="anggaran.external_layout_anggaran">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div class="header">
+                        <h4 class="text-center">
+                            <strong>RINCIAN KEGIATAN DAN ANGGARAN (RKA)
+                            <br/>UNIVERSITAS PERTAHANAN RI
+                            <br/>
+                            <br/>TA. <span t-field="o.tahun_id.name"/></strong>
+                        </h4>
+                        <div class="text-right">                            
+                            Halaman: <span class="page"/> / <span class="topage"/>
+                        </div>
+                    </div>
+
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Kode</th>
+                                <th>Kegiatan/Detail/Uraian</th>
+                                <th class="text-right">Volume</th>
+                                <th class="text-right">Satuan</th>
+                                <th class="text-right">Harga</th>
+                                <th class="text-right">Jumlah</th>
+                            </tr>
+                       </thead>
+
+                       <tbody class="anggaran_tbody">
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                    Jumlah Keseluruhan
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.total" />
+                                </td>
+                            </tr>
+                            
+                            <t t-foreach="o.anggaran_unit_ids" t-as="l">
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.unit_id.full_name"/>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="l.anggaran" />
+                                    </td>
+                                </tr>
+
+                                <t t-foreach="l.rka_id.rka_tridharma_ids" t-as="td">
+                                    <tr>
+                                        <td>
+                                        </td>
+                                        <td>
+                                            <span t-field="td.tridharma_id.code"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="td.tridharma_id.name"/>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="td.anggaran" />
+                                        </td>
+                                    </tr>
+                                    <t t-foreach="td.rka_kro_ids" t-as="kro">
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+                                               <span t-field="kro.category_id.code"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="kro.category_id.name"/>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-field="kro.anggaran" />
+                                            </td>
+                                        </tr>
+                                        <t t-set="i" t-value="1"/>
+                                        <t t-foreach="kro.rka_ro_ids" t-as="ro">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="i"/>
+                                                </td>
+                                            <t t-set="i" t-value="i+1"/>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                    <span t-field="ro.indikator"/>
+                                                </td>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-field="ro.anggaran" />
+                                                </td>
+                                            </tr>
+                                            <t t-foreach="ro.rka_komp_ids" t-as="kom">
+                                                <tr t-if="kom.komponen_id">
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                        <span t-field="kom.komponen_id.code"/>
+                                                    </td>
+                                                    <td>
+                                                        <span t-field="kom.komponen_id.name" />
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <span t-field="kom.total" />
+                                                    </td>
+                                                </tr>
+                                                <t t-foreach="kom.rka_sub_ids" t-as="sub">
+                                                    <tr t-if="sub.subkomponen_id">
+                                                        <td>
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="sub.subkomponen_id.code"/>
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="sub.subkomponen_id.name" />
+                                                        </td>
+                                                        <td>
+                                                        </td>
+                                                        <td>
+                                                        </td>
+                                                        <td>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="sub.total" />
+                                                        </td>
+                                                    </tr>
+                                                    <t t-foreach="sub.rka_mak_ids" t-as="coa">
+                                                        <tr>
+                                                            <td>
+                                                            </td>
+                                                            <td>
+                                                                <span t-field="coa.mak_id.code"/>
+                                                            </td>
+                                                            <td>
+                                                                <span t-field="coa.mak_id.name" />
+                                                            </td>
+                                                            <td>
+                                                            </td>
+                                                            <td>
+                                                            </td>
+                                                            <td>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <span t-field="coa.total" />
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                </t>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </t>
+                            </t>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                    Jumlah Keseluruhan
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.total" />
+                                </td>
+                            </tr>
+                            <tr><td></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="8" style="text-align:center">
+                                    <br/>
+                                    Bogor, <span t-esc="o.get_current_date()"/>
+                                    <br/>
+                                    <span t-esc="o.pos_ttd"/>,
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span t-esc="o.ttd_id.name"/>
+                                    <br/>
+                                    <span t-esc="o.ttd_id.pangkat_id.name"/>
+                                    Nip.<span t-esc="o.ttd_id.nip"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="oe_structure"/>
+                    <p style="page-break-after:always;"> </p>
+                    
+
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+
+        <template id="rka_uni_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="vit_rekap_anggaran.report_rka_uni_document"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

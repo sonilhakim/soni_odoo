@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- form view -->
+        <record id="view_vit_boq_po_prfob_form" model="ir.ui.view">
+            <field name="name">vit_boq_po_prfob_form</field>
+            <field name="model">vit.boq_po_garmen_line</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_merchandise_garment.view_vit_boq_po_md_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[@name='%(vit_merchandise_garment.show_create_worksheet_wizard)d']" position="attributes">
+                    <attribute name='attrs'>{'invisible': [('fob', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//header/button[@name='%(vit_merchandise_garment.show_create_worksheet_wizard)d']" position="after">
+                    <button name="%(vit_pr_fob.show_fob_pr_wizard)d" string="PR FOB" type="action" class="oe_highlight" attrs="{'invisible': [('fob', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='action_view_worksheet']" position="after">
+                    <button name="action_view_pr"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-book"
+                        attrs="{'invisible': [('pr_count', '=', 0)]}">
+                        <field name="pr_count" widget="statinfo" string="Purchase Request"/>
+                    </button>
+                </xpath>
+                <xpath expr="//field[@name='routing_id']" position="after">
+                    <field name="fob"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- assortment view -->
+        <record id="mrp_production_id_form_fob" model="ir.ui.view">
+            <field name="name">mrp_production_id_fob_form</field>
+            <field name="model">vit.boq_po_garmen_line</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_mrp_production_lot_list.mrp_production_id_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='mo_id']" position="after">
+                    <field name="product_request_id" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

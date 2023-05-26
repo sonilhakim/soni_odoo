@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_boq_sph_garmen_line_tree" model="ir.ui.view">
+            <field name="name">vit_boq_sph_garmen_line_tree</field>
+            <field name="model">vit.boq_sph_garmen_line</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="BOQ">
+                    <field name="name"/>
+                    <field name="bahan"/>
+                    <field name="qty"/>
+                    <!-- <field name="qty_or"/> -->
+                    <field name="uom_id" options="{'no_create': True}"/>
+                    <field name="price"/>
+                    <field name="tax_val" string="Pajak"/>
+                    <field name="total_price"/>
+                    <field name="currency_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_boq_sph_garmen_line_form" model="ir.ui.view">
+            <field name="name">vit_boq_sph_garmen_line_form</field>
+            <field name="model">vit.boq_sph_garmen_line</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Boq sph_garmen line">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Item"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="bahan"/>
+                                <field name="qty" />                                
+                                <!-- <field name="qty_or" readonly="1"/> -->
+                                <field name="uom_id" string="Satuan"/>
+                            </group>
+                            <group>
+                                <field name="price"/>
+                                <label string="Pajak" for="tax_id"/>
+                                <div>
+                                    <field name="tax_id" options="{'no_create': True}" style="width:25%; margin-right:33px;"/><field name="tax_val" style="width:55%;"/>
+                                </div>
+                                <field name="total_price"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Sample">
+                                <field name="sample_ids">
+                                    <tree string="Sample" readonly="1">
+                                        <field name="name"/>
+                                        <field name="product_id" options="{'no_create': True}"/>
+                                        <field name="product_name"/>
+                                        <field name="size"/>
+                                        <!-- <field name="qty"/>
+                                        <field name="qty_or" readonly="1"/> -->
+                                        <!-- <field name="uom_id" options="{'no_create': True}"/> -->
+                                        <field name="kain"/>
+                                        <!-- <field name="design" invisible="1"/> -->
+                                        <!-- <field name="gbr" widget="image"  class="oe_avatar" /> -->
+                                    </tree>
+                                    <form string="Sample">
+                                        <header>
+                                        </header>
+                                        <sheet>
+                                            <div class="oe_title">
+                                                <label for="name" class="oe_edit_only" string="Style"/>
+                                                <h1><field name="name"/></h1>
+                                            </div>
+                                            <group>
+                                                <group>
+                                                    <field name="product_id" domain="[('categ_id.name','=','Barang Jadi Uniform')]" options="{'no_create': True}" string="Product Sample"/>
+                                                    <field name="product_name"/>
+                                                </group>
+                                                <group>
+                                                    <field name="size"/>
+                                                    <field name="kain"/>
+                                                </group>
+                                            </group>                        
+                                            <notebook>
+                                                <page string="Design">
+                                                    <field name="doc_line_ids">
+                                                        <tree string="Design" editable="bottom">
+                                                            <field name="doc_name" invisible="1"/>
+                                                            <field name="doc" widget="binary" filename="doc_name" required="1"/>
+                                                            <field name="date"/>
+                                                            <field name="name"/>
+                                                        </tree>
+                                                    </field>
+                                                </page>
+                                            </notebook>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <!-- <record id="view_vit_boq_sph_garmen_line_search" model="ir.ui.view">
+            <field name="name">vit_boq_sph_garmen_line</field>
+            <field name="model">vit.boq_sph_garmen_line</field>
+            <field name="arch" type="xml">
+                <search string="Boq sph_garmen line">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Qty" name="filter_by_qty" domain="[('qty','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="qty" select="True"/>
+                    <field name="uom_id" select="True"/>
+                    <field name="sph_id" select="True"/>
+                    <field name="product_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Uom" domain="[]" name="group_by_uom_id" context="{'group_by':'uom_id'}"/>
+                        <filter string="sph" domain="[]" name="group_by_sph_id" context="{'group_by':'sph_id'}"/>
+                        <filter string="Product" domain="[]" name="group_by_product_id" context="{'group_by':'product_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record> -->
+        <!-- kanban , to show image, please add image_small in the model -->
+        <!-- <record id="view_vit_boq_sph_garmen_line_kanban" model="ir.ui.view" >
+            <field name="name">vit_boq_sph_garmen_line</field>
+            <field name="model">vit.boq_sph_garmen_line</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="qty" />
+                    <field name="uom_id" />
+                    <field name="sph_id" />
+                    <field name="product_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            Field1: <field name="name"></field>
+                                        </li>
+                                        <li>
+                                            Field2: <field name="name"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record> -->
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <!-- <record id="view_vit_boq_sph_garmen_line_graph" model="ir.ui.view">
+            <field name="name">vit_boq_sph_garmen_line</field>
+            <field name="model">vit.boq_sph_garmen_line</field>
+            <field name="arch" type="xml">
+                <graph string="Boq sph line" type="bar">
+                    <field name="uom_id"/>
+                </graph>
+            </field>
+        </record> -->
+        <!-- action window -->
+        <!-- <record id="action_vit_boq_sph_garmen_line" model="ir.actions.act_window">
+            <field name="name">Boq sph line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.boq_sph_garmen_line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Boq SPH line
+                </p><p>
+                Click the Create button to add a new Boq SPH line
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_boq_sph_garmen_line" name="Boq sph_garmen line" parent="vit_marketing_sph_garmen_sub_menu" action="action_vit_boq_sph_garmen_line" sequence="20"/> -->
+    </data>
+</odoo>

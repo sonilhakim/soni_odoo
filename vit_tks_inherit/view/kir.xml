@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- form view -->
+        <record id="view_vit_kir_form2" model="ir.ui.view">
+            <field name="name">vit_kir_form2</field>
+            <field name="model">vit.kir</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_tks.view_vit_kir_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="ruang" position="attributes">
+                    <attribute name="domain">[('gedung_id','=',gedung)]</attribute>
+                </field>
+                <xpath expr="//notebook/page" position="replace">
+                    <page string="Daftar Inventaris">
+                        <field name="kir_detail_ids" mode="tree">
+                            <tree string="Daftar Inventaris" editable="bottom">
+                                <field name="asset_id" string="Nama barang" domain="[('category_id.parent_id.parent_id.parent_id','=','Inventaris')]"/>
+                                <field name="merk_model" string="Merk/Model"/>
+                                <field name="no_seri_pbr" string="No.Seri pabrik"/>
+                                <field name="thn_pembuatan" />
+                                <field name="code" string="No.Kode Barang"/>
+                                <field name="jumlah" />
+                                <field name="harga" />
+                                <field name="kondisi" />
+                                <field name="keterangan" />
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_kir2" model="ir.actions.act_window">
+            <field name="name">Daftar Inventaris Ruang</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.kir</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Daftar Inventaris Ruang
+                </p><p>
+                Click the Create button to add a new Daftar Inventaris Ruang
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_kir" name="Daftar Inventaris Ruang" parent="vit_tks.vit_tks_top_menu" action="action_vit_kir2" sequence="20"/>
+    </data>
+</odoo>

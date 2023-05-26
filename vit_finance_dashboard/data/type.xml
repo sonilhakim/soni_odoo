@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="finance_report_dashboard_type_ltbs" model="vit.finance_report_dashboard_type">
+            <field name="name">Laba/Rugi Bersih</field>
+            <field name="types">ltbs</field>
+        </record>
+        <record id="finance_report_dashboard_type_pm" model="vit.finance_report_dashboard_type">
+            <field name="name">Pendapatan Murni</field>
+            <field name="types">pm</field>
+        </record>
+        <record id="finance_report_dashboard_type_tbu" model="vit.finance_report_dashboard_type">
+            <field name="name">Total Beban Usaha</field>
+            <field name="types">tbu</field>
+        </record>
+        <record id="finance_report_dashboard_type_ba" model="vit.finance_report_dashboard_type">
+            <field name="name">Saldo Kas dan Setara Kas</field>
+            <field name="types">ba</field>
+        </record>
+        <record id="finance_report_dashboard_type_rec" model="vit.finance_report_dashboard_type">
+            <field name="name">Saldo Piutang</field>
+            <field name="types">rec</field>
+        </record>
+        <record id="finance_report_dashboard_type_cl4" model="vit.finance_report_dashboard_type">
+            <field name="name">Saldo Pinjaman</field>
+            <field name="types">cl4</field>
+        </record>
+        <record id="finance_report_dashboard_type_ta" model="vit.finance_report_dashboard_type">
+            <field name="name">Total Aset</field>
+            <field name="types">ta</field>
+        </record>
+        <record id="finance_report_dashboard_type_netto" model="vit.finance_report_dashboard_type">
+            <field name="name">Total Aktiva Tetap</field>
+            <field name="types">netto</field>
+        </record>
+
+    </data>
+</odoo>

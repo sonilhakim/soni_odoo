@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="partner_aset" model="ir.ui.view">
+            <field name="name">res.partner_aset</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="category_id" position="after">
+                    <field name="pemilik_asset" />
+                </field>
+
+                <notebook position="inside">
+                    <page string="Asets" attrs="{'invisible':[('pemilik_asset', '=', False)]}">
+                        <field name="asets_pemilik" mode="tree">
+                            <tree string="Asets">
+                                <field name="asset_id" domain="[('category_id.parent_id.name', '=', 'Aset')]"/>
+                                <field name="lokasi_aset" />
+                                <field name="tgl_awal" />
+                                <field name="tgl_akhir" />
+                                <field name="status_aset" />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+
+            </field>
+        </record>
+
+    </data>
+</openerp>
+

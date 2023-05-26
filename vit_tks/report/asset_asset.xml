@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_account_asset_menu" string="Vit - Asset asset"
+         model="account.asset.asset" report_type="qweb-pdf" 
+         file="account.asset.asset"  name="vit_tks.account_asset_report" />
+
+        <!-- document template -->
+        <template id="vit_tks.account_asset_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Asset asset: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tipe barang</strong>
+                            <p class="m-0" t-field="doc.tipe_barang" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tahun pembuatan</strong>
+                            <p class="m-0" t-field="doc.tahun_pembuatan" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Asal</strong>
+                            <p class="m-0" t-field="doc.asal" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Kelengkapan dokumen</strong>
+                            <p class="m-0" t-field="doc.kelengkapan_dokumen" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tgl penyerahan brg</strong>
+                            <p class="m-0" t-field="doc.tgl_penyerahan_brg" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Satuan</strong>
+                            <p class="m-0" t-field="doc.satuan_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_tks.account_asset_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_tks.account_asset_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

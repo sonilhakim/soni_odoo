@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_cash_in_out_tree" model="ir.ui.view">
+            <field name="name">vit_cash_in_out_tree</field>
+            <field name="model">vit.cash_in_out</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Cash in out">
+                    <field name="name" />
+                    <field name="tanggal" />
+                    <field name="saldo_awal" />
+                    <field name="saldo_akhir" />
+                    <field name="kasir_id" />
+                    <field name="keterangan" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- pivot view -->
+        <record id="view_vit_cash_in_out_pivot" model="ir.ui.view">
+            <field name="name">vit_cash_in_out_tree</field>
+            <field name="model">vit.cash_in_out</field>
+            <field name="type">pivot</field>
+            <field name="arch" type="xml">
+                <pivot string="Cash in out">
+                    <field name="kasir_id" type="row"/>
+                </pivot>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_cash_in_out_form" model="ir.ui.view">
+            <field name="name">vit_cash_in_out_form</field>
+            <field name="model">vit.cash_in_out</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Cash in out">
+                    <header>
+                        <button string="Reload" type="object" name="action_reload" class="btn-info" states="open" />
+                        <button string="Confirm" type="object" name="action_confirm" class="btn-primary" states="draft" />
+                        <button string="Done" type="object" name="action_done" class="btn-primary" states="open" />
+                        <button string="Cancel" type="object" name="action_cancel" class="btn-danger" states="open"/>
+                        <button string="Reset to Draft" type="object" name="action_draft" states="cancel" groups="vit_cash_in_cash_out.group_cash_in_cash_out_manager,base.group_system"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Cash in out Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tanggal" />
+                                <field name="saldo_awal" />
+                            </group>
+                            <group>
+                                <field name="kasir_id" />
+                                <field name="keterangan" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="transaksi_ids" string="Transaksi">
+                                <field name="transaksi_ids"
+                                        nolabel="1"
+                                        widget="section_and_note_one2many">
+                                    <tree string="Transaksi" editable="bottom">
+                                        <control>
+                                            <create string="Add a line"/>
+                                            <create string="Add a section" context="{'default_display_type': 'line_section'}"/>
+                                            <!-- <create string="Add a note" context="{'default_display_type': 'line_note'}"/> -->
+                                        </control>
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="nomor"/>
+                                        <field name="tanggal" />
+                                        <field name="kode_transaksi" />
+                                        <field name="name"/>
+                                        <field name="jumlah" sum='total'/>
+                                        <field name="no_voucher" />
+                                        <field name="keterangan" widget="section_and_note_text"/>
+                                        <field name="display_type" invisible="1"/>
+                                    </tree>
+                                </field>
+                                <group class="oe_subtotal_footer oe_right">
+                                    <field name="saldo_akhir" class="oe_subtotal_footer_separator"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_cash_in_out_search" model="ir.ui.view">
+            <field name="name">vit_cash_in_out</field>
+            <field name="model">vit.cash_in_out</field>
+            <field name="arch" type="xml">
+                <search string="Cash in out">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Tanggal" name="filter_by_tanggal" domain="[('tanggal','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                    <filter string="Keterangan" name="filter_by_keterangan" domain="[('keterangan','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="tanggal" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="keterangan" select="True"/>
+                    <field name="kasir_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Kasir" domain="[]" name="group_by_kasir_id" context="{'group_by':'kasir_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_cash_in_out_kanban" model="ir.ui.view" >
+            <field name="name">vit_cash_in_out</field>
+            <field name="model">vit.cash_in_out</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="tanggal" />
+                    <field name="state" />
+                    <field name="keterangan" />
+                    <field name="kasir_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            <span class="text-muted">Kasir</span> <field name="kasir_id"></field>
+                                        </li>
+
+                                        <li>
+                                            <span class="text-muted">Tanggal</span> <field name="tanggal"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_vit_cash_in_out_cal" model="ir.ui.view">
+            <field name="name">vit_cash_in_out_cal</field>
+            <field name="model">vit.cash_in_out</field>
+            <field name="arch" type="xml">
+                <calendar string="Cash in out" date_start="tanggal">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record>
+        <!-- graph -->
+        <!-- <record id="view_vit_cash_in_out_graph" model="ir.ui.view">
+            <field name="name">vit_cash_in_out</field>
+            <field name="model">vit.cash_in_out</field>
+            <field name="arch" type="xml">
+                <graph string="Cash in out" type="bar">
+                </graph>
+            </field>
+        </record> -->
+        <!-- action window -->
+        <record id="action_cash_in_out" model="ir.actions.act_window">
+            <field name="name">Cash In Cash Out</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.cash_in_out</field>
+            <field name="view_mode">tree,form,kanban,pivot,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Cash In Cash Out
+                </p><p>
+                Click the Create button to add a new Cash In Cash Out
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_cash_in_out" name="Cash In Cash Out" parent="vit_cash_in_cash_out_sub_menu" action="action_cash_in_out" sequence="10"/>
+    </data>
+</odoo>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- <record id="action_view_material_pr_wizard" model="ir.actions.server">
+            <field name="name">Create Product Request</field>
+            <field name="model_id" ref="vit_marketing_po_garmen.vit.or_material_list"/>
+            <field name="binding_model_id" ref="vit_merchandise_garment.material.pr.wizard"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_share()</field>
+        </record> -->
+        <!-- tree view -->
+        <record id="view_vit_or_material_list_tree" model="ir.ui.view">
+            <field name="name">vit_or_material_list_tree</field>
+            <field name="model">vit.or_material_list</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Material List" create="false" editable="bottom">
+                    <field name="acc_no" readonly="1"/>
+                    <field name="material" readonly="1"/>
+                    <field name="spec" readonly="1"/>
+                    <field name="colour" readonly="1"/>
+                    <field name="qty_style" />
+                    <field name="qty" />
+                    <field name="uom" readonly="1"/>
+                    <field name="cons" />
+                    <field name="total" />
+                    <field name="pr"/>
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_or_material_list_form" model="ir.ui.view">
+            <field name="name">vit_or_material_list_form</field>
+            <field name="model">vit.or_material_list</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Material List" create="false">
+                    <!-- <header>
+                        <button string="Create Product Style" type="object" name="create_product_jadi" attrs="{'invisible':['|',('product_created','=',True),('state','!=','open')]}" confirm="Anda yakin akan membuat product style ?"/>
+                    </header> -->
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <div class="oe_title">
+                            <label for="material" class="oe_edit_only" string="Material :"/>
+                            <h1><field name="material" readonly="1"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="acc_no"/>
+                                <field name="spec" />
+                                <field name="colour" />
+                            </group>
+                            <group>
+                                <field name="qty_style" />
+                                <field name="qty" />
+                                <field name="uom" options="{'no_create': True}"/>
+                                <field name="cons" />
+                            </group>
+                                <field name="boq_id" invisible="1"/>
+                                <field name="po_id" invisible="1"/>
+                            <group>
+                                <field name="pr"/>
+                            </group>
+                            <group>
+                                <field name="total"/>
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                    <!-- <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div> -->
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_or_material_list_search" model="ir.ui.view">
+            <field name="name">vit_or_material_list</field>
+            <field name="model">vit.or_material_list</field>
+            <field name="arch" type="xml">
+                <search string="Material List">
+                    <field name="material" select="True"/>
+                    <field name="acc_no" select="True"/>
+                    <field name="spec" select="True"/>
+                    <field name="colour" select="True"/>
+                    <field name="boq_id" select="True"/>
+                    <field name="po_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Order Receive" domain="[]" name="group_by_po_id" context="{'group_by':'po_id'}"/>
+                        <filter string="Material" domain="[]" name="group_by_material" context="{'group_by':'material'}"/>
+                        <filter string="Style" domain="[]" name="group_by_boq_id" context="{'group_by':'boq_id'}"/>
+                        <filter string="Acc No" domain="[]" name="group_by_acc_no" context="{'group_by':'acc_no'}"/>
+                        <filter string="Spec" domain="[]" name="group_by_spec" context="{'group_by':'spec'}"/>
+                        <filter string="Colour" domain="[]" name="group_by_colour" context="{'group_by':'colour'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_vit_or_material_list_md" model="ir.actions.act_window">
+            <field name="name">Material List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.or_material_list</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('po_id','!=',False)]</field>
+            <field name="context">{'search_default_group_by_po_id': 1,'search_default_group_by_material': 1,'search_default_group_by_boq_id': 1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Material List terbentuk setelah Submit JO
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_or_material_list_md" name="Material List" parent="vit_merchandise_garment.submenu_merchandise" action="vit_merchandise_garment.action_vit_or_material_list_md" sequence="55"/>
+    </data>
+</odoo>

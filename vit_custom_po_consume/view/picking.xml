@@ -1,0 +1,29 @@
+<odoo>
+	<data>
+		<record id="vpicktreevitcustom" model="ir.ui.view">
+            <field name="name">stock.picking.tree.cust</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree" />
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='origin']" position="after">
+					<field name="customer_id"/>
+				</xpath>
+            </field>
+        </record>
+		
+		<record id="view_picking_custom_consume_form" model="ir.ui.view">
+			<field name="name">view_picking_custom_consume_form</field>
+			<field name="model">stock.picking</field>
+			<field name="inherit_id" ref="stock.view_picking_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='po_id']" position="after">
+					<field name="customer_id"/>
+				</xpath>
+				<xpath expr="//field[@name='po_buyer']" position="after">
+					<field name="qty_to_produce" attrs="{'invisible': [('qty_to_produce', '=', 0.0)]}"/>
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</odoo>

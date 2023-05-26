@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="template_dotmatrix_invoice" model="mail.template">
+            <field name="name">Dot Matrix Customer Invoice</field>
+            <field name="model_id" ref="account.model_account_invoice"/>
+            <field name="subject">Dot Matrix Template for Customer Invoice</field>
+            <field name="body_html"><![CDATA[
+${''}
+${''}
+${''}  	
+${''.rjust(50)} ${object.number if object.number else ''}
+${''}
+${'AC/CODE:'} ${object.partner_id.ref[:40].ljust(41) if object.partner_id.ref else ''.ljust(41)} ${object.date_invoice if object.date_invoice else ''}
+${''}
+${'Customer ABN:'} ${object.partner_id.vat.ljust(27) if object.partner_id.vat else ''.ljust(27)} ${'DELIVER TO:'}
+${''}
+${object.partner_id.name.ljust(41) if object.partner_id.name else ''.ljust(41)} ${object.partner_shipping_id.name if object.partner_shipping_id.name else ''}
+${object.partner_id.street.ljust(41) if object.partner_id.street else ''.ljust(41)} ${object.partner_shipping_id.street if object.partner_shipping_id.street else ''}
+${object.partner_id.city.ljust(41) if object.partner_id.city else ''.ljust(41)} ${object.partner_shipping_id.city if object.partner_shipping_id.city else ''}
+${object.partner_id.country_id.name.ljust(41) if object.partner_id.country_id.name else ''.ljust(41)} ${object.partner_shipping_id.country_id.name if object.partner_shipping_id.country_id.name else ''}
+${''}
+${''}
+	${'Page 1 of 1'.rjust(67)}
+${''}
+${''}
+${'ORDER NUMBER'.ljust(14)} ${'CUSTOMER REFERENCE'.ljust(22)} ${'REGION'.ljust(10)} ${'RUN'.ljust(10)}
+${''}
+${object.origin[:14].ljust(14) if object.origin else ''.ljust(14) } ${object.name.ljust(22) if object.name else ''.ljust(22)} ${object.order.region_id.name[:10].ljust(10) if object.order.region_id.name else ''.ljust(10) } ${object.truck_run[:10].ljust(10) if object.truck_run else ''.ljust(10) }
+${''}
+${'ITEM NO'.ljust(9)} ${'Description'.ljust(13)} ${'Qty'.ljust(7)} ${'UNITS'.ljust(5)} ${'PRICE'.ljust(13)} ${'VAL INC'.ljust(13)} ${'GST'}
+${''}
+% for l in object.invoice_line_ids:
+${l.product_id.default_code[:9].ljust(9) if l.product_id.default_code else ''.ljust(9) } ${l.name[:13].ljust(13) if l.name else ''.ljust(13) } ${"{:4,.2f}".format(l.quantity).rjust(7) if format(l.quantity) else ''.rjust(7)} ${l.uom_id.name[:5].ljust(5) if l.uom_id else ''.ljust(5)} ${l.currency_id.symbol[:3].ljust(3)} ${"{:4,.2f}".format(l.price_unit).rjust(9) if format(l.price_unit) else ''.rjust(9)} ${l.currency_id.symbol[:3].ljust(3) if l.currency_id.symbol else ''.ljust(3)} ${"{:4,.2f}".format(l.price_subtotal).rjust(9) if format(l.price_subtotal) else ''.rjust(9)} ${l.invoice_line_tax_ids.name.ljust(10) if l.invoice_line_tax_ids else ''.ljust(10)} ${'\n' * 22 if ((loop.last) and (loop.index == 1)) else '\n' * 21 if ((loop.last) and (loop.index == 2)) else '\n' * 20 if ((loop.last) and (loop.index == 3)) else '\n' * 19 if ((loop.last) and (loop.index == 4)) else '\n' * 18 if ((loop.last) and (loop.index == 5)) else '\n' * 17 if ((loop.last) and (loop.index == 6)) else '\n' * 16 if ((loop.last) and (loop.index == 7)) else '\n' * 15 if ((loop.last) and (loop.index == 8)) else '\n' * 14 if ((loop.last) and (loop.index == 9)) else '\n' * 13 if ((loop.last) and (loop.index == 10)) else '\n' * 12 if ((loop.last) and (loop.index == 11)) else '\n' * 11 if ((loop.last) and (loop.index == 12)) else '\n' * 10 if ((loop.last) and (loop.index == 13)) else '\n' * 9 if ((loop.last) and (loop.index == 14)) else '\n' * 8 if ((loop.last) and (loop.index == 15)) else '\n' * 7 if ((loop.last) and (loop.index == 16)) else '\n' * 6 if ((loop.last) and (loop.index == 17)) else '\n' * 5 if ((loop.last) and (loop.index == 18)) else '\n' * 4 if ((loop.last) and (loop.index == 19)) else '\n' * 3 if ((loop.last) and (loop.index == 20)) else '\n' * 2 if ((loop.last) and (loop.index == 21)) else '\n' * 1 if ((loop.last) and (loop.index == 22)) else ''}
+% endfor
+${''}
+${'COMMENT:'} ${object.order.delivery_comment[:30] if object.order.delivery_comment else '' }
+${''.ljust(8)} ${object.order.delivery_comment[30:60] if object.order.delivery_comment else '' }
+${''.ljust(8)} ${object.order.delivery_comment[60:90] if object.order.delivery_comment else '' }
+${'FREIGHT:'.rjust(59)} ${object.currency_id.symbol[:3].ljust(3) if object.currency_id.symbol else ''.ljust(3)} ${ "{:4,.2f}".format(object.amount_untaxed).rjust(9) if format(object.amount_untaxed) else ''.rjust(9)}
+% for b in object.partner_id.bank_ids[0]:
+${'NOTES:'} ${ b.acc_holder_name[:24].ljust(24) if b.acc_holder_name else ''.ljust(24)} ${'GST:'.rjust(27)} ${object.currency_id.symbol[:3].ljust(3) if object.currency_id.symbol else ''.ljust(3)} ${"{:4,.2f}".format(object.amount_tax).rjust(9) if format(object.amount_tax) else ''.rjust(9)}
+${''.ljust(6)} ${'BSB:'} ${ b.aba_bsb[:24].ljust(24) if b.aba_bsb else ''.ljust(24)}
+${''.ljust(6)} ${'Account:'} ${ b.acc_number[:20].ljust(20) if b.acc_number else ''.ljust(20)}
+%endfor
+${''}
+${''}
+${''}
+${''}
+${''.rjust(59)} ${object.currency_id.symbol[:3].ljust(3) if object.currency_id.symbol else ''.ljust(3)} ${"{:4,.2f}".format(object.amount_total).rjust(9) if format(object.amount_total) else ''.rjust(9)}
+]]></field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,21 @@
+<odoo>
+	<data>
+		<record model="ir.module.category" id="module_category_vit_kasbon_pb">
+			<field name="name">vit_kasbon_pb</field>
+			<field name="description">vit_kasbon_pb Groups</field>
+			<field name="sequence">10</field>
+		</record>
+		<record id="group_vit_kasbon_pb_user" model="res.groups">
+			<field name="name">User</field>
+			<field name="category_id" ref="module_category_vit_kasbon_pb"/>
+		</record>
+		<record id="group_vit_kasbon_pb_manager" model="res.groups">
+			<field name="name">Manager</field>
+			<field name="category_id" ref="module_category_vit_kasbon_pb"/>
+		</record>
+		<record id="group_vit_kasbon_pb_kasir" model="res.groups">
+			<field name="name">Kasir</field>
+			<field name="category_id" ref="module_category_vit_kasbon_pb"/>
+		</record>	
+	</data>
+</odoo>

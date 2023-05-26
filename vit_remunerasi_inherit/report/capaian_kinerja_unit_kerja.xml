@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="vit_remunerasi.report_vit_capaian_kinerja_unit_kerja_menu" string="Capaian Kinerja Unit Kerja"
+         model="vit.capaian_kinerja_unit_kerja" report_type="qweb-pdf" 
+         file="vit.capaian_kinerja_unit_kerja"  name="vit_remunerasi_inherit.vit_capaian_kinerja_unit_kerja_report" />
+
+        <!-- document template -->
+        <template id="vit_remunerasi_inherit.vit_capaian_kinerja_unit_kerja_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Capaian Kinerja Unit Kerja: <span t-field="doc.name"/>
+                    </h2>
+                    <!-- <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Description</strong>
+                            <p class="m-0" t-field="doc.description" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                    </div> -->
+                </div>
+                <div class="oe_structure"/>
+                <!-- <h2>Capaian unit</h2> -->
+                <table class="table table-sm o_main_table" name="capaian_unit_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Unit</td>
+                            <td>Target Capaian</td>
+                            <td>Capaian</td>
+                            <td>Penilaian</td>
+                        </tr>
+                    </thead>
+                    <tbody class="capaian_unit_ids_tbody">
+                        <tr t-foreach="doc.capaian_unit_ids" t-as="line">
+                            <td><span t-field="line.unit_id" /></td>
+                            <td><span t-field="line.target_capaian" /></td>
+                            <td><span t-field="line.capaian" /></td>
+                            <td><span t-field="line.penilaian" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_remunerasi_inherit.vit_capaian_kinerja_unit_kerja_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_remunerasi_inherit.vit_capaian_kinerja_unit_kerja_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

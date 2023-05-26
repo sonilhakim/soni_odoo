@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="external_layout_standard_custom">
+        <div class="header" t-att-style="report_header_style">
+            <div class="row col-12" style="font-size:11pt;" >
+                <div class="col-4">
+                    <div>
+                        <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" style="height: 70px;width: 150px;" alt="Logo"/>
+                    </div>
+                    <div name="company_address">
+                        <b><div t-field="doc.company_id.name"/></b>
+                        <div t-field="doc.company_id.street"/>
+                        <div t-field="doc.company_id.city"/>
+                        <div> Telp. <span t-field="doc.company_id.phone"/></div>
+                        <div> Email. <span t-field="doc.company_id.email"/></div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div>
+                        Kepada YTH
+                    </div>
+                    <div name="partner_address">
+                        <div t-field="doc.partner_id"/>
+                        <div t-field="doc.partner_id.street"/>
+                        <div t-field="doc.partner_id.city"/>
+                        <div t-field="doc.partner_id.phone"/>
+                        <div t-field="doc.partner_id.email"/>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div>
+                        <h4><b>SURAT JALAN</b></h4>
+                    </div>
+                    <div class="row" >
+                        <div class="col-6">Tanggal</div>
+                        <div>:
+                            &#160;<span t-field="doc.date"/>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-6">Nomor S. Jalan</div>
+                        <div>:
+                            &#160;<span t-field="doc.name"/>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-6">Nomor Faktur</div>
+                        <div>:
+                            &#160;<span t-field="doc.origin"/>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-6">Nomor Polisi</div>
+                        <div>:
+                            &#160;<span t-field="doc.no_polisi"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-3 mb4">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
+                </div>
+                <div class="col-9 text-right" style="margin-top:22px;" t-field="company.report_header" name="moto"/>
+            </div>
+            <div t-if="company.logo or company.report_header" class="row zero_min_height">
+                <div class="col-12">
+                    <div style="border-bottom: 1px solid black;"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6" name="company_address">
+                    <div t-field="company.partner_id"/>
+                </div>
+            </div> -->
+        </div>
+        <div class="article o_report_layout_standard"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <!-- <t t-call="web.address_layout"/> -->
+            <t t-raw="0"/>
+        </div>
+        <!-- <div class="footer o_standard_footer">
+            <div class="text-center" style="border-top: 1px solid black;">
+                <div t-if="report_type == 'pdf'">
+                    Halaman: <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+        </div> -->
+
+    </template>
+
+    <!-- Public api: layout to t-call from reports -->
+
+    <template id="external_layout_custom">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+
+        <t t-if="not company">
+            <!-- Multicompany -->
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+        <t t-call="vit_custom_report_picking.external_layout_standard_custom">
+            <t t-raw="0"/>                
+        </t>
+
+    </template>
+
+</odoo>

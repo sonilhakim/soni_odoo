@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- inherit pengguna -->
+    <record id="view_users_simple_form_back_office" model="ir.ui.view">
+        <field name="name">res.users.simplified.form.back_office</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='mobile']" position="after">
+                <field name="lang"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_groups_tree_portal" model="ir.ui.view">
+        <field name="name">res.groups.tree.portal</field>
+        <field name="model">res.groups</field>
+        <field name="arch" type="xml">
+            <tree string="Groups" create="false">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_groups_tree_back_office" model="ir.ui.view">
+        <field name="name">res.groups.tree.back_office</field>
+        <field name="model">res.groups</field>
+        <field name="arch" type="xml">
+            <tree string="Groups">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <!-- inherit cuti bersama -->
+    <record id="hr_leave_view_form_back_office" model="ir.ui.view">
+        <field name="name">hr.leave.view.form_back_office</field>
+        <field name="model">hr.leave</field>
+        <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group/group/label" position="replace">
+                <label for="number_of_days" string="Hari"/>
+            </xpath>
+            <xpath expr="//field[@name='holiday_status_id']" position="attributes">
+                <attribute name="string">Tipe Cuti</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="hr_leave_allocation_view_tree_back_office" model="ir.ui.view">
+        <field name="name">hr.leave.allocation.view.tree.back_office</field>
+        <field name="model">hr.leave.allocation</field>
+        <field name="inherit_id" ref="hr_holidays.hr_leave_allocation_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='holiday_status_id']" position="after">
+                <field name="date_from" string="Tanggal Mulai"/>
+                <field name="date_to" string="Tanggal Selesai"/>
+            </xpath>
+            <xpath expr="//field[@name='holiday_status_id']" position="attributes">
+                <attribute name="string">Tipe Cuti</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="hr_leave_allocation_view_form_back_office" model="ir.ui.view">
+        <field name="name">hr.leave.allocation.view.form.back_office</field>
+        <field name="model">hr.leave.allocation</field>
+        <field name="inherit_id" ref="hr_holidays.hr_leave_allocation_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='holiday_status_id']" position="after">
+                <field name="date_from" string="Tanggal Mulai"/>
+                <field name="date_to" string="Tanggal Selesai"/>
+            </xpath>
+            <xpath expr="//form/sheet/group/group/label" position="replace">
+                <label for="number_of_days" string="Hari"/>
+            </xpath>
+            <xpath expr="//field[@name='holiday_status_id']" position="attributes">
+                <attribute name="string">Tipe Cuti</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- inherit Mengelola Pendapatan Lain -->
+    <record id="hr_contribution_register_treeBO" model="ir.ui.view">
+        <field name="name">hr.contribution.register.tree.bo</field>
+        <field name="model">hr.contribution.register</field>
+        <field name="inherit_id" ref="hr_payroll.hr_contribution_register_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="pendapat_id"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="hr_contribution_register_formBO" model="ir.ui.view">
+        <field name="name">hr.contribution.register.form.bo</field>
+        <field name="model">hr.contribution.register</field>
+        <field name="inherit_id" ref="hr_payroll.hr_contribution_register_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="pendapat_id"/>
+            </xpath>
+        </field>
+    </record>
+
+	<!-- action_Pengguna -->
+	<record id="action_res_users_bo" model="ir.actions.act_window">
+        <field name="name">Pengguna</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.users</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+        <field name="domain">[('id','=',uid)]</field>
+        <field name="context">{'search_default_no_share': 1}</field>
+    </record>
+
+    <record id="action_res_groups_back_office" model="ir.actions.act_window">
+        <field name="name">Pengelolaan Group Back Office</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.groups</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="view_groups_tree_back_office"/>
+        <field name="context">{'search_default_no_share': 1}</field>
+        <field name="help"></field>
+    </record>
+    <record id="action_res_users_back_office" model="ir.actions.act_window">
+        <field name="name">Pengelolaan Pengguna Back Office</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.users</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+        <field name="context">{'search_default_no_share': 1}</field>
+    </record>
+    <record id="action_res_groups_portal" model="ir.actions.act_window">
+        <field name="name">Pengelolaan Group Portal</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.groups</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="view_groups_tree_portal"/>
+        <field name="domain">[('name','=','Portal')]</field>
+        <field name="context">{}</field>
+        <field name="help"></field>
+    </record>
+    <record id="action_res_users_portal" model="ir.actions.act_window">
+        <field name="name">Pengelolaan Pengguna Portal</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.users</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+        <field name="domain">[('groups_id.name','=','Portal')]</field>
+        <field name="context">{}</field>
+    </record>
+    <record id="action_res_users_portal1" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+        <field name="act_window_id" ref="action_res_users_portal"/>
+    </record>
+    <record id="action_res_users_portal2" model="ir.actions.act_window.view">
+        <field eval="20" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="base.view_users_form"/>
+        <field name="act_window_id" ref="action_res_users_portal"/>
+    </record>
+
+    <record id="hr_contract_advantage_template_action_back_office" model="ir.actions.act_window">
+        <field name="name">Gaji Pegawai</field>
+        <field name="res_model">hr.contract.advantage.template</field>
+        <field name="view_type">form</field>
+    </record>
+    <record id="action_view_hr_payroll_structure_back_office" model="ir.actions.act_window">
+        <field name="name">Komponen Gaji</field>
+        <field name="res_model">hr.payroll.structure</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+    <record id="action_salary_rule_form_back_office" model="ir.actions.act_window">
+        <field name="name">Komponen Formula</field>
+        <field name="res_model">hr.salary.rule</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="domain">[('parent_rule_id','=',False)]</field>
+        <field name="search_view_id" ref="hr_payroll.view_hr_rule_filter"/>
+    </record>
+    <record id="action_view_hr_payslip_form_back_office" model="ir.actions.act_window">
+        <field name="name">Mengelola Gaji Pegawai</field>
+        <field name="res_model">hr.payslip</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="hr_payroll.view_hr_payslip_filter"/>
+    </record>
+    <record id="action_pendapatan_lain_form_back_office" model="ir.actions.act_window">
+        <field name="name">Mengelola Pendapatan Lain</field>
+        <field name="res_model">hr.contribution.register</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+    <record id="hr_leave_action_pengajuan_cuti" model="ir.actions.act_window">
+        <field name="name">Mengelola Pengajuan Cuti</field>
+        <field name="res_model">hr.leave</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">calendar,tree,form,activity</field>
+        <field name="context">{}</field>
+        <field name="domain">[('user_id', '=', uid)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Buat Pengajuan Cuti Baru
+            </p>
+        </field>
+    </record>
+    <record id="hr_leave_pengajuan_cuti_all" model="ir.actions.act_window">
+        <field name="name">Mengelola Pengajuan Cuti Bersama</field>
+        <field name="res_model">hr.leave.allocation</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,activity</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Buat Pengajuan Cuti Bersama Baru
+            </p>
+        </field>
+        <field name="context">{}</field>
+        <field name="domain">[('employee_id.user_id', '=', uid)]</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="open_overtime_back_office">
+        <field name="name">Mengelola Pengajuan Lembur</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.overtime</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Buat Pengajuan Lembur Baru
+            </p>
+            <p>klik tombol Buat untuk menambah data lembur baru</p>
+        </field>
+    </record>
+
+	<menuitem id="pengguna_sub_menu"
+			name="Pengguna"
+			sequence="10"
+			parent="vit_kepegawaian_back_office"/>
+	<menuitem id="menu_pengguna_bo" name="Pengguna" parent="pengguna_sub_menu" action="action_res_users_bo" sequence="10"/>
+	<menuitem id="menu_groups_back_office" name="Pengelolaan Group Back Office" parent="pengguna_sub_menu" action="action_res_groups_back_office" sequence="20"/>
+	<menuitem id="menu_pengguna_back_office" name="Pengelolaan Pengguna Back Office" parent="pengguna_sub_menu" action="action_res_users_back_office" sequence="30"/>
+	<menuitem id="menu_groups_portal" name="Pengelolaan Group Portal" parent="pengguna_sub_menu" action="action_res_groups_portal" sequence="40"/>
+	<menuitem id="menu_pengguna_portal" name="Pengelolaan Pengguna Portal" parent="pengguna_sub_menu" action="action_res_users_portal" sequence="50"/>
+
+    <menuitem id="menu_master_back_office1"
+            action="action_general_configuration_back_office"
+            name="Master Back Office"
+            sequence="100"
+            parent="vit_kepegawaian_back_office"/>
+
+	<menuitem id="menu_Data_Pribadi_BO"
+			action="action_Data_Pribadi"
+			name="Data Pribadi"
+			sequence="15"
+			parent="vit_kepegawaian_back_office"/>
+
+	<menuitem id="menu_Riwayat_bo"
+			name="Riwayat"
+			sequence="20"
+			parent="vit_kepegawaian_back_office"/>
+	<menuitem id="menu_vit_riwayat_izin_belajar_back_office" name="Riwayat izin belajar" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_izin_belajar" sequence="20"/>
+	<menuitem id="menu_vit_riwayat_tugas_belajar_back_office" name="Riwayat tugas belajar" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_tugas_belajar" sequence="30"/>
+	<menuitem id="menu_vit_riwayat_study_lanjutan_back_office" name="Riwayat study lanjutan" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_study_lanjutan" sequence="40"/>
+	<menuitem id="menu_vit_riwayat_bkd_back_office" name="Riwayat bkd" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_bkd" sequence="50"/>
+	<menuitem id="menu_vit_riwayat_pengabdian_masyarakat_back_office" name="Riwayat pengabdian masyarakat" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_pengabdian_masyarakat" sequence="60"/>
+	<menuitem id="menu_vit_riwayat_pekerjaan_back_office" name="Riwayat pekerjaan" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_pekerjaan" sequence="70"/>
+	<menuitem id="menu_vit_riwayat_beasiswa_back_office" name="Riwayat beasiswa" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_beasiswa" sequence="80"/>
+	<menuitem id="menu_vit_riwayat_diklat_back_office" name="Riwayat diklat" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_diklat" sequence="90"/>
+	<menuitem id="menu_vit_riwayat_pendidikan_back_office" name="Riwayat pendidikan" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_pendidikan" sequence="100"/>
+	<menuitem id="menu_vit_riwayat_penghargaan_back_office" name="Riwayat penghargaan" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_penghargaan" sequence="110"/>
+	<menuitem id="menu_vit_riwayat_penelitian_karya_imliah_back_office" name="Riwayat penelitian karya imliah" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_penelitian_karya_imliah" sequence="120"/>
+	<menuitem id="menu_vit_riwayat_dosen_mengajar_diluar_back_office" name="Riwayat dosen mengajar diluar" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_dosen_mengajar_diluar" sequence="130"/>
+	<menuitem id="menu_vit_riwayat_seminar_back_office" name="Riwayat seminar" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_seminar" sequence="140"/>
+	<menuitem id="menu_vit_riwayat_organisasi_pegawai_back_office" name="Riwayat organisasi pegawai" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_organisasi_pegawai" sequence="150"/>
+	<menuitem id="menu_vit_riwayat_pelatihan_back_office" name="Riwayat pelatihan" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_pelatihan" sequence="160"/>
+	<menuitem id="menu_vit_riwayat_kunjungan_ke_luar_negeri_back_office" name="Riwayat kunjungan ke luar negeri" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_kunjungan_ke_luar_negeri" sequence="170"/>
+	<menuitem id="menu_vit_riwayat_kepakaran_dosen_back_office" name="Riwayat kepakaran dosen" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_kepakaran_dosen" sequence="180"/>
+	<menuitem id="menu_vit_riwayat_mengajar_back_office" name="Riwayat mengajar" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_mengajar" sequence="190"/>
+	<menuitem id="menu_vit_riwayat_membimbing_back_office" name="Riwayat membimbing" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_membimbing" sequence="200"/>
+	<menuitem id="menu_vit_riwayat_perjalanan_dinas_back_office" name="Riwayat Perjalanan Dinas" parent="menu_Riwayat_bo" action="vit_riwayat.action_vit_riwayat_perjalanan_dinas" sequence="210"/>
+	<menuitem id="menu_vit_riwayat_verifikasi_back_office" name="Riwayat Verifikasi" parent="menu_Riwayat_bo" action="vit_riwayat_inherit.action_vit_riwayat_verifikasi" sequence="210"/>
+
+	<menuitem id="menu_kerja_dosen_bo"
+			name="Kerja Dosen"
+			sequence="30"
+			parent="vit_kepegawaian_back_office"/>
+	<menuitem id="menu_vit_kerja_dosen_back_office" name="Kerja Dosen" parent="menu_kerja_dosen_bo" action="vit_kerja_dosen_inherit.action_vit_kerja_dosen" sequence="10"/>
+	<menuitem id="menu_vit_pengajuan_dosen_back_office" name="Pengajuan dosen" parent="menu_kerja_dosen_bo" action="vit_kerja_dosen.action_vit_pengajuan_dosen" sequence="20"/>
+	<menuitem id="menu_vit_persetujuan_beban_kinerja_dosen_back_office" name="Persetujuan beban kinerja dosen" parent="menu_kerja_dosen_bo" action="vit_kerja_dosen.action_vit_persetujuan_beban_kinerja_dosen" sequence="30"/>
+	<menuitem id="menu_vit_sertifikasi_dosen_back_office" name="Sertifikasi Dosen" parent="menu_kerja_dosen_bo" action="vit_kerja_dosen_inherit.action_vit_sertifikasi_dosen" sequence="40"/>
+	<menuitem id="menu_vit_usulan_sertifikasi_back_office" name="Usulan sertifikasi" parent="menu_kerja_dosen_bo" action="vit_kerja_dosen.action_vit_usulan_sertifikasi" sequence="50"/>
+	<menuitem id="menu_vit_verifikasi_data_dosen_back_office" name="Verifikasi data dosen" parent="menu_kerja_dosen_bo" action="vit_kerja_dosen.action_vit_verifikasi_data_dosen" sequence="60"/>
+	<menuitem id="menu_vit_penelitian_sertifikasi_back_office" name="Penelitian sertifikasi" parent="menu_kerja_dosen_bo" action="vit_kerja_dosen.action_vit_penelitian_sertifikasi" sequence="70"/>
+
+	<menuitem id="menu_pengajuan_bo"
+			name="Pengajuan"
+			sequence="35"
+			parent="vit_kepegawaian_back_office"/>
+	<menuitem id="menu_vit_pengajuan" name="Pengajuan" parent="menu_pengajuan_bo" action="action_vit_pengajuan" sequence="10"/>
+	<menuitem id="menu_hr_attendance_kehadiran" name="Mengelola Data Kehadiran" parent="menu_pengajuan_bo" sequence="20" action="hr_attendance.hr_attendance_action"/>
+	<menuitem id="hr_leave_menu_pengajuan_cuti" parent="menu_pengajuan_bo" action="hr_leave_action_pengajuan_cuti" sequence="30"/>
+	<menuitem id="hr_holidays_pengajuan_cuti_all_allocations" name="Mengelola Pengajuan Cuti Bersama" parent="menu_pengajuan_bo" action="hr_leave_pengajuan_cuti_all" sequence="40"/>
+	<menuitem name="Mengelola Pengajuan Lembur" parent="menu_pengajuan_bo" id="menu_overtime_request_back_office" action="open_overtime_back_office" sequence="50"/>
+
+	<menuitem id="menu_gaji_pegawai_bo"
+			name="Gaji Pegawai"
+			sequence="40"
+			parent="vit_kepegawaian_back_office"/>	
+	<menuitem id="gaji_pegawai_menu_action_back_office" action="hr_contract_advantage_template_action_back_office" parent="menu_gaji_pegawai_bo" sequence="10"/>	
+    <menuitem id="menu_hr_payroll_structure_view" action="action_view_hr_payroll_structure_back_office" parent="menu_gaji_pegawai_bo" sequence="20"/>    
+	<menuitem id="menu_action_hr_salary_rule_back_office" action="action_salary_rule_form_back_office" parent="menu_gaji_pegawai_bo" sequence="30"/>	
+    <menuitem id="menu_mengelola_gaji_pegawai" action="action_view_hr_payslip_form_back_office" parent="menu_gaji_pegawai_bo" sequence="40"/>    
+    <menuitem id="menu_action_pendapatan_lain_back_office" action="action_pendapatan_lain_form_back_office" parent="menu_gaji_pegawai_bo" sequence="50"/>
+    <menuitem id="menu_vit_kenaikan_gaji_berkala_back_office" name="Kenaikan Gaji Berkala" parent="menu_gaji_pegawai_bo" action="action_vit_kenaikan_gaji_berkala" sequence="60"/>
+
+  </data>
+</odoo>

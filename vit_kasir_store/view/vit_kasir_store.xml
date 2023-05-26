@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_kasir_store_tree" model="ir.ui.view">
+            <field name="name">vit_kasir_store_tree</field>
+            <field name="model">vit.kasir_store</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Kasir Store">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="po_id" />
+                    <field name="partner_id" />
+                    <field name="project" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kasir_store_form" model="ir.ui.view">
+            <field name="name">vit_kasir_store_form</field>
+            <field name="model">vit.kasir_store</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Kasir Store">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" />
+                        <button string="Cancel" type="object" name="action_cancel" states="confirm" confirm="Anda yakin dokumen akan di cancel ?"/>
+                        <button string="Validate" type="object" name="action_done" states="confirm" class="oe_highlight" confirm="Anda yakin dokumen akan di validate ?"/>
+                        <button string="Done" type="object" name="action_complete" class="oe_highlight btn-danger" confirm="Anda yakin dokumen akan di selesaikan?" states="partial"/>
+                        <button string="Reset to Draft" type="object" name="action_draft" states="cancel" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="No Kasir Store :"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="date" required="1"/>
+                                <field name="user_id" options="{'no_create': True}" required="1" readonly="1"/>
+                                <field name="picking_type_id" domain="[('code', '=', 'kasir_store')]" readonly="1"/>
+                                <field name="warning" attrs="{'invisible':[('warning','=',False)]}" readonly="1" string="Warning" style="background:Red; color:White;"/>
+                                <field name="barcode" default_focus="1" attrs="{'invisible':[('state','in',['partial','done'])]}"/>
+                            </group>
+                            <group>
+                                <field name="po_id" options="{'no_create': True}" required="0"/>
+                                <field name="partner_id" options="{'no_create': True}"  required="0"/>
+                                <field name="project" required="0"/>
+                                <field name="count"/>                                
+                                <field name="show_unvalidate" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Repair" attrs="{'invisible': [('show_unvalidate','=',False)]}">
+                                <group>
+                                    <group>
+                                        <field name="warning_repair" attrs="{'invisible':[('warning','=',False)]}" readonly="1" string="Warning" style="background:Red; color:White;"/>
+                                        <field name="barcode_repair" attrs="{'invisible':[('state','=','done')]}"/>
+                                    </group>
+                                    <group>
+                                    </group>
+                                </group>
+                                <h4 style="color:red;">Unvalidate</h4>
+                                <field name="unvalidate_ids" readonly="1">
+                                    <tree string="Unvalidate" decoration-danger="is_not_same == True and is_swap == False">
+                                        <field name="lot_id_sumber"/>
+                                        <field name="nik_sumber"/>
+                                        <field name="karyawan_sumber"/>
+                                        <field name="style_id_sumber"/>
+                                        <field name="size_id_sumber"/>
+                                        <field name="polybag_sumber"/>
+                                        <field name="lot_id_target"/>
+                                        <field name="nik_target"/>
+                                        <field name="karyawan_target"/>
+                                        <field name="style_id_target"/>
+                                        <field name="size_id_target"/>
+                                        <field name="polybag_target"/>
+                                        <field name="is_swap" invisible="1"/>
+                                        <field name="is_not_same" invisible="1"/>
+                                    </tree>
+                                    <form string="Unvalidate">
+                                            <group>
+                                            <group>
+                                                <field name="polybag_sumber"/>
+                                            </group>
+                                            <group>
+                                                <field name="lot_id_target"/>
+                                            </group>
+                                        </group>
+                                    </form>
+                                </field>
+                                <h4 style="color:green;">Repair</h4>
+                                <field name="repair_ids">
+                                    <tree string="Repair" editable="bottom" decoration-danger="is_not_same == True and is_swap == False" decoration-muted="is_swap == True">
+                                        <field name="lot_id_sumber" force_save="1"/>
+                                        <field name="nik_sumber" force_save="1"/>
+                                        <field name="karyawan_sumber" force_save="1"/>
+                                        <field name="style_id_sumber" force_save="1"/>
+                                        <field name="size_id_sumber" force_save="1"/>
+                                        <field name="polybag_sumber" force_save="1"/>
+                                        <field name="lot_id_target" force_save="1"/>
+                                        <field name="nik_target" force_save="1"/>
+                                        <field name="karyawan_target" force_save="1"/>
+                                        <field name="style_id_target" force_save="1"/>
+                                        <field name="size_id_target" force_save="1"/>
+                                        <field name="polybag_target" force_save="1"/>
+
+                                        <field name="bordir_target" invisible="1" force_save="1"/>
+                                        <field name="pengukuran_karyawan_target" invisible="1" force_save="1"/>
+                                        <field name="data_pengukuran_id_target" invisible="1" force_save="1"/>
+                                        <field name="divisi_target" invisible="1" force_save="1"/>
+                                        <field name="lokasi_target" invisible="1" force_save="1"/>
+                                        <field name="jabatan_target" invisible="1" force_save="1"/>
+                                        <field name="location_id_target" invisible="1" force_save="1"/>
+                                        <field name="lot_target" invisible="1" force_save="1"/>
+                                        <field name="bordir_sumber" invisible="1" force_save="1"/>
+                                        <field name="pengukuran_karyawan_sumber" invisible="1" force_save="1"/>
+                                        <field name="data_pengukuran_id_sumber" invisible="1" force_save="1"/>
+                                        <field name="divisi_sumber" invisible="1" force_save="1"/>
+                                        <field name="lokasi_sumber" invisible="1" force_save="1"/>
+                                        <field name="jabatan_sumber" invisible="1" force_save="1"/>
+                                        <field name="location_id_sumber" invisible="1" force_save="1"/>
+                                        <field name="lot_sumber" invisible="1" force_save="1"/>
+                                        <field name="is_swap" invisible="1" force_save="1"/>
+                                        <field name="is_not_same" invisible="1" force_save="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Store Lines">
+                                <field name="store_lines" attrs="{'readonly':[('state','in',['done','cancel'])]}" >
+                                    <tree string="Lines" editable="bottom" decoration-danger="is_not_same == True and is_swap == False" decoration-muted="is_swap == True">
+                                        <field name="po_id" invisible="1"/>
+                                        <field name="lot_id_sumber" force_save="1"/>
+                                        <field name="nik_sumber" force_save="1"/>
+                                        <field name="karyawan_sumber" force_save="1"/>
+                                        <field name="style_id_sumber" force_save="1"/>
+                                        <field name="size_id_sumber" force_save="1"/>
+                                        <field name="polybag_sumber" force_save="1"/>
+                                        <field name="lot_id_target" force_save="1"/>
+                                        <field name="nik_target" force_save="1"/>
+                                        <field name="karyawan_target" force_save="1"/>
+                                        <field name="style_id_target" force_save="1"/>
+                                        <field name="size_id_target" force_save="1"/>
+                                        <field name="polybag_target" force_save="1"/>
+
+                                        <field name="bordir_target" invisible="1" force_save="1"/>
+                                        <field name="pengukuran_karyawan_target" invisible="1" force_save="1"/>
+                                        <field name="data_pengukuran_id_target" invisible="1" force_save="1"/>
+                                        <field name="divisi_target" invisible="1" force_save="1"/>
+                                        <field name="lokasi_target" invisible="1" force_save="1"/>
+                                        <field name="jabatan_target" invisible="1" force_save="1"/>
+                                        <field name="location_id_target" invisible="1" force_save="1"/>
+                                        <field name="lot_target" invisible="1" force_save="1"/>
+                                        <field name="bordir_sumber" invisible="1" force_save="1"/>
+                                        <field name="pengukuran_karyawan_sumber" invisible="1" force_save="1"/>
+                                        <field name="data_pengukuran_id_sumber" invisible="1" force_save="1"/>
+                                        <field name="divisi_sumber" invisible="1" force_save="1"/>
+                                        <field name="lokasi_sumber" invisible="1" force_save="1"/>
+                                        <field name="jabatan_sumber" invisible="1" force_save="1"/>
+                                        <field name="location_id_sumber" invisible="1" force_save="1"/>
+                                        <field name="lot_sumber" invisible="1" force_save="1"/>
+                                        <field name="is_swap" invisible="1" force_save="1"/>
+                                        <field name="is_not_same" invisible="1" force_save="1"/>
+                                        <field name="state" invisible="1" force_save="1"/>
+                                        <!-- <field name="is_complete" invisible="1"/> -->
+                                        <button attrs="{'invisible': ['|','|',('is_not_same', '=', False),('is_swap', '=', True),('state', '=', 'done')]}" string="Swap" type="object" name="swap_barcode" class="btn-danger btn-sm"/>
+                                    </tree>
+                                    <form string="Lines">
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="lot_id_sumber"/>
+                                                    <field name="nik_sumber"/>
+                                                    <field name="karyawan_sumber"/>
+                                                    <field name="style_id_sumber"/>
+                                                    <field name="size_id_sumber"/>
+                                                    <field name="polybag_sumber"/>
+                                                </group>
+                                                <group>
+                                                    <field name="lot_id_target"/>
+                                                    <field name="nik_target"/>
+                                                    <field name="karyawan_target"/>
+                                                    <field name="style_id_target"/>
+                                                    <field name="size_id_target"/>
+                                                    <field name="polybag_target"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                                <div>
+                                    <field name="notes" placeholder="Notes"/>
+                                </div>
+                            </page>
+                            <page string="Summary Polybag">
+                                <field name="summary_lines">
+                                    <tree string="Summary Polybag">
+                                        <field name="polybag_name"/>
+                                        <field name="qty_polybag"/>
+                                        <field name="date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_kasir_store_search" model="ir.ui.view">
+            <field name="name">vit_kasir_store_search</field>
+            <field name="model">vit.kasir_store</field>
+            <field name="arch" type="xml">
+                <search string="Kasir Store">
+                    <filter string="Draft" name="draft" domain="[('state','=','draft')]" />
+                    <filter string="Confirm" name="confirm" domain="[('state','=','confirm')]" />
+                    <filter string="To Process" name="to_process" domain="[('state','in', ['draft','confirm'])]" />
+                    <filter string="Done" name="done" domain="[('state','=','done')]" />
+                    <field name="name" select="True"/>
+                    <field name="date" select="True"/>
+                    <field name="po_id" select="True"/>
+                    <field name="partner_id" select="True"/>
+                    <field name="project" select="True"/>
+                    <field name="state" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Customer" domain="[]" name="group_by_partner_id" context="{'group_by':'partner_id'}"/>
+                        <filter string="No. OR" domain="[]" name="group_by_po_id" context="{'group_by':'po_id'}"/>
+                        <filter string="Project" domain="[]" name="group_by_project" context="{'group_by':'project'}"/>
+                        <filter string="State" domain="[]" name="group_by_state" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_swap_barcode_kanban" model="ir.ui.view" >
+            <field name="name">vit_kasir_store_kanban</field>
+            <field name="model">vit.kasir_store</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="po_id" />
+                    <field name="partner_id" />
+                    <field name="project" />
+                    <field name="state" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            <span class='text-muted'>Customer</span> <field name="partner_id"></field>
+                                        </li>
+                                        <li>
+                                            <span class='text-muted'>Date</span> <field name="date"></field>
+                                        </li>
+                                        <li>
+                                            <span class='text-muted'>po_id</span> <field name="po_id"></field>
+                                        </li>
+                                        <li>
+                                            <span class='text-muted'>Project</span> <field name="project"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- act window kasir store -->
+        <record id="action_vit_kasir_store" model="ir.actions.act_window">
+            <field name="name">Kasir Store</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.kasir_store</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Kasir Store
+                </p><p>
+                Click the Create button to add a new Kasir Store
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_vit_kasir_store" name="Kasir Store" parent="stock.menu_stock_warehouse_mgmt" action="action_vit_kasir_store" sequence="200"/>
+
+        <record id="kasir_store_action_picking_dashboard" model="ir.actions.act_window">
+            <field name="name">Kasir/Store</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.kasir_store</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" ref="view_vit_kasir_store_search"/>
+            <field name="domain">[('picking_type_id', '=', active_id)]</field>
+            <field name="context">{'default_picking_type_id': active_id}</field>
+        </record>
+
+        <record id="action_kasir_store_form" model="ir.actions.act_window">
+            <field name="name">Kasir/Store</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.kasir_store</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="context">{'default_picking_type_id': active_id}</field>
+        </record>
+        
+    </data>
+</odoo>

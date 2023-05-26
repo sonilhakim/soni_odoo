@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_hr_employee_menu" string="Vit - Employee"
+         model="hr.employee" report_type="qweb-pdf" 
+         file="hr.employee"  name="vit_bkd.hr_employee_report" />
+
+        <!-- document template -->
+        <template id="vit_bkd.hr_employee_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Employee: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nomor sertifikat</strong>
+                            <p class="m-0" t-field="doc.nomor_sertifikat" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nip</strong>
+                            <p class="m-0" t-field="doc.nip" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nidn</strong>
+                            <p class="m-0" t-field="doc.nidn" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>S1</strong>
+                            <p class="m-0" t-field="doc.s1" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>S2</strong>
+                            <p class="m-0" t-field="doc.s2" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>S3</strong>
+                            <p class="m-0" t-field="doc.s3" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>S1 ijasah</strong>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>S2 ijasah</strong>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>S3 ijasah</strong>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>S1 ijasah filename</strong>
+                            <p class="m-0" t-field="doc.s1_ijasah_filename" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>S2 ijasah filename</strong>
+                            <p class="m-0" t-field="doc.s2_ijasah_filename" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>S3 ijasah filename</strong>
+                            <p class="m-0" t-field="doc.s3_ijasah_filename" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Bidang ilmu</strong>
+                            <p class="m-0" t-field="doc.bidang_ilmu" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Ktp</strong>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Ktp filename</strong>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Status dosen</strong>
+                            <p class="m-0" t-field="doc.status_dosen_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Fakultas</strong>
+                            <p class="m-0" t-field="doc.fakultas_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jurusan</strong>
+                            <p class="m-0" t-field="doc.jurusan_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Program studi</strong>
+                            <p class="m-0" t-field="doc.program_studi_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jabatan fungsional</strong>
+                            <p class="m-0" t-field="doc.jabatan_fungsional_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Golongan</strong>
+                            <p class="m-0" t-field="doc.golongan_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Bkd</h2>
+                <table class="table table-sm o_main_table" name="bkd_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Date</td>
+                            <td>Nip</td>
+                            <td>Nidn</td>
+                            <td>S1</td>
+                            <td>S2</td>
+                            <td>S3</td>
+                            <td>Bidang ilmu</td>
+                            <td>Mobile</td>
+                            <td>Email</td>
+                            <td>State</td>
+                            <td>Employee</td>
+                            <td>Institusi</td>
+                            <td>Tahun akademik</td>
+                            <td>Semester</td>
+                            <td>Wakil dekan</td>
+                            <td>Status dosen</td>
+                            <td>Jabatan fungsional</td>
+                            <td>Fakultas</td>
+                            <td>Jurusan</td>
+                            <td>Program studi</td>
+                            <td>Golongan</td>
+                        </tr>
+                    </thead>
+                    <tbody class="bkd_ids_tbody">
+                        <tr t-foreach="doc.bkd_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.date" /></td>
+                            <td><span t-field="line.nip" /></td>
+                            <td><span t-field="line.nidn" /></td>
+                            <td><span t-field="line.s1" /></td>
+                            <td><span t-field="line.s2" /></td>
+                            <td><span t-field="line.s3" /></td>
+                            <td><span t-field="line.bidang_ilmu" /></td>
+                            <td><span t-field="line.mobile" /></td>
+                            <td><span t-field="line.email" /></td>
+                            <td><span t-field="line.state" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                            <td><span t-field="line.institusi_id" /></td>
+                            <td><span t-field="line.tahun_akademik_id" /></td>
+                            <td><span t-field="line.semester_id" /></td>
+                            <td><span t-field="line.wakil_dekan_id" /></td>
+                            <td><span t-field="line.status_dosen_id" /></td>
+                            <td><span t-field="line.jabatan_fungsional_id" /></td>
+                            <td><span t-field="line.fakultas_id" /></td>
+                            <td><span t-field="line.jurusan_id" /></td>
+                            <td><span t-field="line.program_studi_id" /></td>
+                            <td><span t-field="line.golongan_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Asesor1</h2>
+                <table class="table table-sm o_main_table" name="asesor1_id_table">
+                    <thead>
+                        <tr>
+                            <td> name</td>
+                            <td> inherit</td>
+                            <td>Nomor sertifikat</td>
+                            <td>Nip</td>
+                            <td>Nidn</td>
+                            <td>S1</td>
+                            <td>S2</td>
+                            <td>S3</td>
+                            <td>S1 ijasah</td>
+                            <td>S2 ijasah</td>
+                            <td>S3 ijasah</td>
+                            <td>S1 ijasah filename</td>
+                            <td>S2 ijasah filename</td>
+                            <td>S3 ijasah filename</td>
+                            <td>Bidang ilmu</td>
+                            <td>Ktp</td>
+                            <td>Ktp filename</td>
+                            <td>Status dosen</td>
+                            <td>Fakultas</td>
+                            <td>Jurusan</td>
+                            <td>Program studi</td>
+                            <td>Jabatan fungsional</td>
+                            <td>Golongan</td>
+                        </tr>
+                    </thead>
+                    <tbody class="asesor1_id_tbody">
+                        <tr t-foreach="doc.asesor1_id" t-as="line">
+                            <td><span t-field="line._name" /></td>
+                            <td><span t-field="line._inherit" /></td>
+                            <td><span t-field="line.nomor_sertifikat" /></td>
+                            <td><span t-field="line.nip" /></td>
+                            <td><span t-field="line.nidn" /></td>
+                            <td><span t-field="line.s1" /></td>
+                            <td><span t-field="line.s2" /></td>
+                            <td><span t-field="line.s3" /></td>
+                            <td><span t-field="line.s1_ijasah" /></td>
+                            <td><span t-field="line.s2_ijasah" /></td>
+                            <td><span t-field="line.s3_ijasah" /></td>
+                            <td><span t-field="line.s1_ijasah_filename" /></td>
+                            <td><span t-field="line.s2_ijasah_filename" /></td>
+                            <td><span t-field="line.s3_ijasah_filename" /></td>
+                            <td><span t-field="line.bidang_ilmu" /></td>
+                            <td><span t-field="line.ktp" /></td>
+                            <td><span t-field="line.ktp_filename" /></td>
+                            <td><span t-field="line.status_dosen_id" /></td>
+                            <td><span t-field="line.fakultas_id" /></td>
+                            <td><span t-field="line.jurusan_id" /></td>
+                            <td><span t-field="line.program_studi_id" /></td>
+                            <td><span t-field="line.jabatan_fungsional_id" /></td>
+                            <td><span t-field="line.golongan_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Asesor2</h2>
+                <table class="table table-sm o_main_table" name="asesor2_id_table">
+                    <thead>
+                        <tr>
+                            <td> name</td>
+                            <td> inherit</td>
+                            <td>Nomor sertifikat</td>
+                            <td>Nip</td>
+                            <td>Nidn</td>
+                            <td>S1</td>
+                            <td>S2</td>
+                            <td>S3</td>
+                            <td>S1 ijasah</td>
+                            <td>S2 ijasah</td>
+                            <td>S3 ijasah</td>
+                            <td>S1 ijasah filename</td>
+                            <td>S2 ijasah filename</td>
+                            <td>S3 ijasah filename</td>
+                            <td>Bidang ilmu</td>
+                            <td>Ktp</td>
+                            <td>Ktp filename</td>
+                            <td>Status dosen</td>
+                            <td>Fakultas</td>
+                            <td>Jurusan</td>
+                            <td>Program studi</td>
+                            <td>Jabatan fungsional</td>
+                            <td>Golongan</td>
+                        </tr>
+                    </thead>
+                    <tbody class="asesor2_id_tbody">
+                        <tr t-foreach="doc.asesor2_id" t-as="line">
+                            <td><span t-field="line._name" /></td>
+                            <td><span t-field="line._inherit" /></td>
+                            <td><span t-field="line.nomor_sertifikat" /></td>
+                            <td><span t-field="line.nip" /></td>
+                            <td><span t-field="line.nidn" /></td>
+                            <td><span t-field="line.s1" /></td>
+                            <td><span t-field="line.s2" /></td>
+                            <td><span t-field="line.s3" /></td>
+                            <td><span t-field="line.s1_ijasah" /></td>
+                            <td><span t-field="line.s2_ijasah" /></td>
+                            <td><span t-field="line.s3_ijasah" /></td>
+                            <td><span t-field="line.s1_ijasah_filename" /></td>
+                            <td><span t-field="line.s2_ijasah_filename" /></td>
+                            <td><span t-field="line.s3_ijasah_filename" /></td>
+                            <td><span t-field="line.bidang_ilmu" /></td>
+                            <td><span t-field="line.ktp" /></td>
+                            <td><span t-field="line.ktp_filename" /></td>
+                            <td><span t-field="line.status_dosen_id" /></td>
+                            <td><span t-field="line.fakultas_id" /></td>
+                            <td><span t-field="line.jurusan_id" /></td>
+                            <td><span t-field="line.program_studi_id" /></td>
+                            <td><span t-field="line.jabatan_fungsional_id" /></td>
+                            <td><span t-field="line.golongan_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_bkd.hr_employee_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_bkd.hr_employee_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

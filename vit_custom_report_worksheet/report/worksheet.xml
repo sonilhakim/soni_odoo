@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_worksheet">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="vit_custom_report_worksheet.external_layout_worksheet">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <!-- <table class="text-center" width="100%">
+                                <tr>
+                                    <td style="border-left: 1px solid black;border-right: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;">TERATAI WIDJAJA</td>
+                                    <td style="border-right: 1px solid black;border-top: 1px solid black;"></td>
+                                    <td style="border-right: 1px solid black;border-top: 1px solid black;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-left: 1px solid black;border-right: 1px solid black;border-bottom: 1px solid black;"><h3>WORKSHEET</h3></td>
+                                    <td style="border-right: 1px solid black;border-bottom: 1px solid black;"></td>
+                                    <td style="border-left: 1px solid black;border-right: 1px solid black;border-bottom: 1px solid black;"><h4><strong>TW</strong></h4></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-left: 1px solid black;border-right: 1px solid black;border-bottom: 1px solid black;">BUYER : <span t-field="o.partner_id"/></td>
+                                    <td style="border-right: 1px solid black;border-bottom: 1px solid black;">ITEM : <span t-field="o.product_tmpl_id"/></td>
+                                    <td style="border-right: 1px solid black;border-bottom: 1px solid black;">DELIVERY : <span t-field="o.delivery_date"/></td>
+                                </tr>
+                            </table> -->
+                            <div class="row" width="100%" style="margin-left:3px;margin-bottom:10px;">
+                                <table class="text-center" width="40%" height="100px">
+                                    <tr>
+                                        <td style="border-left: 1px solid black;border-right: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;vertical-align: middle;">TERATAI WIDJAJA</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-left: 1px solid black;border-right: 1px solid black;border-bottom: 1px solid black;vertical-align: middle;"><h1><i>WORKSHEET</i></h1></td>
+                                    </tr>
+                                </table>
+                                <table width="45%" height="100px">
+                                    <tr>
+                                        <td style="border-top: 1px solid black;vertical-align: middle;padding-left:5px;" width="5%">BUYER</td>
+                                        <td style="border-top: 1px solid black;vertical-align: middle;" width="35%"> : <span t-field="o.worksheet_id.partner_id"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: 1px solid black;border-bottom: 1px solid black;vertical-align: middle;padding-left:5px;" width="5%">ITEM</td>
+                                        <td style="border-top: 1px solid black;border-bottom: 1px solid black;vertical-align: middle;" width="35%"> : <span t-field="o.worksheet_id.boq_po_line_id.product_name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid black;vertical-align: middle;padding-left:5px;" width="5%">DELIVERY</td>
+                                        <td style="border-bottom: 1px solid black;vertical-align: middle;" width="35%"> : <span t-field="o.worksheet_id.delivery_date"/></td>
+                                    </tr>
+                                </table>
+                                <table class="text-center" width="13.5%" height="100px">
+                                    <tr>
+                                        <td style="border: 1px solid black;vertical-align: middle;"><h1><b>TW</b></h1></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div width="97%" style="margin-left:3px;margin-top:10px;margin-bottom:10px;">
+                                <table width="100%" >
+                                    <tr>
+                                        <td style="border-left: 1px solid black;border-right: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;text-align:center;width:25%;">DIBUAT</td>
+                                        <td style="border-right: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;width:25%;text-align:center;">DIPERIKSA</td>
+                                        <td style="border-right: 1px solid black;border-top: 1px solid black;text-align:center;border-bottom: 1px solid black;width:25%;">NO. OR</td>
+                                        <td style="border-right: 1px solid black;border-top: 1px solid black;text-align:center;border-bottom: 1px solid black;width:25%;">NO. REGIST</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-left: 1px solid black;border-right: 1px solid black;border-bottom: 1px solid black;heigth:100px;"></td>
+                                        <td style="border-right: 1px solid black;border-bottom: 1px solid black;height:100px;"></td>
+                                        <td style="border-right: 1px solid black;border-bottom: 1px solid black;text-align:center;height:100px;vertical-align:middle;"><span t-field="o.worksheet_id.origin"/></td>
+                                        <td style="border-right: 1px solid black;border-bottom: 1px solid black;text-align:center;height:100px;vertical-align:middle;"><span t-field="o.worksheet_id.name"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="row" width="100%" style="margin-left:3px;margin-bottom:10px;">
+                                <table class="text-center" width="40%" style="margin-right:15px;">
+                                    <tr>
+                                        <td style="border: 1px solid black;">CODE ACC</td>
+                                        <td style="border: 1px solid black;">STYLE NO</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid black;"><span t-field="o.worksheet_id.product_tmpl_id.default_code_c"/></td>
+                                        <td style="border: 1px solid black;"><span t-field="o.worksheet_id.product_tmpl_id"/></td>
+                                    </tr>
+                                </table>
+                                
+                                <table class="text-center" name="size_table" width="57%">
+                                    <thead>
+                                        <tr>
+                                            <td style="border: 1px solid black;">SIZE</td>
+                                            <td style="border: 1px solid black;">QTY</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="o.lines_wizard" t-as="line">
+                                            <td style="border: 1px solid black;"><span t-field="line.product_id.attribute_value_ids" /></td>
+                                            <td style="border: 1px solid black;text-align: right;padding-right: 5px;"><span t-field="line.product_uom_qty" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid black;">TOTAL</td>
+                                            <td style="border: 1px solid black;text-align: right;padding-right: 5px;"><span t-field="o.total_finished_products" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <table class="text-center" name="size_table" width="100%">
+                                <thead>
+                                    <tr>
+                                        <td style="border-left: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;">CODE ACC</td>
+                                        <td style="border-top: 1px solid black;border-right: 1px solid black;">DESCRIPTION</td>
+                                        <td style="border-top: 1px solid black;border-right: 1px solid black;">SPEC</td>
+                                        <td style="border-top: 1px solid black;border-right: 1px solid black;">COL</td>
+                                        <td style="border-top: 1px solid black;border-right: 1px solid black;">UNIT</td>
+                                        <td style="border-top: 1px solid black;"></td>
+                                        <td style="border-top: 1px solid black;">STYLE</td>
+                                        <td style="border-top: 1px solid black;border-right: 1px solid black;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-left: 1px solid black;border-bottom: 1px solid black;border-right: 1px solid black;"></td>
+                                        <td style="border-bottom: 1px solid black;border-right: 1px solid black;"></td>
+                                        <td style="border-bottom: 1px solid black;border-right: 1px solid black;"></td>
+                                        <td style="border-bottom: 1px solid black;border-right: 1px solid black;"></td>
+                                        <td style="border-bottom: 1px solid black;border-right: 1px solid black;"></td>
+                                        <td style="border: 1px solid black;">QTY</td>
+                                        <td style="border: 1px solid black;">CONS</td>
+                                        <td style="border: 1px solid black;">TOTAL</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.worksheet_id.move_raw_ids" t-as="raw">
+                                        <td style="border: 1px solid black;"><span t-field="raw.acc_no" /></td>
+                                        <td style="border: 1px solid black;"><span t-field="raw.product_id.name" /></td>
+                                        <td style="border: 1px solid black;"><span t-field="raw.spec" /></td>
+                                        <td style="border: 1px solid black;"><span t-field="raw.colour" /></td>
+                                        <td style="border: 1px solid black;"><span t-field="raw.product_uom" /></td>
+                                        <td style="border: 1px solid black;text-align: right;padding-right: 5px;"><span t-field="o.total_finished_products" /></td>
+                                        <td style="border: 1px solid black;text-align: right;padding-right: 5px;">
+                                            <!-- <span t-field="raw.cons" /> -->
+                                            <span t-esc="'%.3f'%(raw.product_uom_qty / o.total_finished_products)" />
+                                        </td>
+                                        <td style="border: 1px solid black;text-align: right;padding-right: 5px;"><span t-field=" raw.product_uom_qty" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <report 
+            string="WORKSHEET" 
+            id="action_report_worksheet" 
+            model="report.worksheet.wizard" 
+            name="vit_custom_report_worksheet.report_worksheet"
+            file="vit_custom_report_worksheet.report_worksheet"
+            paperformat="vit_custom_report_worksheet.paperformat_worksheet" 
+            report_type="qweb-pdf"
+            print_report_name="'WORKSHEET - %s' % object.worksheet_id.name"
+        />
+    </data>
+</odoo>

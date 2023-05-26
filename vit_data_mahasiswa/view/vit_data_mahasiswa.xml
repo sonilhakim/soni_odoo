@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_vit_data_mahasiswa_tree" model="ir.ui.view">
+            <field name="name">vit_vit_data_mahasiswa_tree</field>
+            <field name="model">vit.vit_data_mahasiswa</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Vit data mahasiswa">
+                    <field name="name" />
+                    <field name="tahun" />
+                    <field name="co_hort" />
+                    <field name="semester" />
+                    <field name="jumlah_mahasiswa" />
+                    <field name="jumlah_ditawarkan" />
+                    <field name="fakultas_id" />
+                    <field name="jurusan_id" />
+                    <field name="prodi_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_vit_data_mahasiswa_form" model="ir.ui.view">
+            <field name="name">vit_vit_data_mahasiswa_form</field>
+            <field name="model">vit.vit_data_mahasiswa</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Vit data mahasiswa">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Vit data mahasiswa Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tahun" />
+                                <field name="co_hort" />
+                                <field name="semester" />
+                                <field name="jumlah_mahasiswa" />
+                                <field name="jumlah_ditawarkan" />
+                            </group>
+                            <group>
+                                <field name="fakultas_id" />
+                                <field name="jurusan_id" />
+                                <field name="prodi_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_vit_data_mahasiswa_search" model="ir.ui.view">
+            <field name="name">vit_vit_data_mahasiswa</field>
+            <field name="model">vit.vit_data_mahasiswa</field>
+            <field name="arch" type="xml">
+                <search string="Vit data mahasiswa">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Tahun" name="filter_by_tahun" domain="[('tahun','=','')]" />
+                    <filter string="Semester" name="filter_by_semester" domain="[('semester','=','')]" />
+                    <filter string="Jumlah mahasiswa" name="filter_by_jumlah_mahasiswa" domain="[('jumlah_mahasiswa','=','')]" />
+                    <filter string="Jumlah ditawarkan" name="filter_by_jumlah_ditawarkan" domain="[('jumlah_ditawarkan','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="tahun" select="True"/>
+                    <field name="semester" select="True"/>
+                    <field name="jumlah_mahasiswa" select="True"/>
+                    <field name="jumlah_ditawarkan" select="True"/>
+                    <field name="fakultas_id" select="True"/>
+                    <field name="jurusan_id" select="True"/>
+                    <field name="prodi_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Fakultas" domain="[]" name="group_by_fakultas_id" context="{'group_by':'fakultas_id'}"/>
+                        <filter string="Jurusan" domain="[]" name="group_by_jurusan_id" context="{'group_by':'jurusan_id'}"/>
+                        <filter string="Prodi" domain="[]" name="group_by_prodi_id" context="{'group_by':'prodi_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_vit_data_mahasiswa_kanban" model="ir.ui.view" >
+            <field name="name">vit_vit_data_mahasiswa</field>
+            <field name="model">vit.vit_data_mahasiswa</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="tahun" />
+                    <field name="semester" />
+                    <field name="jumlah_mahasiswa" />
+                    <field name="jumlah_ditawarkan" />
+                    <field name="fakultas_id" />
+                    <field name="jurusan_id" />
+                    <field name="prodi_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Fakultas</span> <field name="fakultas_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Jurusan</span> <field name="jurusan_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Prodi</span> <field name="prodi_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_vit_data_mahasiswa_graph" model="ir.ui.view">
+            <field name="name">vit_vit_data_mahasiswa</field>
+            <field name="model">vit.vit_data_mahasiswa</field>
+            <field name="arch" type="xml">
+                <graph string="Vit data mahasiswa" type="bar">
+                    <field name="fakultas_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_vit_data_mahasiswa" model="ir.actions.act_window">
+            <field name="name">Vit data mahasiswa</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.vit_data_mahasiswa</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Vit data mahasiswa
+                </p><p>
+                Click the Create button to add a new Vit data mahasiswa
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_vit_data_mahasiswa" name="Vit data mahasiswa" parent="vit_data_mahasiswa_config_menu" action="action_vit_vit_data_mahasiswa" sequence="20"/>
+    </data>
+</odoo>

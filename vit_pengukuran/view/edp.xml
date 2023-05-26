@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_edp_tree" model="ir.ui.view">
+            <field name="name">vit_pengukuran_tree</field>
+            <field name="model">vit.pengukuran</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="EDP">
+                    <field name="name" />
+                    <field name="project" />
+                    <field name="date" />
+                    <field name="partner_id" />
+                    <field name="company_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <!-- <record id="view_vit_pengukuran_form" model="ir.ui.view">
+            <field name="name">vit_pengukuran_form</field>
+            <field name="model">vit.pengukuran</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="pengukuran">
+                    <header>
+                        <button string="Submit" type="object" name="action_confirm" states="draft" />
+                        <button string="Validate" type="object" name="action_done" states="open" />
+                        <button string="Reset to Draft" type="object" name="action_draft" states="open,done" />
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box"> -->
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        <!-- </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Nomor Pengukuran"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="project" />
+                                <field name="date" />
+                                <field name="user_id" />
+                            </group>
+                            <group>
+                                <field name="partner_id" />
+                                <field name="company_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Karyawan">
+                                <field name="karyawan_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record> -->
+        <!-- search -->
+        <!-- <record id="view_vit_pengukuran_search" model="ir.ui.view">
+            <field name="name">vit_pengukuran</field>
+            <field name="model">vit.pengukuran</field>
+            <field name="arch" type="xml">
+                <search string="pengukuran">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <field name="name" select="True"/>
+                    <group string="Group By..">
+                    </group>
+                </search>
+            </field>
+        </record> -->
+        <!-- kanban , to show image, please add image_small in the model -->
+        <!-- <record id="view_vit_pengukuran_kanban" model="ir.ui.view" >
+            <field name="name">vit_pengukuran</field>
+            <field name="model">vit.pengukuran</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            Field1: <field name="name"></field>
+                                        </li>
+                                        <li>
+                                            Field2: <field name="name"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record> -->
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <!-- <record id="view_vit_pengukuran_graph" model="ir.ui.view">
+            <field name="name">vit_pengukuran</field>
+            <field name="model">vit.pengukuran</field>
+            <field name="arch" type="xml">
+                <graph string="pengukuran" type="bar">
+                </graph>
+            </field>
+        </record> -->
+        
+        <!-- action window Edp-->
+        <record id="action_vit_edp" model="ir.actions.act_window">
+            <field name="name">EDP</field>
+            <field name="res_model">vit.pengukuran</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="view_vit_edp_tree"/>
+            <!-- <field name="context">{"search_default_fieldname":1}</field> -->
+            <field name="domain">[('state','=','edp')]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new EDP
+                </p><p>
+                Click the Create button to add a new EDp
+                </p>
+            </field>
+        </record>
+
+<!--         <menuitem id="menu_vit_edp" name="Project to Process" parent="vit_edp_sub_menu" action="action_vit_edp" groups="group_edp_pengukuran" sequence="20"/> -->
+    </data>
+</odoo>

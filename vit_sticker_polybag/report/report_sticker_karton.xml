@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="report_sticker_karton"
+            string="Print Sticker Karton"
+            model="sticker.karton.wizard" 
+            report_type="qweb-pdf"
+            paperformat="vit_sticker_polybag.paperformat_sticker_karton_a4"
+            file="sticker.karton.wizard" 
+            name="vit_sticker_polybag.report_sticker_document"
+            menu="False"
+        />
+
+        <!-- paper_format="paperformat_a4_landscape"  -->
+        
+        <template id="report_sticker_document">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="vit_sticker_polybag.external_layout_sticker_polybag">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <div class="row col-12">
+                                <div class="col-8">
+                                    <h4>
+                                        <strong><span t-field="o.partner_id.name"/></strong>
+                                        <br/>
+                                        <span t-field="o.lokasi_id.name"/>
+                                    </h4>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.package_id.name, 600, 100)" alt="Barcode" style="width:300px;height:50px"/>
+                                    <p style="font-size: 18px;" t-field="o.package_id.name"/>
+                                </div>
+                            </div>
+                            <br/>
+                            <table style="font-size: 10px; text-align:center; width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th style="border: 1px solid black;">Lot</th>
+                                        <th style="border: 1px solid black;">No</th>
+                                        <th style="border: 1px solid black;">Nama</th>
+                                        <th style="border: 1px solid black;">NIK</th>
+                                        <th style="border: 1px solid black;">Nama Bordir</th>
+                                        <th style="border: 1px solid black;">Style</th>
+                                        <th style="border: 1px solid black;">Size</th>
+                                        <th style="border: 1px solid black;">QTY</th>
+                                        <th style="border: 1px solid black;">Divisi</th>
+                                        <th style="border: 1px solid black;">Jabatan</th>
+                                    </tr>
+                               </thead>
+
+                               <tbody>
+                                    <!-- <t t-set="no" t-value="1" /> -->
+                                    <t t-foreach="o.sticker_report_ids" t-as="line">
+                                        <tr>
+                                            <td style="border: 1px solid black;">
+                                                <span t-field="line.lot"/>
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <!-- <span t-esc="no" />
+                                                <t t-set="no" t-value="no + 1"/> -->
+                                                <span t-field="line.nomor"/>
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-field="line.karyawan"/>
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-field="line.nik"/>
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-field="line.nama_bordir"/>
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-field="line.style_id.name"/>
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-field="line.size_id.name"/>
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-field="line.qty"/>
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-field="line.divisi_id"/>
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-field="line.jabatan_id"/>
+                                            </td>
+                                        </tr>                                        
+                                    </t>
+                                </tbody>
+                            </table>
+                            <div class="oe_structure"/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

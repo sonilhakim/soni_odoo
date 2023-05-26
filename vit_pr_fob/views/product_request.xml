@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+
+        <record id="vit_product_rquest_md_form_view" model="ir.ui.view">
+            <field name="name">vit_product.request_md_form</field>
+            <field name="model">vit.product.request</field>
+            <field name="inherit_id" ref="vit_product_request.view_product_request_form"/>
+            <field name="arch" type="xml"> 
+                <xpath expr="//field[@name='reference']" position="after">
+                    <field name="boq_po_line_id" attrs="{'invisible': [('boq_po_line_id', '=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+   </data>
+</odoo>

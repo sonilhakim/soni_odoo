@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_kesimpulan_kewajiban_khusus_menu" string="Kesimpulan Kewajiban Khusus"
+         model="vit.kesimpulan_kinerja_dosen" report_type="qweb-pdf" paperformat="vit_bkd_inherit.paperformat_bkd" file="vit.kesimpulan_kinerja_dosen"  name="vit_bkd_inherit.vit_kesimpulan_kewajiban_khusus_report" />
+
+        <!-- document template -->
+        <template id="vit_bkd_inherit.vit_kesimpulan_kewajiban_khusus_report_document" >
+            <t t-call="vit_bkd_inherit.external_layout_bkd">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <div style="text-align:center;margin-bottom:30px;">
+                        <img t-if="doc.dosen_id.company_id.logo" t-att-src="image_data_uri(doc.dosen_id.company_id.logo)" alt="Logo" style="width:100px"/>
+                        <br/><br/>
+                        <h4>
+                            <strong>LEMBAR KOREKSI ASESOR DAN PENGESAHAN PIMPINAN</strong>
+                        </h4>
+                    </div>
+                    <div class="row" style="margin-bottom:30px;margin-left:80px;">
+                        <div class="col-2">
+                            <img t-if="doc.dosen_id.image" t-att-src="image_data_uri(doc.dosen_id.image)" alt="Image" style="width:100px"/>
+                        </div>
+                        <div class="col-10">
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    NAMA
+                                </div>
+                                <div>
+                                    : <span t-field="doc.dosen_id" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    NIDN
+                                </div>
+                                <div>
+                                    : <span t-field="doc.dosen_id.nidn" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    JURUSAN/PRODI
+                                </div>
+                                <div>
+                                    : <span t-field="doc.dosen_id.jurusan_id" /><span t-field="doc.dosen_id.program_studi_id" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    FAKULTAS
+                                </div>
+                                <div>
+                                    : <span t-field="doc.dosen_id.fakultas_id" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    PERGURUAN TINGGI
+                                </div>
+                                <div>
+                                    : <span t-field="doc.dosen_id.company_id" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    SEMESTER-TAHUN LAPORAN
+                                </div>
+                                <div>
+                                    : <span t-field="doc.semester_id" /> - <span t-field="doc.tahun_akademik_id" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    PERIODE TAHUN
+                                </div>
+                                    : <span t-field="doc.periode_dari" /> - <span t-field="doc.periode_sampai" />
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">
+                                    JABATAN FUNGSIONAL
+                                </div>
+                                <div>
+                                    : <span t-field="doc.jabatan_fungsional_id" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- </div> -->
+                    <table name="line_khusus_ids_table" style="margin-bottom:10px;width:100%;">
+                        <tr>
+                            <td style="border:2px solid black;padding-left:5px;">
+                                <strong>Kesimpulan Wajib Khusus</strong>
+                            </td>
+                        </tr>
+                    </table>
+                
+                    <table name="line_khusus_ids_table" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <td style="width:3%;border:1px solid black;text-align:center"><strong>No</strong></td>
+                                <td style="width:7%;border:1px solid black;padding-left:5px;"><strong>Tahun</strong></td>
+                                <td style="width:20%;border:1px solid black;padding-left:5px;"><strong>Judul Karya</strong></td>
+                                <td style="width:15%;border:1px solid black;padding-left:5px;"><strong>Jenis Karya</strong></td>
+                                <td style="width:25%;border:1px solid black;padding-left:5px;"><strong>Forum Publikasi</strong></td>
+                                <td style="width:15%;border:1px solid black;padding-left:5px;"><strong>Bukti Dokumen</strong></td>
+                                <td style="width:15%;border:1px solid black;padding-left:5px;"><strong>Kesimpulan</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody class="line_khusus_ids_tbody">
+                            <tr t-foreach="doc.line_khusus_ids" t-as="line">
+                                <td style="width:3%;border:1px solid black;text-align:center"><t t-esc="line_index+1"/></td>
+                                <td style="width:7%;border:1px solid black;padding-left:5px;"><span t-field="line.tahun" /></td>
+                                <td style="width:20%;border:1px solid black;padding-left:5px;"><span t-field="line.kewajiban_khusus_id" /></td>
+                                <td style="width:15%;border:1px solid black;padding-left:5px;"><span t-field="line.kewajiban_khusus_id.jenis_karya_id" /></td>
+                                <td style="width:25%;border:1px solid black;padding-left:5px;">
+                                    <t t-if="line.kewajiban_khusus_id.nama_jurnal">
+                                        Nama Jurnal : <span t-field="line.kewajiban_khusus_id.nama_jurnal" /><br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.volume_nomor">
+                                        Volume, Nomor : <span t-field="line.kewajiban_khusus_id.volume_nomor" /><br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.impact_factor">
+                                        Impact Factor : <span t-field="line.kewajiban_khusus_id.impact_factor" /><br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.nama_seminar">
+                                        Nama Seminar : <span t-field="line.kewajiban_khusus_id.nama_seminar" /><br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.tempat_seminar">
+                                        Tempat Seminar : <span t-field="line.kewajiban_khusus_id.tempat_seminar" /><br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.penyelenggara">
+                                        Penyelenggara : <span t-field="line.kewajiban_khusus_id.penyelenggara" /><br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.bahasa_jurnal">
+                                        Bahasa Jurnal : <span t-field="line.kewajiban_khusus_id.bahasa_jurnal" /><br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.akreditasi">
+                                        Akreditasi : <span t-field="line.kewajiban_khusus_id.akreditasi" /><br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.terindeks">
+                                        Terindeks : <span t-field="line.kewajiban_khusus_id.terindeks" /><br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.standart_tatakelola">
+                                        Standart Tatakelola : <span t-field="line.kewajiban_khusus_id.standart_tatakelola" /><br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.jenis_hki">
+                                        Jenis HKI : <span t-field="line.kewajiban_khusus_id.jenis_hki" /><br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.no_sertifikat">
+                                        No. Sertifikat : <span t-field="line.kewajiban_khusus_id.no_sertifikat" /><br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.alamat_url">
+                                        Alamat URL : <span t-field="line.kewajiban_khusus_id.alamat_url" /><br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.status_doaj">
+                                        Status DOAJ : <span t-field="line.kewajiban_khusus_id.status_doaj" /><br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.lingkup_kegiatan">
+                                        Lingkup Kegiatan : <span t-field="line.kewajiban_khusus_id.lingkup_kegiatan" /><br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.tempat_publikasi">
+                                        Tempat Publikasi : <span t-field="line.kewajiban_khusus_id.tempat_publikasi" /><br/>
+                                    </t>
+                                </td>
+                                <td style="width:15%;border:1px solid black;padding-left:5px;">
+                                    <t t-if="line.kewajiban_khusus_id.artikel">
+                                        Artikel<br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.cover_depan">
+                                        Cover Depan<br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.daftar_isi">
+                                        Daftar Isi<br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.sertifikat">
+                                        Sertifikat<br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.deskripsi_paten">
+                                        Deskripsi Paten<br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.bukti_karya">
+                                        Bukti Karya<br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.peer_reviewer">
+                                        Peer Reviewer<br/>
+                                    </t>
+                                    <t t-if="line.kewajiban_khusus_id.lain_lain">
+                                        Lain-lain<br/>
+                                    </t>
+                                </td>
+                                <td style="width:15%;border:1px solid black;padding-left:5px;"><span t-field="line.ceklist_asesor" /></td>
+                            </tr> <!-- foreach-->
+                        </tbody>
+                    </table>
+                    <div style="margin-top:20px;">
+                        <strong>Kesimpulan : <span t-field="doc.kesimpulan_khusus" /> Syarat PERMEN RISTEKDIKTI No.20 Tahun 2017</strong>
+                    </div>
+                    <div class="oe_structure"/>
+                    <div style="text-align:center;margin-top:20px;">
+                        <strong>PERNYATAAN DOSEN</strong>
+                        <p>
+                            Saya dosen yang membuat laporan kinerja ini menyatakan bahwa semua aktivitas dan bukti pendukungnya <br/> aktivitas saya dan saya sanggup menerima sanksi apapun termasuk penghentian tunjangan dan mengembalikan <br/> yang sudah saya terima apabila pernyataan ini dikemudian hari terbukti tidak benar.
+                        </p>
+                    </div>
+                    <div style="text-align:center;margin-top:20px;">
+                        Dosen Yang Membuat
+                    </div>
+                    <div style="text-align:center;margin-top:50px;">
+                        <span t-field="doc.dosen_id" />                    
+                    </div>
+                    <div style="text-align:center;">
+                        <span t-field="doc.dosen_id.nidn" />
+                    </div>
+                    <div style="text-align:center;margin-top:20px;">
+                        <strong>PERNYATAAN ASESOR</strong>
+                        <p>
+                            Saya sudah memeriksa kebenaran dokumen yang ditunjukkan dan bisa menyetujui laporan evaluasi ini.
+                        </p>
+                    </div>
+                    <div class="row" style="margin-left:90px;margin-top:30px;">
+                        <div style="margin-right:535px">Asesor 1</div>
+                        <div>Asesor 2</div>
+                    </div>
+                    <div class="row" style="margin-left:90px;margin-top:50px;">
+                        <div style="margin-right:500px">
+                            <span t-field="doc.asesor1_id" />
+                            <span t-field="doc.asesor1_id.nip" />
+                        </div>
+                        <div>
+                            <span t-field="doc.asesor2_id" />
+                            <span t-field="doc.asesor2_id.nip" />
+                        </div>
+                    </div>
+                    <div style="text-align:center;margin-top:20px;">
+                        Mengetahui,<br/><span t-field="doc.dosen_id.jurusan_id" /><span t-field="doc.dosen_id.program_studi_id" />
+                    </div>
+                    <div style="text-align:center;margin-top:50px;">
+                        <span t-field="doc.dosen_id.jurusan_id.ketua_jurusan_id" /><span t-field="doc.dosen_id.program_studi_id.ketua_prodi_id" />                    
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_bkd_inherit.vit_kesimpulan_kewajiban_khusus_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_bkd_inherit.vit_kesimpulan_kewajiban_khusus_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

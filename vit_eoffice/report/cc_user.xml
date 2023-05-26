@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_cc_user_menu" string="Vit - Cc user"
+         model="vit.cc_user" report_type="qweb-pdf" 
+         file="vit.cc_user"  name="vit_eoffice.vit_cc_user_report" />
+
+        <!-- document template -->
+        <template id="vit_eoffice.vit_cc_user_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Cc user: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Read status</strong>
+                            <p class="m-0" t-field="doc.read_status" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Doc</strong>
+                            <p class="m-0" t-field="doc.doc_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>User</strong>
+                            <p class="m-0" t-field="doc.user_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_eoffice.vit_cc_user_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_eoffice.vit_cc_user_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

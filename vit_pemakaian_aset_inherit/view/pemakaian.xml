@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- form view -->
+        <record id="view_vit_pemakaian_aset_form2" model="ir.ui.view">
+            <field name="name">vit_pemakaian_aset_form2</field>
+            <field name="model">vit.pemakaian_aset</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_pemakaian_aset.view_vit_pemakaian_aset_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="replace">
+                    <group>
+                        <group>
+                            <field name="date" />                            
+                            <field name="penanggung_jawab_id" />
+                        </group>
+                        <group>
+                            <field name="unit_kerja_id" />
+                            <field name="jurusan_id" />
+                            <field name="fakultas_id" />
+                        </group>
+                    </group>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='aset_ids']" position="replace">
+                    <field name="aset_ids" mode="tree">
+                        <tree string="Aset" editable="bottom">
+                            <field name="aset_id" domain="[('state','=','open'),('asset_id','=',False)]"/>
+                            <field name="reference" />
+                            <field name="kategori_id" />
+                            <field name="lokasi_id" />
+                            <field name="qty" />                                              
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_vit_bkd_tree2" model="ir.ui.view">
+            <field name="name">vit_bkd_tree2</field>
+            <field name="model">vit.bkd</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_bkd_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="BKD">
+                        <field name="name" />
+                        <field name="date" />
+                        <field name="employee_id" string="Dosen"/>
+                        <field name="no_sertifikat" />
+                        <field name="nip" />
+                        <field name="nidn" />
+                        <field name="status_dosen_id" />
+                        <!-- <field name="s1" />
+                        <field name="s2" />
+                        <field name="s3" />
+                        <field name="bidang_ilmu" />
+                        <field name="mobile" />
+                        <field name="email" /> -->                                             
+                        <field name="institusi_id" />
+                        <field name="tahun_akademik_id" />
+                        <field name="semester_id" />
+                        <!-- <field name="wakil_dekan_id" />                         -->
+                        <field name="jabatan_fungsional_id" />
+                        <field name="fakultas_id" />
+                        <field name="jurusan_id" />
+                        <field name="program_studi_id" />
+                        <field name="golongan_id" />
+                        <field name="state" string="Status" />
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_vit_bkd_form2" model="ir.ui.view">
+            <field name="name">vit_bkd_form2</field>
+            <field name="model">vit.bkd</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_bkd_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <!-- <button name="action_done" position="attributes" >
+                    <attribute name="invisible">True</attribute>
+                </button> -->
+                <xpath expr="//header" position="replace">
+                    <header>
+                        <button string="Konfirmasi RKD" type="object" name="action_confirm_rkd" states="draft" />
+                        <button string="Validasi Sesprodi" type="object" name="action_valid_rkd" states="open" groups="vit_bkd_inherit.group_bkd_sesprodi"/>
+                        <button string="Tolak RKD" type="object" name="action_novalid_rkd" states="open" groups="vit_bkd_inherit.group_bkd_sesprodi"/>
+                        <button string="Konfirmasi BKD" type="object" name="action_confirm_bkd" states="valid" />
+                        <button string="Validasi Asesor1" type="object" name="action_asesor"  attrs="{'invisible': ['|',('state','!=','asesor1'),('current_user1','=',False)]}"/>
+                        <button string="Tolak BKD" type="object" name="action_novalid_bkd"  attrs="{'invisible': ['|',('state','!=','asesor1'),('current_user1','=',False)]}"/>
+                        <button string="Validasi Asesor2" type="object" name="action_done" attrs="{'invisible': ['|',('state','!=','asesor2'),('current_user2','=',False)]}"/>
+                        <button string="Tolak BKD" type="object" name="action_nodone_bkd" attrs="{'invisible': ['|',('state','!=','asesor2'),('current_user2','=',False)]}"/>
+                        <button string="Reset to Draft" type="object" name="action_draft" states="done" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                </xpath>
+                <xpath expr="//group" position="replace">
+                    <group>
+                        <group>
+                            <field name="date" />
+                            <field name="institusi_id" />
+                            <field name="fakultas_id" />
+                            <field name="jurusan_id" />
+                            <field name="program_studi_id" />
+                            <field name="tahun_akademik_id" />
+                            <field name="semester_id" />
+                            <field name="asesor1_id" />
+                            <field name="current_user1" invisible="1"/>
+                            <field name="asesor2_id" />
+                            <field name="current_user2" invisible="1"/>
+                            <field name="is_bkd" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="employee_id" string="Dosen" domain="[('is_dosen','=',True)]"/>
+                            <field name="no_sertifikat" />
+                            <field name="nip" />
+                            <field name="nidn" />
+                            <field name="gelar_depan" />
+                            <field name="gelar_belakang" />
+                            <field name="jabatan_fungsional_id" />
+                            <field name="jabatan_fungsional_name" invisible="1"/>
+                            <field name="golongan_id" />
+                            <field name="status_dosen_id" />
+                            <field name="s1" />
+                            <field name="s2" />
+                            <field name="s3" />
+                            <field name="bidang_ilmu" />
+                            <field name="mobile" />
+                            <field name="email" />
+                            <field name="ktp" />
+                        </group>
+                    </group>
+                </xpath>
+                <xpath expr="//notebook/page[3]" position="after">
+                    <page string="Kinerja Penunjang Lainnya">
+                        <field name="kinerja_penunjang_ids"/>
+                    </page>
+                </xpath>
+                <xpath expr="//notebook/page[5]" position="replace">
+                    <page string="Kewajiban Khusus" attrs="{'invisible': [('jabatan_fungsional_name', 'not in', ['Lektor Kepala', 'Profesor'])]}">
+                        <group>
+                            <div>
+                                <b>WAJIB KHUSUS PERIODE TAHUN  &#160;</b>
+                                <field name="periode_dari" style="width: 5%"/>
+                                <b>SAMPAI  &#160;</b>
+                                <field name="periode_sampai" style="width: 25%"/>
+                            </div>
+                        </group>
+                        <field name="kinerja_kewajiban_khusus_ids" />
+                    </page>                    
+                </xpath>
+                <xpath expr="//sheet" position="after">
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_bkd_kanban2" model="ir.ui.view" >
+            <field name="name">vit_bkd2</field>
+            <field name="model">vit.bkd</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_bkd_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='employee_id']" position="attributes">
+                    <attribute name="string">Dosen</attribute>
+                </xpath>
+                <xpath expr="//templates" position="replace">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Dosen</span> <field name="employee_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Institusi</span> <field name="institusi_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Tahun akademik</span> <field name="tahun_akademik_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Semester</span> <field name="semester_id"></field>
+                                        </li>
+                                        <li>
+                                            <span class="text-muted">Date</span> <field name="date"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </xpath>
+            </field>
+        </record>
+        
+        <!-- tree view -->
+        <record id="view_vit_kinerja_bidang_pendidikan_tree2" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_pendidikan_tree2</field>
+            <field name="model">vit.kinerja_bidang_pendidikan</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_kinerja_bidang_pendidikan_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="Kinerja bidang pendidikan">
+                        <field name="name" string="Kegiatan"/>
+                        <field name="jenis_kegiatan_id" />
+                        <!-- <field name="uraian_jenis_kegiatan" /> -->
+                        <field name="bukti_penugasan" />
+                        <!-- <field name="file_bukti_penugasan_filename"/> -->
+                        <field name="beban_sks" />
+                        <field name="masa_penugasan" />
+                        <field name="bukti_dokumen" />
+                        <!-- <field name="file_bukti_dokumen_filename"/> -->
+                        <field name="kinerja_sks"/>
+                        <!-- <field name="kinerja_sks_persen" />                     -->
+                        <field name="rekomendasi_id" />
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kinerja_bidang_pendidikan_form2" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_pendidikan_form2</field>
+            <field name="model">vit.kinerja_bidang_pendidikan</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_kinerja_bidang_pendidikan_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">                
+                <xpath expr="//group" position="replace">
+                    <group>
+                        <group>
+                            <field name="jenis_kegiatan_id" />
+                            <!-- <field name="uraian_jenis_kegiatan" /> -->
+                        </group>
+                        <group></group>
+                        <group string="Beban Kerja">                            
+                            <field name="bukti_penugasan" />
+                            <field name="file_bukti_penugasan" string="File1"/>
+                            <field name="file_bukti_penugasan2" string="File2"/>
+                            <!-- <field name="file_bukti_penugasan_filename" /> -->
+                            <field name="beban_sks" string="SKS"/>   
+                        </group>
+                        <group string="Kinerja">
+                            <field name="bukti_dokumen" />
+                            <field name="file_bukti_dokumen" string="File1" />
+                            <field name="file_bukti_dokumen2" string="File2" />
+                            <field name="file_bukti_dokumen3" string="File3" />
+                            <!-- <field name="file_bukti_dokumen_filename" /> -->
+                            <field name="kinerja_sks" string="SKS" /> 
+                            <!-- <field name="kinerja_sks_persen" /> -->
+                        </group>
+                        <group>
+                            <field name="masa_penugasan" />
+                        </group>
+                        <group>
+                            <field name="rekomendasi_id" />
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="view_vit_kinerja_bidang_penelitian_tree2" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_penelitian_tree2</field>
+            <field name="model">vit.kinerja_bidang_penelitian</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_kinerja_bidang_penelitian_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="Kinerja bidang penelitian">
+                        <field name="name" string="Kegiatan"/>
+                        <field name="jenis_kegiatan_id" />
+                        <!-- <field name="uraian_jenis_kegiatan" /> -->
+                        <field name="bukti_penugasan" />
+                        <!-- <field name="file_bukti_penugasan_filename"/> -->
+                        <field name="beban_sks" />
+                        <field name="masa_penugasan" />
+                        <field name="bukti_dokumen" />
+                        <!-- <field name="file_bukti_dokumen_filename"/> -->
+                        <field name="kinerja_sks"/>
+                        <!-- <field name="kinerja_sks_persen" />                     -->
+                        <field name="rekomendasi_id" />
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kinerja_bidang_penelitian_form2" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_penelitian_form2</field>
+            <field name="model">vit.kinerja_bidang_penelitian</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_kinerja_bidang_penelitian_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="replace">
+                    <group>
+                        <group>
+                            <field name="jenis_kegiatan_id" />
+                            <!-- <field name="uraian_jenis_kegiatan" /> -->
+                        </group>
+                        <group></group>
+                        <group string="Beban Kerja">                            
+                            <field name="bukti_penugasan" />
+                            <field name="file_bukti_penugasan" string="File1"/>
+                            <field name="file_bukti_penugasan2" string="File2"/>
+                            <!-- <field name="file_bukti_penugasan_filename" /> -->
+                            <field name="beban_sks" string="SKS"/>   
+                        </group>
+                        <group string="Kinerja">
+                            <field name="bukti_dokumen" />
+                            <field name="file_bukti_dokumen" string="File1" />
+                            <field name="file_bukti_dokumen2" string="File2" />
+                            <field name="file_bukti_dokumen3" string="File3" />
+                            <!-- <field name="file_bukti_dokumen_filename" /> -->
+                            <field name="kinerja_sks" string="SKS" /> 
+                            <!-- <field name="kinerja_sks_persen" /> -->
+                        </group>
+                        <group>
+                            <field name="masa_penugasan" />
+                        </group>
+                        <group>
+                            <field name="rekomendasi_id" />
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="view_vit_kinerja_bidang_pengabdian_tree2" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_pengabdian_tree2</field>
+            <field name="model">vit.kinerja_bidang_pengabdian</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_kinerja_bidang_pengabdian_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="Kinerja bidang pengabdian">
+                        <field name="name" string="Kegiatan"/>
+                        <field name="jenis_kegiatan_id" />
+                        <!-- <field name="uraian_jenis_kegiatan" /> -->
+                        <field name="bukti_penugasan" />
+                        <!-- <field name="file_bukti_penugasan_filename"/> -->
+                        <field name="beban_sks" />
+                        <field name="masa_penugasan" />
+                        <field name="bukti_dokumen" />
+                        <!-- <field name="file_bukti_dokumen_filename"/> -->
+                        <field name="kinerja_sks"/>
+                        <!-- <field name="kinerja_sks_persen" />                     -->
+                        <field name="rekomendasi_id" />
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kinerja_bidang_pengabdian_form2" model="ir.ui.view">
+            <field name="name">vit_kinerja_bidang_pengabdian_form2</field>
+            <field name="model">vit.kinerja_bidang_pengabdian</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_kinerja_bidang_pengabdian_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="replace">
+                    <group>
+                        <group>
+                            <field name="jenis_kegiatan_id" />
+                            <!-- <field name="uraian_jenis_kegiatan" /> -->
+                        </group>
+                        <group></group>
+                        <group string="Beban Kerja">                            
+                            <field name="bukti_penugasan" />
+                            <field name="file_bukti_penugasan" string="File1"/>
+                            <field name="file_bukti_penugasan2" string="File2"/>
+                            <!-- <field name="file_bukti_penugasan_filename" /> -->
+                            <field name="beban_sks" string="SKS"/>   
+                        </group>
+                        <group string="Kinerja">
+                            <field name="bukti_dokumen" />
+                            <field name="file_bukti_dokumen" string="File1" />
+                            <field name="file_bukti_dokumen2" string="File2" />
+                            <field name="file_bukti_dokumen3" string="File3" />
+                            <!-- <field name="file_bukti_dokumen_filename" /> -->
+                            <field name="kinerja_sks" string="SKS" /> 
+                            <!-- <field name="kinerja_sks_persen" /> -->
+                        </group>
+                        <group>
+                            <field name="masa_penugasan" />
+                        </group>
+                        <group>
+                            <field name="rekomendasi_id" />
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- action window -->
+        <record id="action_vit_rkd" model="ir.actions.act_window">
+            <field name="name">RKD</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.bkd</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="domain">[('is_bkd','=',False)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk menambahkan RKD baru
+                </p><p>
+                Klik tombol Buat untuk menambahkan RKD baru
+                </p>
+            </field>
+        </record>
+
+        <record id="action_vit_bkd2" model="ir.actions.act_window">
+            <field name="name">BKD</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.bkd</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="domain">[('is_bkd','=',True)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk menambahkan BKD baru
+                </p><p>
+                Klik tombol Buat untuk menambahkan BKD baru
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_rkd" name="RKD" parent="vit_bkd.vit_bkd_sub_menu" action="action_vit_rkd" sequence="10"/>
+        <menuitem id="menu_vit_bkd2" name="BKD" parent="vit_bkd.vit_bkd_sub_menu" action="action_vit_bkd2" sequence="20"/>
+    </data>
+</odoo>

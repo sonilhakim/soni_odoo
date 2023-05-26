@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_jenis_jabatan_extra_tree" model="ir.ui.view">
+            <field name="name">vit_jenis_jabatan_extra_tree</field>
+            <field name="model">vit.jenis.jabatan</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Jenis jabatan">
+                    <field name="name" />
+                    <field name="code" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_jenis_jabatan_extra_form" model="ir.ui.view">
+            <field name="name">vit_jenis_jabatan_extra_form</field>
+            <field name="model">vit.jenis.jabatan</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Jenis jabatan">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Jenis jabatan fungsional Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code" />
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_jenis_jabatan_x_search" model="ir.ui.view">
+            <field name="name">vit_jenis_jabatan_x</field>
+            <field name="model">vit.jenis.jabatan</field>
+            <field name="arch" type="xml">
+                <search string="Jenis jabatan">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <field name="name" select="True"/>
+                    <group string="Group By..">
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <!-- <record id="view_vit_jenis_jabatan_fungsional_kanban" model="ir.ui.view" >
+            <field name="name">vit_jenis_jabatan_fungsional</field>
+            <field name="model">vit.jenis_jabatan_fungsional</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record> -->
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <!-- <record id="view_vit_jenis_jabatan_fungsional_graph" model="ir.ui.view">
+            <field name="name">vit_jenis_jabatan_fungsional</field>
+            <field name="model">vit.jenis_jabatan_fungsional</field>
+            <field name="arch" type="xml">
+                <graph string="Jenis jabatan fungsional" type="bar">
+                </graph>
+            </field>
+        </record> -->
+        <!-- action window -->
+        <record id="action_vit_jenis_jabatan_x" model="ir.actions.act_window">
+            <field name="name">Jenis Jabatan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.jenis.jabatan</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Jenis jabatan
+                </p><p>
+                Click the Create button to add a new Jenis jabatan
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_jenis_jabatan_x" name="Jenis Jabatan" parent="vit_univ_common.vit_univ_common_config_menu" action="action_vit_jenis_jabatan_x" sequence="55"/>
+    </data>
+</odoo>

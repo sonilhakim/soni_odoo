@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="purchase_order_form_anggaran" model="ir.ui.view">
+        <field name="name">purchase.order.form.anggaran</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+        	<field name="date_order" position="after">
+        		<field name="unit_id"/>
+        		<field name="rka_id" domain="[('unit_id','=',unit_id),('state','=','done')]"/>
+                <field name="rka_kegiatan_id" domain="[('rka_id','=', rka_id)]"/>
+                <field name="mak_id" domain="[('rka_kegiatan_id','=',rka_kegiatan_id)]"/>
+                <field name="sisa_anggaran"/>
+        	</field>
+        	<!-- <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='account_analytic_id']" position="after">
+        		<field name="rka_kegiatan_id" domain="[('rka_id','=', parent.rka_id)]"/>
+        		<field name="mak_id" domain="[('rka_kegiatan_id','=',rka_kegiatan_id)]"/>
+        	</xpath>
+        	<xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+        		<field name="sisa_anggaran"/>
+        	</xpath> -->
+        </field>
+    </record>
+</odoo>

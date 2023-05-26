@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_kinerja_bidang_pengabdian_menu" string="Vit - Kinerja bidang pengabdian"
+         model="vit.kinerja_bidang_pengabdian" report_type="qweb-pdf" 
+         file="vit.kinerja_bidang_pengabdian"  name="vit_bkd.vit_kinerja_bidang_pengabdian_report" />
+
+        <!-- document template -->
+        <template id="vit_bkd.vit_kinerja_bidang_pengabdian_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Kinerja bidang pengabdian: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Uraian jenis kegiatan</strong>
+                            <p class="m-0" t-field="doc.uraian_jenis_kegiatan" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Bukti penugasan</strong>
+                            <p class="m-0" t-field="doc.bukti_penugasan" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>File bukti penugasan</strong>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>File bukti penugasan filename</strong>
+                            <p class="m-0" t-field="doc.file_bukti_penugasan_filename" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Beban sks</strong>
+                            <p class="m-0" t-field="doc.beban_sks" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Masa penugasan</strong>
+                            <p class="m-0" t-field="doc.masa_penugasan" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Bukti dokumen</strong>
+                            <p class="m-0" t-field="doc.bukti_dokumen" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>File bukti dokumen</strong>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>File bukti dokumen filename</strong>
+                            <p class="m-0" t-field="doc.file_bukti_dokumen_filename" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Kinerja sks</strong>
+                            <p class="m-0" t-field="doc.kinerja_sks" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Kinerja sks persen</strong>
+                            <p class="m-0" t-field="doc.kinerja_sks_persen" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Bkd</strong>
+                            <p class="m-0" t-field="doc.bkd_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Rekomendasi</strong>
+                            <p class="m-0" t-field="doc.rekomendasi_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Rekomendasi</strong>
+                            <p class="m-0" t-field="doc.rekomendasi_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jenis kegiatan</strong>
+                            <p class="m-0" t-field="doc.jenis_kegiatan_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_bkd.vit_kinerja_bidang_pengabdian_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_bkd.vit_kinerja_bidang_pengabdian_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

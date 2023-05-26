@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_divisi_karyawan_tree" model="ir.ui.view">
+            <field name="name">vit_divisi_karyawan_tree</field>
+            <field name="model">vit.divisi_karyawan</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Divisi">
+                    <field name="name" />
+                    <field name="pengukuran_id" />
+                    <field name="spk_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_divisi_karyawan_form" model="ir.ui.view">
+            <field name="name">vit_divisi_karyawan_form</field>
+            <field name="model">vit.divisi_karyawan</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Divisi">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Nama Divisi"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="user_id" options="{'no_create':True}" readonly="1"/>
+                            </group>
+                            <!-- <group>
+                                <field name="pengukuran_id" options="{'no_create':True}" required="1" />
+                                <field name="spk_id" options="{'no_create':True}" required="1" />
+                            </group> -->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_divisi_karyawan_search" model="ir.ui.view">
+            <field name="name">vit_divisi_karyawan</field>
+            <field name="model">vit.divisi_karyawan</field>
+            <field name="arch" type="xml">
+                <search string="Divisi">
+                    <field name="name" select="True"/>
+                    <field name="pengukuran_id"/>
+                    <field name="spk_id"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- action window -->
+        <record id="action_vit_divisi_karyawan" model="ir.actions.act_window">
+            <field name="name">Divisi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.divisi_karyawan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Divisi
+                </p><p>
+                Click the Create button to add a new Divisi
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_divisi_karyawan" name="Divisi" parent="vit_master_date_sub_menu" action="action_vit_divisi_karyawan" groups="group_edp_pengukuran"  sequence="60"/>
+    </data>
+</odoo>

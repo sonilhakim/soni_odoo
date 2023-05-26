@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="act_open_account_data_asset_view">
+            <field name="name">Data Aset</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.asset.asset</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="vit_asset.view_account_asset_asset_search"/>
+            <field name="domain">[('asset_id','=',False),('category_id.parent_id.parent_id.parent_id','=','Aset')]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_account_data_asset_view_form">
+            <field name="act_window_id" ref="act_open_account_data_asset_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="vit_asset.view_account_asset_asset_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_account_data_asset_view_tree">
+            <field name="act_window_id" ref="act_open_account_data_asset_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="vit_asset.view_account_asset_asset_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_account_inv_asset_view">
+            <field name="name">Barang Inventaris</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.asset.asset</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="vit_asset.view_account_asset_asset_search"/>
+            <field name="domain">[('asset_id','=',False),('category_id.parent_id.parent_id.parent_id','=','Inventaris')]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_account_inv_asset_view_form">
+            <field name="act_window_id" ref="act_open_account_inv_asset_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="vit_asset.view_account_asset_asset_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_account_inv_asset_view_tree">
+            <field name="act_window_id" ref="act_open_account_inv_asset_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="vit_asset.view_account_asset_asset_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_account_penyusutan_detail_view">
+            <field name="name">Penyusutan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.asset.asset</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="vit_asset.view_account_asset_asset_detail_search"/>
+            <field name="domain">[('asset_id','!=',False)]</field>
+            <field name="context">{'search_default_asset_not_disposed':True}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_account_asset_asset_view_form">
+            <field name="act_window_id" ref="act_open_account_penyusutan_detail_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="vit_asset.view_account_asset_asset_detail_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_account_asset_asset_view_tree">
+            <field name="act_window_id" ref="act_open_account_penyusutan_detail_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="vit_asset.view_account_asset_asset_detail_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_account_asset_asset_view_kanban">
+            <field name="act_window_id" ref="act_open_account_penyusutan_detail_view"/>
+            <field name="sequence" eval="15"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="vit_asset.account_asset_asset_kanban_view"/>
+        </record>
+    </data>
+</odoo>

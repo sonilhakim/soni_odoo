@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+        <!-- invoice         -->
+        <record id="views_terbilang_invoice_form" model="ir.ui.view">
+            <field name="name">views_terbilang_purchase_order.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <button name="preview_invoice" position="after">
+                    <button name="%(vit_custom_report_invoice.action_report_faktur_wizard_view)d" string="Print" type="action" class="btn-info"/>
+                </button>
+                <field name="comment" position="after">
+                    <field name="terbilang"/>
+                </field>
+                <field name="or_id" position="after">
+                    <field name="surat_jalan" readonly="1"/>
+                </field>
+                <field name="cash_rounding_id" position="after">
+                    <field name="efaktur"/>
+                    <field name="ttd"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- bills         -->
+        <record id="views_invoice_supplier_form_faktur" model="ir.ui.view">
+            <field name="name">invoice_supplier_faktur.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form" />
+            <field name="arch" type="xml">
+                <field name="reference" position="after">
+                    <field name="efaktur" attrs="{'readonly': [('state', 'not in', ('draft','open'))]}"/>
+                    <field name="ttd" attrs="{'readonly': [('state', 'not in', ('draft','open'))]}"/>
+                </field>
+                <field name="reference" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', 'not in', ('draft','open'))]}</attribute>
+                </field>
+                <field name="incoterm_id" position="after">
+                    <field name="so_vendor" attrs="{'readonly': [('state', 'not in', ('draft','open'))]}"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- bank account -->
+        <record id="view_partner_bank_cabang_form" model="ir.ui.view">
+            <field name="name">res.partner.bank.cabang.form</field>
+            <field name="model">res.partner.bank</field>
+            <field name="inherit_id" ref="base.view_partner_bank_form" />
+            <field name="arch" type="xml">
+                <field name="bank_id" position="after">
+                    <field name="cabang"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

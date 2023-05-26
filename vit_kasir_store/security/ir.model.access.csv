@@ -1,0 +1,10 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_all_vit_kasir_store,access_all_vit_kasir_store,model_vit_kasir_store,,1,0,0,0
+access_all_vit_kasir_store_line,access_all_vit_kasir_store_line,model_vit_kasir_store_line,,1,0,0,0
+access_all_vit_summary_polybag_store,access_all_vit_summary_polybag_store,model_vit_summary_polybag_store,,1,0,0,0
+access_user_vit_kasir_store,access_user_vit_kasir_store,model_vit_kasir_store,user_kasir_store,1,1,1,1
+access_user_vit_kasir_store_line,access_user_vit_kasir_store_line,model_vit_kasir_store_line,user_kasir_store,1,1,1,1
+access_user_vit_summary_polybag_store,access_user_vit_summary_polybag_store,model_vit_summary_polybag_store,user_kasir_store,1,1,1,1
+access_all_swap_history_barcode,access_all_swap_history_barcode,model_swap_history_barcode,,1,0,0,0
+access_all_vit_kasir_repair_line,access_all_vit_kasir_repair_line,model_vit_kasir_repair_line,,1,0,0,0
+access_user_vit_kasir_repair_line,access_user_vit_kasir_repair_line,model_vit_kasir_repair_line,user_kasir_store,1,1,1,1

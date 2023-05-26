@@ -1,0 +1,10 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_user_vit_vit_gedung,access_user_vit_vit_gedung,model_vit_vit_gedung,vit_gedung_ruang.group_gedung dan ruang_user,1,0,0,0
+access_manager_vit_vit_gedung,access_manager_vit_vit_gedung,model_vit_vit_gedung,vit_gedung_ruang.group_gedung dan ruang_manager,1,1,1,1
+access_admin_vit_vit_gedung,access_admin_vit_vit_gedung,model_vit_vit_gedung,base.group_system,1,1,1,1
+access_user_vit_vit_ruang,access_user_vit_vit_ruang,model_vit_vit_ruang,vit_gedung_ruang.group_gedung dan ruang_user,1,0,0,0
+access_manager_vit_vit_ruang,access_manager_vit_vit_ruang,model_vit_vit_ruang,vit_gedung_ruang.group_gedung dan ruang_manager,1,1,1,1
+access_admin_vit_vit_ruang,access_admin_vit_vit_ruang,model_vit_vit_ruang,base.group_system,1,1,1,1
+access_user_vit_guna_ruang,access_user_vit_guna_ruang,model_vit_guna_ruang,vit_gedung_ruang.group_gedung dan ruang_user,1,0,0,0
+access_manager_vit_guna_ruang,access_manager_vit_guna_ruang,model_vit_guna_ruang,vit_gedung_ruang.group_gedung dan ruang_manager,1,1,1,1
+access_admin_vit_guna_ruang,access_admin_vit_guna_ruang,model_vit_guna_ruang,base.group_system,1,1,1,1

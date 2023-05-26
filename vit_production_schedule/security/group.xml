@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Group Master Data -->
+        <record model="ir.module.category" id="module_category_vit_production_schedule">
+            <field name="name">Manage Production Schedule</field>
+            <field name="description">Production Schedule</field>
+            <field name="sequence">15</field>
+        </record>
+        <!-- <record id="group_masterdata" model="res.groups">
+            <field name="name">Approve MD</field>
+            <field name="category_id" ref="vit_order_date.module_category_vit_order_date"/>
+        </record> -->
+        <record id="group_masterdata_jpp_ppic" model="res.groups">
+            <field name="name">Production Schedule PPIC</field>
+            <field name="category_id" ref="vit_production_schedule.module_category_vit_production_schedule"/>
+        </record>
+        
+    </data>
+</odoo>

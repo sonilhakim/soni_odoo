@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_data_buruh_menu" string="Data Buruh / Hari"
+         model="vit.data_buruh" report_type="qweb-pdf" 
+         file="vit.data_buruh"  name="vit_data_buruh.vit_data_buruh_report" />
+
+        <!-- document template -->
+        <template id="vit_data_buruh.vit_data_buruh_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tanggal</strong>
+                            <p class="m-0" t-field="doc.tanggal" />
+                        </div>
+                        <!-- <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div> -->
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Keterangan</strong>
+                            <p class="m-0" t-field="doc.note" />
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Daftar</h2>
+                <table class="table table-sm o_main_table" name="daftar_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Buruh</td>
+                            <td>Uang makan</td>
+                            <td>Potongan</td>
+                            <td>Keterangan</td>
+                        </tr>
+                    </thead>
+                    <tbody class="daftar_ids_tbody">
+                        <tr t-foreach="doc.daftar_ids" t-as="line">
+                            <td><span t-field="line.buruh_id" /></td>
+                            <td><span t-field="line.uang_makan" /></td>
+                            <td><span t-field="line.potongan" /></td>
+                            <td><span t-field="line.note" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_data_buruh.vit_data_buruh_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_data_buruh.vit_data_buruh_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

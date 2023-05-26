@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_asset_asset_form_tks" model="ir.ui.view">
+            <field name="name">account.asset.asset.form.tks</field>
+            <field name="model">account.asset.asset</field>
+            <field name="inherit_id" ref="om_account_asset.view_account_asset_asset_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="qty" position="after">
+                    <field name="satuan_id"/>
+                </field>
+                <field name="pengadaan" position="after">
+                    <field name="tipe_barang"/>
+                    <field name="asal"/>
+                    <field name="tahun_pembuatan"/>
+                    <field name="tgl_penyerahan_brg"/>
+                    <field name="kelengkapan_dokumen"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

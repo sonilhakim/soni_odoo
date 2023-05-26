@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="vit_skp_seminar_1" model="vit.skp_seminar">
+			<field name="name">Semester Genap</field>
+			<field name="pelaksanaan">10</field>
+			<field name="ak">0</field>
+			<field name="skp_id"/>
+			<field name="semester_id"/>
+		</record>
+
+		<record id="vit_skp_seminar_2" model="vit.skp_seminar">
+			<field name="name">Semester Ganjil</field>
+			<field name="pelaksanaan">10</field>
+			<field name="ak">0</field>
+			<field name="skp_id"/>
+			<field name="semester_id"/>
+		</record>
+	</data>
+</odoo>

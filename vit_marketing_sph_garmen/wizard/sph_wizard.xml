@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_marketing_sph_wizard" model="ir.ui.view">
+            <field name="name">marketing.sph.wizard</field>
+            <field name="model">marketing.sph.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Request Design">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="requester"/>
+                                <field name="recipient" string="Penerima"/>
+                                <field name="due_date" string="Target Kirim"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>                        
+                        <notebook>
+                            <page string="Items">
+                                <field name="linewizar_ids">
+                                    <tree string="Items" editable="bottom">
+                                        <field name="name"/>
+                                        <field name="qty" />
+                                        <field name="uom"/>
+                                        <field name="boq_sph_id" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Document">
+                                <field name="docwizar_ids">
+                                    <tree string="Document" editable="bottom">
+                                        <field name="doc_name" invisible="1"/>
+                                        <field name="doc" widget="binary" filename="doc_name" />
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <footer>
+                        <button name="create_request_design" string="Request Design" type="object" class="btn-primary"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="show_marketing_sph_wizard">
+            <field name="name">Create Design</field>
+            <field name="res_model">marketing.sph.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+           
+</odoo>

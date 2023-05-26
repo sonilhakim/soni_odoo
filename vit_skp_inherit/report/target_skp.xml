@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_target_skp_menu" string="Target Skp"
+         model="vit.target_skp" report_type="qweb-pdf" 
+         file="vit.target_skp"  name="vit_skp_inherit.vit_target_skp_report" />
+
+        <!-- document template -->
+        <template id="vit_skp_inherit.vit_target_skp_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div style="padding-top:30px;" class="page">
+                    <h2>
+                        Target Skp: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tanggal</strong>
+                            <p class="m-0" t-field="doc.tanggal" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tahun akademik</strong>
+                            <p class="m-0" t-field="doc.tahun_akademik_id"/>
+                        </div>
+                    </div>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>PNS</strong>
+                            <p class="m-0" t-field="doc.pns_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nip</strong>
+                            <p class="m-0" t-field="doc.pns_nip"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pangkat/Golongan</strong>
+                            <p class="m-0" t-field="doc.pns_pangkat_gol_ruang"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jabatan</strong>
+                            <p class="m-0" t-field="doc.pns_jabatan_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Unit Kerja</strong>
+                            <p class="m-0" t-field="doc.pns_unit_kerja_id"/>
+                        </div>
+                    </div>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pejabat Penilai</strong>
+                            <p class="m-0" t-field="doc.pejabat_penilai_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nip</strong>
+                            <p class="m-0" t-field="doc.pejabat_penilai_nip"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pangkat/Golongan</strong>
+                            <p class="m-0" t-field="doc.pejabat_penilai_pangkat_gol_ruang"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jabatan</strong>
+                            <p class="m-0" t-field="doc.pejabat_penilai_jabatan_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Unit Kerja</strong>
+                            <p class="m-0" t-field="doc.pejabat_penilai_unit_kerja_id"/>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <table class="table table-sm o_main_table" name="perkuliahan_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Kegiatan Tugas Jabatan</td>
+                            <td style="text-align: center;border-left:1px solid grey;">AK</td>
+                            <td style="border-left:1px solid grey;"></td>
+                            <td></td>
+                            <td style="text-align: center;">Target</td>
+                            <td></td>
+                            <td></td>
+                            <td style="border-right:1px solid grey;"></td>
+                        </tr>
+                        <tr><td></td>
+                            <td style="border-left:1px solid grey;"></td>
+                            <td style="text-align: right; border-left:1px solid grey;">Kuantitas/Output</td>
+                            <td></td>
+                            <td style="text-align: right;">Kualitas/Mutu</td>
+                            <td style="text-align: right;">Waktu</td>
+                            <td></td>
+                            <td style="text-align: right;border-right:1px solid grey;">Biaya</td>
+                        </tr>
+                    </thead>
+                    <tbody class="target_val_ids_tbody">
+                        <tr t-foreach="doc.target_val_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td style="text-align: center;border-left:1px solid grey;"><span t-field="line.target_ak" /></td>
+                            <td style="text-align: right;border-left:1px solid grey;"><span t-field="line.target_kuantitas" /></td>
+                            <td style="text-align: center;"><span t-field="line.target_satuan_kuant" /></td>
+                            <td style="text-align: right;"><span t-field="line.target_kualitas" /></td>
+                            <td style="text-align: right;"><span t-field="line.target_waktu" /></td>
+                            <td style="text-align: center;"><span t-field="line.target_satuan_waktu" /></td>
+                            <td style="text-align: right;border-right:1px solid grey;"><span t-field="line.target_biaya" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>                
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_skp_inherit.vit_target_skp_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_skp_inherit.vit_target_skp_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

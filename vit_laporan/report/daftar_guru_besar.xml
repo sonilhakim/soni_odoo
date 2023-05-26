@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_daftar_guru_besar_menu" string="Vit - Daftar guru besar"
+         model="vit.daftar_guru_besar" report_type="qweb-pdf" 
+         file="vit.daftar_guru_besar"  name="vit_laporan.vit_daftar_guru_besar_report" />
+
+        <!-- document template -->
+        <template id="vit_laporan.vit_daftar_guru_besar_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Daftar guru besar: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Fakultas</strong>
+                            <p class="m-0" t-field="doc.fakultas_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Matra</strong>
+                            <p class="m-0" t-field="doc.matra_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Gb detail</h2>
+                <table class="table table-sm o_main_table" name="gb_detail_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Nip</td>
+                            <td>Jabatan</td>
+                            <td>Golongan</td>
+                            <td>Gb</td>
+                        </tr>
+                    </thead>
+                    <tbody class="gb_detail_ids_tbody">
+                        <tr t-foreach="doc.gb_detail_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.nip" /></td>
+                            <td><span t-field="line.jabatan" /></td>
+                            <td><span t-field="line.golongan" /></td>
+                            <td><span t-field="line.gb_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_laporan.vit_daftar_guru_besar_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_laporan.vit_daftar_guru_besar_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

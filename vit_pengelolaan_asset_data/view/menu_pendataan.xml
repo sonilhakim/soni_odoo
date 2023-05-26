@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <menuitem id="vit_aset_menu_pendataan"
+                  name="Pendataan"
+                  sequence="20"
+                  web_icon="vit_pengelolaan_asset_data,static/description/icon.png"
+        />
+
+        <menuitem name="Data Aset" id="vit_data_aset_menu" parent="vit_aset_menu_pendataan"
+                  action="act_open_account_data_asset_view" groups="group_pengelolaan_aset_user,group_pengelolaan_aset_manager"/>
+
+        <menuitem name="Barang Inventaris" id="vit_inventaris_aset_menu" parent="vit_aset_menu_pendataan"
+                  action="vit_pengelolaan_asset_data.act_open_account_inv_asset_view" groups="group_pengelolaan_aset_user,group_pengelolaan_aset_manager"/>
+                  
+        <menuitem name="Penyusutan" id="vit_penyusutan_aset_menu" parent="vit_aset_menu_pendataan"
+                  action="act_open_account_penyusutan_detail_view" groups="group_pengelolaan_aset_user,group_pengelolaan_aset_manager"/>
+
+    </data>
+</odoo>

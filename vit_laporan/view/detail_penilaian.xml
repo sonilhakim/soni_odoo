@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_detail_penilaian_tree" model="ir.ui.view">
+            <field name="name">vit_detail_penilaian_tree</field>
+            <field name="model">vit.detail_penilaian</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Detail penilaian">
+                    <field name="name" />
+                    <field name="nip" />
+                    <field name="pekerjaan" />
+                    <field name="nilai" />
+                    <!-- <field name="dp3_id" /> -->
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_detail_penilaian_form" model="ir.ui.view">
+            <field name="name">vit_detail_penilaian_form</field>
+            <field name="model">vit.detail_penilaian</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Detail penilaian">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Detail penilaian Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="nip" />
+                                <field name="pekerjaan" />
+                                <field name="nilai" />
+                            </group>
+                            <group>
+                                <field name="dp3_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_detail_penilaian_search" model="ir.ui.view">
+            <field name="name">vit_detail_penilaian</field>
+            <field name="model">vit.detail_penilaian</field>
+            <field name="arch" type="xml">
+                <search string="Detail penilaian">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Nip" name="filter_by_nip" domain="[('nip','=','')]" />
+                    <filter string="Pekerjaan" name="filter_by_pekerjaan" domain="[('pekerjaan','=','')]" />
+                    <filter string="Nilai" name="filter_by_nilai" domain="[('nilai','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="nip" select="True"/>
+                    <field name="pekerjaan" select="True"/>
+                    <field name="nilai" select="True"/>
+                    <field name="dp3_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Dp3" domain="[]" name="group_by_dp3_id" context="{'group_by':'dp3_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_detail_penilaian_kanban" model="ir.ui.view" >
+            <field name="name">vit_detail_penilaian</field>
+            <field name="model">vit.detail_penilaian</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="nip" />
+                    <field name="pekerjaan" />
+                    <field name="nilai" />
+                    <field name="dp3_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Dp3</span> <field name="dp3_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_detail_penilaian_graph" model="ir.ui.view">
+            <field name="name">vit_detail_penilaian</field>
+            <field name="model">vit.detail_penilaian</field>
+            <field name="arch" type="xml">
+                <graph string="Detail penilaian" type="bar">
+                    <field name="dp3_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_detail_penilaian" model="ir.actions.act_window">
+            <field name="name">Detail penilaian</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.detail_penilaian</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Detail penilaian
+                </p><p>
+                Click the Create button to add a new Detail penilaian
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_detail_penilaian" name="Detail penilaian" parent="vit_laporan_config_menu" action="action_vit_detail_penilaian" sequence="190"/>
+    </data>
+</odoo>

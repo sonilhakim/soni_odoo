@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="single-courses-lock">
+      <html>
+         <!-- Mirrored from envytheme.com/templates/edufield/edufield/index-four.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Jun 2020 06:56:29 GMT -->
+         <head>
+            <title t-field="e_learning.name" />
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/bootstrap.min.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/icofont.min.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/classy-nav.min.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/animate.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/owl.carousel.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/magnific-popup.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/owl.theme.default.min.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/style.css"/>
+            <link rel="stylesheet" href="/vit_elearning/static/src/css/responsive.css"/>
+            <link rel="icon" type="image/png" href="https://toffin.id/wp-content/uploads/2019/12/cropped-ic-192x192.png"/>
+         </head>
+         <body>
+            <div class="preloader-area">
+                <div class="loader">
+                   <div class="dots"> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-up"></i> </div>
+                </div>
+            </div>
+            <t t-call="vit_elearning.header"/>              
+              <!-- Start Page Title Area -->
+              <div class="page-title">
+                  <div class="d-table">
+                      <div class="d-table-cell">
+                          <div class="container">
+                              <h3>Course Details</h3>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Page Title Area -->
+              
+              <!-- Start Course Details Area -->
+              <section class="course-details-area ptb-100">
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-lg-8 col-md-12">
+                              <div class="courses-details">
+                                  <div class="courses-details-meta">
+                                      <ul>
+                                          <li>
+                                              <div class="teacher-img">
+                                                  <img t-attf-src="data:image/*;base64,{{e_learning.teachers_id.image}}" t-attf-alt="teacher" class="img-fluid"/>
+                                              </div>
+                                              
+                                              Pembicara: <span t-field="e_learning.teachers_id.name"/>
+                                          </li>
+                                          
+                                          <li>
+                                              Category: <span t-field="e_learning.e_learning_category_id"/>
+                                          </li>
+                                      </ul>
+                                      
+                                      <div class="apply-btn">
+                                          <a href="#" class="btn btn-primary">Rp &#160;<span t-field="e_learning.total_price"/></a>
+                                      </div>
+                                  </div>   
+                              
+                              <div class="leave-a-reply locked">
+                                  <h5>Maaf anda tidak memiliki akses ke halaman ini, terima kasih :)</h5>
+                              </div> 
+                          </div>
+                          </div>
+
+                          
+                          <div class="col-lg-4 col-md-12">
+                              <div class="side-bar mb-0">
+                                 
+                                  <div class="single-widget share-boxes">
+                                      <h3 class="title">Share</h3>
+                                      
+                                      <ul>
+                                          <li><a href="#" style="padding-top:12px"><i class="icofont-facebook" ></i></a></li>
+                                          <li><a href="#" style="padding-top:12px"><i class="icofont-twitter"></i></a></li>
+                                          <li><a href="#" style="padding-top:12px"><i class="icofont-instagram"></i></a></li>
+                                          <li><a href="#" style="padding-top:12px"><i class="icofont-linkedin"></i></a></li>
+                                      </ul>
+                                  </div>
+                                  
+                                  <div class="single-widget latest-courses">
+                                      <h3 class="title"><a href="/kelasonline">All Courses </a></h3>
+                                  
+                                      <div class="single-latest-courses" t-foreach="e_learning_cl" t-as="e_learn_cl">
+                                          <div class="img">
+                                            <a t-attf-href="/single-courses/{{e_learn_cl.id}}">
+                                              <img t-attf-src="data:image/*;base64,{{e_learn_cl.image_small}}" t-attf-alt="{{e_learn_cl.name}}" class="img-fluid" />
+                                            </a>
+                                          </div>
+                                          
+                                          <div class="content">
+                                            <h4><a t-attf-href="/single-courses/{{e_learn_cl.id}}"><span t-field="e_learn_cl.name"/></a></h4>
+                                            
+                                            <t t-if="e_learn_cl.total_price==0">
+                                              <p>Gratis</p>
+                                            </t>
+                                            <t t-else="">
+                                              <p>Rp &#160;<span t-field="e_learn_cl.total_price"/></p>
+                                            </t>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  
+                                  <div class="single-widget latest-courses mb-0">
+                                      <h3 class="title">Seminar</h3>
+                                  
+                                      <div class="single-latest-courses" t-foreach="e_learning_sem" t-as="e_learn_sem">
+                                          <div class="img">
+                                              <a t-attf-href="/single-seminar/{{e_learn_sem.id}}"><img t-attf-src="data:image/*;base64,{{e_learn_sem.image_small}}" t-attf-alt="{{e_learn_sem.name}}" class="img-fluid"/></a>
+                                          </div>
+                                          
+                                          <div class="content">
+                                              <h4 style="margin-top:0;"><a t-attf-href="/single-seminar/{{e_learn_sem.id}}"><span t-field="e_learn_sem.name"/></a></h4>
+                                              
+                                              <p>Rp <span t-field="e_learn_sem.total_price"/></p>
+                                          </div>
+                                      </div>  
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="similar-courses">
+                      <div class="container">
+                          <h2>Similar Courses</h2>
+                          
+                          <div class="row">
+                              <div class="col-lg-4 col-md-4" t-foreach="e_learning_crs" t-as="e_learn_crs">
+                                  <div class="single-courses-item">
+                                      <div class="courses-img">
+                                          <a t-attf-href="/single-courses/{{e_learn_crs.id}}">
+                                            <img t-attf-src="data:image/*;base64,{{e_learn_crs.image_small}}" t-attf-alt="{{e_learn_crs.name}}" class="img-fluid" />
+                                          </a>
+                                      </div>
+
+                                      <div class="courses-content">
+                                          <h3><a t-attf-href="/single-courses/{{e_learn_crs.id}}"><span t-field="e_learn_crs.name"/></a></h3>
+                                          <ul>
+                                              <li><i class="icofont-star"></i></li>
+                                              <li><i class="icofont-star"></i></li>
+                                              <li><i class="icofont-star"></i></li>
+                                              <li><i class="icofont-star"></i></li>
+                                              <li><i class="icofont-star"></i></li>
+                                          </ul>
+                                      </div>
+
+                                      <div class="courses-content-bottom">
+                                          <h4><i class="icofont-ui-user"></i> 120 Students</h4>
+                                          <t t-if="e_learn_crs.total_price==0">
+                                            <h4 class="price">Gratis</h4>
+                                          </t>
+                                          <t t-else="">
+                                            <h4 class="price">Rp &#160;<span t-field="e_learn_crs.total_price"/></h4>
+                                          </t>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </section>
+              <!-- End Course Details Area -->
+              
+              <!-- Start Footer Area -->
+              <t t-call="vit_elearning.footer"/>
+              <!-- End Footer Area -->
+              
+              <!-- Back to top -->
+              <a class="scrolltop" href="#top"><i class="icofont-hand-drawn-up"></i></a>
+              <!-- End Back to top -->
+              
+              <!-- jQuery Min JS -->
+              <script src="/vit_elearning/static/src/js/jquery.min.js"></script>
+              <!-- Prpper JS -->
+              <script src="/vit_elearning/static/src/js/popper.min.js"></script>
+              <!-- Bootstrap Min JS -->
+              <script src="/vit_elearning/static/src/js/bootstrap.min.js"></script>
+              <!-- Classy Nav Min Js -->
+              <script src="/vit_elearning/static/src/js/classy-nav.min.js"></script>
+              <!-- Owl Carousel Min Js -->
+              <script src="/vit_elearning/static/src/js/owl.carousel.min.js"></script>
+              <!-- Magnific Popup JS -->
+              <script src="/vit_elearning/static/src/js/jquery.magnific-popup.min.js"></script>
+              <!-- CounterUp JS -->
+              <script src="/vit_elearning/static/src/js/jquery.counterup.min.js"></script>
+              <!-- Waypoints JS -->
+              <script src="/vit_elearning/static/src/js/waypoints.min.js"></script>
+              <!-- Form Validator Min JS -->
+              <script src="/vit_elearning/static/src/js/form-validator.min.js"></script>
+              <!-- Contact Form Min JS -->
+              <script src="/vit_elearning/static/src/js/contact-form-script.js"></script>
+              <!-- Main JS -->
+              <script src="/vit_elearning/static/src/js/main.js"></script>
+          </body>
+      </html>
+    </template>
+  </data>
+</odoo>

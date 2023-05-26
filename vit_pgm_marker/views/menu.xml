@@ -1,0 +1,16 @@
+<!-- top menu MD -->
+<odoo>
+    <data>
+        <!-- menu pgm-->
+        <menuitem
+            name="PE-GM"
+            id="menu_pgm_marker"
+            sequence="90"
+            web_icon="vit_pgm_marker,static/description/icon.png"
+            groups="vit_pgm_marker.group_pgm_manager,vit_pgm_marker.group_pgm_user"/>
+
+        <menuitem name="PE-GM" parent="vit_pgm_marker.menu_pgm_marker" id="submenu_pgm_marker" sequence="10"/>
+        <menuitem id="menu_worksheet_pgm" name="Worksheet" parent="vit_pgm_marker.submenu_pgm_marker" action="mrp_action_worksheet_pgm" sequence="20"/>
+        <menuitem id="menu_vit_boq_po_edp" name="Style List" parent="vit_pgm_marker.submenu_pgm_marker" action="vit_merchandise_garment.action_vit_boq_po_md" sequence="10"/>
+    </data>
+</odoo>

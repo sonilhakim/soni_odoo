@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="sequence_mutasi_hukum" model="ir.sequence">
+            <field name="name">mutasi_hukum</field>
+            <field name="code">vit.mutasi_hukum</field>
+            <field name="prefix">MH/%(year)s/%(month)s/</field>
+            <field name="padding">3</field>
+            <field name="number_next_actual">1</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">standard</field>
+        </record>
+    </data>
+</odoo>

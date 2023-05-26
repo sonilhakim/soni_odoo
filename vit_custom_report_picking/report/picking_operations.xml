@@ -1,0 +1,108 @@
+<odoo>
+    <data>
+        
+        <report
+            string="Picking Operations"
+            id="stock.action_report_picking"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            paperformat="vit_custom_report_picking.paperformat_custom_picking_int_do"
+            name="vit_custom_report_picking.report_picking"
+            file="vit_custom_report_picking.report_picking"
+            print_report_name="'DO - %s - %s' % (object.partner_id.name or '', object.name)"
+        />
+
+
+        <template id="report_picking">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="vit_custom_report_picking.external_layout_custom_int_do">
+                        <div class="page" style="font-size:11pt;">
+                            <div class="col-12" style="text-align:center">
+                                <h4 t-if="o.is_do == True"><b>DELIVERY ORDER</b></h4>
+                                <h4 t-if="o.is_do == False"><b>INTERNAL TRANSFER</b></h4>
+                            </div>
+                            <div class="col-12">
+                                <div style="border-bottom: 1px solid black;"/>
+                            </div>
+                            <br/>
+                            <div class="row" >
+                                <div class="col-2" t-if="o.is_do == True">Nomor DO</div>
+                                <div class="col-2" t-if="o.is_do == False">Nomor Transfer</div>
+                                <div class="col-6">:
+                                    &#160;<span t-field="o.name"/>
+                                </div>
+                            </div>
+
+                            <div class="row" >
+                                <div class="col-2">Nama Pelanggan</div>
+                                <div class="col-6">:
+                                    &#160;<span t-field="o.partner_id.name"/>
+                                </div>
+                            </div>
+
+                            <div class="row" >
+                                <div class="col-2">Nomor Faktur</div>
+                                <div class="col-4">:
+                                    &#160;<span t-field="o.origin"/>
+                                </div>
+                                <div class="col-2" t-if="o.is_do == True">Tanggal DO</div>
+                                <div class="col-2" t-if="o.is_do == False">Tanggal Transfer</div>
+                                <div class="col-4">:
+                                    &#160;<span t-field="o.date"/>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <table style="border-collapse: collapse; border: 1px solid black;" class="table table-sm">
+                                <t t-set="has_barcode" t-value="any([move_ids_without_package.product_id and move_ids_without_package.product_id.sudo().barcode or move_ids_without_package.package_id for move_ids_without_package in o.move_line_ids])"/>
+                                <t t-set="has_serial_number" t-value="o.move_line_ids.filtered(lambda ml: ml.lot_id or ml.lot_name)" groups="stock.group_production_lot"/>
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center; border: 1px solid black;"><strong>No.</strong></th>
+                                        <th style="text-align: center; border: 1px solid black;"><strong>Nama Barang</strong></th>
+                                        <th style="text-align: center; border: 1px solid black;"><strong>Jumlah</strong></th>
+                                        <th style="text-align: center; border: 1px solid black;"><strong>Satuan</strong></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <t t-set="no" t-value="1" />
+                                    <t t-foreach="o.move_ids_without_package.sorted(key=lambda m: m.product_id.id)" t-as="move">
+                                        <tr>
+                                            <td style="text-align: center; border: 1px solid black;">
+                                                <span t-esc="no" />
+                                                <t t-set="no" t-value="no + 1"/>
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-field="move.product_id.display_name"/>
+                                            </td>
+                                            <td style="text-align: right; border: 1px solid black;">
+                                                <span t-if="o.state != 'done'" t-field="move.product_uom_qty"/>
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-field="move.product_uom"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                  </tbody>
+                            </table>
+                        </div>
+
+                        <div id="ttd" class="row justify-content-end">
+                            <div class="col-11" style="font-size:12pt;">
+                                <table class="table">
+                                    <tr>
+                                        <td class="text-center" style="border: none;">Adm Toko</td>
+                                        <td class="text-center" style="border: none;">Kabag Penjualan</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

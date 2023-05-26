@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+
+      <template id="succes">
+         <html>
+            <head>
+               <meta charset="utf-8"/>
+               <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/bootstrap.min.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/icofont.min.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/classy-nav.min.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/animate.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/owl.carousel.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/magnific-popup.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/owl.theme.default.min.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/style.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/responsive.css"/>
+               <!-- <title>Toffin Indonesia - E-Learning</title> -->
+               <link rel="icon" type="image/png" href="https://toffin.id/wp-content/uploads/2019/12/cropped-ic-192x192.png"/>
+            </head>
+            <body>
+                 
+               <div class="main-banner-three">
+                  <div class="d-table">
+                     <div class="d-table-cell">
+                        <div class="container">
+                           <div class="main-banner-three-content">
+                              <h2 style="color: #f49521">An email has been sent with credentials to reset your password</h2>
+                              <br/>
+                              <br/>
+                              <h5><a t-attf-href="/admission">
+                                 back to login
+                              </a></h5>
+                           </div>                        
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <a class="scrolltop" href="#top"><i class="icofont-hand-drawn-up"></i></a> 
+               <script src="/vit_elearning/static/src/js/jquery.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/popper.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/bootstrap.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/classy-nav.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/owl.carousel.min.js"></script>
+               <script src="/vit_elearning/static/src/js/jquery.magnific-popup.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/jquery.counterup.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/waypoints.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/form-validator.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/contact-form-script.js"></script> 
+               <script src="/vit_elearning/static/src/js/main.js"></script>
+            </body>
+         </html>
+      </template>
+   </data>
+</odoo>

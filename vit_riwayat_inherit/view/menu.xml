@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="vit_riwayat.vit_riwayat_top_menu" name="Riwayat" 
+        parent="hr.menu_hr_root"
+        sequence="20" web_icon="vit_riwayat,static/description/icon.png" />
+
+
+    </data>
+</odoo>

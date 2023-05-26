@@ -1,0 +1,220 @@
+<odoo>
+	<data>
+		<!-- action window jenis_insentif_kinerja-->
+        <record id="action_vit_jenis_insentif_kinerja" model="ir.actions.act_window">
+            <field name="name">Jenis Insentif Kinerja</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.salary.rule</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('remun_type','=','jik')]</field>
+            <field name="context">{'default_remun_type': 'jik', 'remun_type': 'jik'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk membuat Jenis insentif kinerja
+                </p><p>
+                Klik Tombol Buat untuk menambahkan Jenis insentif kinerja Baru
+                </p>
+            </field>
+        </record>
+        <!-- action window jenis_sub_insentif_kinerja-->
+        <record id="action_vit_jenis_sub_insentif_kinerja" model="ir.actions.act_window">
+            <field name="name">Jenis Sub Insentif Kinerja</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.salary.rule</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('remun_type','=','jik_sub')]</field>
+            <field name="context">{'default_remun_type': 'jik_sub', 'remun_type': 'jik_sub'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk membuat Jenis sub insentif kinerja
+                </p><p>
+                Klik Tombol Buat untuk menambahkan Jenis sub insentif kinerja Baru
+                </p>
+            </field>
+        </record>
+        <!-- action window grade_per_pegawai-->
+        <record id="action_vit_grade_per_pegawai" model="ir.actions.act_window">
+            <field name="name">Grade per Pegawai</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.salary.rule</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('remun_type','=','grade')]</field>
+            <field name="context">{'default_remun_type': 'grade', 'remun_type': 'grade'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk membuat Grade per pegawai
+                </p><p>
+                Klik Tombol Buat untuk menambahkan Grade per pegawai Baru
+                </p>
+            </field>
+        </record>
+        <!-- action window Gaji pnbp-->
+        <record id="action_vit_gaji_pnbp" model="ir.actions.act_window">
+            <field name="name">Gaji PNBP</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.salary.rule</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('remun_type','=','pnbp')]</field>
+            <field name="context">{'default_remun_type': 'pnbp', 'remun_type': 'pnbp'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk membuat Gaji PNBP
+                </p><p>
+                Klik Tombol Buat untuk menambahkan Gaji PNBP
+                </p>
+            </field>
+        </record>
+        <!-- action window PIR-->
+        <record id="action_vit_pir" model="ir.actions.act_window">
+            <field name="name">PIR</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.salary.rule</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('remun_type','=','pir')]</field>
+            <field name="context">{'default_remun_type': 'pir', 'remun_type': 'pir'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk membuat PIR
+                </p><p>
+                Klik Tombol Buat untuk menambahkan PIR
+                </p>
+            </field>
+        </record>
+        <!-- action window Tunkin kehadiran-->
+        <record id="action_vit_tunkin_kehadiran" model="ir.actions.act_window">
+            <field name="name">Tunkin Kehadiran</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.salary.rule</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('remun_type','=','tk_hadir')]</field>
+            <field name="context">{'default_remun_type': 'tk_hadir', 'remun_type': 'tk_hadir'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk membuat Tunkin Kehadiran
+                </p><p>
+                Klik Tombol Buat untuk menambahkan Tunkin Kehadiran
+                </p>
+            </field>
+        </record>
+        <!-- action window Tunkin terlambat-->
+        <record id="action_vit_tunkin_terlambat" model="ir.actions.act_window">
+            <field name="name">Tunkin Terlambat</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.salary.rule</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('remun_type','=','tk_lambat')]</field>
+            <field name="context">{'default_remun_type': 'tk_lambat', 'remun_type': 'tk_lambat'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk membuat Tunkin Terlambat
+                </p><p>
+                Klik Tombol Buat untuk menambahkan Tunkin Terlambat
+                </p>
+            </field>
+        </record>
+        <!-- action window Tunkin pulang-->
+        <record id="action_vit_tunkin_pulang" model="ir.actions.act_window">
+            <field name="name">Tunkin Pulang</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.salary.rule</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('remun_type','=','tk_pulang')]</field>
+            <field name="context">{'default_remun_type': 'tk_pulang', 'remun_type': 'tk_pulang'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk membuat Tunkin Pulang
+                </p><p>
+                Klik Tombol Buat untuk menambahkan Tunkin Pulang
+                </p>
+            </field>
+        </record>
+        <!-- action window Tunkin pemotongan-->
+        <record id="action_vit_tunkin_pemotongan" model="ir.actions.act_window">
+            <field name="name">Pemotongan Tunkin</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.salary.rule</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('remun_type','=','tk_potongan')]</field>
+            <field name="context">{'default_remun_type': 'tk_potongan', 'remun_type': 'tk_potongan'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk membuat Pemotongan Tunkin
+                </p><p>
+                Klik Tombol Buat untuk menambahkan Pemotongan Tunkin
+                </p>
+            </field>
+        </record>
+        <!-- action window Kehadiran Pegawai-->
+        <record id="action_vit_kehadiran_pegawai" model="ir.actions.act_window">
+            <field name="name">Kehadiran Pegawai</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.attendance</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_today":1}</field>
+            <field name="search_view_id" ref="hr_attendance.hr_attendance_view_filter" />
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk membuat Kehadiran Pegawai
+                </p><p>
+                Klik Tombol Buat untuk menambahkan Kehadiran Pegawai
+                </p>
+            </field>
+        </record>
+        <!-- action window Remunerasi pegawai-->
+        <record id="action_vit_remunerasi_pegawai" model="ir.actions.act_window">
+            <field name="name">Remunerasi Pegawai</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.remunerasi_pegawai</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk membuat Remunerasi Pegawai
+                </p><p>
+                Klik Tombol Buat untuk menambahkan Remunerasi Pegawai
+                </p>
+            </field>
+        </record>
+        <!-- action window Capaian kinerja unit kerja-->
+        <record id="action_vit_capaian_kinerja_unit_kerja" model="ir.actions.act_window">
+            <field name="name">Capaian Kinerja Unit Kerja</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.capaian_kinerja_unit_kerja</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk membuat Capaian Kinerja Unit Kerja
+                </p><p>
+                Klik Tombol Buat untuk menambahkan Capaian Kinerja Unit Kerja
+                </p>
+            </field>
+        </record>
+
+        
+        <menuitem id="vit_remunerasi.menu_vit_jenis_insentif_kinerja" name="Jenis Insentif Kinerja" parent="vit_remunerasi.vit_remunerasi_sub_menu" action="vit_remunerasi_inherit.action_vit_jenis_insentif_kinerja" sequence="20"/>
+
+        <menuitem id="vit_remunerasi.menu_vit_jenis_sub_insentif_kinerja" name="Jenis Sub Insentif Kinerja" parent="vit_remunerasi.vit_remunerasi_sub_menu" action="vit_remunerasi_inherit.action_vit_jenis_sub_insentif_kinerja" sequence="30"/>
+
+        <menuitem id="vit_remunerasi.menu_vit_grade_per_pegawai" name="Grade per Pegawai" parent="vit_remunerasi.vit_remunerasi_sub_menu" action="vit_remunerasi_inherit.action_vit_grade_per_pegawai" sequence="130"/>
+
+        <menuitem id="vit_remunerasi.menu_vit_gaji_pnbp" name="Gaji PNBP" parent="vit_remunerasi.vit_remunerasi_sub_menu" action="vit_remunerasi_inherit.action_vit_gaji_pnbp" sequence="140"/>
+
+        <menuitem id="vit_remunerasi.menu_vit_pir" name="PIR" parent="vit_remunerasi.vit_remunerasi_sub_menu" action="vit_remunerasi_inherit.action_vit_pir" sequence="150"/>
+
+        <menuitem id="vit_remunerasi.menu_vit_tunkin_kehadiran" name="Tunkin Kehadiran" parent="vit_remunerasi.vit_remunerasi_sub_menu" action="vit_remunerasi_inherit.action_vit_tunkin_kehadiran" sequence="190"/>
+
+        <menuitem id="vit_remunerasi.menu_vit_tunkin_terlambat" name="Tunkin Terlambat" parent="vit_remunerasi.vit_remunerasi_sub_menu" action="vit_remunerasi_inherit.action_vit_tunkin_terlambat" sequence="200"/>
+
+        <menuitem id="vit_remunerasi.menu_vit_tunkin_pulang" name="Tunkin Pulang" parent="vit_remunerasi.vit_remunerasi_sub_menu" action="vit_remunerasi_inherit.action_vit_tunkin_pulang" sequence="210"/>
+
+        <menuitem id="vit_remunerasi.menu_vit_tunkin_pemotongan" name="Pemotongan Tunkin" parent="vit_remunerasi.vit_remunerasi_sub_menu" action="vit_remunerasi_inherit.action_vit_tunkin_pemotongan" sequence="220"/>
+
+        <menuitem id="vit_remunerasi.menu_vit_kehadiran_pegawai" name="Kehadiran Pegawai" parent="vit_remunerasi.vit_remunerasi_sub_menu" action="vit_remunerasi_inherit.action_vit_kehadiran_pegawai" sequence="230"/>
+
+        <menuitem id="vit_remunerasi.menu_vit_remunerasi_pegawai" name="Remunerasi Pegawai" parent="vit_remunerasi.vit_remunerasi_sub_menu" action="vit_remunerasi_inherit.action_vit_remunerasi_pegawai" sequence="240"/>
+
+        <menuitem id="vit_remunerasi.menu_vit_capaian_kinerja_unit_kerja" name="Capaian Kinerja Unit Kerja" parent="vit_remunerasi.vit_remunerasi_sub_menu" action="vit_remunerasi_inherit.action_vit_capaian_kinerja_unit_kerja" sequence="250"/>
+                        
+	</data>
+</odoo>

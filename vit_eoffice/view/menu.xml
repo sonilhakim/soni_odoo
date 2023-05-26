@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="vit_eoffice_top_menu" name="E-Office" sequence="20" web_icon="vit_eoffice,static/description/icon.png" />
+		<menuitem id="vit_eoffice_sub_menu" name="Operations" sequence="40" parent="vit_eoffice_top_menu" />
+		<menuitem id="vit_eoffice_config_menu" name="Configurations" sequence="50" parent="vit_eoffice_top_menu" />
+	</data>
+</odoo>

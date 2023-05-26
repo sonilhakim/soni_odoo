@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_pengukuran_tree" model="ir.ui.view">
+            <field name="name">vit_pengukuran_tree</field>
+            <field name="model">vit.pengukuran</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="pengukuran">
+                    <field name="name" />
+                    <field name="project" />
+                    <field name="date" />
+                    <field name="partner_id" />
+                    <field name="company_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_pengukuran_form" model="ir.ui.view">
+            <field name="name">vit_pengukuran_form</field>
+            <field name="model">vit.pengukuran</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Pengukuran">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" groups="vit_pengukuran.group_user_pengukuran"/>
+                        <button string="Submit" type="object" name="action_submit" states="confirmed" groups="vit_pengukuran.group_manager_pengukuran"/>
+                        <button string="Validate" type="object" name="action_done" states="edp" groups="vit_pengukuran.group_edp_pengukuran"/>
+                        <!-- <button string="Validate2" type="object" name="action_done"/> -->
+                        <button string="Reset to Draft" type="object" name="action_draft" states="confirmed" groups="vit_pengukuran.group_manager_pengukuran"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Project Number"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="project" attrs="{'readonly': [('edp','=',False), ('state','in',['edp','done'])]}" required="1" string="Project Name"/>
+                                <field name="date" attrs="{'readonly': [('edp','=',False), ('state','in',['edp','done'])]}"/>
+                                <field name="user_id" />
+                            </group>
+                            <group>
+                                <field name="partner_id" attrs="{'readonly': [('edp','=',False), ('state','in',['edp','done'])]}" domain="[('customer','=',True)]" options="{'no_create':True}"/>
+                                <field name="company_id" options="{'no_create':True}"/>
+                                <field name="edp" groups="vit_pengukuran.group_edp_pengukuran" attrs="{'invisible': [('state','!=','edp')]}"/>
+                                <field name="spk_line_id" readonly="1"/>
+                            </group>
+                        </group>
+<!--                         <notebook>
+                            <page string="Karyawan">
+                                <field name="file" filename="filename" />
+                                <field name="filename" readonly="1" force_save="1" invisible="1"/>
+                                <label for="filename" string=" - " attrs="{'invisible':[('filename','=',False)]}"/>
+                                <button string="Import Data" type="object" name="action_import" groups="vit_pengukuran.group_edp_pengukuran" class="oe_highlight" attrs="{'invisible':['|',('filename','=',False),('state','!=','draft')]}"/>
+
+                                <p class="oe_grey">Posisi header dan penulisan pada file excel harus seperti ini ('NAMA','NIK','DIVISI','JABATAN','LOKASI','GENDER')</p>
+                                <field name="karyawan_ids" attrs="{'readonly': [('edp','=',False), ('state','in',['edp','done'])]}">
+                                    <tree string="karyawan" decoration-success="state == 'confirmed'" >
+                                        <field name="karyawan" />
+                                        <field name="nik" />
+                                        <field name="divisi_id" />
+                                        <field name="jabatan_id" />
+                                        <field name="lokasi_id" />
+                                        <field name="gender" />
+                                        <field name="state" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook> -->
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_pengukuran_search" model="ir.ui.view">
+            <field name="name">vit_pengukuran</field>
+            <field name="model">vit.pengukuran</field>
+            <field name="arch" type="xml">
+                <search string="pengukuran">
+                    <field name="name"/>
+                    <field name="project"/>
+                    <field name="partner_id"/>
+                    <group string="Group By..">
+                        <filter name="group_partner_id" string="Customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_pengukuran_kanban" model="ir.ui.view" >
+            <field name="name">vit_pengukuran</field>
+            <field name="model">vit.pengukuran</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="edp"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            Name: <field name="name"></field>
+                                        </li>
+                                        <li>
+                                            Buyer: <field name="partner_id"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_pengukuran_graph" model="ir.ui.view">
+            <field name="name">vit_pengukuran</field>
+            <field name="model">vit.pengukuran</field>
+            <field name="arch" type="xml">
+                <graph string="pengukuran" type="bar">
+                </graph>
+            </field>
+        </record>
+        <!-- action window Pengukuran-->
+        <record id="action_vit_pengukuran" model="ir.actions.act_window">
+            <field name="name">Project</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.pengukuran</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_vit_pengukuran_tree"/>
+            <!-- <field name="context">{"search_default_fieldname":1}</field> -->
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new pengukuran
+                </p><p>
+                Click the Create button to add a new pengukuran
+                </p>
+            </field>
+        </record>
+
+<!--         <menuitem id="menu_vit_pengukuran" name="All Project" parent="vit_edp_sub_menu" action="action_vit_pengukuran" groups="group_edp_pengukuran" sequence="20"/> -->
+    </data>
+</odoo>

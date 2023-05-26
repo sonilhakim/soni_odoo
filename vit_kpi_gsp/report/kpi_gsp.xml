@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_kpi_gsp_menu" string="KPI GSP"
+         model="vit.kpi_gsp" report_type="qweb-pdf" 
+         file="vit.kpi_gsp"  name="vit_kpi_gsp.vit_kpi_gsp_report" />
+
+        <!-- document template -->
+        <template id="vit_kpi_gsp.vit_kpi_gsp_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Start date</strong>
+                            <p class="m-0" t-field="doc.start_date" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>End date</strong>
+                            <p class="m-0" t-field="doc.end_date" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Preference</strong>
+                            <p class="m-0" t-field="doc.preference" />
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>KPI Detail</h2>
+                <table class="table table-sm o_main_table" name="kpi_lines_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Section</td>
+                            <td>Aspek</td>
+                            <td>Satuan</td>
+                            <td>Bobot</td>
+                            <td>Target</td>
+                            <td>Nilai</td>
+                            <td>Score</td>
+                            <td>Deskripsi</td>
+                        </tr>
+                    </thead>
+                    <tbody class="kpi_lines_ids_tbody">
+                        <t t-foreach="doc.kpi_lines_ids" t-as="line">
+                            <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                <t t-if="not line.display_type">
+                                    <td></td>
+                                    <td><span t-field="line.aspek_id" /></td>
+                                    <td><span t-field="line.satuan" /></td>
+                                    <td><span t-field="line.bobot" /></td>
+                                    <td><span t-field="line.target" /></td>
+                                    <td><span t-field="line.nilai" /></td>
+                                    <td><span t-field="line.score" /></td>
+                                    <td><span t-field="line.name" /></td>
+                                </t>
+                                <t t-if="line.display_type == 'line_section'">
+                                    <td colspan="99">
+                                        <span t-field="line.name"/>
+                                    </td>
+                                </t>
+                            </tr> <!-- foreach-->
+                        </t> 
+                    </tbody>
+                </table>
+                <div class="clearfix">
+                    <div id="total" class="row">
+                        <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                            <table class="table table-sm" style="page-break-inside: avoid;">
+                                <tr class="border-black o_total">
+                                    <td><strong>Total Bobot</strong></td>
+                                    <td class="text-right">
+                                        <span t-field="doc.total_bobot"/>
+                                    </td>
+                                </tr>
+                                <tr class="border-black o_total">
+                                    <td><strong>Total Score</strong></td>
+                                    <td class="text-right">
+                                        <span t-field="doc.total_score"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_kpi_gsp.vit_kpi_gsp_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_kpi_gsp.vit_kpi_gsp_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

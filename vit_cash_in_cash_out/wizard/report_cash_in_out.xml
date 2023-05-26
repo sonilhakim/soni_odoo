@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+
+        <record id="cash_in_out_wizard_wizard_view" model="ir.ui.view">
+            <field name="name">cash.in.out.wizard.form</field>
+            <field name="model">cash.in.out.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Cash In Out">
+                    <p class="oe_grey">
+                        Print Laporan Cash In Cash Out ?
+                    </p>
+                    <group>
+                        <label string="Dari Tanggal" for="start_date"/>
+                            <div>
+                                <field name="start_date" style="width: 40%"/> Sampai 
+                                <field name="end_date" style="width: 40%"/>
+                            </div>
+                        <field name="company_id" invisible="1"/>
+                        <field name="grand_total" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button string="Cash In" name="action_print_report_cash_in" type="object" default_focus="1" class="btn-success"/>
+                        <button string="Cash Out" name="action_print_report_cash_out" type="object" default_focus="1" class="btn-danger"/>
+                        <button string="Cash In Cash Out" name="action_print_report_cash_in_out" type="object" default_focus="1" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_cash_in_out_wizard_view" model="ir.actions.act_window">
+            <field name="name">Report Cash IN OUT</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cash.in.out.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="report_cash_in_out_wizard" 
+                    name="Report Cash In Out"
+                    parent="vit_cash_in_cash_out_sub_menu"
+                    action="action_cash_in_out_wizard_view"
+                    sequence="50" />
+
+    </data>
+</odoo>

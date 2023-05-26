@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mutasi_stock_wizard_form" model="ir.ui.view">
+        <field name="name">rekap.mutasi.stock.wizard.form</field>
+        <field name="model">rekap.mutasi.stock.wizard</field>
+        <field name="arch" type="xml">
+        <form string="Reports">
+            <group>
+                <group>
+                    <field name="location_id"/>
+                </group>
+                <group>
+                    <label string="Dari" for="date_from"/>
+                    <div>
+                        <field name="date_from" style="width: 40%"/> ke 
+                        <field name="date_to" style="width: 40%"/>
+                    </div>
+                </group>
+            </group>
+            
+            <footer>
+                <button name="action_print_report" string="Print" type="object" default_focus="1" class="oe_highlight"/>
+                or <button string="Cancel" class="oe_link" special="cancel" />
+            </footer>
+        </form>
+        </field>
+    </record>
+
+    <record id="action_mutasi_stock_wizard" model="ir.actions.act_window">
+        <field name="name">Ringkasan Mutasi</field>
+        <field name="res_model">rekap.mutasi.stock.wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_mutasi_stock_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="menu_mutasi_stock_wizard"
+        name="Ringkasan Mutasi Stock"
+        action="action_mutasi_stock_wizard"
+        parent="stock.menu_warehouse_report"
+        sequence="250"/>
+
+</odoo>

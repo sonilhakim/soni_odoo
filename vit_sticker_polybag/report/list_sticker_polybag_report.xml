@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="list_sticker_polybag_report"
+            string="List Sticker Polybag"
+            model="list.sticker.polybag.wizard" 
+            report_type="qweb-pdf"
+            paperformat="vit_sticker_polybag.paperformat_sticker_polybag_a4"
+            file="vit_sticker_polybag.list_sticker_polybag_report_tmpl" 
+            name="vit_sticker_polybag.list_sticker_polybag_report_tmpl"
+            menu="False"
+        />
+
+        
+        <template id="list_sticker_polybag_report_tmpl">            
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-foreach="doc.list_polybag" t-as="o">
+                        <t t-call="web.external_layout">
+                            <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                            <div class="page">
+                                <div class="oe_structure"/>                            
+                                <table style="border-collapse: collapse;margin-bottom:10px;">
+                                    <tr>
+                                        <td><strong>PROJECT</strong></td>
+                                        <td>&#160;:&#160; <span t-field="o.pengukuran_header_id.name" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>BUYER</strong></td>
+                                        <td>&#160;:&#160; <span t-field="o.partner_id.name" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>LOKASI1</strong></td>
+                                        <td>&#160;:&#160; <span t-field="o.lokasi_id.name" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>LOKASI2</strong></td>
+                                        <td>&#160;:&#160; <span t-field="o.lokasi2_id.name" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>LOKASI3</strong></td>
+                                        <td>&#160;:&#160; <span t-field="o.lokasi3_id.name" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>DIVISI</strong></td>
+                                        <td>&#160;:&#160; <span t-field="o.divisi_id.name" /></td>
+                                    </tr>
+                                </table>
+
+                                <div class="oe_structure"/>
+                                
+                                <table name="polybag_ids_table" style="text-align: center;width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <td style="border: 1px solid black;"><strong>No</strong></td>
+                                            <td style="border: 1px solid black;"><strong>NIK</strong></td>
+                                            <td style="border: 1px solid black;"><strong>Nama</strong></td>
+                                            <td style="border: 1px solid black;"><strong>Style</strong></td>
+                                            <td style="border: 1px solid black;"><strong>Size</strong></td>
+                                            <td style="border: 1px solid black;"><strong>Qty</strong></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="no" t-value="1" />
+                                        <tr t-foreach="o.line_ids" t-as="l" style="border: 1px solid black;">
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="no" />
+                                                <t t-set="no" t-value="no + 1"/>
+                                            </td>
+                                            <td style="border: 1px solid black;"><span t-esc="l.nik" /></td>
+                                            <td style="border: 1px solid black;"><span t-esc="l.karyawan" /></td>
+                                            <td style="border: 1px solid black;"><span t-esc="l.style_id.name" /></td>
+                                            <td style="border: 1px solid black;"><span t-esc="l.size_id.name" /></td>
+                                            <td style="border: 1px solid black;"><span t-esc="l.qty" /></td>
+                                        </tr> <!-- foreach-->
+                                    </tbody>
+                                </table>
+
+                                <div class="oe_structure"/>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

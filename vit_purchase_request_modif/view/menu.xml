@@ -1,0 +1,125 @@
+<odoo>
+	<data>
+        <!-- action window pr docs -->
+		<record model="ir.actions.act_window" id="action_purchase_request">
+	        <field name="name">Purchase Request</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">vit.product.request</field>
+	        <field name="act_window_id" ref="vit_product_request.action_product_request" />
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+<!--             <field name="context">{"search_default_my_request":1}</field>-->
+	    </record>
+
+        <!-- action window pr lines -->    	
+    	<record model="ir.actions.act_window" id="action_purchase_request_line">
+	        <field name="name">Purchase Request Lines</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">vit.product.request.line</field>
+	        <field name="act_window_id" ref="vit_product_request.action_product_request_line" />
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+			<field name="domain">[('state','=','open'),('product_request_id','!=',False)]</field>
+            <field name="context">{"search_default_group_by_department_id":1}</field>
+	    </record>
+
+		<!-- <record model="ir.actions.act_window" id="action_purchase_request_receive">
+	        <field name="name">Request Receive</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">stock.picking</field>
+	        <field name="act_window_id" ref="vit_product_request.action_product_request_receive" />
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field> -->
+			<!--field name="context">{"search_default_department_id":uid}</field-->
+	    <!-- </record> -->
+
+
+	    <!-- yang di bawah menu product request -->
+		<menuitem 
+		    id="vit_product_request.menu_request_root"
+		    sequence="10"
+		    name="Purchase Request"
+			/>
+		<menuitem 
+		    id="vit_product_request.menu_request_sub"
+		    sequence="10"
+		    parent="vit_product_request.menu_request_root"
+		    name="Purchase Request"
+			/>
+
+	    <menuitem
+	        id="vit_product_request.menu_product_request"
+	        sequence="10"
+		    name="Purchase Request"
+	        parent="vit_product_request.menu_request_sub"
+	        action="action_purchase_request"
+			groups="vit_product_request.product_request_user"/>
+
+	    <menuitem
+	        id="vit_product_request.menu_product_request_line"
+	        sequence="20"
+		    name="Purchase Request Line"
+	        parent="vit_product_request.menu_request_sub"
+	        action="action_purchase_request_line"
+	        groups="vit_product_request.product_request_user"/>		
+
+	    <!-- <menuitem
+	        id="vit_product_request.menu_product_request_receive2"
+	        sequence="30"
+		    name="Product Receiving"
+	        parent="vit_product_request.menu_request_sub"
+	        action="action_product_request_receive"/> -->
+
+
+	    <!-- yang di bawah menu root purchase -->
+        <!-- action window pr docs -->    	
+    	<record model="ir.actions.act_window" id="action_new_purchase_request2">
+	        <field name="name">Purchase Request</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">vit.product.request</field>
+	        <field name="act_window_id" ref="vit_product_request.action_new_product_request2" />
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+            <!-- <field name="context">{"search_default_my_request":1}</field> -->
+	    </record>
+
+        <!-- action window pr lines -->    	
+    	<record model="ir.actions.act_window" id="action_purchase_request_line2">
+	        <field name="name">Purchase Request Lines</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">vit.product.request.line</field>
+	        <field name="act_window_id" ref="vit_product_request.action_product_request_line2" />
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_open":1, "search_default_group_by_product":1}</field>
+	    </record>
+
+
+		<menuitem 
+		    id="vit_product_request.menu_request_sub2"
+		    sequence="2"
+		    parent="purchase.menu_procurement_management"
+		    name="Purchase Request"
+			/>
+
+	    <menuitem
+	        id="vit_product_request.menu_product_request2"
+	        sequence="10"
+		    name="Purchase Request"
+	        parent="vit_product_request.menu_request_sub2"
+	        action="action_new_purchase_request2"/>
+	    <menuitem
+	        id="vit_product_request.menu_product_request_line2"
+	        sequence="20"
+		    name="Purchase Request Line"
+	        parent="vit_product_request.menu_request_sub2"
+	        action="action_purchase_request_line2"/>		
+
+	    <!-- <menuitem
+	        id="vit_product_request.menu_product_request_receive"
+	        sequence="30"
+		    name="Product Receiving"
+	        parent="vit_product_request.menu_request_sub2"
+	        action="action_product_request_receive"/> -->
+	</data>
+</odoo>

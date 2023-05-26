@@ -1,0 +1,17 @@
+<odoo>
+	<data>
+		<record model="ir.module.category" id="module_category_kantor">
+			<field name="name">Kantor</field>
+			<field name="description">Kantor Groups</field>
+			<field name="sequence">10</field>
+		</record>
+		<record id="group_kantor_user" model="res.groups">
+			<field name="name">User</field>
+			<field name="category_id" ref="module_category_kantor"/>
+		</record>
+		<record id="group_kantor_manager" model="res.groups">
+			<field name="name">Manager</field>
+			<field name="category_id" ref="module_category_kantor"/>
+		</record>
+	</data>
+</odoo>

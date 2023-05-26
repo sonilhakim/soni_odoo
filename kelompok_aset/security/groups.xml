@@ -1,0 +1,17 @@
+<odoo>
+	<data>
+		<record model="ir.module.category" id="module_category_kelompok_aset">
+			<field name="name">Kelompok Aset</field>
+			<field name="description">Kelompok Aset Groups</field>
+			<field name="sequence">10</field>
+		</record>
+		<record id="group_kelompok_aset_user" model="res.groups">
+			<field name="name">User</field>
+			<field name="category_id" ref="module_category_kelompok_aset"/>
+		</record>
+		<record id="group_kelompok_aset_manager" model="res.groups">
+			<field name="name">Manager</field>
+			<field name="category_id" ref="module_category_kelompok_aset"/>
+		</record>
+	</data>
+</odoo>

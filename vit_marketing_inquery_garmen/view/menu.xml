@@ -1,0 +1,6 @@
+<odoo>
+	<data>
+		<menuitem id="vit_marketing_inquery_top_menu" name="Vit marketing inquery garmen" sequence="20" web_icon="vit_marketing_inquery_garmen,static/description/icon.png" />
+		<menuitem id="vit_marketing_inquery_sub_menu" name="Vit marketing inquery garmen" sequence="40" parent="vit_marketing_inquery_top_menu" web_icon="vit_marketing_inquery_garmen,static/description/icon.png" />
+	</data>
+</odoo>

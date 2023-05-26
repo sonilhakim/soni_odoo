@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_rekap_btb_wizard_form" model="ir.ui.view">
+        <field name="name">rekap.btb.wizard.form</field>
+        <field name="model">rekap.btb.wizard</field>
+        <field name="arch" type="xml">
+        <form string="Reports">
+            <group>
+                <group>
+                    <field name="option" widget="radio"/>
+                </group>
+                <group>
+                    <label string="Date Range" for="date_from" attrs="{'invisible': [('option', '=', 0)]}"/>
+                    <div attrs="{'invisible': [('option', '=', 0)]}">
+                        <field name="date_from" style="width: 40%"/> - 
+                        <field name="date_to" style="width: 40%"/>
+                    </div>
+                </group>
+            </group>
+            
+            <footer>
+                <button name="action_print_report" string="Print" type="object" default_focus="1" class="oe_highlight"/>
+                or <button string="Cancel" class="oe_link" special="cancel" />
+            </footer>
+        </form>
+        </field>
+    </record>
+
+    <record id="action_rekap_btb_wizard" model="ir.actions.act_window">
+        <field name="name">Report Rekap Bukti Terima Barang</field>
+        <field name="res_model">rekap.btb.wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_rekap_btb_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="menu_rekap_btb_wizard"
+        name="Rekap Bukti Terima Barang"
+        action="action_rekap_btb_wizard"
+        parent="stock.menu_warehouse_report"
+        sequence="210"/>
+
+</odoo>

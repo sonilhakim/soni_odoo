@@ -1,0 +1,12 @@
+id,no,name
+gm_form_analysis,1,Form Analysis
+gm_lo_sewing,2,Layout Out Sewing
+gm_price_calc,3,Price Calculation
+gm_cutting_plan,4,Cutting Plan
+gm_mini_marker,5,Mini Marker
+gm_sample_card,6,Sample Card
+gm_app_sample,7,Laporan Pemerikasaan Approval Sample
+gm_pola_grading,8,Hasil Pengecekan Pola Grading
+gm_actual_time,9,Actual Time & Study
+gm_size_spec,10,Form Perubahan Size Spec
+gm_mes_chart,11,Measurement Chart

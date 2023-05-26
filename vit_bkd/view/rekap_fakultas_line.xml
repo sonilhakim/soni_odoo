@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_rekap_fakultas_line_tree" model="ir.ui.view">
+            <field name="name">vit_rekap_fakultas_line_tree</field>
+            <field name="model">vit.rekap_fakultas_line</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Rekap fakultas line">
+                    <field name="name" />
+                    <field name="no_sertifikat" />
+                    <field name="nama_dosen" />
+                    <field name="semester_gasal_pd" />
+                    <field name="semester_gasal_pl" />
+                    <field name="semester_gasal_pg" />
+                    <field name="semester_gasal_pk" />
+                    <field name="semester_genap_pd" />
+                    <field name="semester_genap_pl" />
+                    <field name="semester_genap_pg" />
+                    <field name="semester_genap_pk" />
+                    <field name="kewajiban_khusus_prof" />
+                    <field name="status" />
+                    <field name="kesimpulan" />
+                    <field name="rekap_fakultas_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_rekap_fakultas_line_form" model="ir.ui.view">
+            <field name="name">vit_rekap_fakultas_line_form</field>
+            <field name="model">vit.rekap_fakultas_line</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Rekap fakultas line">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Rekap fakultas line Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="no_sertifikat" />
+                                <field name="nama_dosen" />
+                                <field name="semester_gasal_pd" />
+                                <field name="semester_gasal_pl" />
+                                <field name="semester_gasal_pg" />
+                                <field name="semester_gasal_pk" />
+                                <field name="semester_genap_pd" />
+                                <field name="semester_genap_pl" />
+                                <field name="semester_genap_pg" />
+                                <field name="semester_genap_pk" />
+                                <field name="kewajiban_khusus_prof" />
+                                <field name="status" />
+                                <field name="kesimpulan" />
+                            </group>
+                            <group>
+                                <field name="rekap_fakultas_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_rekap_fakultas_line_search" model="ir.ui.view">
+            <field name="name">vit_rekap_fakultas_line</field>
+            <field name="model">vit.rekap_fakultas_line</field>
+            <field name="arch" type="xml">
+                <search string="Rekap fakultas line">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="No sertifikat" name="filter_by_no_sertifikat" domain="[('no_sertifikat','=','')]" />
+                    <filter string="Nama dosen" name="filter_by_nama_dosen" domain="[('nama_dosen','=','')]" />
+                    <filter string="Semester gasal pd" name="filter_by_semester_gasal_pd" domain="[('semester_gasal_pd','=','')]" />
+                    <filter string="Semester gasal pl" name="filter_by_semester_gasal_pl" domain="[('semester_gasal_pl','=','')]" />
+                    <filter string="Semester gasal pg" name="filter_by_semester_gasal_pg" domain="[('semester_gasal_pg','=','')]" />
+                    <filter string="Semester gasal pk" name="filter_by_semester_gasal_pk" domain="[('semester_gasal_pk','=','')]" />
+                    <filter string="Semester genap pd" name="filter_by_semester_genap_pd" domain="[('semester_genap_pd','=','')]" />
+                    <filter string="Semester genap pl" name="filter_by_semester_genap_pl" domain="[('semester_genap_pl','=','')]" />
+                    <filter string="Semester genap pg" name="filter_by_semester_genap_pg" domain="[('semester_genap_pg','=','')]" />
+                    <filter string="Semester genap pk" name="filter_by_semester_genap_pk" domain="[('semester_genap_pk','=','')]" />
+                    <filter string="Kewajiban khusus prof" name="filter_by_kewajiban_khusus_prof" domain="[('kewajiban_khusus_prof','=','')]" />
+                    <filter string="Status" name="filter_by_status" domain="[('status','=','')]" />
+                    <filter string="Kesimpulan" name="filter_by_kesimpulan" domain="[('kesimpulan','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="no_sertifikat" select="True"/>
+                    <field name="nama_dosen" select="True"/>
+                    <field name="semester_gasal_pd" select="True"/>
+                    <field name="semester_gasal_pl" select="True"/>
+                    <field name="semester_gasal_pg" select="True"/>
+                    <field name="semester_gasal_pk" select="True"/>
+                    <field name="semester_genap_pd" select="True"/>
+                    <field name="semester_genap_pl" select="True"/>
+                    <field name="semester_genap_pg" select="True"/>
+                    <field name="semester_genap_pk" select="True"/>
+                    <field name="kewajiban_khusus_prof" select="True"/>
+                    <field name="status" select="True"/>
+                    <field name="kesimpulan" select="True"/>
+                    <field name="rekap_fakultas_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Rekap fakultas" domain="[]" name="group_by_rekap_fakultas_id" context="{'group_by':'rekap_fakultas_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_rekap_fakultas_line_kanban" model="ir.ui.view" >
+            <field name="name">vit_rekap_fakultas_line</field>
+            <field name="model">vit.rekap_fakultas_line</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="no_sertifikat" />
+                    <field name="nama_dosen" />
+                    <field name="semester_gasal_pd" />
+                    <field name="semester_gasal_pl" />
+                    <field name="semester_gasal_pg" />
+                    <field name="semester_gasal_pk" />
+                    <field name="semester_genap_pd" />
+                    <field name="semester_genap_pl" />
+                    <field name="semester_genap_pg" />
+                    <field name="semester_genap_pk" />
+                    <field name="kewajiban_khusus_prof" />
+                    <field name="status" />
+                    <field name="kesimpulan" />
+                    <field name="rekap_fakultas_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Rekap fakultas</span> <field name="rekap_fakultas_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_rekap_fakultas_line_graph" model="ir.ui.view">
+            <field name="name">vit_rekap_fakultas_line</field>
+            <field name="model">vit.rekap_fakultas_line</field>
+            <field name="arch" type="xml">
+                <graph string="Rekap fakultas line" type="bar">
+                    <field name="rekap_fakultas_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_rekap_fakultas_line" model="ir.actions.act_window">
+            <field name="name">Rekap fakultas line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.rekap_fakultas_line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Rekap fakultas line
+                </p><p>
+                Click the Create button to add a new Rekap fakultas line
+                </p>
+            </field>
+        </record>
+
+        <!-- <menuitem id="menu_vit_rekap_fakultas_line" name="Rekap fakultas line" parent="vit_bkd_config_menu" action="action_vit_rekap_fakultas_line" sequence="240"/> -->
+    </data>
+</odoo>

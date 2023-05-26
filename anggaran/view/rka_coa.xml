@@ -1,0 +1,69 @@
+<odoo>
+    <data>
+
+        <!-- tree rka_detail -->
+        <record id="view_rka_coa_tree" model="ir.ui.view">
+            <field name="name">anggaran_rka_coa_tree</field>
+            <field name="model">anggaran.rka_coa</field>
+            <field name="arch" type="xml">
+                <tree string="list rka_coa" >
+                    <field name="rka_kegiatan_id" />
+                    <field name="mak_id" />
+                    <field name="sumber_dana_id" />
+                    <field name="total" />         
+                    <field name="realisasi"/>         
+                    <field name="sisa"/>         
+                    <field name="definitif"/>
+                </tree>    
+            </field>
+        </record>
+
+        <!-- search rka_detail -->
+        <record id="view_rka_coa_filter" model="ir.ui.view">
+            <field name="name">rka_coa.filter</field>
+            <field name="model">anggaran.rka_coa</field>
+            <field name="arch" type="xml">
+                <search string="Search rka_coa">
+                    <field name="rka_kegiatan_id" />
+                    <field name="mak_id" />
+                    <field name='total' />
+
+                    <group expand="1" string="Group By...">
+
+                             
+                        <!-- <filter string="Unit" icon="terp-personal" 
+                            domain="[]"  name="group_by_unit_id"
+                             context="{'group_by':'unit_id'}"/> -->
+
+                        <!-- <filter string="Period" icon="terp-personal" 
+                            domain="[]"  name="group_by_period_id"
+                             context="{'group_by':'period_id'}"/> -->
+
+                        <!-- <filter string="Tahun" icon="terp-personal" 
+                            domain="[]"  name="group_by_tahun"
+                             context="{'group_by':'tahun'}"/> -->
+
+                        <!-- <filter string="Kebijakan" icon="terp-personal" 
+                            domain="[]"  name="group_by_kebijakan_id"
+                             context="{'group_by':'kebijakan_id'}"/>
+
+                        <filter string="Program" icon="terp-personal" 
+                            domain="[]"  name="group_by_program_id"
+                             context="{'group_by':'program_id'}"/> -->
+
+                        <!-- <filter string="Kegiatan" icon="terp-personal" 
+                            domain="[]"  name="group_by_kegiatan_id"
+                             context="{'group_by':'kegiatan_id'}"/> -->
+
+                        <!-- <filter string="MAK" icon="terp-personal" 
+                            domain="[]"  name="group_by_rka_coa_id"
+                             context="{'group_by':'rka_coa_id'}"/> -->
+
+                    </group>                                        
+        
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>

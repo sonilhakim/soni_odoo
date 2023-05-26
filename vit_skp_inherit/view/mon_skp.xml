@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_mon_skp_tree" model="ir.ui.view">
+            <field name="name">vit_mon_skp_tree</field>
+            <field name="model">vit.monitoring_skp</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Monitoring SKP">
+                    <field name="name" />
+                    <field name="tanggal" />
+                    <field name="tahun_akademik_id" />
+                    <field name="fakultas_id" />
+                    <field name="jurusan_id" />
+                    <field name="prodi_id" />
+                    <field name="unit_kerja_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_mon_skp_form" model="ir.ui.view">
+            <field name="name">vit_mon_skp_form</field>
+            <field name="model">vit.monitoring_skp</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Monitoring SKP">
+                    <header>
+                        <button string="Konfirmasi" type="object" name="action_confirm" states="draft" />
+                        <button string="Isi Rincian" type="object" name="action_reload" states="draft" />
+                        <button string="Validasi" type="object" name="action_done" states="open" groups="vit_skp.group_skp_manager"/>
+                        <button string="Tolak" type="object" name="action_reject" states="open" groups="vit_skp.group_skp_manager"/>
+                        <button string="Kembalikan ke rancangan" type="object" name="action_draft" states="open,done" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Monitoring SKP Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tanggal" />
+                                <field name="tahun_akademik_id" />
+                            </group>
+                            <group>
+                                <field name="fakultas_id" />
+                                <field name="jurusan_id" />
+                                <field name="prodi_id" />
+                                <field name="unit_kerja_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Rincian">
+                                <button string="Hitung" type="object" name="compute_capaian" states="draft" />
+                                <field name="mon_details" mode="tree">
+                                    <tree string="Rincian" editable="bottom">
+                                        <field name="pns_id" />
+                                        <field name="pns_nip" />
+                                        <field name="nilai_prestasi_kerja" />
+                                        <field name="capaian" />
+                                        <field name="capaian_persen" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_mon_skp" model="ir.actions.act_window">
+            <field name="name">Monitoring SKP</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.monitoring_skp</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk menambahkan Target Skp baru
+                </p><p>
+                Klik tombol Buat untuk menambahkan Target Skp baru
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_mon_skp" name="Monitoring SKP" parent="vit_skp.vit_skp_top_menu" action="action_vit_mon_skp" sequence="40"/>
+    </data>
+</odoo>

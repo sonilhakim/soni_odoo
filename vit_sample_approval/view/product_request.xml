@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        
+        <record id="view_sample_id_sample_approval_form" model="ir.ui.view">
+            <field name="name">view.sample.id.sample.approval.form</field>
+            <field name="model">vit.product.request</field>
+            <field name="inherit_id" ref="vit_product_request.view_product_request_form" />
+            <field name="arch" type="xml">
+                <field name="reference" position="after">
+                    <field name="sample_id" invisible="1"/>
+                </field>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

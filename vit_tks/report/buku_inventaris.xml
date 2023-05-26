@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_buku_inventaris_menu" string="Vit - Buku inventaris"
+         model="vit.buku_inventaris" report_type="qweb-pdf" 
+         file="vit.buku_inventaris"  name="vit_tks.vit_buku_inventaris_report" />
+
+        <!-- document template -->
+        <template id="vit_tks.vit_buku_inventaris_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Buku inventaris: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Date</strong>
+                            <p class="m-0" t-field="doc.date" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Status</strong>
+                            <p class="m-0" t-field="doc.status" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Lokasi</strong>
+                            <p class="m-0" t-field="doc.lokasi_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Kategori</strong>
+                            <p class="m-0" t-field="doc.kategori_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Detail</h2>
+                <table class="table table-sm o_main_table" name="detail_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Type</td>
+                            <td>Tahun perolehan</td>
+                            <td>Jumlah</td>
+                            <td>Satuan</td>
+                            <td>Kondisi</td>
+                            <td>Asal</td>
+                            <td>Keterangan</td>
+                            <td>Buku inventaris</td>
+                        </tr>
+                    </thead>
+                    <tbody class="detail_ids_tbody">
+                        <tr t-foreach="doc.detail_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.type" /></td>
+                            <td><span t-field="line.tahun_perolehan" /></td>
+                            <td><span t-field="line.jumlah" /></td>
+                            <td><span t-field="line.satuan" /></td>
+                            <td><span t-field="line.kondisi" /></td>
+                            <td><span t-field="line.asal" /></td>
+                            <td><span t-field="line.keterangan" /></td>
+                            <td><span t-field="line.buku_inventaris_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_tks.vit_buku_inventaris_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_tks.vit_buku_inventaris_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- action window -->
+        <record id="action_product_kasbon" model="ir.actions.act_window">
+            <field name="name">Product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_name":"Kasbon"}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Product
+                </p><p>
+                Click the Create button to add a new Product
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_product_kasbon" name="Product" parent="vit_kasbon_pb_config_menu" action="action_product_kasbon" sequence="30"/>
+    </data>
+</odoo>

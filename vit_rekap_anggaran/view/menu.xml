@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="vit_rekap_anggaran_top_menu" name="Rekap Anggaran" sequence="20" web_icon="vit_rekap_anggaran,static/description/icon.png" />
+		<menuitem id="vit_rekap_anggaran_sub_menu" name="Operations" sequence="40" parent="vit_rekap_anggaran_top_menu" />
+		<menuitem id="vit_rekap_anggaran_config_menu" name="Configurations" sequence="50" parent="vit_rekap_anggaran_top_menu" />
+	</data>
+</odoo>

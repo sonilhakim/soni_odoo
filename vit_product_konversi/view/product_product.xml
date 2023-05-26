@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+
+        <record id="konversi_form_product" model="ir.ui.view">
+            <field name="name">konversi.form.product</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='packaging']" position="after">
+                    <group>
+                        <group name="konversi_product" string="Konversi">
+                            <!-- <field name="conv_reference" class="oe_inline"/> -->
+                            <field name="conv_value" class="oe_inline"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- <record id="konversi_form_product" model="ir.ui.view">
+            <field name="name">konversi.form.product</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='packaging']" position="after">
+                    <group name="konversi_product" string="Konversi">
+                        <field name="conv_reference" class="oe_inline"/>
+                        <field name="conv_value" class="oe_inline"/>
+                    </group>
+                </xpath>
+            </field>
+        </record> -->
+
+    </data>
+</odoo>

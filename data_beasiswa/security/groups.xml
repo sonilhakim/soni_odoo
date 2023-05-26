@@ -1,0 +1,17 @@
+<odoo>
+	<data>
+		<record model="ir.module.category" id="module_category_data beasiswa">
+			<field name="name">Data Beasiswa</field>
+			<field name="description">Data Beasiswa Groups</field>
+			<field name="sequence">10</field>
+		</record>
+		<record id="group_data beasiswa_user" model="res.groups">
+			<field name="name">User</field>
+			<field name="category_id" ref="module_category_data beasiswa"/>
+		</record>
+		<record id="group_data beasiswa_manager" model="res.groups">
+			<field name="name">Manager</field>
+			<field name="category_id" ref="module_category_data beasiswa"/>
+		</record>
+	</data>
+</odoo>

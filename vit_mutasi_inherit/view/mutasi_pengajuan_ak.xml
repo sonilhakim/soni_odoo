@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_mutasi_pengajuan_angka_kredit_tree2" model="ir.ui.view">
+            <field name="name">vit_mutasi_pengajuan_angka_kredit_tree2</field>
+            <field name="model">vit.mutasi_pengajuan_angka_kredit</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_mutasi.view_vit_mutasi_pengajuan_angka_kredit_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree position="replace">
+                    <tree string="Mutasi pengajuan angka kredit">
+                        <field name="name" />
+                        <field name="date" />
+                        <field name="matra_id" />
+                        <field name="fakultas_id" string="SUBSATKER"/>
+                        <field name="state" />
+                    </tree>
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_mutasi_pengajuan_angka_kredit_form2" model="ir.ui.view">
+            <field name="name">vit_mutasi_pengajuan_angka_kredit_form2</field>
+            <field name="model">vit.mutasi_pengajuan_angka_kredit</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_mutasi.view_vit_mutasi_pengajuan_angka_kredit_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="action_done" position="replace">
+                    <button string="Validasi" type="object" name="action_done" states="open" groups="vit_mutasi.group_mutasi_manager"/>
+                    <button string="Tolak" type="object" name="action_reject" states="open" groups="vit_mutasi.group_mutasi_manager"/>
+                </button>
+                <button name="action_draft" position="replace" >
+                    <button string="Kembali ke Rancangan" type="object" name="action_draft" states="open" />
+                </button>
+                <xpath expr="//group/group" position="inside">
+                    <field name="date" />
+                </xpath>
+                <xpath expr="//field[@name='fakultas_id']" position="attributes">
+                    <attribute name="string">SUBSATKER</attribute>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='mutasi_ak_detail_ids']" position="replace">
+                    <field name="mutasi_ak_detail_ids" mode="tree">
+                        <tree string="Mutasi pengajuan ak" editable="bottom">
+                            <field name="employee_id" string="Pegawai" domain="[('matra_id','=',matra_id),('fakultas_id','=',fakultas_id)]"/>
+                            <field name="angka_kredit_awal" />
+                            <field name="angka_kredit_tujuan" />
+                            <field name="matra_id" invisible="1"/>
+                            <field name="fakultas_id" invisible="1"/>
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_mutasi_pengajuan_angka_kredit_kanban" model="ir.ui.view" >
+            <field name="name">vit_mutasi_pengajuan_angka_kredit</field>
+            <field name="model">vit.mutasi_pengajuan_angka_kredit</field>
+            <field name="inherit_id" ref="vit_mutasi.view_vit_mutasi_pengajuan_angka_kredit_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban/templates" position="replace">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Matra</span> <field name="matra_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">SUBSATKER</span> <field name="fakultas_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

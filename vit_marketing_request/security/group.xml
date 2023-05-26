@@ -1,0 +1,17 @@
+<odoo>
+	<data>
+		<record model="ir.module.category" id="module_marketing_request">
+			<field name="name">Marketing Request</field>
+			<field name="description">Marketing Request Groups</field>
+			<field name="sequence">50</field>
+		</record>
+		<record id="group_marketing_request_desain" model="res.groups">
+			<field name="name">Desain</field>
+			<field name="category_id" ref="module_marketing_request"/>
+		</record>
+		<record id="group_marketing_request" model="res.groups">
+			<field name="name">Marketing Request</field>
+			<field name="category_id" ref="module_marketing_request"/>
+		</record>
+	</data>
+</odoo>

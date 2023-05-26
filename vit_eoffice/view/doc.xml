@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_doc_tree" model="ir.ui.view">
+            <field name="name">vit_doc_tree</field>
+            <field name="model">vit.doc</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Doc">
+                    <field name="name" />
+                    <field name="state" />
+                    <field name="subject" />
+                    <field name="body" />
+                    <field name="date" />
+                    <field name="read_status" />
+                    <field name="user_id" />
+                    <field name="doc_type_id" />
+                    <field name="doc_template_id" />
+                    <field name="parent_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_doc_form" model="ir.ui.view">
+            <field name="name">vit_doc_form</field>
+            <field name="model">vit.doc</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Doc">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" />
+                        <button string="Mark as Done" type="object" name="action_done" states="open" />
+                        <button string="Reset to Draft" type="object" name="action_draft" states="open,done" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Doc Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="subject" />
+                                <field name="body" />
+                                <field name="date" />
+                                <field name="read_status" />
+                            </group>
+                            <group>
+                                <field name="user_id" />
+                                <field name="doc_type_id" />
+                                <field name="doc_template_id" />
+                                <field name="parent_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="To user">
+                                <field name="to_user_ids"/>
+                            </page>
+                            <page string="Cc user">
+                                <field name="cc_user_ids"/>
+                            </page>
+                            <page string="Doc history">
+                                <field name="doc_history_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_doc_search" model="ir.ui.view">
+            <field name="name">vit_doc</field>
+            <field name="model">vit.doc</field>
+            <field name="arch" type="xml">
+                <search string="Doc">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                    <filter string="Subject" name="filter_by_subject" domain="[('subject','=','')]" />
+                    <filter string="Body" name="filter_by_body" domain="[('body','=','')]" />
+                    <filter string="Date" name="filter_by_date" domain="[('date','=','')]" />
+                    <filter string="Read status" name="filter_by_read_status" domain="[('read_status','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="subject" select="True"/>
+                    <field name="body" select="True"/>
+                    <field name="date" select="True"/>
+                    <field name="read_status" select="True"/>
+                    <field name="user_id" select="True"/>
+                    <field name="doc_type_id" select="True"/>
+                    <field name="doc_template_id" select="True"/>
+                    <field name="parent_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="User" domain="[]" name="group_by_user_id" context="{'group_by':'user_id'}"/>
+                        <filter string="Doc type" domain="[]" name="group_by_doc_type_id" context="{'group_by':'doc_type_id'}"/>
+                        <filter string="Doc template" domain="[]" name="group_by_doc_template_id" context="{'group_by':'doc_template_id'}"/>
+                        <filter string="Parent" domain="[]" name="group_by_parent_id" context="{'group_by':'parent_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_doc_kanban" model="ir.ui.view" >
+            <field name="name">vit_doc</field>
+            <field name="model">vit.doc</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="state" />
+                    <field name="subject" />
+                    <field name="body" />
+                    <field name="date" />
+                    <field name="read_status" />
+                    <field name="user_id" />
+                    <field name="doc_type_id" />
+                    <field name="doc_template_id" />
+                    <field name="parent_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">User</span> <field name="user_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Doc type</span> <field name="doc_type_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Doc template</span> <field name="doc_template_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Parent</span> <field name="parent_id"></field>
+                                        </li>
+
+                                        <li>
+                                            <span class="text-muted">Date</span> <field name="date"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_vit_doc_cal" model="ir.ui.view">
+            <field name="name">vit_doc_cal</field>
+            <field name="model">vit.doc</field>
+            <field name="arch" type="xml">
+                <calendar string="Doc" date_start="date">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record>
+        <!-- graph -->
+        <record id="view_vit_doc_graph" model="ir.ui.view">
+            <field name="name">vit_doc</field>
+            <field name="model">vit.doc</field>
+            <field name="arch" type="xml">
+                <graph string="Doc" type="bar">
+                    <field name="user_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_doc" model="ir.actions.act_window">
+            <field name="name">Doc</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.doc</field>
+            <field name="view_mode">kanban,tree,form,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Doc
+                </p><p>
+                Click the Create button to add a new Doc
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_doc" name="Doc" parent="vit_eoffice_sub_menu" action="action_vit_doc" sequence="20"/>
+    </data>
+</odoo>

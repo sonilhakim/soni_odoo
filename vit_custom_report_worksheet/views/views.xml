@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        
+        <record id="views_mrp_production_form_view_repws" model="ir.ui.view">
+            <field name="name">mrp.production.form.view.repws</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+              <xpath expr="//form/header/button[@name='action_assign']" position="before">
+                <button name="%(vit_custom_report_worksheet.report_worksheet_wizard_view)d" string="Print" type="action" class="btn-info"/>
+              </xpath>
+              <xpath expr="//form/sheet/notebook/page[1]/field[@name='move_raw_ids']/tree/field[@name='product_uom']" position="after">
+                <field name="acc_no" invisible="1"/>
+                <field name="spec" invisible="1"/>
+                <field name="colour" invisible="1"/>
+                <field name="cons" invisible="1"/>
+              </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

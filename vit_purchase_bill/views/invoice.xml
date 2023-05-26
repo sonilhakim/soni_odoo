@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <!-- invoice         -->
+        <record id="views_discount_invoice_supplier_form_form" model="ir.ui.view">
+            <field name="name">views_discount_invoice_supplier_form_form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='discount']" position="replace">
+                    <field name="discount_bertingkat_id"/>
+                    <field name="disc_po_amount"/>
+                </xpath>
+
+                <xpath expr="/form/sheet/notebook/page/group/group[2]/field[@name='amount_untaxed']" position="before">
+                    <field name="amount_po_subtotal" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <field name="discount_po_total" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

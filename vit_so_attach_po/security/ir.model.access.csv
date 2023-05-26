@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vit_tonase_vit_tonase,vit_tonase.vit_tonase,model_vit_tonase_vit_tonase,,1,0,0,0

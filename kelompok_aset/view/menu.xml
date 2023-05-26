@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="kelompok_aset_top_menu" name="Kelompok Aset" sequence="20" web_icon="kelompok_aset,static/description/icon.png" />
+		<!-- <menuitem id="kelompok_pemilik_aset_sub_menu" name="Operations" sequence="40" parent="kelompok_pemilik_aset_top_menu" />
+		<menuitem id="kelompok_pemilik_aset_config_menu" name="Configurations" sequence="50" parent="kelompok_pemilik_aset_top_menu" /> -->
+	</data>
+</odoo>

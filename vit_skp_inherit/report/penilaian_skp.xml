@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_penilaian_skp_menu" string="Penilaian Skp"
+         model="vit.penilaian_skp" report_type="qweb-pdf" 
+         file="vit.penilaian_skp"  name="vit_skp_inherit.vit_penilaian_skp_report" />
+
+        <!-- document template -->
+        <template id="vit_skp_inherit.vit_penilaian_skp_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div style="padding-top:30px;" class="page">
+                    <h2>
+                        Penilaian Skp: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt20 mb20">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tanggal</strong>
+                            <p class="m-0" t-field="doc.tanggal" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tahun akademik</strong>
+                            <p class="m-0" t-field="doc.tahun_akademik_id"/>
+                        </div>
+                    </div>
+                    <div class="row mt20 mb20">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>PNS</strong>
+                            <p class="m-0" t-field="doc.pns_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nip</strong>
+                            <p class="m-0" t-field="doc.pns_nip"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pangkat/Golongan</strong>
+                            <p class="m-0" t-field="doc.pns_pangkat_gol_ruang"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jabatan</strong>
+                            <p class="m-0" t-field="doc.pns_jabatan_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Unit Kerja</strong>
+                            <p class="m-0" t-field="doc.pns_unit_kerja_id"/>
+                        </div>
+                    </div>
+                    <div class="row mt20 mb20">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pejabat Penilai</strong>
+                            <p class="m-0" t-field="doc.pejabat_penilai_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nip</strong>
+                            <p class="m-0" t-field="doc.pejabat_penilai_nip"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pangkat/Golongan</strong>
+                            <p class="m-0" t-field="doc.pejabat_penilai_pangkat_gol_ruang"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jabatan</strong>
+                            <p class="m-0" t-field="doc.pejabat_penilai_jabatan_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Unit Kerja</strong>
+                            <p class="m-0" t-field="doc.pejabat_penilai_unit_kerja_id"/>
+                        </div>                        
+                    </div>
+                    <div class="row mt20 mb30">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Atasan Pejabat Penilai</strong>
+                            <p class="m-0" t-field="doc.atasan_pejabat_penilai_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nip</strong>
+                            <p class="m-0" t-field="doc.atasan_pejabat_penilai_nip"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pangkat/Golongan</strong>
+                            <p class="m-0" t-field="doc.atasan_pejabat_penilai_pangkat_gol_ruang"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jabatan</strong>
+                            <p class="m-0" t-field="doc.atasan_pejabat_penilai_jabatan_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Unit Kerja</strong>
+                            <p class="m-0" t-field="doc.atasan_pejabat_penilai_unit_kerja_id"/>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h3>Perilaku Kerja</h3>
+                <table class="table table-sm o_main_table" name="perkuliahan_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Perilaku</td>                            
+                            <td>Keterangan</td>
+                            <td style="text-align: right;">Nilai</td>
+                        </tr>
+                    </thead>
+                    <tbody class="perilaku_kerja_ids_tbody">
+                        <tr t-foreach="doc.perilaku_kerja_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>                            
+                            <td><span t-field="line.keterangan" /></td>
+                            <td style="text-align: right;"><span t-field="line.nilai" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div style="padding-bottom:30px;" class="clearfix">
+                    <div id="total" class="row">
+                        <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                            <table class="table table-sm" style="page-break-inside: avoid;">
+                                <tr class="border-black o_subtotal" style="">
+                                    <td><strong>Jumlah</strong></td>
+                                    <td class="text-right">
+                                        <span t-field="doc.jumlah_nilai_perilaku_kerja"/>
+                                    </td>
+                                </tr>
+                                <tr class="border-black o_total">
+                                    <td><strong>Nilai rata-rata</strong></td>
+                                    <td class="text-right">
+                                        <span t-field="doc.nilai_perilaku_kerja_rata_rata"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Unsur yang dinilai</h2>
+                <table class="table table-sm o_main_table" name="perkuliahan_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Unsur</td>
+                            <td style="text-align: right;">Nilai</td>
+                        </tr>
+                    </thead>
+                    <tbody class="unsur_penilaian_ids_tbody">
+                        <tr t-foreach="doc.unsur_penilaian_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td style="text-align: right;"><span t-esc="'%.2f'%(line.nilai_capaian)" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="clearfix">
+                    <div id="total" class="row">
+                        <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                            <table class="table table-sm" style="page-break-inside: avoid;">
+                                <tr class="border-black o_subtotal" style="">
+                                    <td><strong>Nilai Prestasi Kerja</strong></td>
+                                    <td class="text-right">
+                                        <span t-field="doc.nilai_prestasi_kerja"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_skp_inherit.vit_penilaian_skp_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_skp_inherit.vit_penilaian_skp_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

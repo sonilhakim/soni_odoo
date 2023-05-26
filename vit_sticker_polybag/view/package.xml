@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- form view -->
+        <record id="view_quant_package_report_form" model="ir.ui.view">
+            <field name="name">stock.quant.package.form.report</field>
+            <field name="model">stock.quant.package</field>
+            <field name="inherit_id" ref="stock.view_quant_package_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <button name="unpack" position="after">
+                    <button name="%(vit_sticker_polybag.action_sticker_karton_wizard_view)d" string="Print" type="action" class="btn-info"/>
+                </button>
+            </field>
+        </record>
+    </data>
+</odoo>

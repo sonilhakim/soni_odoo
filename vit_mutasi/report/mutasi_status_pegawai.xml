@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_mutasi_status_pegawai_menu" string="Vit - Mutasi status pegawai"
+         model="vit.mutasi_status_pegawai" report_type="qweb-pdf" 
+         file="vit.mutasi_status_pegawai"  name="vit_mutasi.vit_mutasi_status_pegawai_report" />
+
+        <!-- document template -->
+        <template id="vit_mutasi.vit_mutasi_status_pegawai_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Mutasi status pegawai: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Matra</strong>
+                            <p class="m-0" t-field="doc.matra_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Fakultas</strong>
+                            <p class="m-0" t-field="doc.fakultas_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Status detail</h2>
+                <table class="table table-sm o_main_table" name="status_detail_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Mutasi status</td>
+                            <td>Employee</td>
+                            <td>Status awal</td>
+                            <td>Status tujuan</td>
+                        </tr>
+                    </thead>
+                    <tbody class="status_detail_ids_tbody">
+                        <tr t-foreach="doc.status_detail_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.mutasi_status_id" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                            <td><span t-field="line.status_awal" /></td>
+                            <td><span t-field="line.status_tujuan" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_mutasi.vit_mutasi_status_pegawai_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_mutasi.vit_mutasi_status_pegawai_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

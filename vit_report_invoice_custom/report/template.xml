@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="external_layout_standard_faktur_custom">
+        <div class="header" t-att-style="report_header_style">
+            <div class="row col-12" >
+                <div class="col-4">
+                    <div>
+                        <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" style="height: 70px;width: 150px;" alt="Logo"/>
+                    </div>
+                    <div name="company_address">
+                        <b><div t-field="doc.company_id.name"/></b>
+                        <div t-field="doc.company_id.street"/>
+                        <div t-field="doc.company_id.city"/>
+                        <div> Telp. <span t-field="doc.company_id.phone"/></div>
+                        <div> Email. <span t-field="doc.company_id.email"/></div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div>
+                        Kepada Yth
+                    </div>
+                    <div name="partner_address">
+                        <div t-field="doc.partner_id"/>
+                        <div t-field="doc.partner_id.street"/>
+                        <div t-field="doc.partner_id.city"/>
+                        <div t-field="doc.partner_id.phone"/>
+                        <div t-field="doc.partner_id.email"/>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div>
+                        <h4><b>Faktur Pinjaman</b></h4>
+                    </div>
+                    <div class="row" >
+                        <div class="col-7">Tanggal</div>
+                        <div>:
+                            &#160;<span t-field="doc.date"/>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-7">Nomor Faktur</div>
+                        <div>:
+                            &#160;<span t-field="doc.number"/>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-7">Cara Pembayaran</div>
+                        <div>:
+                            &#160;<span t-field="doc.cara_bayar"/>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-7">Batas Pembayaran</div>
+                        <div>:
+                            &#160;<span t-field="doc.date_due"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="article o_report_layout_standard"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <!-- <t t-call="web.address_layout"/> -->
+            <t t-raw="0"/>
+        </div>
+        <!-- <div class="footer o_standard_footer">
+            <div class="text-center" style="border-top: 1px solid black;">
+                <div t-if="report_type == 'pdf'">
+                    Halaman: <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+        </div> -->
+
+    </template>
+
+    <!-- Public api: layout to t-call from reports -->
+
+    <template id="external_layout_faktur_custom">
+        <t t-call="vit_report_invoice_custom.external_layout_standard_faktur_custom">
+            <t t-raw="0"/>                
+        </t>
+
+    </template>
+
+</odoo>

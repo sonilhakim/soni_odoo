@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_posisi_dana_tree" model="ir.ui.view">
+            <field name="name">vit_posisi_dana_tree</field>
+            <field name="model">vit.posisi_dana</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Posisi Dana" create="false" >
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_posisi_dana_form" model="ir.ui.view">
+            <field name="name">vit_posisi_dana_form</field>
+            <field name="model">vit.posisi_dana</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Posisi Dana" create="false" edit="false">
+                    <header>
+                    </header>
+                    <sheet>
+                        <field name="html"/>
+                        <div class="oe_title" invisible="1">
+                            <label for="name" class="oe_edit_only" string="No Kasir Store :"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- act window posisi dana -->
+        <record id="action_vit_posisi_dana" model="ir.actions.act_window">
+            <field name="name">Posisi Dana</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.posisi_dana</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                </p>
+            </field>
+        </record>
+
+        <!-- tree view config -->
+        <record id="view_vit_posisi_dana_config_tree" model="ir.ui.view">
+            <field name="name">vit_posisi_dana_config_tree</field>
+            <field name="model">vit.posisi_dana_config</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Posisi Dana Config" >
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view config -->
+        <record id="view_vit_posisi_dana_config_form" model="ir.ui.view">
+            <field name="name">vit_posisi_dana_config_form</field>
+            <field name="model">vit.posisi_dana_config</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Posisi Dana Config">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="account_ids" widget="many2many_tags"/>
+                            </group>
+                            <group>                                
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- act window posisi dana config -->
+        <record id="action_vit_posisi_dana_config" model="ir.actions.act_window">
+            <field name="name">Posisi Dana Config</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.posisi_dana_config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_posisi_dana_config" name="Posisi Dana" parent="account.account_management_menu" action="action_vit_posisi_dana_config"/>        
+        
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vit_masterdata_jpp,vit.masterdata.jpp,model_vit_masterdata_jpp,,1,1,1,1
+access_vit_pelaksanaan_produksi,vit.pelaksanaan_produksi,model_vit_pelaksanaan_produksi,,1,1,1,1
+access_vit_pelaksanaan_produksi_line,vit.pelaksanaan_produksi.line,model_vit_pelaksanaan_produksi_line,,1,1,1,1

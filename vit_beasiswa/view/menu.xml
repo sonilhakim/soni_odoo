@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="vit_beasiswa_top_menu" name="Beasiswa" sequence="20" web_icon="vit_beasiswa,static/description/icon.png" />
+		<menuitem id="vit_beasiswa_sub_menu" name="Operations" sequence="40" parent="vit_beasiswa_top_menu" />
+		<menuitem id="vit_beasiswa_config_menu" name="Configurations" sequence="50" parent="vit_beasiswa_top_menu" />
+	</data>
+</odoo>

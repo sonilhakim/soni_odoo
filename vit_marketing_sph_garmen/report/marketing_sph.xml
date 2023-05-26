@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_marketing_sph_garmen_menu" string="SPH"
+         model="vit.marketing_sph_garmen" report_type="qweb-pdf" paperformat="vit_marketing_sph_garmen.paperformat_sph"
+         file="vit.marketing_sph_garmen"  name="vit_marketing_sph_garmen.vit_marketing_sph_garmen_report" />
+
+        <!-- document template -->
+        <template id="vit_marketing_sph_garmen.vit_marketing_sph_garmen_report_document" >
+            <t t-call="vit_marketing_sph_garmen.external_layout_sph">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page" style="font-size: 13pt;">
+                    <img style="width:350px;" t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" alt="Logo"/>
+                    <table style="width:100%;border-collapse: collapse;margin-bottom:15px;">
+                       <tbody>                            
+                            <tr>
+                                <td>
+                                    No: <span t-field="doc.name"/>
+                                </td>
+                                <td style="text-align:right;">
+                                    Bogor, <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d %B %Y')"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <t>
+                        Kepada :
+                        <div t-field="doc.partner_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                    </t>
+                    <div style="margin-top:15px;margin-bottom:15px;">
+                        <div style="margin-bottom:15px;">
+                            Hal : Penawaran Harga
+                        </div>
+                        <div>
+                            Dengan  hormat, <br/>
+                            Sehubungan  dengan  permintaan  perkiraan   harga   seragam,    dengan  ini PT. Teratai Widjaja mengajukan  penawaran   harga   sebagai berikut :
+                        </div>
+                    </div>
+                    <div class="oe_structure"/>
+                    <table class="table table-sm o_main_table" name="boq_ids_table">
+                        <thead>
+                            <tr>
+                                <td style="border-top: 1px solid black;border-bottom: 1px solid black;border-left: 1px solid black;text-align:center;"><strong>Item</strong></td>
+                                <td style="border-top: 1px solid black;border-bottom: 1px solid black;border-left: 1px solid black;text-align:center;"><strong>Bahan</strong></td>
+                                <td style="border-top: 1px solid black;border-bottom: 1px solid black;border-left: 1px solid black;text-align:center;"><strong>Jumlah</strong></td>
+                                <td style="border-top: 1px solid black;border-bottom: 1px solid black;border-left: 1px solid black;text-align:center;"><strong>Harga</strong></td>
+                                <td style="border-top: 1px solid black;border-bottom: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;text-align:center;"><strong>Satuan</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody class="boq_ids_tbody">
+                            <tr t-foreach="doc.boq_ids" t-as="line">
+                                <td style="border-bottom: 1px solid black;border-left: 1px solid black;text-align:center;"><span t-field="line.name" /></td>
+                                <td style="border-bottom: 1px solid black;border-left: 1px solid black;text-align:center;"><span t-field="line.bahan" /></td>
+                                <td style="border-bottom: 1px solid black;border-left: 1px solid black;text-align:right;"><span t-field="line.qty" /></td>
+                                <td style="border-bottom: 1px solid black;border-left: 1px solid black;text-align:right;"><span t-field="line.price" /></td>
+                                <td style="border-bottom: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;text-align:right;"><span t-field="line.uom_id" /></td>
+                            </tr> <!-- foreach-->
+                        </tbody>
+                    </table>
+                    <div class="oe_structure"/>
+                    <div>
+                        <div>Kondisi penawaran :</div>
+                        <div  style="margin-left:10px;">
+                            <p t-field="doc.condition"/>
+                        </div>
+                        <div>
+                            Demikian    penawaran   ini kami    sampaikan.<br/>
+                            Terimakasih atas    perhatian   dan kesempatan  yang    telah   diberikan.
+                        </div>
+                    </div>
+                    <div style="margin-top:50px;">
+                        <table style="border-collapse: collapse;">
+                            <tr style="height:30mm;">
+                                <td>Hormat kami, </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid black;">
+                                <td>
+                                    <strong>Aan Rukmini</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Direktur Pemasaran</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_marketing_sph_garmen.vit_marketing_sph_garmen_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_marketing_sph_garmen.vit_marketing_sph_garmen_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_user_vit_pemakaian_aset,access_user_vit_pemakaian_aset,model_vit_pemakaian_aset,vit_pemakaian_aset.group_pemakaian_user,1,0,0,0
+access_manager_vit_pemakaian_aset,access_manager_vit_pemakaian_aset,model_vit_pemakaian_aset,vit_pemakaian_aset.group_pemakaian_manager,1,1,1,1
+access_admin_vit_pemakaian_aset,access_admin_vit_pemakaian_aset,model_vit_pemakaian_aset,base.group_system,1,1,1,1
+access_user_vit_aset_pemakaian,access_user_vit_aset_pemakaian,model_vit_aset_pemakaian,vit_pemakaian_aset.group_pemakaian_user,1,0,0,0
+access_manager_vit_aset_pemakaian,access_manager_vit_aset_pemakaian,model_vit_aset_pemakaian,vit_pemakaian_aset.group_pemakaian_manager,1,1,1,1
+access_admin_vit_aset_pemakaian,access_admin_vit_aset_pemakaian,model_vit_aset_pemakaian,base.group_system,1,1,1,1

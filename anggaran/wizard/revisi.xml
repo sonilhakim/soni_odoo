@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record id="revise_wizard_view" model="ir.ui.view">
+            <field name="name">Revise</field>
+            <field name="model">anggaran.revise_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Finish">
+
+                    <group>
+                        <field name="notes"/>
+                    </group>
+
+                    <footer>
+                        <button string="Konfirmasi" icon="fa-check-circle" name="confirm_button" type="object" class="btn-primary"/>
+                        <button string="Batalkan" icon="fa-times" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <!-- <act_window id="revisi_wizard_action"
+            name="Revisi"
+            src_model="anggaran.rka"
+            res_model="anggaran.revise_wizard"
+            view_type="form" view_mode="form"
+            key2="client_action_multi" target="new"
+            /> -->
+        <record id="revisi_wizard_action2" model="ir.actions.act_window">
+            <field name="name">Revisi2</field>
+            <field name="res_model">anggaran.revise_wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="revise_wizard_view"/>
+            <field name="target">new</field>
+        </record>
+    
+    </data>
+</openerp>

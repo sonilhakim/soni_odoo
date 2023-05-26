@@ -1,0 +1,88 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+
+        <record id="vit_mrp_production_req" model="ir.ui.view">
+            <field name="name">mrp.production.req.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='availability']" position="after">
+                    <field name="request_detail_id" readonly="True" attrs="{'invisible':[('request_detail_id','=',False)]}"/>
+                    <field name="sample" readonly="True" attrs="{'invisible':[('sample','=',False)]}"/>
+                    <field name="sample_room" readonly="True" attrs="{'invisible':[('sample_room','=',False)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='action_assign']" position="attributes">
+                    <attribute name="attrs"> {'invisible':['|', '|', ('availability', 'in', ('assigned', 'none')), ('is_locked', '=', False),('sample', '=', True)]} </attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="attributes">
+                    <attribute name="invisible"> 1 </attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+                    <attribute name="invisible"> 0 </attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+                    <attribute name="string"> Style </attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- menu mo sample tebet -->
+        <record id="mrp_request_action_sample" model="ir.actions.act_window">
+            <field name="name">Sample Room Tebet</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.production</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="False"/>
+            <field name="domain">[('sample','=',True),('sample_room','=','tebet'),('request_detail_id','!=',False)]</field>
+            <field name="search_view_id" ref="mrp.view_mrp_production_filter"/>
+            <field name="context">{'search_default_todo': True,'default_sample':True,'default_sample_room':'tebet'}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a manufacturing order Sample.
+              </p>
+            </field>
+        </record>
+
+        <!-- menu mo sample cibinong -->
+        <record id="mrp_request_action_sample2" model="ir.actions.act_window">
+            <field name="name">Sample Room PPIC</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.production</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="False"/>
+            <field name="domain">[('sample','=',True),('sample_room','=','cibinong'),('request_detail_id','!=',False)]</field>
+            <field name="search_view_id" ref="mrp.view_mrp_production_filter"/>
+            <field name="context">{'search_default_todo': True,'default_sample':True,'default_sample_room':'cibinong'}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a manufacturing order Sample.
+              </p>
+            </field>
+        </record>
+
+        <menuitem name="Sample Room" 
+                parent="vit_marketing.vit_marketing_top_menu" 
+                id="menu_mrp_request_sample" 
+                sequence="80"/>
+
+        <menuitem id="menu_mo_request_sample"
+                name="Sample Room Tebet"
+                action="mrp_request_action_sample"
+                parent="menu_mrp_request_sample"
+                sequence="10"/>
+
+        <menuitem id="menu_mo_request_sample2"
+                name="Sample Room PPIC"
+                action="mrp_request_action_sample2"
+                parent="menu_mrp_request_sample"
+                sequence="20"/>
+
+        <record model="ir.ui.menu" id="menu_mrp_request_sample">
+            <field name="groups_id" eval="[(6,0,[ref('vit_marketing_inherit.group_hiden_menu_marketing')])]"/>
+        </record>
+
+   </data>
+</odoo>

@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"product_konversi_user","product_konversi_user","model_product_konversi","",1,1,1,1
+"konversi_detail_user","konversi_detail_user","model_konversi_detail","",1,1,1,1

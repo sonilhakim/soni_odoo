@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_cash_in_out" string="Report - Cash In Cash Out"
+         model="cash.in.out.wizard" report_type="qweb-pdf" paperformat="vit_cash_in_cash_out.paperformat_cio_a4"
+         file="vit_cash_in_cash_out.vit_cash_in_out_report"  name="vit_cash_in_cash_out.vit_cash_in_out_report" />
+
+        <!-- document template -->
+        <template id="vit_cash_in_out_report_document" >
+            <t t-call="vit_cash_in_cash_out.external_layout_cash_in_out">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="col-12">
+                    <div style="border-bottom: 1px solid black; margin-bottom:3px; margin-top:0px;"/>
+                </div>
+                <table class="table table-sm" name="report_ids_table" style="margin-bottom:3px;">
+                    <thead><tr>
+                            <td style="border-left: 1px solid black;border-top: 1px solid black;"></td>
+                            <td style="border-top: 1px solid black;"></td>
+                            <td style="border-top: 1px solid black; text-align: right;">TRAN</td>
+                            <td style="border-top: 1px solid black;">SAKSI</td>
+                            <td style="border-top: 1px solid black;"></td>
+                            <td style="border-right: 1px solid black;border-top: 1px solid black;"></td>
+                        </tr>
+                        <tr class="text-center">
+                            <td style="border: 1px solid black;">Tanggal</td>
+                            <td style="border: 1px solid black;">Cash In</td>
+                            <td style="border: 1px solid black;">Keterangan</td>
+                            <td style="border: 1px solid black;">Cash Out</td>
+                            <td style="border: 1px solid black;">Keterangan</td>
+                            <td style="border: 1px solid black;">Total</td>
+                        </tr>
+                    </thead>
+                    <tbody class="report_ids_tbody">
+                        <tr t-foreach="doc.report_ids" t-as="line">
+                            <td style="border: 1px solid black; text-align:center;"><span t-esc="line.tanggal.strftime('%d-%m-%Y')"/></td>
+                            <td style="border: 1px solid black; text-align:right;"><span t-esc="'{0:,.2f}'.format(line.cash_in)" /></td>
+                            <td style="border: 1px solid black;"><span t-field="line.ket_cash_in" /></td>
+                            <td style="border: 1px solid black; text-align:right;"><span t-esc="'{0:,.2f}'.format(line.cash_out)" /></td>
+                            <td style="border: 1px solid black;"><span t-field="line.ket_cash_out" /></td>
+                            <td style="border: 1px solid black; text-align:right;"><span t-esc="'{0:,.2f}'.format(line.total)" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="col-12">
+                    <div style="border-top: 1px solid black;"/>
+                </div>
+                <div id="grand_total" style="margin-top:5px;">
+                    <!-- <div class="col-8">
+                    </div>
+                    <div class="col-4"> -->
+                    <table class="table table-sm" style="border: 2px solid black; box-shadow: 4px 3px 3px 0px black;">
+                        <tr class="o_total">
+                            <td><strong>Grand Total: </strong></td>
+                            <!-- <td class="text-right" style="border: 1px solid black;">
+                                <span t-esc="'{0:,.2f}'.format(sum(l.cash_in for l in doc.report_ids))"/>
+                            </td>
+                            <td style="border: 1px solid black;"></td>
+                            <td class="text-right" style="border: 1px solid black;">
+                                <span t-esc="'{0:,.2f}'.format(sum(l.cash_out for l in doc.report_ids))"/>
+                            </td>
+                            <td style="border: 1px solid black;"></td> -->
+                            <td class="text-right">
+                                <span t-esc="'{0:,.2f}'.format(sum(l.total for l in doc.report_ids))"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- </div> -->
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_cash_in_out_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <!-- <t t-set="lang" t-value="doc.create_uid.lang"/> -->
+                    <t t-call="vit_cash_in_cash_out.vit_cash_in_out_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,629 @@
+<odoo>
+  <data>
+  		<!-- RKA Monitor tree -->
+        <record id="view_rka_monitor_tree" model="ir.ui.view">
+            <field name="name">anggaran_rka_monitor_tree</field>
+            <field name="model">anggaran.rka</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="list rka" decoration-info="state == 'draft'" decoration-success="state == 'open'" decoration-danger="state == 'done'" decoration-muted="state == 'done'">
+                    <field name="no" invisible="1"/>
+                    <field name="name"/>
+                    <field name="unit_id"/>
+                    <field name="tahun"/>
+                    <field name="period_id"/>
+                    <field name="date_open"/>
+                    <field name="alokasi"/>
+                    <field name="anggaran"/>       
+                    <field name="realisasi" />      
+                    <field name="sisa" />      
+                    <field name="definitif" />
+                    <field name="state" />
+                </tree>    
+            </field>
+        </record>
+
+        <!-- RKA RENBUT tree -->
+        <record id="view_rka_renbut_tree" model="ir.ui.view">
+            <field name="name">anggaran_rka_renbut_tree</field>
+            <field name="model">anggaran.rka</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="list rka">
+                    <field name="no" invisible="1"/>
+                    <field name="unit_id"/>
+                    <field name="period_id" string='Periode RENBUT'/>
+                    <field name="alokasi" string='Alokasi Tahun Sebelumnya'/>
+                    <field name="anggaran" string='Anggaran RENBUT'/>
+                    <field name="state" invisible="1"/>
+                </tree>    
+            </field>
+        </record>
+
+        <!-- RKA RARENJA tree -->
+        <record id="view_rka_rarenja_tree" model="ir.ui.view">
+            <field name="name">anggaran_rka_rarenja_tree</field>
+            <field name="model">anggaran.rka</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="list rka">
+                    <field name="no" invisible="1"/>
+                    <field name="unit_id"/>
+                    <field name="period_id" string='Periode RARENJA'/>
+                    <field name="alokasi" string='Alokasi Tahun Sebelumnya'/>
+                    <field name="anggaran" string='Anggaran RARENJA'/>
+                    <field name="state" invisible="1"/>
+                </tree>    
+            </field>
+        </record>
+
+        <!-- RKA RARENJA/RENJA tree -->
+        <record id="view_rka_renja_tree" model="ir.ui.view">
+            <field name="name">anggaran_rka_renja_tree</field>
+            <field name="model">anggaran.rka</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="list rka">
+                    <field name="no" invisible="1"/>
+                    <field name="unit_id"/>
+                    <field name="period_id"/>
+                    <field name="alokasi"/>
+                    <field name="anggaran"/>
+                    <field name="state" invisible="1"/>
+                </tree>    
+            </field>
+        </record>
+
+		<!-- action list rka -->
+		<record id="action_rka_list" model="ir.actions.act_window">
+			<field name="name">Rentang Renstra</field>
+			<field name="res_model">anggaran.rka</field>
+			<field name="view_mode">tree,form,graph</field>
+			<field name="view_id" ref="anggaran.view_rka_tree"/>
+			<field name="context">{'search_default_group_by_tahun': 1}</field>
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Kelola Rentang Renstra
+		      </p>				
+				<p>Klik tombol Buat untuk membuat Rentang Renstra</p>
+			</field>
+		</record>
+
+		<record id="action_renbut_list" model="ir.actions.act_window">
+			<field name="name">RENCANA KEBUTUHAN (RENBUT) UNIVERSITAS PERTAHANAN RI</field>
+			<field name="res_model">anggaran.rka</field>
+			<field name="view_mode">tree,form,graph</field>
+			<field name="view_id" ref="vit_perencanaan.view_rka_renbut_tree"/>
+			<!-- <field name="context">{'search_default_group_by_tahun': 1}</field> -->
+			<field name="domain">[('state','=','draft')]</field>
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Kelola RENBUT
+		      </p>				
+				<p>Klik tombol Buat untuk membuat RENBUT</p>
+			</field>
+		</record>
+
+		<record id="action_rarenja_list" model="ir.actions.act_window">
+			<field name="name">RANCANGAN RENCANA KERJA (RARENJA) UNIVERSITAS PERTAHANAN RI</field>
+			<field name="res_model">anggaran.rka</field>
+			<field name="view_mode">tree,form,graph</field>
+			<field name="view_id" ref="vit_perencanaan.view_rka_rarenja_tree"/>
+			<!-- <field name="context">{'search_default_group_by_tahun': 1}</field> -->
+			<field name="domain">[('state','=','open')]</field>
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Kelola RARENJA
+		      </p>				
+				<p>Klik tombol Buat untuk membuat RARENJA</p>
+			</field>
+		</record>
+
+		<record id="action_renja_list" model="ir.actions.act_window">
+			<field name="name">RENCANA KERJA (RENJA) UNIVERSITAS PERTAHANAN RI</field>
+			<field name="res_model">anggaran.rka</field>
+			<field name="view_mode">tree,form,graph</field>
+			<field name="view_id" ref="vit_perencanaan.view_rka_renja_tree"/>
+			<!-- <field name="context">{'search_default_group_by_tahun': 1}</field> -->
+			<field name="domain">[('state','not in',('draft','open','cancel'))]</field>
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Kelola RENJA
+		      </p>				
+				<p>Klik tombol Buat untuk membuat RENJA</p>
+			</field>
+		</record>
+
+		<record id="action_rka_list_monitoring" model="ir.actions.act_window">
+			<field name="name">Monitoring Anggaran</field>
+			<field name="res_model">anggaran.rka</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="vit_perencanaan.view_rka_monitor_tree"/>
+			<field name="context">{'search_default_group_by_tahun': 1}</field>
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Kelola Anggaran
+		      </p>				
+				<p>Klik tombol Buat untuk membuat Anggaran</p>
+			</field>
+		</record>
+
+		<!-- action perioda_tahunan -->
+		<record id="action_account_period" model="ir.actions.act_window">
+			<field name="name">Perioda Tahunan</field>
+			<field name="res_model">account.period</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_group_by_unit': 1}</field>
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- action_sumber_dana_list -->
+		<record id="action_sumber_dana_list" model="ir.actions.act_window">
+			<field name="name">Kodifikasi Pemenerimaan</field>
+			<field name="res_model">anggaran.sumber_dana</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_group_by_unit': 1}</field>
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- action_sumber_dana_list -->
+		<record id="action_cost_type_list" model="ir.actions.act_window">
+			<field name="name">Jenis Belanja</field>
+			<field name="res_model">anggaran.cost_type</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_group_by_unit': 1}</field>
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- action_coa_list -->
+		<record id="action_coa_list" model="ir.actions.act_window">
+			<field name="name">Uraian Belanja</field>
+			<field name="res_model">anggaran.mata_anggaran_kegiatan</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_group_by_unit': 1}</field>
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- action_program_list -->
+		<record id="action_program_list" model="ir.actions.act_window">
+			<field name="name">Program Kegiatan</field>
+			<field name="res_model">anggaran.program</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_group_by_unit': 1}</field>
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- action_kegiatan_list -->
+		<record id="action_kegiatan_list" model="ir.actions.act_window">
+			<field name="name">Rencana Kegiatan</field>
+			<field name="res_model">anggaran.kegiatan</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_group_by_unit': 1}</field>
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- vit_perencanaan_rencana_penerimaan -->
+		<record id="action_perencanaan_rencana_penerimaan" model="ir.actions.act_window">
+			<field name="name">Rencana Penerimaan</field>
+			<field name="res_model">anggaran.kas</field>
+			<field name="view_mode">tree,form,graph</field>
+			<field name="context">{'search_default_in': 1}</field>
+      <!-- 
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- vit_perencanaan_rencana_penerimaan -->
+		<record id="action_perencanaan_rencana_pengeluaran" model="ir.actions.act_window">
+			<field name="name">Rencana Pengeluaran</field>
+			<field name="res_model">anggaran.kas</field>
+			<field name="view_mode">tree,form,graph</field>
+			<field name="context">{'search_default_out': 1}</field>
+      <!--
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- vit_perencanaan_standart_biaya -->
+		<record id="action_perencanaan_standart_biaya" model="ir.actions.act_window">
+			<field name="name">Standart Biaya</field>
+			<field name="res_model">anggaran.biaya</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_out': 1}</field> -->
+      <!--
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- action_perencanaan_rencana_realisasi_pencairan -->
+		<record id="action_perencanaan_rencana_realisasi_pencairan_uudp" model="ir.actions.act_window">
+			<field name="name">Rencana Realisasi Pencairan UUDP</field>
+			<field name="res_model">anggaran.sup</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_out': 1}</field> -->
+      <!--
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- action_perencanaan_rencana_realisasi_pencairan -->
+		<record id="action_perencanaan_rencana_realisasi_pencairan" model="ir.actions.act_window">
+			<field name="name">Rencana Realisasi Pencairan</field>
+			<field name="res_model">anggaran.spm</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_out': 1}</field> -->
+      <!--
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- vit_perencanaan_rencana_realisasi_pencairan -->
+		<record id="action_perencanaan_adjust_anggaran_pengeluaran" model="ir.actions.act_window">
+			<field name="name">Adjust Anggaran Pengeluaran</field>
+			<field name="res_model">anggaran.sptb</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_out': 1}</field> -->
+      <!--
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- vit_perencanaan_rencana_realisasi_pencairan -->
+		<record id="action_perencanaan_rekapitulasi_anggaran_program_dan_kegiatan_unit" model="ir.actions.act_window">
+			<field name="name">Rekapitulasi Anggaran Program dan Kegiatan Unit</field>
+			<field name="res_model">anggaran.rka_detail</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_out': 1}</field> -->
+      <!--
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- action_perencanaan_realisasi_anggaran_program -->
+		<record id="action_perencanaan_realisasi_anggaran_program" model="ir.actions.act_window">
+			<field name="name">Realisasi Anggaran Program</field>
+			<field name="res_model">anggaran.rka_detail</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_out': 1}</field> -->
+      <!--
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- vit_perencanaan_realisasi_anggaran_unit_kerja -->
+		<record id="action_perencanaan_realisasi_anggaran_unit_kerja" model="ir.actions.act_window">
+			<field name="name">Realisasi Anggaran Unit Kerja</field>
+			<field name="res_model">anggaran.spp</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_out': 1}</field> -->
+      <!--
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- vit_perencanaan_realisasi_anggaran_mak -->
+		<record id="action_perencanaan_realisasi_anggaran_mak" model="ir.actions.act_window">
+			<field name="name">Realisasi Anggaran Berdasarkan MAK</field>
+			<field name="res_model">anggaran.spp_line_mak</field>
+			<field name="view_mode">tree,form</field>
+			<!-- <field name="context">{'search_default_out': 1}</field> -->
+      <!--
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- vit_perencanaan_rekap_anggaran_program -->
+		<record id="action_perencanaan_rekap_anggaran_program" model="ir.actions.act_window">
+			<field name="name">Rekap Anggaran Program</field>
+			<field name="res_model">anggaran.rka_detail</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_out': 1}</field> -->
+      <!--
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- vit_perencanaan_rekap_program -->
+		<record id="action_perencanaan_rekap_program" model="ir.actions.act_window">
+			<field name="name">Rekap Program</field>
+			<field name="res_model">anggaran.rka_detail</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_out': 1}</field> -->
+      <!--
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- vit_perencanaan_rekap_unit_kerja -->
+		<record id="action_perencanaan_rekap_unit_kerja" model="ir.actions.act_window">
+			<field name="name">Rekap Unit Kerja</field>
+			<field name="res_model">anggaran.rka_detail</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_out': 1}</field> -->
+      <!--
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+		<!-- action_perencanaan_Realisasi_Anggaran_Berdasarkan_MAK -->
+		<record id="action_perencanaan_Realisasi_Anggaran_Berdasarkan_MAK" model="ir.actions.act_window">
+			<field name="name">Realisasi Anggaran Berdasarkan MAK</field>
+			<field name="res_model">anggaran.rka_detail</field>
+			<field name="view_mode">tree,form,graph</field>
+			<!-- <field name="context">{'search_default_out': 1}</field> -->
+      <!--
+			<field name="help" type="html">
+		      <p class="oe_view_nocontent_create">
+		        Manage Rentang Renstra
+		      </p>				
+				<p>Klik tombol create untuk membuat Rentang Renstra</p>
+			</field> -->
+		</record>
+
+    <menuitem name="Anggaran" id="vit_perencanaan_anggaran" 
+      web_icon="vit_perencanaan,static/description/icon.png"
+      groups="vit_perencanaan.group_perencanaan_user"/>
+
+    <menuitem name="Monitoring Anggaran" id="vit_monitor_perencanaan_anggaran" 
+      web_icon="vit_perencanaan,static/description/icon.png"
+      groups="vit_perencanaan.group_perencanaan_manager"/>
+
+		<!-- menu_rka -->
+		<menuitem id="vit_perencanaan_renbut"
+			 action="action_renbut_list"
+			 name="RENBUT"
+			 sequence="3"
+			 parent="vit_perencanaan_anggaran"/>
+
+		<menuitem id="vit_perencanaan_rarenja"
+			 action="action_rarenja_list"
+			 name="RARENJA"
+			 sequence="5"
+			 parent="vit_perencanaan_anggaran"/>
+
+		<menuitem id="vit_perencanaan_renja"
+			 action="action_renja_list"
+			 name="RENJA"
+			 sequence="7"
+			 parent="vit_perencanaan_anggaran"/>
+
+		<menuitem id="vit_perencanaan_rkakl"
+			 action="action_rka_list"
+			 name="RKAKL"
+			 sequence="9"
+			 parent="vit_perencanaan_anggaran"/>
+
+		<menuitem id="vit_perencanaan_rka"
+			 action="action_rka_list"
+			 name="Rentang Renstra"
+			 sequence="10"
+			 parent="vit_perencanaan_anggaran"/>
+
+		<menuitem id="vit_perencanaan_monitor_rka"
+			 action="action_rka_list_monitoring"
+			 name="Monitoring Anggaran"
+			 sequence="10"
+			 parent="vit_monitor_perencanaan_anggaran"/>
+
+		<menuitem id="vit_perencanaan_rekap_rka"
+			 action="action_rka_list"
+			 name="Rekap"
+			 sequence="15"
+			 parent="vit_perencanaan_anggaran"/>
+
+		<menuitem id="vit_perencanaan_perioda_tahunan"
+			 action="action_account_period"
+			 name="Periode Tahunan"
+			 sequence="20"
+			 parent="vit_perencanaan_anggaran"/>
+
+		<menuitem id="vit_perencanaan_kodifikasi_pemenerimaan"
+			 action="action_sumber_dana_list"
+			 name="Kodifikasi Pemenerimaan"
+			 sequence="30"
+			 parent="vit_perencanaan_anggaran"/>
+
+		<menuitem id="vit_perencanaan_jenis_belanja"
+			 action="action_cost_type_list"
+			 name="Jenis Belanja"
+			 sequence="40"
+			 parent="vit_perencanaan_anggaran"/>
+
+		<menuitem id="vit_perencanaan_uraian_belanja"
+			 action="action_coa_list"
+			 name="Uraian Belanja"
+			 sequence="50"
+			 parent="vit_perencanaan_anggaran"/>
+
+		<menuitem id="vit_perencanaan_program_kegiatan"
+			 action="action_program_list"
+			 name="Program Kegiatan"
+			 sequence="60"
+			 parent="vit_perencanaan_anggaran"/>
+
+		<menuitem id="vit_perencanaan_rencana_kegiatan"
+			 action="action_kegiatan_list"
+			 name="Rencana Kegiatan"
+			 sequence="70"
+			 parent="vit_perencanaan_anggaran"/>
+
+		<menuitem id="vit_perencanaan_rencana_penerimaan"
+			 action="action_perencanaan_rencana_penerimaan"
+			 name="Rencana Penerimaan"
+			 sequence="80"
+			 parent="vit_perencanaan_rkakl"/>
+
+		<menuitem id="vit_perencanaan_rencana_pengeluaran"
+			 action="action_perencanaan_rencana_pengeluaran"
+			 name="Rencana Pengeluaran"
+			 sequence="90"
+			 parent="vit_perencanaan_rkakl"/>
+
+		<menuitem id="vit_perencanaan_standart_biaya"
+			 action="action_perencanaan_standart_biaya"
+			 name="Standart Biaya"
+			 sequence="100"
+			 parent="vit_perencanaan_rkakl"/>
+
+		<menuitem id="vit_perencanaan_rencana_realisasi_pencairan_uudp"
+			 action="action_perencanaan_rencana_realisasi_pencairan_uudp"
+			 name="Rencana Realisasi Pencairan UUDP"
+			 sequence="105"
+			 parent="vit_perencanaan_rkakl"/>
+
+		<menuitem id="vit_perencanaan_rencana_realisasi_pencairan"
+			 action="action_perencanaan_rencana_realisasi_pencairan"
+			 name="Rencana Realisasi Pencairan"
+			 sequence="110"
+			 parent="vit_perencanaan_rkakl"/>
+
+		<menuitem id="vit_perencanaan_adjust_anggaran_pengeluaran"
+			 action="action_perencanaan_adjust_anggaran_pengeluaran"
+			 name="Adjust Anggaran Pengeluaran"
+			 sequence="120"
+			 parent="vit_perencanaan_rkakl"/>
+
+		<menuitem id="vit_perencanaan_rekapitulasi_anggaran_program_dan_kegiatan_unit"
+			 action="vit_rekap_anggaran.action_vit_rekapitulasi_anggaran_program_dan_kegiatan_unit"
+			 name="Rekapitulasi Anggaran Program dan Kegiatan Unit"
+			 sequence="130"
+			 parent="vit_perencanaan_rekap_rka"/>
+
+		<!-- <menuitem id="vit_perencanaan_realisasi_anggaran_program"
+			 action="action_perencanaan_realisasi_anggaran_program"
+			 name="Realisasi Anggaran Program"
+			 sequence="140"
+			 parent="vit_perencanaan_anggaran"/> -->
+
+		<menuitem id="vit_perencanaan_realisasi_anggaran_unit_kerja"
+			 action="action_perencanaan_realisasi_anggaran_unit_kerja"
+			 name="Realisasi Anggaran Unit Kerja"
+			 sequence="150"
+			 parent="vit_perencanaan_rkakl"/>
+
+		<menuitem id="vit_perencanaan_realisasi_anggaran_mak"
+			 action="action_perencanaan_realisasi_anggaran_mak"
+			 name="Realisasi Anggaran Berdasarkan MAK"
+			 sequence="160"
+			 parent="vit_perencanaan_rkakl"/>
+
+		<menuitem id="vit_perencanaan_rekap_anggaran_program"
+			 action="vit_rekap_anggaran.action_vit_rekap_anggaran_program"
+			 name="Rekap Anggaran"
+			 sequence="160"
+			 parent="vit_perencanaan_rekap_rka"/>
+
+		<menuitem id="vit_perencanaan_rekap_program"
+			 action="vit_rekap_anggaran.action_vit_rekap_program"
+			 name="Rekap Program"
+			 sequence="170"
+			 parent="vit_perencanaan_rekap_rka"/>
+
+		<menuitem id="vit_perencanaan_rekap_unit_kerja"
+			 action="vit_rekap_anggaran.action_vit_rekap_unit"
+			 name="Rekap Unit Kerja"
+			 sequence="180"
+			 parent="vit_perencanaan_rekap_rka"/>
+
+		<!-- <menuitem id="vit_perencanaan_Realisasi_Anggaran_Berdasarkan_MAK"
+			 action="action_perencanaan_Realisasi_Anggaran_Berdasarkan_MAK"
+			 name="Realisasi Anggaran Berdasarkan MAK"
+			 sequence="190"
+			 parent="vit_perencanaan_anggaran"/> -->
+
+		<!-- <menuitem id="vit_perencanaan_Rasio_Keuangan"
+			 action="account_reports.account_financial_html_report_action_5"
+			 name="Rasio Keuangan"
+			 sequence="200"
+			 parent="vit_perencanaan_anggaran"/> -->
+
+		<menuitem id="vit_perencanaan_Rasio_Keuangan"
+			 action="vit_rekap_anggaran.action_vit_anggaran_rasio"
+			 name="Rasio Keuangan"
+			 sequence="200"
+			 parent="vit_perencanaan_anggaran"/>
+
+  </data>
+</odoo>

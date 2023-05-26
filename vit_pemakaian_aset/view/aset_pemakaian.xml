@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_aset_pemakaian_tree" model="ir.ui.view">
+            <field name="name">vit_aset_pemakaian_tree</field>
+            <field name="model">vit.aset_pemakaian</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Aset pemakaian">
+                    <!-- <field name="name" /> -->
+                    <field name="reference" />
+                    <field name="qty" />
+                    <field name="aset_id" />
+                    <field name="pemakaian_id" />
+                    <field name="kategori_id" />
+                    <field name="lokasi_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_aset_pemakaian_form" model="ir.ui.view">
+            <field name="name">vit_aset_pemakaian_form</field>
+            <field name="model">vit.aset_pemakaian</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Aset pemakaian">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <!-- <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Aset pemakaian Name"/>
+                            <h1><field name="name"/></h1>
+                        </div> -->
+                        <group>
+                            <group>
+                                <field name="reference" />
+                                <field name="qty" />
+                            </group>
+                            <group>
+                                <field name="aset_id" />
+                                <field name="pemakaian_id" />
+                                <field name="kategori_id" />
+                                <field name="lokasi_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_aset_pemakaian_search" model="ir.ui.view">
+            <field name="name">vit_aset_pemakaian</field>
+            <field name="model">vit.aset_pemakaian</field>
+            <field name="arch" type="xml">
+                <search string="Aset pemakaian">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Reference" name="filter_by_reference" domain="[('reference','=','')]" />
+                    <filter string="Qty" name="filter_by_qty" domain="[('qty','=','')]" />
+                    <!-- <field name="name" select="True"/> -->
+                    <field name="reference" select="True"/>
+                    <field name="qty" select="True"/>
+                    <field name="aset_id" select="True"/>
+                    <field name="pemakaian_id" select="True"/>
+                    <field name="kategori_id" select="True"/>
+                    <field name="lokasi_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Aset" domain="[]" name="group_by_aset_id" context="{'group_by':'aset_id'}"/>
+                        <filter string="Pemakaian" domain="[]" name="group_by_pemakaian_id" context="{'group_by':'pemakaian_id'}"/>
+                        <filter string="Kategori" domain="[]" name="group_by_kategori_id" context="{'group_by':'kategori_id'}"/>
+                        <filter string="Lokasi" domain="[]" name="group_by_lokasi_id" context="{'group_by':'lokasi_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_aset_pemakaian_kanban" model="ir.ui.view" >
+            <field name="name">vit_aset_pemakaian</field>
+            <field name="model">vit.aset_pemakaian</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <!-- <field name="name" /> -->
+                    <field name="reference" />
+                    <field name="qty" />
+                    <field name="aset_id" />
+                    <field name="pemakaian_id" />
+                    <field name="kategori_id" />
+                    <field name="lokasi_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <!-- <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4> -->
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Aset</span> <field name="aset_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Pemakaian</span> <field name="pemakaian_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Kategori</span> <field name="kategori_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Lokasi</span> <field name="lokasi_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_aset_pemakaian_graph" model="ir.ui.view">
+            <field name="name">vit_aset_pemakaian</field>
+            <field name="model">vit.aset_pemakaian</field>
+            <field name="arch" type="xml">
+                <graph string="Aset pemakaian" type="bar">
+                    <field name="aset_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_aset_pemakaian" model="ir.actions.act_window">
+            <field name="name">Aset pemakaian</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.aset_pemakaian</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Aset pemakaian
+                </p><p>
+                Click the Create button to add a new Aset pemakaian
+                </p>
+            </field>
+        </record>
+
+        <!-- <menuitem id="menu_vit_aset_pemakaian" name="Aset pemakaian" parent="vit_pemakaian_aset_config_menu" action="action_vit_aset_pemakaian" sequence="80"/> -->
+    </data>
+</odoo>

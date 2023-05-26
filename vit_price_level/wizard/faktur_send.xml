@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="e_faktur_send_wizard_form">
+            <field name="name">e_faktur.send.form</field>
+            <field name="model">e_faktur.send</field>
+            <field name="groups_id" eval="[(4,ref('base.group_user'))]"/>
+            <field name="arch" type="xml">
+                <form string="e_faktur send">
+                    <!-- truly invisible fields for control and options -->
+                    <field name="composition_mode" invisible="1"/>
+                    <field name="composer_id" invisible="1"/>
+                    <field name="invoice_ids" invisible="1"/>
+                    <field name="email_from" invisible="1" />
+                    <field name="mail_server_id" invisible="1"/>
+                    <div class="text-left d-inline-block mr8" attrs="{'invisible': [('invoice_without_email', '=', False)]}">
+                        <field name="invoice_without_email" class="mr4"/>
+                    </div>
+                    <div name="mail_form">
+                        <!-- visible wizard -->
+                        <div attrs="{'invisible': [('composition_mode', '=', 'mass_mail')]}">
+                            <group>
+                                <label for="partner_ids" string="Recipients" groups="base.group_user"/>
+                                <div groups="base.group_user">
+                                    <span attrs="{'invisible': [('composition_mode', '!=', 'mass_mail')]}">
+                                        <strong>Email mass mailing</strong> on
+                                        <span>the selected records</span>
+                                    </span>
+                                    <span>Followers of the document and</span>
+                                    <field name="partner_ids" widget="many2many_tags_email" placeholder="Add contacts to notify..."
+                                        context="{'force_email':True, 'show_email':True}" attrs="{'invisible': [('composition_mode', '=', 'mass_mail')]}"/>
+                                </div>
+                                <field name="subject" placeholder="Subject..." attrs="{'required': [('composition_mode', '=', 'comment')]}"/>
+                            </group>
+                            <field name="body" style="border:none;" options="{'style-inline': true}"/>
+                        </div>
+                        <group>
+                            <group attrs="{'invisible': [('composition_mode', '=', 'mass_mail')]}">
+                                <field name="attachment_ids" widget="many2many_binary" string="Attach a file" nolabel="1" colspan="2" attrs="{'invisible': [('composition_mode', '=', 'mass_mail')]}"/>
+                            </group>
+                            <group>
+                                <field name="template_id" options="{'no_create': True, 'no_edit': True}"
+                                    context="{'default_model': 'account.invoice'}"/>
+                            </group>
+                        </group>
+                    </div>
+
+                    <footer>
+                        <button string="Send" name="send_action" type="object" class="send btn-primary o_mail_send"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+       <act_window
+            name="Send"
+            id="e_faktur_send"
+            multi="True"
+            key2="client_action_multi"
+            res_model="e_faktur.send"
+            src_model="account.invoice"
+            view_mode="form"
+            target="new"
+            view_type="form"
+            context="{
+                'default_template_id': ref('vit_invoice_attach_efaktur.email_template_efaktur_sale'),
+                'mark_efaktur_as_sent': True,
+            }"
+            groups="account.group_account_invoice"/>
+
+    </data>
+
+</odoo>

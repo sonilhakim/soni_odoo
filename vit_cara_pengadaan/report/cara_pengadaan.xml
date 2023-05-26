@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_cara_pengadaan_menu" string="Vit - Cara pengadaan"
+         model="vit.cara_pengadaan" report_type="qweb-pdf" 
+         file="vit.cara_pengadaan"  name="vit_cara_pengadaan.vit_cara_pengadaan_report" />
+
+        <!-- document template -->
+        <template id="vit_cara_pengadaan.vit_cara_pengadaan_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Cara pengadaan: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Kode</strong>
+                            <p class="m-0" t-field="doc.code" />
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_cara_pengadaan.vit_cara_pengadaan_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_cara_pengadaan.vit_cara_pengadaan_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

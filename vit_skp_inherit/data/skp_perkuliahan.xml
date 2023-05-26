@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+		<record id="vit_skp_perkuliahan_1" model="vit.skp_perkuliahan">
+			<field name="name">PHILOSOPHY OF SCIENCE AND RESEARCH METHODOLOGY</field>
+			<field name="sks">2</field>
+			<field name="jumlah_kelas">3</field>
+			<field name="jumlah_dosen_pengampu">1</field>
+			<field name="totak_sks_per_smt">0</field>
+			<field name="skp_id">
+			<field name="semester_id">
+		</record>
+		<record id="vit_skp_perkuliahan_2" model="vit.skp_perkuliahan">
+			<field name="name">SOSIO-CULTURAL COMPETENCE AND RESILIENCE</field>
+			<field name="sks">2</field>
+			<field name="jumlah_kelas">2</field>
+			<field name="jumlah_dosen_pengampu">2</field>
+			<field name="totak_sks_per_smt">0</field>
+			<field name="skp_id">
+			<field name="semester_id">
+		</record>
+		<record id="vit_skp_perkuliahan_3" model="vit.skp_perkuliahan">
+			<field name="name">SOSIO-CULTURAL COMPETENCE AND RESILIENCE</field>
+			<field name="sks">2</field>
+			<field name="jumlah_kelas">2</field>
+			<field name="jumlah_dosen_pengampu">2</field>
+			<field name="totak_sks_per_smt">
+			<field name="skp_id">
+			<field name="semester_id">
+		</record>
+		<record id="vit_skp_perkuliahan_4" model="vit.skp_perkuliahan">
+			<field name="name">PHILOSOPHY OF SCIENCE AND RESEARCH METHODOLOGY</field>
+			<field name="sks">2</field>
+			<field name="jumlah_kelas">3</field>
+			<field name="jumlah_dosen_pengampu">2</field>
+			<field name="totak_sks_per_smt">
+			<field name="skp_id">
+			<field name="semester_id">
+		</record>
+
+	</data>
+</odoo>

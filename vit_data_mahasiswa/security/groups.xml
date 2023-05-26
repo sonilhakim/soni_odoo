@@ -1,0 +1,17 @@
+<odoo>
+	<data>
+		<record model="ir.module.category" id="module_category_data mahasiswa">
+			<field name="name">Data Mahasiswa</field>
+			<field name="description">Data Mahasiswa Groups</field>
+			<field name="sequence">10</field>
+		</record>
+		<record id="group_data mahasiswa_user" model="res.groups">
+			<field name="name">User</field>
+			<field name="category_id" ref="module_category_data mahasiswa"/>
+		</record>
+		<record id="group_data mahasiswa_manager" model="res.groups">
+			<field name="name">Manager</field>
+			<field name="category_id" ref="module_category_data mahasiswa"/>
+		</record>
+	</data>
+</odoo>

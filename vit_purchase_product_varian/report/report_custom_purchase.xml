@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="report_custom_purchase"
+            string="Purchase Order Custom"
+            model="purchase.order" 
+            report_type="qweb-pdf"
+            paperformat="vit_purchase_product_varian.paperformat_custom_purchase"
+            file="custom.purchase.order" 
+            name="vit_purchase_product_varian.custom_purchase_report"
+        />
+        
+        <template id="report_custom_purchase_document">
+            <t t-call="vit_purchase_product_varian.external_layout_custom_purchase">
+                <!-- <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+                <t> -->
+                <div class="page">
+                    <div class="header row" style="margin-left:1px;">
+                        <div>
+                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 100px;" alt="Logo"/>
+                        </div>
+                       <!--  <div class="col-6" t-field="o.company_id.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/> -->
+                        <div class="col-6">
+                            <div>
+                                <div t-field="o.company_id.partner_id"/>
+                            </div>
+                            <div>
+                                <div t-field="o.company_id.partner_id.street"/>
+                            </div>
+                            <div>
+                                <div t-field="o.company_id.partner_id.city"/>
+                            </div>
+                            <div class="row" style="margin-left:2px;">
+                                Telp.&#160;<div t-field="o.company_id.partner_id.phone"/>
+                            </div>
+                            <div class="row" style="margin-left:2px;">
+                                Fax.&#160;&#160;<div t-field="o.company_id.partner_id.fax"/>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-center" style="border: 1px solid black; padding:2px; box-shadow: 4px 3px 3px 0px black;">
+                                <h3>Purchase Order</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-9">
+                                    Tgl.Cetak : <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>
+                                </div>
+                                <div>
+                                    Hal: <span class="page"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                <!-- </t> -->
+
+                    <div>
+                        <div class="oe_structure"/>
+                        <div style="border: 1px solid black;">
+                            <div class="row">
+                                <div class="row col-6" style="border-right: 1px solid black;">
+                                    <div class="col-5" style="text-align:right;">
+                                        Supplier Name :
+                                    </div>
+                                    <div class="row col-7">
+                                        <div t-field="o.partner_id"/>
+                                    </div>
+                                </div>
+                                <div class="row col-6">
+                                    <div class="col-5" style="text-align:right;">
+                                        PO Number :
+                                    </div>
+                                    <div class="row col-7"> 
+                                        <div t-field="o.name"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row col-6" style="border-right: 1px solid black;">
+                                    <div class="col-5" style="text-align:right;">
+                                        Phone / Fax :
+                                    </div>
+                                    <div class="row col-7">
+                                        <div t-field="o.partner_id.phone"/>&#160;/&#160;<div t-field="o.partner_id.fax"/>
+                                    </div>
+                                </div>
+                                <div class="row col-6">
+                                    <div class="col-5" style="text-align:right;">
+                                        Date of PO :
+                                    </div>
+                                    <!-- <div t-field="o.date_order"/> -->
+                                    <div class="row col-7">
+                                        <span t-esc="o.date_order.strftime('%Y-%m-%d')"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row col-6" style="border-right: 1px solid black;">
+                                    <div class="col-5" style="text-align:right;">
+                                        Address :
+                                    </div>
+                                    <div class="row col-7">
+                                        <div t-field="o.partner_id.street"/>
+                                    </div>
+                                </div>
+                                <div class="row col-6">
+                                    <div class="col-5" style="text-align:right;">
+                                        Delivery Date :
+                                    </div>
+                                    <!-- <div t-field="o.date_planned"/> -->
+                                    <div class="row col-7">
+                                        <span t-esc="o.date_planned.strftime('%Y-%m-%d')"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row col-6" style="border-right: 1px solid black;">
+                                    <div class="col-5" style="text-align:right;">
+                                    </div>
+                                    <div class="col-7" t-field="o.partner_id.city"/>
+                                </div>
+                                <div class="row col-6">
+                                    <div class="col-5" style="text-align:right;">
+                                        Delivery Location :
+                                    </div>
+                                    <div class="row col-7">
+                                        <div t-field="o.picking_type_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row col-6" style="border-right: 1px solid black;">
+                                    <div class="col-5" style="text-align:right;">
+                                        Email :
+                                    </div>
+                                    <div class="row col-7">
+                                        <div t-field="o.partner_id.email"/>
+                                    </div>
+                                </div>
+                                <div class="row col-6">
+                                    <div class="col-5" style="text-align:right;">
+                                        Delivery Address :
+                                    </div>
+                                    <div class="row col-7">
+                                        <div t-field="o.picking_type_id.warehouse_id.partner_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row col-6" style="border-right: 1px solid black;">
+                                    <div class="col-5" style="text-align:right;">
+                                        Cara Bayar/Termin:
+                                    </div>
+                                    <div class="row col-7">
+                                        <div t-field="o.cara_bayar"/>
+                                    </div>
+                                </div>
+                                <div class="row col-6">
+                                    <div class="col-5" style="text-align:right;">
+                                        Up :
+                                    </div>
+                                    <div class="row col-7">
+                                        <div t-field="o.up"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row col-6" style="border-right: 1px solid black;">
+                                    <!-- <div class="col-5" style="text-align:right;">
+                                        Termin :
+                                    </div>
+                                    <div class="row col-7">
+                                        <div t-field="o.payment_term_id"/>
+                                    </div> -->
+                                </div>
+                                <div class="row col-6">
+                                    <div class="col-5" style="text-align:right;">
+                                        Expedisi :
+                                    </div>
+                                    <div class="row col-7">
+                                        <div t-field="o.expedisi"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="table table-sm o_main_table" style="margin-top:10px;">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="border: 1px solid black;"><strong>No</strong></th>
+                                    <th class="text-center" style="border: 1px solid black;"><strong>SKU</strong></th>
+                                    <th class="text-center" style="border: 1px solid black;"><strong>Nama</strong></th>
+                                    <th class="text-right" style="border-top: 1px solid black;"><strong>Or</strong></th>
+                                    <th style="border-right: 1px solid black;border-top: 1px solid black;"><strong>der</strong></th>
+                                    <th class="text-center" style="border-top: 1px solid black;"></th>
+                                    <th class="text-center" style="border-top: 1px solid black;"><strong>Packing</strong></th>
+                                    <th class="text-center" style="border-top: 1px solid black;"></th>
+                                    <th class="text-center" style="border: 1px solid black;"><strong>Harga</strong></th>
+                                    <th class="text-right" style="border-top: 1px solid black;"><strong>Dis</strong></th>
+                                    <th class="text-left" style="border-top: 1px solid black;"><strong>count</strong></th>
+                                    <th class="text-left" style="border-top: 1px solid black;"><strong>(%)</strong></th>
+                                    <th class="text-center" style="border: 1px solid black;"><strong>PPN</strong></th>
+                                    <th class="text-right" style="border: 1px solid black;"><strong>Total</strong></th>
+                                </tr>
+                                <tr>
+                                    <th style="border-left: 1px solid black;"></th>
+                                    <th style="border-left: 1px solid black;"></th>
+                                    <th class="text-center" style="border-left: 1px solid black;">Barang</th>
+                                    <th class="text-center" style="border: 1px solid black;"><strong>Sat</strong></th>
+                                    <th class="text-center" style="border: 1px solid black;"><strong>Qty</strong></th>
+                                    <th class="text-center" style="border: 1px solid black;"><strong>Set 1</strong></th>
+                                    <th class="text-center" style="border: 1px solid black;"><strong>Set 2</strong></th>
+                                    <th class="text-center" style="border: 1px solid black;"><strong>Set 3</strong></th>
+                                    <th class="text-center">Satuan</th>
+                                    <th class="text-center" style="border: 1px solid black;"><strong>I</strong></th>
+                                    <th class="text-center" style="border: 1px solid black;"><strong>II</strong></th>
+                                    <th class="text-center" style="border: 1px solid black;"><strong>III</strong></th>
+                                    <th style="border-right: 1px solid black;"></th>
+                                    <th style="border-right: 1px solid black;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.order_line" t-as="line">
+                                    <td class="text-center" style="border: 1px solid black;">
+                                        <t t-esc="line_index+1"/>
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                        <span t-field="line.product_id.default_code"/>
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                        <span t-field="line.product_id.name"/>
+                                    </td>
+                                    <td class="text-center" style="border: 1px solid black;">
+                                        <span t-field="line.satuan_product"/>
+                                    </td>
+                                    <td class="text-right" style="border: 1px solid black;">
+                                        <span t-field="line.product_qty"/>
+                                    </td>
+                                    <td class="text-right" style="border: 1px solid black;">
+                                        <span t-field="line.pack_set1"/><span t-field="line.satuan_set1"/>
+                                    </td>
+                                    <td class="text-right" style="border: 1px solid black;">
+                                        <span t-field="line.pack_set2"/><span t-field="line.satuan_set2"/>
+                                    </td>
+                                    <td class="text-right" style="border: 1px solid black;">
+                                        <span t-field="line.pack_set3"/><span t-field="line.satuan_set3"/>
+                                    </td>
+                                    <td class="text-right" style="border: 1px solid black;">
+                                        <span t-field="line.price_unit"/>
+                                    </td>
+                                    <td class="text-right" style="border: 1px solid black;">
+                                        <span t-field="line.discount1"/>
+                                    </td>
+                                    <td class="text-right" style="border: 1px solid black;">
+                                        <span t-field="line.discount2"/>
+                                    </td>
+                                    <td class="text-right" style="border: 1px solid black;">
+                                        <span t-field="line.discount3"/>
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                        <span t-esc="', '.join(map(lambda x: x.name, line.taxes_id))"/>
+                                    </td>
+                                    <td class="text-right" style="border: 1px solid black;">
+                                        <span t-field="line.price_subtotal"/>
+                                        <!-- <span t-field="line.price_subtotal"
+                                            t-options='{"widget": "monetary", "display_currency": o.currency_id}'/> -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div id="total" class="row justify-content-end">
+                            <div class="col-8">
+                                Keterangan :
+                            </div>
+                            <div class="col-4">
+                                <table class="table table-sm" style="border: 1px solid black; box-shadow: 4px 3px 3px 0px black;">
+                                    <tr class="o_total">
+                                        <td><strong>Grand Total: </strong></td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_total"/>
+                                            <!-- <span t-field="o.amount_total"
+                                                t-options='{"widget": "monetary", "display_currency": o.currency_id}'/> -->
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div style="font-size:11px;">
+                            1. Setelah menerima PO harap mengkonfirmassikan dengan menandatangani PO dan memfaxkan kembali kepada kami<br/>
+                            2. Setiap Penagihan harus menyertakan nomor PO<br/>
+                            <p t-field="o.notes"/>
+                        </div>
+                        <div class="oe_structure"/>
+                        <div style="margin-top:10px;">
+                            <div class="row">
+                                <div class="text-center col-4">Disiapkan Oleh</div>
+                                <div class="text-center col-4">Disetujui Oleh</div>
+                                <div class="text-center col-4">TT Supplier</div>
+                            </div>
+                            <div class="row" style="margin-top:100px">
+                                <div class="text-center col-4">
+                                    <span t-field="o.write_uid"/>
+                                </div>
+                                <div class="text-center col-4">_________________</div>
+                                <div class="text-center col-4">_________________</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="custom_purchase_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="vit_purchase_product_varian.report_custom_purchase_document"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

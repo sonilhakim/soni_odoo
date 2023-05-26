@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_detail_penerimaan_penghargaan_tree" model="ir.ui.view">
+            <field name="name">vit_detail_penerimaan_penghargaan_tree</field>
+            <field name="model">vit.detail_penerimaan_penghargaan</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Detail penerimaan penghargaan">
+                    <field name="name" />
+                    <field name="nip" />
+                    <field name="jenis_penghargaan" />
+                    <field name="tgl_penerimaan" />
+                    <!-- <field name="penerimaan_penghargaan_id" /> -->
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_detail_penerimaan_penghargaan_form" model="ir.ui.view">
+            <field name="name">vit_detail_penerimaan_penghargaan_form</field>
+            <field name="model">vit.detail_penerimaan_penghargaan</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Detail penerimaan penghargaan">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Detail penerimaan penghargaan Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="nip" />
+                                <field name="jenis_penghargaan" />
+                                <field name="tgl_penerimaan" />
+                            </group>
+                            <group>
+                                <field name="penerimaan_penghargaan_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_detail_penerimaan_penghargaan_search" model="ir.ui.view">
+            <field name="name">vit_detail_penerimaan_penghargaan</field>
+            <field name="model">vit.detail_penerimaan_penghargaan</field>
+            <field name="arch" type="xml">
+                <search string="Detail penerimaan penghargaan">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Nip" name="filter_by_nip" domain="[('nip','=','')]" />
+                    <filter string="Jenis penghargaan" name="filter_by_jenis_penghargaan" domain="[('jenis_penghargaan','=','')]" />
+                    <filter string="Tgl penerimaan" name="filter_by_tgl_penerimaan" domain="[('tgl_penerimaan','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="nip" select="True"/>
+                    <field name="jenis_penghargaan" select="True"/>
+                    <field name="tgl_penerimaan" select="True"/>
+                    <field name="penerimaan_penghargaan_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Penerimaan penghargaan" domain="[]" name="group_by_penerimaan_penghargaan_id" context="{'group_by':'penerimaan_penghargaan_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_detail_penerimaan_penghargaan_kanban" model="ir.ui.view" >
+            <field name="name">vit_detail_penerimaan_penghargaan</field>
+            <field name="model">vit.detail_penerimaan_penghargaan</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="nip" />
+                    <field name="jenis_penghargaan" />
+                    <field name="tgl_penerimaan" />
+                    <field name="penerimaan_penghargaan_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Penerimaan penghargaan</span> <field name="penerimaan_penghargaan_id"></field>
+                                        </li>
+
+                                        <li>
+                                            <span class="text-muted">Tgl penerimaan</span> <field name="tgl_penerimaan"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_vit_detail_penerimaan_penghargaan_cal" model="ir.ui.view">
+            <field name="name">vit_detail_penerimaan_penghargaan_cal</field>
+            <field name="model">vit.detail_penerimaan_penghargaan</field>
+            <field name="arch" type="xml">
+                <calendar string="Detail penerimaan penghargaan" date_start="tgl_penerimaan">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record>
+        <!-- graph -->
+        <record id="view_vit_detail_penerimaan_penghargaan_graph" model="ir.ui.view">
+            <field name="name">vit_detail_penerimaan_penghargaan</field>
+            <field name="model">vit.detail_penerimaan_penghargaan</field>
+            <field name="arch" type="xml">
+                <graph string="Detail penerimaan penghargaan" type="bar">
+                    <field name="penerimaan_penghargaan_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_detail_penerimaan_penghargaan" model="ir.actions.act_window">
+            <field name="name">Detail penerimaan penghargaan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.detail_penerimaan_penghargaan</field>
+            <field name="view_mode">kanban,tree,form,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Detail penerimaan penghargaan
+                </p><p>
+                Click the Create button to add a new Detail penerimaan penghargaan
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_detail_penerimaan_penghargaan" name="Detail penerimaan penghargaan" parent="vit_laporan_config_menu" action="action_vit_detail_penerimaan_penghargaan" sequence="290"/>
+    </data>
+</odoo>

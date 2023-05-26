@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+        <!-- SO -->
+        <record id="view_order_inv_payment_kas" model="ir.ui.view">
+            <field name="name">sale.order.inv.payment.kas</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+<!--                 <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="cara_bayar"/> -->
+                    <!-- <field name="change" invisible="1"/> -->
+                <!-- </xpath> -->
+
+                <xpath expr="//form//header//button[@name='action_confirm']" position="before">
+                    <button name="%(vit_sales_payment_kas.action_view_inv_payment_kas)d" string="Create Invoice" type="action" class="btn-success" attrs="{'invisible':['|',('invoice_status', '!=', 'to invoice'),('cara_bayar','!=','cash')]}"/>
+
+                    <!-- <button name="print_struk" string="Print Struk" attrs="{'invisible': ['|', ('cara_bayar', '!=', 'cash'), ('invoice_status', '!=', 'invoiced')]}" type="object"/> -->
+                </xpath>
+
+                <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('invoice_status', '!=', 'to invoice'),('cara_bayar','=','cash')]}</attribute>
+                </xpath>
+
+                <!-- <xpath expr="//field[@name='analytic_account_id']" position="after">
+                    <field name="total_item" invisible="1"/>
+                    <field name="total_qty" invisible="1"/>
+                </xpath> -->
+
+                <xpath expr="//field[@name='discount_global_persen']" position="after">
+                    <field name="discount_global_amount" invisible="1" />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

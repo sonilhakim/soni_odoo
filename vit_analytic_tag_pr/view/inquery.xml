@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+
+        <record id="view_vit_marketing_inquery_garmen_tree_analytic_tag" model="ir.ui.view">
+            <field name="name">vit.marketing.inquery.garmen.analytic.tag.tree</field>
+            <field name="model">vit.marketing_inquery_garmen</field>
+            <field name="inherit_id" ref="vit_marketing_inquery_garmen.view_vit_marketing_inquery_garmen_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='project']" position="after">
+                    <field name="analytic_tag_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_vit_marketing_inquery_garmen_form_analytic_tag" model="ir.ui.view">
+            <field name="name">vit.marketing.inquery.garmen.analytic.tag.form</field>
+            <field name="model">vit.marketing_inquery_garmen</field>
+            <field name="inherit_id" ref="vit_marketing_inquery_garmen.view_vit_marketing_inquery_garmen_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='project']" position="after">
+                    <field name="analytic_tag_id" readonly="1"/>
+                </xpath>                
+            </field>
+        </record>
+        
+   </data>
+</odoo>

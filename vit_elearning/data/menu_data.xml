@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+		<record id="menu_e_learning" model="website.menu">
+            <field name="name">E-Learning</field>
+            <field name="url">/elearning</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">20</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_vit_product_request_allowance,access_vit_product_request_allowance,model_vit_product_request_allowance,vit_product_request.product_request_user,1,0,0,0
+access_vit_product_request_allowance_dept_head,access_vit_product_request_allowance_dept_head,model_vit_product_request_allowance,vit_product_request.product_request_dept_head,1,0,0,0
+access_vit_product_request_allowance_manager,access_vit_product_request_allowance_manager,model_vit_product_request_allowance,vit_product_request.product_request_manager,1,1,1,1

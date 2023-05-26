@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="product_tokped" model="ir.ui.view">
+            <field name="name">product.template_tokped</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+
+                <div name="options" position="inside">
+                    <div>
+                        <field name="tokopedia_ok"/>
+                        <label for="tokopedia_ok"/>
+                    </div>
+                </div>
+
+                <notebook position="inside">
+                    <page string="Tokopedia" attrs="{'invisible':[('tokopedia_ok','=',False)]}" name="tokopedia">
+                        <group>
+                            <group>
+                                <label for="berat"/>
+                                    <div class="o_row" name="berat">
+                                        <field name="berat"/>
+                                        <span>gram</span>
+                                    </div>
+                                <field name="pesan" />
+                                <field name="status" attrs="{'required':[('tokopedia_ok','=',True)]}"/>
+                                <!-- <field name="jumlah" /> -->
+                                <field name="tokped_categ_id" attrs="{'required':[('tokopedia_ok','=',True)]}"/>
+                            </group>
+                            <group>
+                                <field name="etalase" />
+                                <field name="preorder" />
+                                <label for="waktu_preorder" attrs="{'invisible': [('preorder','!=','ya')]}"/>
+                                    <div class="o_row" name="waktu_preorder" attrs="{'invisible': [('preorder','!=','ya')]}">
+                                        <field name="waktu_preorder"/>
+                                        <span>hari</span>
+                                    </div>
+                                <field name="kondisi" attrs="{'required':[('tokopedia_ok','=',True)]}"/>
+                            </group>
+                            <group>
+                                <field name="gambar_1" attrs="{'required':[('tokopedia_ok','=',True)]}" placeholder="e.g. https://s27.postimg.org/9j505gu5v/image.jpg"/>
+                                <field name="gambar_2" placeholder="e.g. https://s27.postimg.org/9j505gu5v/image.jpg"/>
+                                <field name="gambar_3" placeholder="e.g. https://s27.postimg.org/9j505gu5v/image.jpg"/>
+                                <field name="gambar_4" placeholder="e.g. https://s27.postimg.org/9j505gu5v/image.jpg"/>
+                                <field name="gambar_5" placeholder="e.g. https://s27.postimg.org/9j505gu5v/image.jpg"/>
+                            </group>
+                            <group>
+                                <field name="url_1" placeholder="e.g. https://youtu.be/M6xBnux5U1c"/>
+                                <field name="url_2" placeholder="e.g. https://youtu.be/M6xBnux5U1c"/>
+                                <field name="url_3" placeholder="e.g. https://youtu.be/M6xBnux5U1c"/>
+                            </group>
+                            <group>
+                                <field name="is_exported"/>
+                            </group>
+                            <group>
+                                <field name="date_exported"/>
+                            </group>
+                            <separator string="Deskripsi Produk"/>
+                            <field name="desk" attrs="{'required':[('tokopedia_ok','=',True)]}"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="product_category_tokped" model="ir.ui.view">
+            <field name="name">product.category.tokped</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+
+                <field name="parent_id" position="after">
+                    <field name="code" class="oe_inline"/>
+                    <field name="is_tokopedia"/>
+                </field>
+
+            </field>
+        </record>
+    </data>
+</odoo>

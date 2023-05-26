@@ -1,0 +1,18 @@
+<odoo>
+	<data>
+		<record model="ir.module.category" id="module_marketing_or">
+			<field name="name">Marketing OR</field>
+			<field name="description">Marketing OR Groups</field>
+			<field name="sequence">40</field>
+		</record>
+		<record id="group_marketing_or_user" model="res.groups">
+			<field name="name">User OR</field>
+			<field name="category_id" ref="module_marketing_or"/>
+		</record>
+		<record id="group_marketing_or" model="res.groups">
+			<field name="name">Manager OR</field>
+			<field name="category_id" ref="module_marketing_or"/>
+		</record>
+
+	</data>
+</odoo>

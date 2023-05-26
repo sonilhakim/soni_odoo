@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_mutasi_unit_deatil_tree" model="ir.ui.view">
+            <field name="name">vit_mutasi_unit_deatil_tree</field>
+            <field name="model">vit.mutasi_unit_deatil</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Mutasi unit deatil">
+                    <!-- <field name="name" />
+                    <field name="mutasi_unit_id" /> -->
+                    <field name="employee_id" />
+                    <field name="unit_awal" />
+                    <field name="unit_tujuan" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_mutasi_unit_deatil_form" model="ir.ui.view">
+            <field name="name">vit_mutasi_unit_deatil_form</field>
+            <field name="model">vit.mutasi_unit_deatil</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Mutasi unit deatil">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <!-- <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Mutasi unit deatil Name"/>
+                            <h1><field name="name"/></h1>
+                        </div> -->
+                        <group>
+                            <group>
+                                <!-- <field name="mutasi_unit_id" /> -->
+                                <field name="employee_id" />
+                            </group>
+                            <group>
+                                
+                                <field name="unit_awal" />
+                                <field name="unit_tujuan" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_mutasi_unit_deatil_search" model="ir.ui.view">
+            <field name="name">vit_mutasi_unit_deatil</field>
+            <field name="model">vit.mutasi_unit_deatil</field>
+            <field name="arch" type="xml">
+                <search string="Mutasi unit deatil">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="mutasi_unit_id" select="True"/>
+                    <field name="employee_id" select="True"/>
+                    <field name="unit_awal" select="True"/>
+                    <field name="unit_tujuan" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Mutasi unit" domain="[]" name="group_by_mutasi_unit_id" context="{'group_by':'mutasi_unit_id'}"/>
+                        <filter string="Employee" domain="[]" name="group_by_employee_id" context="{'group_by':'employee_id'}"/>
+                        <filter string="Unit awal" domain="[]" name="group_by_unit_awal" context="{'group_by':'unit_awal'}"/>
+                        <filter string="Unit tujuan" domain="[]" name="group_by_unit_tujuan" context="{'group_by':'unit_tujuan'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_mutasi_unit_deatil_kanban" model="ir.ui.view" >
+            <field name="name">vit_mutasi_unit_deatil</field>
+            <field name="model">vit.mutasi_unit_deatil</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="mutasi_unit_id" />
+                    <field name="employee_id" />
+                    <field name="unit_awal" />
+                    <field name="unit_tujuan" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Mutasi unit</span> <field name="mutasi_unit_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Employee</span> <field name="employee_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Unit awal</span> <field name="unit_awal"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Unit tujuan</span> <field name="unit_tujuan"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_mutasi_unit_deatil_graph" model="ir.ui.view">
+            <field name="name">vit_mutasi_unit_deatil</field>
+            <field name="model">vit.mutasi_unit_deatil</field>
+            <field name="arch" type="xml">
+                <graph string="Mutasi unit deatil" type="bar">
+                    <field name="mutasi_unit_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_mutasi_unit_deatil" model="ir.actions.act_window">
+            <field name="name">Mutasi unit deatil</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.mutasi_unit_deatil</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Mutasi unit deatil
+                </p><p>
+                Click the Create button to add a new Mutasi unit deatil
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_mutasi_unit_deatil" name="Mutasi unit deatil" parent="vit_mutasi_config_menu" action="action_vit_mutasi_unit_deatil" sequence="200"/>
+    </data>
+</odoo>

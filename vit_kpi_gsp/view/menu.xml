@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="vit_kpi_gsp_top_menu" name="KPI" sequence="20" web_icon="vit_kpi_gsp,static/description/icon.png" />
+		<menuitem id="vit_kpi_gsp_sub_menu" name="KPI" sequence="40" parent="vit_kpi_gsp_top_menu" />
+		<menuitem id="vit_kpi_gsp_config_menu" name="Configurations" sequence="50" parent="vit_kpi_gsp_top_menu" />
+	</data>
+</odoo>

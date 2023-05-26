@@ -1,0 +1,61 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="vit_asset_bmn.list">
+      <field name="name">vit_asset_bmn list</field>
+      <field name="model">vit_asset_bmn.vit_asset_bmn</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="vit_asset_bmn.action_window">
+      <field name="name">vit_asset_bmn window</field>
+      <field name="res_model">vit_asset_bmn.vit_asset_bmn</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="vit_asset_bmn.action_server">
+      <field name="name">vit_asset_bmn server</field>
+      <field name="model_id" ref="model_vit_asset_bmn_vit_asset_bmn"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="vit_asset_bmn" id="vit_asset_bmn.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="vit_asset_bmn.menu_1" parent="vit_asset_bmn.menu_root"/>
+    <menuitem name="Menu 2" id="vit_asset_bmn.menu_2" parent="vit_asset_bmn.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="vit_asset_bmn.menu_1_list" parent="vit_asset_bmn.menu_1"
+              action="vit_asset_bmn.action_window"/>
+    <menuitem name="Server to list" id="vit_asset_bmn" parent="vit_asset_bmn.menu_2"
+              action="vit_asset_bmn.action_server"/>
+    -->
+
+  </data>
+</odoo>

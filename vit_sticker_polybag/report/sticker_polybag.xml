@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="report_sticker_polybag"
+            string="Sticker Polybag"
+            model="vit.import.pengukuran.karyawan" 
+            report_type="qweb-pdf"
+            paperformat="vit_sticker_polybag.paperformat_sticker_polybag"
+            file="vit.import.pengukuran.karyawan" 
+            name="vit_sticker_polybag.sticker_polybag_report"
+        />
+
+        <!-- paper_format="paperformat_a4_landscape"  -->
+        
+        <template id="report_sticker_polybag_dokumen">            
+            <t t-call="vit_sticker_polybag.external_layout_sticker_polybag">
+                <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                <div t-foreach="o.pengukuran_karyawan_ids" t-as="line" class="page" style="width:420px;height:520px;border: 1px solid black;margin:20px 20px 150px 20px;font-size: 10px;">
+                    <table style="border-collapse: collapse;margin:10px 5px 10px 5px;">
+                        <tr>
+                            <td>PROJECT</td>
+                            <td>: <span t-field="line.spk_id.po_id.sph_id.proposal_id.inquery_id.name" /></td>
+                        </tr>
+                        <tr>
+                            <td>BUYER</td>
+                            <td>: <span t-field="line.pengukuran_header_id.partner_id.name" /></td>
+                        </tr>
+                        <tr>
+                            <td>NAMA</td>
+                            <td>: <span t-field="line.karyawan" /></td>
+                        </tr>
+                        <tr>
+                            <td>NIK</td>
+                            <td>: <span t-field="line.nik" /></td>
+                        </tr>
+                        <tr>
+                            <td>LOKASI1</td>
+                            <td>: <span t-field="line.lokasi_id.name" /></td>
+                        </tr>
+                        <tr>
+                            <td>LOKASI2</td>
+                            <td>: <span t-field="line.lokasi2_id.name" /></td>
+                        </tr>
+                        <tr>
+                            <td>LOKASI3</td>
+                            <td>: <span t-field="line.lokasi3_id.name" /></td>
+                        </tr>
+                        <tr>
+                            <td>DIVISI</td>
+                            <td>: <span t-field="line.divisi_id.name" /></td>
+                        </tr>
+                        <tr>
+                            <td>NO. POLYBAG</td>
+                            <td>: <span t-esc="line.nik" />#<span t-esc="line.lokasi_id.name" /></td>
+                        </tr>
+                    </table>
+
+                    <div class="oe_structure"/>
+                    
+                    <table class="table table-sm o_main_table text-center" name="data_ids_table">
+                        <thead>
+                            <tr>
+                                <td><strong>Style</strong></td>
+                                <td><strong>Size</strong></td>
+                                <td><strong>Qty</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody class="line_ids_tbody">
+                            <tr t-foreach="line.data_ids" t-as="data">
+                                <td><span t-field="data.style_id.name" /></td>
+                                <td><span t-field="data.size_id.name" /></td>
+                                <td><span t-field="data.qty" /></td>
+                            </tr> <!-- foreach-->
+                        </tbody>
+                    </table>
+
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+
+        <template id="sticker_polybag_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <!-- <t t-set="lang" t-value="o.user_id.sudo().lang"/> -->
+                    <!-- <t t-call="vit_sticker_polybag.report_sticker_polybag_dokumen" t-lang="lang"/> -->
+                    <t t-call="vit_sticker_polybag.report_sticker_polybag_dokumen" t-lang="lang"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_res_company_tree" model="ir.ui.view">
+            <field name="name">res_company_tree</field>
+            <field name="model">res.company</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref=""/>
+            <field name="arch" type="xml">
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_res_company_form" model="ir.ui.view">
+            <field name="name">res_company_form</field>
+            <field name="model">res.company</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref=""/>
+            <field name="arch" type="xml">
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_res_company_search" model="ir.ui.view">
+            <field name="name">res_company</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref=""/>
+            <field name="arch" type="xml">
+            </field>
+        </record>
+    </data>
+</odoo>

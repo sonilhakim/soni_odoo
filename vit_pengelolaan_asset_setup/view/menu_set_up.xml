@@ -1,0 +1,59 @@
+<odoo>
+	<data>
+		<menuitem name="Set UP" id="vit_aset_setup_root" sequence="20"
+				  web_icon="vit_pengelolaan_asset_setup,static/description/icon.png"/>
+		
+		<menuitem id="menu_asset_vit_location" name="Lokasi"
+				parent="vit_aset_setup_root"
+				sequence="10"
+				action="vit_asset.act_open_vit_location_view"
+				groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+
+		<menuitem id="menu_vit_asset_category" name="Jenis Aset"
+				parent="vit_aset_setup_root"
+				sequence="20"
+				action="action_account_jenis_asset"
+				groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+
+		<menuitem id="asset_kelompok_menu" name="Kelompok Aset" 
+				parent="vit_aset_setup_root"
+				sequence="30" 
+				action="kelompok_aset.action_vit_kelompok_aset" 
+				groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+
+		<!-- <menuitem id="menu_asset_user" name="Pemilik Aset"
+							parent="vit_aset_setup_root"
+							sequence="40"
+							action="action_res_users_milik"
+							groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/> -->
+		<menuitem id="menu_asset_milik" name="Pemilik Aset"
+				parent="vit_aset_setup_root"
+				sequence="40"
+				action="action_partner_form_milik"
+				groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+		<menuitem id="menu_status_aset" name="Status Aset"
+				parent="vit_aset_setup_root"
+				sequence="50"
+				action="status_aset_form_action"
+				groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+		<menuitem id="asset_uom_menu" name="Satuan Asset" 
+				parent="vit_aset_setup_root"
+				sequence="60" 
+				groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+		<menuitem
+				action="product_uom_kateg_form_action" id="menu_satuan_aset_categ"
+				name="Kategori Satuan Aset"
+				parent="asset_uom_menu" sequence="1" groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+		<menuitem id="menu_satuan_aset_form" action="product_satuan_form_action"
+				name="Satuan Aset"
+				parent="asset_uom_menu" sequence="2" groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+		<menuitem id="menu_cara_pengadaan_form" name="Cara Pengadaan"
+				parent="vit_aset_setup_root"
+				sequence="70"
+				action="vit_cara_pengadaan.action_vit_cara_pengadaan"
+				groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+
+
+
+	</data>
+</odoo>

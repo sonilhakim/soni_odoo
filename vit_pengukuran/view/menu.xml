@@ -1,0 +1,19 @@
+<odoo>
+	<data>
+
+		<menuitem id="vit_pengukuran_top_menu" name="EDP" sequence="20" web_icon="vit_pengukuran,static/description/icon.png" groups="vit_pengukuran.group_user_pengukuran,vit_pengukuran.group_manager_pengukuran,vit_pengukuran.group_edp_pengukuran"/>
+		<menuitem id="vit_pengukuran_sub_menu" name="Pengukuran" sequence="60" parent="vit_pengukuran.vit_pengukuran_top_menu" web_icon="vit_pengukuran,static/description/icon.png" />
+<!-- 		<menuitem id="vit_edp_sub_menu" name="EDP" sequence="80" parent="vit_pengukuran.vit_pengukuran_top_menu" web_icon="vit_pengukuran,static/description/icon.png"/> -->
+		<menuitem id="vit_master_date_sub_menu" name="Master Data" sequence="100" parent="vit_pengukuran.vit_pengukuran_top_menu" groups="vit_pengukuran.group_edp_pengukuran"/>
+		
+        <menuitem id="menu_product_variant_config_stock_pengukuran" name="Products" action="stock.product_template_action_product"
+        parent="vit_pengukuran.vit_master_date_sub_menu" sequence="90"/>
+	    <menuitem id="product_product_menu_pengukuran" name="Product Variants" action="stock.stock_product_normal_action" parent="vit_pengukuran.vit_master_date_sub_menu" sequence="91" groups="product.group_product_variant"/>
+	    <menuitem id="menu_pengukuran_product_attribute_action"
+        action="product.attribute_action"
+        parent="vit_pengukuran.vit_master_date_sub_menu" groups="vit_pengukuran.group_edp_pengukuran" sequence="100"/>
+    	<menuitem id="menu_pengukuran_catalog_variants_action"
+        action="product.variants_action"
+        parent="vit_pengukuran.vit_master_date_sub_menu" groups="vit_pengukuran.group_edp_pengukuran" sequence="101"/>
+	</data>
+</odoo>

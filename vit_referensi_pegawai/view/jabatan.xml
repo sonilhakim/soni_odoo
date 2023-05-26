@@ -1,0 +1,93 @@
+<odoo>
+    <data>
+        <record id="view_vit_jabatan_tree_refs" model="ir.ui.view">
+            <field name="name">vit_jabatan_tree_refs</field>
+            <field name="model">vit.jabatan</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_univ_common.view_vit_jabatan_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="Jabatan">
+                        <field name="name" />
+                        <!-- <field name="fungsional" invisible="1"/>
+                        <field name="struktural" invisible="1"/>
+                        <field name="jenis_funsional_id" string="Jenis Jabatan Fungsional" attrs="{'invisible': [('fungsional', '=', False)]}"/>
+                        <field name="tipe_struktural_id" attrs="{'invisible': [('struktural', '=', False)]}"/> -->
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_jabatan_form_refs" model="ir.ui.view">
+            <field name="name">vit_jabatan_form_refs</field>
+            <field name="model">vit.jabatan</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_univ_common.view_vit_jabatan_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="replace">
+                    <form string="Jabatan">
+                        <header>
+                        </header>
+                        <sheet>
+                            <div class="oe_button_box" name="button_box">
+                                <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                    <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                    <!--field name="detail_ids" invisible="1"/-->
+                                <!--/button-->
+                            </div>
+                            <div class="oe_title">
+                                <label for="name" class="oe_edit_only" string="Jabatan"/>
+                                <h1><field name="name"/></h1>
+                            </div>
+                            <group>
+                                <group>
+                                    <field name="fungsional" invisible="1" />
+                                    <field name="struktural" invisible="1" />
+                                </group>
+                                <group>
+                                    <field name="jenis_funsional_id" string="Jenis Jabatan Fungsional" attrs="{'invisible': [('fungsional', '=', False)]}"/>
+                                    <field name="tipe_struktural_id" attrs="{'invisible': [('struktural', '=', False)]}"/>
+                                </group>
+                            </group>
+                            <notebook>
+                            </notebook>
+                        </sheet>
+                    </form>
+                </xpath>
+            </field>
+        </record>
+        <!-- kanban -->
+        <record id="view_vit_jabatan_kanban_refs" model="ir.ui.view" >
+            <field name="name">vit_jabatan_refs</field>
+            <field name="model">vit.jabatan</field>
+            <field name="inherit_id" ref="vit_univ_common.view_vit_jabatan_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//templates" position="replace">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li attrs="{'invisible': [('fungsional', '=', False)]}">
+                                            <span class="text-muted">Jenis Jabatan Fungsional</span> <field name="jenis_funsional_id"></field>
+                                        </li>
+
+
+                                        <li attrs="{'invisible': [('struktural', '=', False)]}">
+                                            <span class="text-muted">Tipe Struktural</span> <field name="tipe_struktural_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

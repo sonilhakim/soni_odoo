@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <menuitem id="vit_pengadaan_pemakaian_menu"
+                  name="Pengadaan dan Pemakaian"
+                  sequence="20"
+                  web_icon="vit_pengelolaan_asset_pengadaan_pemakaian,static/description/icon.png"
+        />
+
+        <menuitem name="Pengadaan" id="vit_pengadaan_aset_menu" parent="vit_pengadaan_pemakaian_menu"
+                  action="pengadaan_form_action" groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+
+        <menuitem name="Pemakaian" id="vit_pemakaian_aset_menu" parent="vit_pengadaan_pemakaian_menu"
+                  action="" groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_kir_menu" string="Vit - Kir"
+         model="vit.kir" report_type="qweb-pdf" 
+         file="vit.kir"  name="vit_tks.vit_kir_report" />
+
+        <!-- document template -->
+        <template id="vit_tks.vit_kir_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Kir: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Ruang</strong>
+                            <p class="m-0" t-field="doc.ruang" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Date</strong>
+                            <p class="m-0" t-field="doc.date" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Gedung</strong>
+                            <p class="m-0" t-field="doc.gedung" />
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Kir detail</h2>
+                <table class="table table-sm o_main_table" name="kir_detail_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Merk model</td>
+                            <td>No seri pbr</td>
+                            <td>Thn pembuatan</td>
+                            <td>Code</td>
+                            <td>Jumlah</td>
+                            <td>Harga</td>
+                            <td>Kondisi</td>
+                            <td>Keterangan</td>
+                            <td>Kir</td>
+                            <td>Asset</td>
+                        </tr>
+                    </thead>
+                    <tbody class="kir_detail_ids_tbody">
+                        <tr t-foreach="doc.kir_detail_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.merk_model" /></td>
+                            <td><span t-field="line.no_seri_pbr" /></td>
+                            <td><span t-field="line.thn_pembuatan" /></td>
+                            <td><span t-field="line.code" /></td>
+                            <td><span t-field="line.jumlah" /></td>
+                            <td><span t-field="line.harga" /></td>
+                            <td><span t-field="line.kondisi" /></td>
+                            <td><span t-field="line.keterangan" /></td>
+                            <td><span t-field="line.kir_id" /></td>
+                            <td><span t-field="line.asset_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_tks.vit_kir_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_tks.vit_kir_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

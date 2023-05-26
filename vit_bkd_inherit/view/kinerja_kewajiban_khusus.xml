@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_kinerja_kewajiban_khusus_tree2" model="ir.ui.view">
+            <field name="name">vit_kinerja_kewajiban_khusus_tree2</field>
+            <field name="model">vit.kinerja_kewajiban_khusus</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_kinerja_kewajiban_khusus_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="Kinerja kewajiban khusus">
+                        <field name="tahun" />
+                        <field name="name" string="Judul Karya"/>
+                        <field name="jenis_karya_id" />
+                        <field name="ceklist_asesor" />
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kinerja_kewajiban_khusus_form2" model="ir.ui.view">
+            <field name="name">vit_kinerja_kewajiban_khusus_form2</field>
+            <field name="model">vit.kinerja_kewajiban_khusus</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_kinerja_kewajiban_khusus_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="replace">
+                    <form string="Kewajiban Khusus">
+                        <header>
+                        </header>
+                        <sheet>
+                            <div class="oe_button_box" name="button_box">
+                                <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                    <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                    <!--field name="detail_ids" invisible="1"/-->
+                                <!--/button-->
+                            </div>
+                            <div class="oe_title">
+                                <label for="name" class="oe_edit_only" string="Judul Karya"/>
+                                <h1><field name="name"/></h1>
+                            </div>
+                            <group>
+                                <group>                                   
+                                    <field name="tahun" />
+                                </group>
+                                <group>
+                                    <field name="jenis_karya_id" />
+                                    <field name="jenis_karya_name" invisible='1'/>
+                                </group>
+                                <group string="Forum Publikasi">
+                                    <field name="nama_jurnal" attrs="{'invisible': [('jenis_karya_name', 'not in', ['Jurnal Internasional Bereputasi', 'Jurnal Internasional', 'Jurnal Nasional Terakreditasi', 'Jurnal Nasional'])]}"/>
+                                    <field name="volume_nomor" attrs="{'invisible': [('jenis_karya_name', 'not in', ['Jurnal Internasional Bereputasi', 'Jurnal Internasional'])]}"/>
+                                    <field name="impact_factor" attrs="{'invisible': [('jenis_karya_name', 'not in', ['Jurnal Internasional Bereputasi', 'Jurnal Internasional'])]}"/>
+                                    <field name="nama_seminar" attrs="{'invisible': [('jenis_karya_name', '!=', 'Seminar Internasional Terindeks')]}"/>
+                                    <field name="tempat_seminar" attrs="{'invisible': [('jenis_karya_name', '!=', 'Seminar Internasional Terindeks')]}"/>
+                                    <field name="penyelenggara" attrs="{'invisible': [('jenis_karya_name', '!=', 'Seminar Internasional Terindeks')]}"/>
+                                    <field name="bahasa_jurnal" attrs="{'invisible': [('jenis_karya_name', '!=', 'Jurnal Nasional Terakreditasi')]}"/>
+                                    <field name="akreditasi" attrs="{'invisible': [('jenis_karya_name', '!=', 'Jurnal Nasional Terakreditasi')]}"/>
+                                    <field name="terindeks" attrs="{'invisible': [('jenis_karya_name', '!=', 'Jurnal Nasional')]}"/>
+                                    <field name="standart_tatakelola" attrs="{'invisible': [('jenis_karya_name', '!=', 'Jurnal Nasional')]}"/>
+                                    <field name="jenis_hki" attrs="{'invisible': [('jenis_karya_name', '!=', 'Paten')]}"/>
+                                    <field name="no_sertifikat" attrs="{'invisible': [('jenis_karya_name', '!=', 'Paten')]}"/>
+                                    <field name="alamat_url" attrs="{'invisible': ['|',('jenis_karya_name', '=', 'Karya Monumental'),('jenis_karya_id', '=', False)]}"/>
+                                    <field name="status_doaj" attrs="{'invisible': ['|',('jenis_karya_name', '!=', 'Jurnal Nasional Terakreditasi'),('bahasa_jurnal', 'in', ['indonesia', False])]}"/>
+                                    <field name="lingkup_kegiatan" attrs="{'invisible': [('jenis_karya_name', '!=', 'Karya Monumental')]}"/>
+                                    <field name="tempat_publikasi" attrs="{'invisible': [('jenis_karya_name', '!=', 'Karya Monumental')]}"/>
+                                </group>
+                                <group string="Bukti Dokumen">
+                                    <field name="artikel" attrs="{'invisible': [('jenis_karya_name', 'in', [False, 'Paten', 'Karya Monumental'])]}"/>
+                                    <field name="cover_depan" attrs="{'invisible': [('jenis_karya_name', 'in', [False, 'Paten', 'Karya Monumental'])]}"/>
+                                    <field name="daftar_isi" attrs="{'invisible': [('jenis_karya_name', 'in', [False, 'Paten', 'Karya Monumental'])]}"/>
+                                    <field name="sertifikat" attrs="{'invisible': [('jenis_karya_name', '!=', 'Paten')]}"/>
+                                    <field name="deskripsi_paten" attrs="{'invisible': [('jenis_karya_name', '!=', 'Paten')]}"/>
+                                    <field name="bukti_karya"  attrs="{'invisible': [('jenis_karya_name', '!=', 'Karya Monumental')]}"/>
+                                    <field name="peer_reviewer"  attrs="{'invisible': [('jenis_karya_name', '!=', 'Karya Monumental')]}"/>
+                                    <field name="lain_lain"  attrs="{'invisible': [('jenis_karya_name', '=', False)]}"/>
+                                </group>
+                                <group></group>
+                                <group>
+                                    <field name="ceklist_asesor" />
+                                </group>
+                            </group>
+                            <notebook>
+                            </notebook>
+                        </sheet>
+                    </form>
+                </xpath>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_kinerja_kewajiban_khusus_search2" model="ir.ui.view">
+            <field name="name">vit_kinerja_kewajiban_khusus2</field>
+            <field name="model">vit.kinerja_kewajiban_khusus</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_kinerja_kewajiban_khusus_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="replace">
+                    <search string="Kinerja kewajiban khusus">
+
+                        <filter string="Judul Karya" name="filter_by_name" domain="[('name','=','')]" />
+                        <filter string="Jenis Karya" name="filter_by_uraian_jenis_karya" domain="[('jenis_karya_id','=','')]" />
+                        <filter string="Tahun" name="filter_by_tahun" domain="[('tahun','=','')]" />
+                        <field name="name" select="True"/>
+                        <field name="jenis_karya_id" select="True"/>
+                        <field name="tahun" select="True"/>
+                        <group string="Group By..">
+                            <filter string="Bkd" domain="[]" name="group_by_bkd_id" context="{'group_by':'bkd_id'}"/>
+                            <filter string="Jenis karya" domain="[]" name="group_by_jenis_karya_id" context="{'group_by':'jenis_karya_id'}"/>
+                        </group>
+                    </search>
+                </xpath>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_kinerja_kewajiban_khusus_kanban2" model="ir.ui.view" >
+            <field name="name">vit_kinerja_kewajiban_khusus2</field>
+            <field name="model">vit.kinerja_kewajiban_khusus</field>
+            <field name="inherit_id" ref="vit_bkd.view_vit_kinerja_kewajiban_khusus_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="replace">
+                    <kanban version="7.0">
+                        <field name="id" />
+                        <field name="tahun" />
+                        <field name="name"/>
+                        <field name="jenis_karya_id" />
+                        <templates>
+                            <t t-name="kanban-box">
+                                <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                    <div class="oe_kanban_details">
+                                        <h4>
+                                            <a type="open"><field name="name"/></a>
+                                        </h4>
+                                        <ul>
+
+                                            <li>
+                                                <span class="text-muted">Bkd</span> <field name="bkd_id"></field>
+                                            </li>
+
+
+                                            <li>
+                                                <span class="text-muted">Tahun</span> <field name="tahun"></field>
+                                            </li>
+
+
+                                            <li>
+                                                <span class="text-muted">Jenis Karya</span> <field name="jenis_karya_id"></field>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </t>
+                        </templates>
+                    </kanban>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

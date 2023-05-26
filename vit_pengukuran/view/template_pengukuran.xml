@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_template_pengukuran_tree" model="ir.ui.view">
+            <field name="name">vit_template_pengukuran_tree</field>
+            <field name="model">vit.template_pengukuran</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Template Pengukuran">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_template_pengukuran_form" model="ir.ui.view">
+            <field name="name">vit_template_pengukuran_form</field>
+            <field name="model">vit.template_pengukuran</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Template Pengukuran">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                            </group>
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="min_value" />
+                                    <field name="max_value" />
+                                    <field name="size" />
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_template_pengukuran_search" model="ir.ui.view">
+            <field name="name">vit_template_pengukuran</field>
+            <field name="model">vit.template_pengukuran</field>
+            <field name="arch" type="xml">
+                <search string="Template Pengukuran">
+                    <field name="name" select="True"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- action window -->
+        <record id="action_vit_template_pengukuran" model="ir.actions.act_window">
+            <field name="name">Template Pengukuran</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.template_pengukuran</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Template Pengukuran
+                </p><p>
+                Click the Create button to add a new Template Pengukuran
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_template_pengukuran" name="Template Pengukuran" parent="vit_master_date_sub_menu" action="action_vit_template_pengukuran" groups="group_edp_pengukuran" sequence="80"/>
+    </data>
+</odoo>

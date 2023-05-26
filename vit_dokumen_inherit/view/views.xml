@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- form view agenda-->
+        <record id="view_vit_agenda_form2" model="ir.ui.view">
+            <field name="name">vit_agenda_form2</field>
+            <field name="model">vit.agenda</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_dokumen.view_vit_agenda_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet" position="after">
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view berita-->
+        <record id="view_vit_berita_form2" model="ir.ui.view">
+            <field name="name">vit_berita_form2</field>
+            <field name="model">vit.berita</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_dokumen.view_vit_berita_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet" position="after">
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view dokumen-->
+        <record id="view_vit_dokumen_form2" model="ir.ui.view">
+            <field name="name">vit_dokumen_form2</field>
+            <field name="model">vit.dokumen</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_dokumen.view_vit_dokumen_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet" position="after">
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

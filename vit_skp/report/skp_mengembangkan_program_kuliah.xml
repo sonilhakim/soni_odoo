@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_skp_mengembangkan_program_kuliah_menu" string="Vit - Skp mengembangkan program kuliah"
+         model="vit.skp_mengembangkan_program_kuliah" report_type="qweb-pdf" 
+         file="vit.skp_mengembangkan_program_kuliah"  name="vit_skp.vit_skp_mengembangkan_program_kuliah_report" />
+
+        <!-- document template -->
+        <template id="vit_skp.vit_skp_mengembangkan_program_kuliah_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Skp mengembangkan program kuliah: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Semester genap</strong>
+                            <p class="m-0" t-field="doc.semester_genap" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Semester ganjil</strong>
+                            <p class="m-0" t-field="doc.semester_ganjil" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jumlah</strong>
+                            <p class="m-0" t-field="doc.jumlah" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Ak</strong>
+                            <p class="m-0" t-field="doc.ak" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Skp</strong>
+                            <p class="m-0" t-field="doc.skp_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_skp.vit_skp_mengembangkan_program_kuliah_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_skp.vit_skp_mengembangkan_program_kuliah_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

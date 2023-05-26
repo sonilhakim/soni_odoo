@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_user_vit_kpi_gsp,access_user_vit_kpi_gsp,model_vit_kpi_gsp,vit_kpi_gsp.group_vit_kpi_gsp_user,1,1,1,0
+access_admin_vit_kpi_gsp,access_admin_vit_kpi_gsp,model_vit_kpi_gsp,base.group_system,1,1,1,1
+access_user_vit_kpi_aspek,access_user_vit_kpi_aspek,model_vit_kpi_aspek,vit_kpi_gsp.group_vit_kpi_gsp_user,1,1,1,0
+access_admin_vit_kpi_aspek,access_admin_vit_kpi_aspek,model_vit_kpi_aspek,base.group_system,1,1,1,1
+access_user_vit_kpi_lines,access_user_vit_kpi_lines,model_vit_kpi_lines,vit_kpi_gsp.group_vit_kpi_gsp_user,1,1,1,0
+access_admin_vit_kpi_lines,access_admin_vit_kpi_lines,model_vit_kpi_lines,base.group_system,1,1,1,1

@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_user_vit_informasi,access_user_vit_informasi,model_vit_informasi,vit_dokumen.group_informasi_user,1,0,0,0
+access_manager_vit_informasi,access_manager_vit_informasi,model_vit_informasi,vit_dokumen.group_informasi_manager,1,1,1,1

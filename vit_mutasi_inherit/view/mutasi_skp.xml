@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_mutasi_skp_tree" model="ir.ui.view">
+            <field name="name">vit_mutasi_skp_tree</field>
+            <field name="model">vit.mutasi_skp</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Mutasi Skp">
+                    <field name="name" />                    
+                    <field name="tanggal" />
+                    <field name="pns_id" />
+                    <field name="pns_nip" />
+                    <field name="pns_golongan_id" />
+                    <field name="pns_jabatan_id" />
+                    <field name="pns_unit_kerja_id" />
+                    <field name="lokasi" />
+                    <field name="tahun_akademik_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_mutasi_skp_form" model="ir.ui.view">
+            <field name="name">vit_mutasi_skp_form</field>
+            <field name="model">vit.mutasi_skp</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Mutasi Skp">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" />
+                        <button string="Reload" type="object" name="action_reload" states="draft" />
+                        <button string="Validasi" type="object" name="action_done" states="open" groups="vit_mutasi.group_mutasi_manager"/>
+                        <button string="Tolak" type="object" name="action_reject" states="open" groups="vit_mutasi.group_mutasi_manager"/>
+                        <button string="Reset to Draft" type="object" name="action_draft" states="open" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Skp Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tanggal" />
+                                <field name="tahun_akademik_id" />
+                                <field name="lokasi" />
+                            </group>
+                            <group>                                
+                                <field name="pns_id" />
+                                <field name="pns_nip" />
+                                <field name="pns_golongan_id" />
+                                <field name="pns_jabatan_id" />
+                                <field name="pns_unit_kerja_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Perkuliahan">
+                                <field name="perkuliahan_ids" mode="tree">
+                                    <tree string="Skp perkuliahan" editable="bottom">
+                                        <field name="name" />
+                                        <field name="sks" />
+                                        <field name="jumlah_kelas" />
+                                        <field name="jumlah_dosen_pengampu" />
+                                        <field name="totak_sks_per_smt" />
+                                        <field name="semester_id" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Seminar">
+                                <field name="seminar_ids" mode="tree">
+                                    <tree string="Skp seminar" editable="bottom">
+                                        <field name="name" />
+                                        <field name="pelaksanaan" />
+                                        <field name="ak" />
+                                        <field name="semester_id" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Kkn pkn pkl">
+                                <field name="kkn_pkn_pkl_ids" mode="tree">
+                                    <tree string="Skp kkn pkn pkl" editable="bottom">
+                                        <field name="name" />
+                                        <field name="semester_genap" />
+                                        <field name="semester_ganjil" />
+                                        <field name="jumlah" />
+                                        <field name="ak" />
+                                        <field name="jenis_kkn_id" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Disertasi thesis skripsi">
+                                <field name="disertasi_thesis_skripsi_ids" mode="tree">
+                                    <tree string="Skp disertasi" editable="bottom">
+                                        <field name="name" />
+                                        <field name="jumlah_lulusan_pembimbing_utama" />
+                                        <field name="jumlah_lulusan_pembimbing_pembantu" />
+                                        <field name="ak_pembimbing_utama" />
+                                        <field name="ak_pembimbing_pembantu" />
+                                        <field name="ak_total" />
+                                        <field name="jenis_disertasi_id" />
+                                        <field name="semester_id" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Penguji">
+                                <field name="penguji_ids" mode="tree">
+                                    <tree string="Skp penguji" editable="bottom">
+                                        <field name="name" />
+                                        <field name="jumlah_mhs_ketua_penguji" />
+                                        <field name="jumlah_mhs_anggota_penguji" />
+                                        <field name="ak_ketua_penguji" />
+                                        <field name="ak_anggota_penguji" />
+                                        <field name="ak_total" />
+                                        <field name="semester_id" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Membina">
+                                <field name="membina_ids" mode="tree">
+                                    <tree string="Skp membina" editable="bottom">
+                                        <field name="name" />
+                                        <field name="semester_genap" />
+                                        <field name="semester_ganjil" />
+                                        <field name="jumlah" />
+                                        <field name="ak" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Mengembangkan program kuliah">
+                                <field name="mengembangkan_program_kuliah_ids" mode="tree">
+                                    <tree string="Skp mengembangkan program kuliah" editable="bottom">
+                                        <field name="name" />
+                                        <field name="semester_genap" />
+                                        <field name="semester_ganjil" />
+                                        <field name="jumlah" />
+                                        <field name="ak" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Mengembangkan bahan kuliah">
+                                <field name="mengembangkan_bahan_kuliah_ids" mode="tree">
+                                    <tree string="Skp mengembangkan bahan kuliah" editable="bottom">
+                                        <field name="name" />
+                                        <field name="jumlah" />
+                                        <field name="ak_per_bahan_kuliah" />
+                                        <field name="ak_jumlah" />
+                                        <field name="semester_id" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Orasi ilmiah">
+                                <field name="orasi_ilmiah_ids" mode="tree">
+                                    <tree string="Skp orasi ilmiah" editable="bottom">
+                                        <field name="name" />
+                                        <field name="semester_genap" />
+                                        <field name="semester_ganjil" />
+                                        <field name="jumlah" />
+                                        <field name="ak" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Jabatan pt">
+                                <field name="jabatan_pt_ids" mode="tree">
+                                    <tree string="Skp jabatan pt" editable="bottom">
+                                        <field name="name" />
+                                        <field name="hasil" />
+                                        <field name="satuan_hasil" />
+                                        <field name="angka_kredit" />
+                                        <field name="jumlah_angka_kredit" />
+                                        <field name="semester_id" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Membimbing dosen">
+                                <field name="membimbing_dosen_ids" mode="tree">
+                                    <tree string="Skp membimbing dosen" editable="bottom">
+                                        <field name="name" />
+                                        <field name="semester_genap" />
+                                        <field name="semester_ganjil" />
+                                        <field name="jumlah" />
+                                        <field name="ak" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Detasering">
+                                <field name="detasering_ids" mode="tree">
+                                    <tree string="Skp detasering" editable="bottom">
+                                        <field name="name" />
+                                        <field name="semester_genap" />
+                                        <field name="semester_ganjil" />
+                                        <field name="jumlah" />
+                                        <field name="ak" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Pengembangan diri">
+                                <field name="pengembangan_diri_ids" mode="tree">
+                                    <tree string="Skp pengembangan diri" editable="bottom">
+                                        <field name="name" />
+                                        <field name="semester_genap" />
+                                        <field name="semester_ganjil" />
+                                        <field name="jumlah" />
+                                        <field name="ak" />
+                                        <field name="jumlah_ak" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Penelitian">
+                                <field name="penelitian_ids" mode="tree">
+                                    <tree string="Skp penelitian" editable="bottom">
+                                        <field name="name" />
+                                        <field name="jumlah_peneliti_mandiri" />
+                                        <field name="jumlah_peneliti_utama" />
+                                        <field name="jumlah_peneliti_anggota" />
+                                        <field name="ak_karya_ilmiah_jurnal" />
+                                        <field name="ak_jumlah_peneliti_mandiri" />
+                                        <field name="ak_jumlah_peneliti_utama" />
+                                        <field name="ak_jumlah_peneliti_anggota" />
+                                        <field name="ak_jumlah" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Pengabdian">
+                                <field name="pengabdian_ids" mode="tree">
+                                    <tree string="Skp pengabdian" editable="bottom">
+                                        <field name="name" />
+                                        <field name="jumlah_program" />
+                                        <field name="ak_program" />
+                                        <field name="ak_jumlah" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Rekapitulasi">
+                                <field name="rekapitulasi_ids" mode="tree">
+                                    <tree string="Skp rekapitulasi perkuliahan" editable="bottom">
+                                        <field name="name" />
+                                        <field name="sks" />
+                                        <field name="sks_riil" />
+                                        <field name="ak_10_sks_pertama" />
+                                        <field name="ak_sks_berikutnya" />
+                                        <field name="ak_jumlah" />
+                                        <field name="semester_id" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Rekapitulasi mengembangkan bahan kuliah">
+                                <field name="rekapitulasi_mengembangkan_bahan_kuliah_ids" mode="tree">
+                                    <tree string="Skp rekapitulasi mengembangkan bahan kuliah" editable="bottom">
+                                        <field name="name" />
+                                        <field name="naskah" />
+                                        <field name="ak" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Rekapitulasi jabatan pt">
+                                <field name="rekapitulasi_jabatan_pt_ids" mode="tree">
+                                    <tree string="Skp rekapitulasi jabatan pt" editable="bottom">
+                                        <field name="name" />
+                                        <field name="satuan_hasil" />
+                                        <field name="jumlah_angka_kredit" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_mutasi_skp_search" model="ir.ui.view">
+            <field name="name">vit_mutasi_skp</field>
+            <field name="model">vit.mutasi_skp</field>
+            <field name="arch" type="xml">
+                <search string="Mutasi Skp">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                    <filter string="Jumlah 10 sks pertama" name="filter_by_jumlah_10_sks_pertama" domain="[('jumlah_10_sks_pertama','=','')]" />
+                    <filter string="Jumlah sks berikutnya" name="filter_by_jumlah_sks_berikutnya" domain="[('jumlah_sks_berikutnya','=','')]" />
+                    <filter string="Tanggal" name="filter_by_tanggal" domain="[('tanggal','=','')]" />
+                    <filter string="Pns nip" name="filter_by_pns_nip" domain="[('pns_nip','=','')]" />
+                    <filter string="Lokasi" name="filter_by_lokasi" domain="[('lokasi','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="tanggal" select="True"/>
+                    <field name="pns_nip" select="True"/>
+                    <field name="lokasi" select="True"/>
+                    <field name="tahun_akademik_id" select="True"/>
+                    <field name="pns_id" select="True"/>
+                    <field name="pns_jabatan_id" select="True"/>
+                    <field name="pns_unit_kerja_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Tahun akademik" domain="[]" name="group_by_tahun_akademik_id" context="{'group_by':'tahun_akademik_id'}"/>
+                        <filter string="Pns" domain="[]" name="group_by_pns_id" context="{'group_by':'pns_id'}"/>
+                        <filter string="Pns jabatan" domain="[]" name="group_by_pns_jabatan_id" context="{'group_by':'pns_jabatan_id'}"/>
+                        <filter string="Pns unit kerja" domain="[]" name="group_by_pns_unit_kerja_id" context="{'group_by':'pns_unit_kerja_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_mutasi_skp_kanban" model="ir.ui.view" >
+            <field name="name">vit_mutasi_skp</field>
+            <field name="model">vit.mutasi_skp</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="name" />                    
+                    <field name="tanggal" />
+                    <field name="pns_id" />
+                    <field name="pns_nip" />
+                    <field name="pns_golongan_id" />
+                    <field name="pns_jabatan_id" />
+                    <field name="pns_unit_kerja_id" />
+                    <field name="lokasi" />
+                    <field name="tahun_akademik_id" />
+                    <field name="state" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Tahun akademik</span> <field name="tahun_akademik_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Pns</span> <field name="pns_id"></field>
+                                        </li>
+
+                                        <li>
+                                            <span class="text-muted">Pns jabatan</span> <field name="pns_jabatan_id"></field>
+                                        </li>
+
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Pns unit kerja</span> <field name="pns_unit_kerja_id"></field>
+                                        </li>
+                                        -->
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Pejabat penilai unit kerja</span> <field name="pejabat_penilai_unit_kerja_id"></field>
+                                        </li>
+                                        -->
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Pejabat penilai jabatan</span> <field name="pejabat_penilai_jabatan_id"></field>
+                                        </li>
+                                        -->
+                                        <li>
+                                            <span class="text-muted">Tanggal</span> <field name="tanggal"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_vit_mutasi_skp_cal" model="ir.ui.view">
+            <field name="name">vit_mutasi_skp_cal</field>
+            <field name="model">vit.mutasi_skp</field>
+            <field name="arch" type="xml">
+                <calendar string="Mutasi Skp" date_start="tanggal">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record>
+        <!-- graph -->
+        <record id="view_vit_mutasi_skp_graph" model="ir.ui.view">
+            <field name="name">vit_mutasi_skp</field>
+            <field name="model">vit.mutasi_skp</field>
+            <field name="arch" type="xml">
+                <graph string="Mutasi Skp" type="bar">
+                    <field name="tahun_akademik_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_mutasi_skp" model="ir.actions.act_window">
+            <field name="name">Skp</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.mutasi_skp</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Mutasi Skp
+                </p><p>
+                Click the Create button to add a new Mutasi Skp
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_mutasi_skp" name="Skp" parent="vit_mutasi.vit_mutasi_sub_menu" action="action_vit_mutasi_skp" sequence="160"/>
+    </data>
+</odoo>

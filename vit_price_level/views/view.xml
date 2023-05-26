@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- product_product -->
+        <record id="template_variant_form_product_level_harga" model="ir.ui.view">
+            <field name="name">template.variant.form.product.level.harga</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="vit_product_varian.template_variant_form_product"/>
+            <field name="arch" type="xml">
+                <field name="profit" position="after">
+                    <field name="price_level_id" class="oe_inline"/>
+                </field>
+            </field>
+        </record>
+        <!-- res_partnee -->
+        <!-- <record id="view_price_level_partner_form" model="ir.ui.view">
+            <field name="name">price_level_partner_form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="cust_categ" domain="[('active','!=',False)]"/>
+                </xpath>
+            </field>
+        </record> -->
+        <!-- product_template -->
+        <record id="product_template_only_form_view_level_harga" model="ir.ui.view">
+            <field name="name">product.template.product.level.harga.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="vit_product_varian.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='product_variant_ids']/field[@name='product_variant_ids']/tree/field[@name='profit']" position="after">
+                    <field name="price_level_id" context="{'default_product_id': id}"/>
+                </xpath>
+
+                <xpath expr="//notebook/page[@name='product_variant_ids']/field[@name='product_variant_ids']/form/sheet/group[@name='harga']/group[2]/div" position="after">
+                    <field name="price_level_id"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- <record id="product_template_price_level_form_view" model="ir.ui.view">
+            <field name="name">product_template_price_level_form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml"> -->
+
+                <!-- <xpath expr="//form/sheet/notebook" position="inside">
+                    <page string="Level Harga">
+                        <field name="price_level_ids">
+                            <tree string="Level Harga" editable="bottom">
+                                <field name="name" invisible="1"/>
+                                <field name="product_id" domain="[('product_tmpl_id','=',parent.id)]"/>
+                                <field name="cust_categ"/>
+                                <field name="price"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath> -->
+
+           <!--  </field>
+        </record> -->
+        <!-- sale_order -->
+        <record id="view_order_form_level_harga" model="ir.ui.view">
+            <field name="name">sale.order.form.level.harga</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page[@name='order_lines']/field[@name='order_line']/tree/field[@name='price_unit']" position="before">
+                    <field name="price_list_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

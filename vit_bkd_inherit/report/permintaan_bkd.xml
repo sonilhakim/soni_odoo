@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_permintaan_bkd_menu" string="Permintaan - Bkd"
+         model="vit.permintaan_bkd" report_type="qweb-pdf" 
+         file="vit.permintaan_bkd"  name="vit_bkd_inherit.vit_permintaan_bkd_report" />
+
+        <!-- document template -->
+        <template id="vit_bkd_inherit.vit_permintaan_bkd_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Permintaan Bkd: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Date</strong>
+                            <p class="m-0" t-field="doc.date" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tahun akademik</strong>
+                            <p class="m-0" t-field="doc.tahun_akademik_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Fakultas</strong>
+                            <p class="m-0" t-field="doc.fakultas_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jurusan</strong>
+                            <p class="m-0" t-field="doc.jurusan_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Program studi</strong>
+                            <p class="m-0" t-field="doc.program_studi_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Status</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>BKD</h2>
+                <table class="table table-sm o_main_table" name="perm_details_table">
+                    <thead>
+                        <tr>
+                            <td>BKD</td>
+                            <td>Tanggal</td>
+                            <td>Dosen</td>
+                            <td>Nip</td>
+                            <td>Nidn</td>
+                            <td>Status Dosen</td>
+                            <td>Bidang Ilmu</td>
+                            <td>Semester</td>
+                            <td>Status</td>
+                        </tr>
+                    </thead>
+                    <tbody class="perm_details_tbody">
+                        <tr t-foreach="doc.perm_details" t-as="line">
+                            <td><span t-field="line.bkd_id" /></td>
+                            <td><span t-field="line.date" /></td>
+                            <td><span t-field="line.employee_id" /></td>
+                            <td><span t-field="line.nip" /></td>
+                            <td><span t-field="line.nidn" /></td>
+                            <td><span t-field="line.status_dosen_id" /></td>
+                            <td><span t-field="line.bidang_ilmu" /></td>
+                            <td><span t-field="line.semester_id" /></td>
+                            <td><span t-field="line.state" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_bkd_inherit.vit_permintaan_bkd_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_bkd_inherit.vit_permintaan_bkd_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

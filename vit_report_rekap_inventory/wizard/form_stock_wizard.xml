@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_form_stock_wizard_form" model="ir.ui.view">
+        <field name="name">form.stock.wizard.form</field>
+        <field name="model">form.stock.wizard</field>
+        <field name="arch" type="xml">
+        <form string="Reports">
+            <group>
+                <group>
+                    <field name="style_id" domain="[('categ_id.name', '=', 'Barang Jadi Uniform')]"/>
+                </group>
+                <group>
+                    <field name="date"/>
+                    <field name="product_name" invisible="1"/>
+                    <field name="partner_id" invisible="1"/>
+                </group>
+            </group>
+            
+            <footer>
+                <button name="action_print_report" string="Print" type="object" default_focus="1" class="oe_highlight"/>
+                or <button string="Cancel" class="oe_link" special="cancel" />
+            </footer>
+        </form>
+        </field>
+    </record>
+
+    <record id="action_form_stock_wizard" model="ir.actions.act_window">
+        <field name="name">FORM STOCK</field>
+        <field name="res_model">form.stock.wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_form_stock_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="menu_form_stock_wizard"
+        name="Form Stock"
+        action="action_form_stock_wizard"
+        parent="stock.menu_warehouse_report"
+        sequence="230"/>
+
+</odoo>

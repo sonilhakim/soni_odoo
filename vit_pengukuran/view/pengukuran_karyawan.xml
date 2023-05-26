@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_pengukuran_karyawan_tree" model="ir.ui.view">
+            <field name="name">vit_pengukuran_karyawan_tree</field>
+            <field name="model">vit.pengukuran_karyawan</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="karyawan" decoration-success="state == 'confirmed'" decoration-muted="state in ('done')" delete="false" create="false">
+                    <field name="karyawan" />
+                    <field name="nik" />
+                    <field name="divisi_id" />
+                    <field name="jabatan_id" />
+                    <field name="lokasi_id" />
+                    <field name="pengukuran_header_id" />
+                    <field name="spk_id" />
+                    <field name="gender" />
+                    <field name="state" invisible="1"/>
+                    <field name="pengukuran_state" invisible="1"/>
+                    <field name="data_ids" widget="many2many_tags" string="Style(s)"/>
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_pengukuran_karyawan_form" model="ir.ui.view">
+            <field name="name">vit_pengukuran_karyawan_form</field>
+            <field name="model">vit.pengukuran_karyawan</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="karyawan" delete='false' create='false'>
+                    <header>
+                        <!-- <button string="Confirm" type="object" name="action_confirm" states="draft" groups="vit_pengukuran.group_user_pengukuran"/>
+                        <button string="Done" type="object" name="action_done" states="confirmed" groups="vit_pengukuran.group_user_pengukuran"/>
+                        <button string="Reset to Draft" type="object" name="action_draft" states="confirmed" /> -->
+                        <field name="state" widget="statusbar"/>
+                    </header>                    
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="karyawan" class="oe_edit_only" string="Nama Karyawan"/>
+                            <h1><field name="karyawan" attrs="{'readonly':[('state','!=','draft')]}" required="1"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="nik" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="divisi_id" options="{'no_create':True}" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="jabatan_id" options="{'no_create':True}" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="gender" attrs="{'readonly':[('state','!=','draft')]}" required="1"/>
+                            </group>
+                            <group>
+                                <field name="pengukuran_header_id" readonly="1" attrs="{'invisible':[('pengukuran_header_id','=',False)]}" string="Project"/>
+                                <field name="spk_id" options="{'no_create':True}" required="1" attrs="{'invisible':[('spk_id','=',False)]}"/>
+                                <field name="lokasi_id" options="{'no_create':True}" attrs="{'readonly':[('state','!=','draft')]}" required="1"/>
+                                <field name="lokasi2_id" options="{'no_create':True}" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="lokasi3_id" options="{'no_create':True}" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            </group>
+                            <group colspan="4">
+                                <field name="desc" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Data Pengukuran">
+                                <field name="data_ids" attrs="{'readonly':[('state','!=','draft')]}">
+                                    <tree string="Data Pengukuran" create='false' delete='false'>
+                                        <field name="style_id" readonly="1"/>
+                                        <!-- <field name="spec_type" /> -->
+                                        <field name="size_id" options="{'no_create':True}"/>
+                                        <field name="qty" />
+                                        <field name="state" invisible="1"/>
+                                    </tree>
+                                    <form string="Size">
+                                        <sheet>
+                                            <div class="oe_title">
+                                                <label for="style_id" class="oe_edit_only" string="Style"/>
+                                                <h1><field name="style_id" options="{'no_create':True}" readonly="1"/></h1>
+                                            </div>
+                                            <group>
+                                                <group>
+                                                    <!-- <field name="spec_type" /> -->
+                                                    <field name="state" invisible="1"/>
+                                                    <field name="variant_id" options="{'no_create':True}" readonly="1"/>
+                                                    <field name="size_ids" invisible="1"/>
+                                                    <field name="size_id" options="{'no_create':True}" attrs="{'invisible':[('variant_id','=',False)]}" domain="[('id','in',size_ids)]"/>
+                                                </group>
+                                                <group>
+                                                    <field name="qty" />
+                                                </group>
+                                            </group>
+                                            <notebook>
+                                                <page string="Item Pengukuran">
+                                                    <field name="item_ids">
+                                                        <tree string="Item Pengukuran" editable="bottom" create='false' delete='false'>
+                                                            <field name="name" readonly="1"/>
+                                                            <field name="min_value" invisible="1"/>
+                                                            <field name="max_value" invisible="1"/>
+                                                            <field name="size" />
+                                                        </tree>
+                                                    </field>
+                                                </page>
+                                            </notebook>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_pengukuran_karyawan_search" model="ir.ui.view">
+            <field name="name">vit_pengukuran_karyawan</field>
+            <field name="model">vit.pengukuran_karyawan</field>
+            <field name="arch" type="xml">
+                <search string="karyawan">
+                    <field name="nik"/>
+                    <field name="karyawan"/>
+                    <field name="jabatan_id"/>
+                    <field name="lokasi_id"/>
+                    <field name="divisi_id"/>
+                    <field name="partner_id"/>
+                    <field name="pengukuran_header_id" string="Project"/>
+                    <separator/>
+                    <filter string="Male" name="male" domain="[('gender', '=', 'male')]"/>
+                    <filter string="Female" name="Female" domain="[('gender', '=', 'female')]"/>
+                    <separator/>
+                    <filter string="Style Assigned" name="style_assigned" domain="[('data_ids', '!=', False)]"/>
+                    <filter string="Style not Assign" name="style_not_assign" domain="[('data_ids', '=', False)]"/>
+                    <group string="Group By..">
+                        <filter name="group_jabatan_id" string="Jabatan" domain="[]" context="{'group_by':'jabatan_id'}"/>
+                        <filter name="group_lokasi_id" string="Lokasi" domain="[]" context="{'group_by':'lokasi_id'}"/>
+                        <filter name="group_divisi_id" string="Divisi" domain="[]" context="{'group_by':'divisi_id'}"/>
+                        <filter name="group_partner_id" string="Customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter name="group_pengukuran_header_id" string="Project" domain="[]" context="{'group_by':'pengukuran_header_id'}"/>
+                        <filter name="group_state" string="Status" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_pengukuran_karyawan_kanban" model="ir.ui.view" >
+            <field name="name">vit_pengukuran_karyawan</field>
+            <field name="model">vit.pengukuran_karyawan</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            Name: <field name="karyawan"></field>
+                                        </li>
+                                        <li>
+                                            NIK: <field name="nik"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_pengukuran_karyawan_graph" model="ir.ui.view">
+            <field name="name">vit_pengukuran_karyawan</field>
+            <field name="model">vit.pengukuran_karyawan</field>
+            <field name="arch" type="xml">
+                <graph string="karyawan" type="bar">
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_pengukuran_karyawan" model="ir.actions.act_window">
+            <field name="name">Karyawan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.pengukuran_karyawan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('pengukuran_state','=','confirmed')]</field>
+            <!-- <field name="context">{"search_default_fieldname":1}</field> -->
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new pengukuran_karyawan
+                </p><p>
+                Click the Create button to add a new pengukuran_karyawan
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_pengukuran_karyawan" name="Karyawan" parent="vit_pengukuran_sub_menu" action="action_vit_pengukuran_karyawan" sequence="0"/>
+
+    </data>
+</odoo>

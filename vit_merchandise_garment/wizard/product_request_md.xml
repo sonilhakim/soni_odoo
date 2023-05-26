@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_md_pr_wizard" model="ir.ui.view">
+            <field name="name">md.pr.wizard</field>
+            <field name="model">md.pr.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Create PR">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date" required="1"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>  
+                    </sheet>
+                    <footer>
+                        <button name="product_request_md" string="Create Purchase Request" type="object" class="btn-primary"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="show_md_pr_wizard">
+            <field name="name">Create Purchase Request</field>
+            <field name="res_model">md.pr.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="view_material_pr_wizard" model="ir.ui.view">
+            <field name="name">material.pr.wizard</field>
+            <field name="model">material.pr.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Create PR">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date" required="1"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>  
+                    </sheet>
+                    <footer>
+                        <button name="material_request_md" string="Create Purchase Request" type="object" class="btn-primary"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <act_window id="action_view_material_pr_wizard"
+            multi="True"
+            key2="client_action_multi" name="Create Purchase Request"
+            res_model="material.pr.wizard" src_model="vit.or_material_list"
+            view_mode="form" target="new" view_type="form" />
+           
+</odoo>

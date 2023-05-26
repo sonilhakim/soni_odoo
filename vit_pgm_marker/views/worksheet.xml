@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="vit_mrp_production_pegm" model="ir.ui.view">
+            <field name="name">mrp.production.pegm.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[3]" position="after">
+                    <page string="GM Reporting" groups="vit_pgm_marker.group_pgm_user,vit_pgm_marker.group_pgm_manager,mrp.group_mrp_user,mrp.group_mrp_manager,vit_ppic.group_user_ppic,vit_ppic.group_manager_ppic">
+                        <button string="Default GM Reporting" type="object" name="load_gm_reporting" class="btn-primary" attrs="{'invisible': [('default_gm_reporting', '=', True)]}" groups="vit_pgm_marker.group_pgm_user,vit_pgm_marker.group_pgm_manager"/>
+                        <field name="default_gm_reporting" invisible="1"/>
+                        <field name="gm_report_ids">
+                            <tree string="GM Reporting" editable="bottom">
+                                <field name="no" />
+                                <field name="name" required="1"/>
+                                <field name="doc_name" invisible="1"/>
+                                <field name="doc" widget="binary" filename="doc_name" required="1"/>
+                                <field name="date" required="1"/>
+                                <field name="notes"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- menu worksheet -->
+        <record id="mrp_action_worksheet_pgm" model="ir.actions.act_window">
+            <field name="name">Worksheet</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.production</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="mrp.mrp_production_tree_view"/>
+            <field name="domain">[('worksheet','=',True)]</field>
+            <field name="search_view_id" ref="mrp.view_mrp_production_filter"/>
+            <field name="context">{'search_default_todo': True,'default_worksheet':True}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a worksheet.
+              </p>
+            </field>
+        </record>
+   </data>
+</odoo>

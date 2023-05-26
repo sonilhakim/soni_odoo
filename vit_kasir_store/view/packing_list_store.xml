@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_packing_list_store_tree" model="ir.ui.view">
+            <field name="name">packing.list.store.tree</field>
+            <field name="model">stock.production.lot</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Packing List" decoration-success="store == True" decoration-danger="store == False" default_order="karyawan" create="false">
+                    <field name="project_id" string="Project"/>
+                    <!-- <field name="divisi_id"/> -->
+                    <field name="partner_id" invisible="1"/>
+                    <field name="lokasi_id"/>
+                    <field name="nik"/>
+                    <field name="karyawan"/>
+                    <field name="name"/>
+                    <field name="style_id"/>
+                    <field name="product_id"/>
+                    <!-- <field name="gender"/> -->
+                    <field name="location_id"/>
+                    <field name="polybag"/>
+                    <field name="date_done_store"/>
+                    <field name="store"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_packing_list_store_form" model="ir.ui.view">
+            <field name="name">packing.list.store.form</field>
+            <field name="model">stock.production.lot</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Packing List">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="e.g. LOT/0001/20121"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="project_id" string="Project"/>
+                                <!-- <field name="divisi_id"/> -->
+                                <field name="partner_id" invisible="1"/>
+                                <field name="lokasi_id"/>
+                                <field name="nik"/>
+                                <field name="karyawan"/>
+                            </group>
+                            <group>
+                                <field name="style_id"/>
+                                <field name="product_id"/>
+                                <!-- <field name="gender"/> -->
+                                <field name="location_id"/>
+                                <field name="polybag"/>
+                                <field name="date_done_store"/>
+                                <field name="store"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Swap Barcode History">
+                                <field name="swap_history_ids">
+                                    <tree string="Swap Barcode History" editable="bottom">
+                                        <field name="swap_lot_id"/>
+                                        <field name="nik"/>
+                                        <field name="karyawan"/>
+                                        <field name="date"/>
+                                        <field name="store_doc"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search view -->
+        <record model="ir.ui.view" id="search_packing_list_store_filters">
+            <field name="name">Packing List Filter Store</field>
+            <field name="model">stock.production.lot</field>
+            <field name="arch" type="xml">
+                <search string="Product Lots Filter">
+                    <field name="name" string="Product Lots" filter_domain="['|',('name','ilike',self),('ref','ilike',self)]"/>
+                    <field name="product_id"/>
+                    <field name="project_id" string="Project"/>
+                    <field name="partner_id"/>
+                    <field name="lokasi_id"/>
+                    <field name="karyawan"/>
+                    <field name="style_id"/>
+                    <field name="size_id"/>
+                    <field name="polybag"/>
+                    <field name="date_done_store"/>
+                    <field name="store"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_product" string="Product" domain="[]" context="{'group_by':'product_id'}"/>
+                        <filter name="group_by_partner_id" string="Customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter name="group_by_project_id" string="Project" domain="[]" context="{'group_by':'project_id'}"/>
+                        <filter name="group_by_store" string="Store" domain="[]" context="{'group_by':'store'}"/>
+                        <filter name="group_by_lokasi_id" string="Lokasi" domain="[]" context="{'group_by':'lokasi_id'}"/>               
+                        <filter name="group_by_karyawan" string="Karyawan" domain="[]" context="{'group_by':'karyawan'}"/>
+                        <filter name="group_by_nik" string="NIK" domain="[]" context="{'group_by':'nik'}"/>
+                        <filter name="group_by_style_id" string="Style" domain="[]" context="{'group_by':'style_id'}"/> 
+                        <filter name="group_by_size_id" string="Size" domain="[]" context="{'group_by':'size_id'}"/>
+                        <filter name="group_by_polybag" string="Polybag" domain="[]" context="{'group_by':'polybag'}"/>
+                    </group>                    
+                </search>
+            </field>
+        </record>
+
+        <record id="action_packing_list_store" model="ir.actions.act_window">
+            <field name="name">Packing List Store</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.production.lot</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field eval="False" name="view_id"/>
+            <field name="search_view_id" ref="search_packing_list_store_filters"/>
+            <field name="domain">[('location_id.name','=','Stock'),('location_id.location_id.name','=','TW2')]</field>
+            <field name="context">{'search_default_group_by_project_id': 1,'search_default_group_by_store': 1,'search_default_group_by_style_id': 1,'search_default_group_by_size_id': 1,'search_default_group_by_polybag': 1}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Packing List Store
+              </p>
+            </field>
+        </record>
+
+        <record id="action_packing_list_store_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_packing_list_store_tree"/>
+            <field name="act_window_id" ref="action_packing_list_store"/>
+        </record>
+
+        <record id="action_packing_list_store_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_packing_list_store_form"/>
+            <field name="act_window_id" ref="action_packing_list_store"/>
+        </record>
+
+        <!-- <menuitem action="action_packing_list_store" id="menu_action_packing_list_store"
+            parent="stock.menu_stock_warehouse_mgmt" sequence="201"/> -->
+    </data>
+</odoo>

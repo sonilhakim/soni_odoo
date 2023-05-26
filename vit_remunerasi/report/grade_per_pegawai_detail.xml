@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_grade_per_pegawai_detail_menu" string="Vit - Grade per pegawai detail"
+         model="vit.grade_per_pegawai_detail" report_type="qweb-pdf" 
+         file="vit.grade_per_pegawai_detail"  name="vit_remunerasi.vit_grade_per_pegawai_detail_report" />
+
+        <!-- document template -->
+        <template id="vit_remunerasi.vit_grade_per_pegawai_detail_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Grade per pegawai detail: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Grade</strong>
+                            <p class="m-0" t-field="doc.grade" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Karyawan</strong>
+                            <p class="m-0" t-field="doc.karyawan_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Grade</strong>
+                            <p class="m-0" t-field="doc.grade_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_remunerasi.vit_grade_per_pegawai_detail_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_remunerasi.vit_grade_per_pegawai_detail_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

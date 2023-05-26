@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="report_sticker_polybag_store"
+            string="Sticker Polybag"
+            model="sticker.polybag.store.wizard" 
+            report_type="qweb-pdf"
+            paperformat="vit_kasir_store.paperformat_sticker_store_polybag"
+            file="sticker.polybag.store.wizard" 
+            name="vit_kasir_store.sticker_polybag_store_report"
+        />
+
+        <!-- paper_format="paperformat_a4_landscape"  -->
+        
+        <template id="report_sticker_polybag_store_dokumen">
+            <t t-call="vit_sticker_polybag.external_layout_sticker_polybag">
+                <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                <div class="page" style="font-size:10px;padding-right:10px;">
+                    <div class="text-center">
+                        <!-- <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.polybag, 300, 50)" alt="Barcode"/> -->
+                        <img t-att-src="'data:image/png;base64,%s' % to_text(o.qr_code)" alt="Barcode" style="height: 70px; width:70px;"/>
+                        <!-- <p t-field="o.polybag"/> -->
+                    </div>
+                    <table style="border-collapse: collapse;width:100%;">
+                        <tr>
+                            <td style="width:25%;">PROJECT</td>
+                            <td style="width:75%;">: <span t-field="o.pengukuran_karyawan.spk_id.po_id.sph_id.proposal_id.inquery_id.name" /></td>
+                        </tr>
+                        <tr>
+                            <td>BUYER</td>
+                            <td>: <span t-field="o.pengukuran_karyawan.spk_id.partner_id.name" /></td>
+                        </tr>
+                        <tr>
+                            <td>NAMA</td>
+                            <td>: <span t-field="o.pengukuran_karyawan.karyawan" /></td>
+                        </tr>
+                        <tr>
+                            <td>NIK</td>
+                            <td>: <span t-field="o.pengukuran_karyawan.nik" /></td>
+                        </tr>
+                        <tr>
+                            <td>LOKASI1</td>
+                            <td>: <span t-field="o.pengukuran_karyawan.lokasi_id.name" /></td>
+                        </tr>
+                        <tr>
+                            <td>LOKASI2</td>
+                            <td>: <span t-field="o.pengukuran_karyawan.lokasi2_id.name" /></td>
+                        </tr>
+                        <tr>
+                            <td>LOKASI3</td>
+                            <td>: <span t-field="o.pengukuran_karyawan.lokasi3_id.name" /></td>
+                        </tr>
+                        <tr>
+                            <td>DIVISI</td>
+                            <td>: <span t-field="o.pengukuran_karyawan.divisi_id.name" /></td>
+                        </tr>
+                        <tr>
+                            <td>NO. POLYBAG</td>
+                            <td>: <span t-field="o.polybag" /></td>
+                        </tr>
+                    </table>
+
+                    <div class="oe_structure"/>
+                    
+                    <table style="width: 100%;text-align: center;" name="data_ids_table">
+                        <thead>
+                            <tr>
+                                <td style="border: 1px !important; border-style: solid !important; border-color: grey !important;"><strong>Style</strong></td>
+                                <td style="border: 1px !important; border-style: solid !important; border-color: grey !important;"><strong>Size</strong></td>
+                                <td style="border: 1px !important; border-style: solid !important; border-color: grey !important;"><strong>Qty</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody class="line_ids_tbody">
+                            <tr t-foreach="o.pengukuran_karyawan.data_ids" t-as="data">
+                                <td style="border: 1px !important; border-style: solid !important; border-color: grey !important;"><span t-field="data.style_id.name" /></td>
+                                <td style="border: 1px !important; border-style: solid !important; border-color: grey !important;"><span t-field="data.size_id.name" /></td>
+                                <td style="border: 1px !important; border-style: solid !important; border-color: grey !important;"><span t-field="data.qty" /></td>
+                            </tr> <!-- foreach-->
+                        </tbody>
+                    </table>
+
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+
+        <template id="sticker_polybag_store_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-foreach="doc.wizard_polybags" t-as="o">
+                        <t t-call="vit_kasir_store.report_sticker_polybag_store_dokumen" t-lang="lang"/>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

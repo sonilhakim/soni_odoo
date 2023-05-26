@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<!-- tree view penghargaan-->
+        <record id="view_vit_riwayat_penghargaan_treeref" model="ir.ui.view">
+            <field name="name">vit_riwayat_penghargaan_treeref</field>
+            <field name="model">vit.riwayat_penghargaan</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_penghargaan_tree"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='description']" position="after">
+                    <field name="jenis_penghargaan"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view penghargaan-->
+        <record id="view_vit_riwayat_penghargaan_formref" model="ir.ui.view">
+            <field name="name">vit_riwayat_penghargaan_formref</field>
+            <field name="model">vit.riwayat_penghargaan</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_penghargaan_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='description']" position="after">
+                    <field name="jenis_penghargaan"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- tree view kepakaran-->
+        <record id="view_vit_riwayat_kepakaran_dosen_tree" model="ir.ui.view">
+            <field name="name">vit_riwayat_kepakaran_dosen_tree</field>
+            <field name="model">vit.riwayat_kepakaran_dosen</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_kepakaran_dosen_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='description']" position="after">
+                    <field name="bidang_kepakaran"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view kepakaran-->
+        <record id="view_vit_riwayat_kepakaran_dosen_form" model="ir.ui.view">
+            <field name="name">vit_riwayat_kepakaran_dosen_form</field>
+            <field name="model">vit.riwayat_kepakaran_dosen</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_kepakaran_dosen_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='description']" position="after">
+                    <field name="bidang_kepakaran"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- tree view pendidikan-->
+        <record id="view_vit_riwayat_pendidikan_treeref" model="ir.ui.view">
+            <field name="name">vit_riwayat_pendidikan_treeref</field>
+            <field name="model">vit.riwayat_pendidikan</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_pendidikan_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="ref_pendidikan"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view pendidikan-->
+        <record id="view_vit_riwayat_pendidikan_formref" model="ir.ui.view">
+            <field name="name">vit_riwayat_pendidikan_formref</field>
+            <field name="model">vit.riwayat_pendidikan</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_pendidikan_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_from']" position="before">
+                    <field name="ref_pendidikan"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- tree view pekerjaan-->
+        <record id="view_vit_riwayat_pekerjaan_treeref" model="ir.ui.view">
+            <field name="name">vit_riwayat_pekerjaan_treeref</field>
+            <field name="model">vit.riwayat_pekerjaan</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_pekerjaan_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_start']" position="before">
+                    <field name="pekerjaan_id"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view pekerjaan-->
+        <record id="view_vit_riwayat_pekerjaan_formref" model="ir.ui.view">
+            <field name="name">vit_riwayat_pekerjaan_formref</field>
+            <field name="model">vit.riwayat_pekerjaan</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_pekerjaan_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_start']" position="before">
+                    <field name="pekerjaan_id"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- tree view kunjungan_ke_luar_negeri-->
+        <record id="view_vit_riwayat_kunjungan_ke_luar_negeri_treeref" model="ir.ui.view">
+            <field name="name">vit_riwayat_kunjungan_ke_luar_negeri_treeref</field>
+            <field name="model">vit.riwayat_kunjungan_ke_luar_negeri</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_kunjungan_ke_luar_negeri_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="jenis_kunjungan_luar"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view kunjungan_ke_luar_negeri-->
+        <record id="view_vit_riwayat_kunjungan_ke_luar_negeri_formref" model="ir.ui.view">
+            <field name="name">vit_riwayat_kunjungan_ke_luar_negeri_formref</field>
+            <field name="model">vit.riwayat_kunjungan_ke_luar_negeri</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_kunjungan_ke_luar_negeri_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_start']" position="before">
+                    <field name="jenis_kunjungan_luar"/>
+                </xpath>
+            </field>
+        </record>
+         <!-- tree view penelitian_karya_imliah-->
+        <record id="view_vit_riwayat_penelitian_karya_imliah_treeref" model="ir.ui.view">
+            <field name="name">vit_riwayat_penelitian_karya_imliah_treeref</field>
+            <field name="model">vit.riwayat_penelitian_karya_imliah</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_penelitian_karya_imliah_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="ilmiah"/>
+                    <field name="jenis_penelitian"/>
+                    <field name="peranan_penelitian"/>                    
+                    <field name="jenis_publikasi"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view penelitian_karya_imliah-->
+        <record id="view_vit_riwayat_penelitian_karya_imliah_formref" model="ir.ui.view">
+            <field name="name">vit_riwayat_penelitian_karya_imliah_formref</field>
+            <field name="model">vit.riwayat_penelitian_karya_imliah</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_penelitian_karya_imliah_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="ilmiah"/>
+                    <field name="jenis_penelitian"/>
+                    <field name="peranan_penelitian"/>                    
+                    <field name="jenis_publikasi"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- tree view riwayat_pelatihan-->
+        <record id="view_vit_riwayat_pelatihan_treeref" model="ir.ui.view">
+            <field name="name">vit_riwayat_pelatihan_treeref</field>
+            <field name="model">vit.riwayat_pelatihan</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_pelatihan_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_start']" position="before">
+                    <field name="jenis_pelatihan"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_riwayat_pelatihan_formref" model="ir.ui.view">
+            <field name="name">vit_riwayat_pelatihan_formref</field>
+            <field name="model">vit.riwayat_pelatihan</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_pelatihan_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='employee_id']" position="before">
+                    <field name="jenis_pelatihan"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- tree view seminar-->
+        <record id="view_vit_riwayat_seminar_treeref" model="ir.ui.view">
+            <field name="name">vit_riwayat_seminar_treeref</field>
+            <field name="model">vit.riwayat_seminar</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_seminar_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_start']" position="before">
+                    <field name="tingkat_seminar"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view seminar-->
+        <record id="view_vit_riwayat_seminar_formref" model="ir.ui.view">
+            <field name="name">vit_riwayat_seminar_formref</field>
+            <field name="model">vit.riwayat_seminar</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_riwayat.view_vit_riwayat_seminar_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='employee_id']" position="before">
+                    <field name="tingkat_seminar"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

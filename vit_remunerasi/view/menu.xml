@@ -1,0 +1,25 @@
+<odoo>
+	<data>
+		<!-- action window -->
+        <record id="action_vit_skp_rem" model="ir.actions.act_window">
+            <field name="name">SKP</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.skp</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk menambahkan Skp baru
+                </p><p>
+                Klik tombol Buat untuk menambahkan Skp baru
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_skp_rem" name="SKP" parent="vit_remunerasi_sub_menu" action="action_vit_skp_rem" sequence="260"/>
+
+		<menuitem id="vit_remunerasi_top_menu" name="Remunerasi" sequence="20" web_icon="vit_remunerasi,static/description/icon.png" />
+		<menuitem id="vit_remunerasi_sub_menu" name="Operations" sequence="40" parent="vit_remunerasi_top_menu" />
+		<menuitem id="vit_remunerasi_config_menu" name="Configurations" sequence="50" parent="vit_remunerasi_top_menu" />
+	</data>
+</odoo>

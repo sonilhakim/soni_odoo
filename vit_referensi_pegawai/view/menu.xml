@@ -1,0 +1,196 @@
+<odoo>
+	<data>
+        <record id="view_vit_pak_unsur_kegiatan_formref" model="ir.ui.view">
+            <field name="name">vit_pak_unsur_kegiatan_formref</field>
+            <field name="model">vit.pak_unsur_kegiatan</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_univ_common.view_vit_pak_unsur_kegiatan_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/div[2]/label" position="replace">
+                    <label for="name" class="oe_edit_only" string="PAK Unsur Kegiatan"/>
+                </xpath>
+            </field>
+        </record>
+		<!-- action window -->
+        <record id="referensi_view_employee_list" model="ir.actions.act_window">
+            <field name="name">Pegawai</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Klik Tombol Import untuk meng-import data master pegawai
+              </p>
+            </field>
+        </record>
+
+        <record id="action_vit_jabatan_ref" model="ir.actions.act_window">
+            <field name="name">Jabatan Fungsional</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.jabatan</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="domain">[('fungsional','=',True)]</field>
+            <field name="context">{'search_default_fieldname': 1,'default_fungsional':True}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Jabatan Fungsional
+                </p><p>
+                Click the Create button to add a new Jabatan Fungsional
+                </p>
+            </field>
+        </record>
+
+        <record id="action_vit_jabatan_ref2" model="ir.actions.act_window">
+            <field name="name">Jabatan Struktural</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.jabatan</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="domain">[('struktural','=',True)]</field>
+            <field name="context">{'search_default_fieldname': 1,'default_struktural':True}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Jabatan Struktural
+                </p><p>
+                Click the Create button to add a new Jabatan Struktural
+                </p>
+            </field>
+        </record>
+
+        <record id="hr_leave_allocation_action_my_ref" model="ir.actions.act_window">
+            <field name="name">Periode Cuti</field>
+            <field name="res_model">hr.leave.allocation</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,activity</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Buat Periode Cuti
+                </p>
+            </field>
+            <field name="context">{}</field>
+            <field name="domain">[('employee_id.user_id', '=', uid)]</field>
+        </record>
+        <record id="hr_leave_allocation_action_my_ref_view_tree" model="ir.actions.act_window.view">
+            <field name="sequence">1</field>
+            <field name="view_mode">tree</field>
+            <field name="act_window_id" ref="hr_leave_allocation_action_my_ref"/>
+            <field name="view_id" ref="hr_holidays.hr_leave_allocation_view_tree_my"/>
+        </record>
+        <record id="hr_leave_allocation_action_my_ref_view_form" model="ir.actions.act_window.view">
+            <field name="sequence">2</field>
+            <field name="view_mode">form</field>
+            <field name="act_window_id" ref="hr_leave_allocation_action_my_ref"/>
+            <field name="view_id" ref="hr_holidays.hr_leave_allocation_view_form"/>
+        </record>
+
+        <record id="hr_leave_action_my_ref" model="ir.actions.act_window">
+            <field name="name">Hak Libur</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.leave</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,kanban,activity</field>
+            <field name="context">{}</field>
+            <field name="domain">[('user_id', '=', uid)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Buat Hak Libur baru
+                </p>
+            </field>
+        </record>
+        <record id="hr_leave_action_my_ref_view_tree" model="ir.actions.act_window.view">
+            <field name="sequence">1</field>
+            <field name="view_mode">tree</field>
+            <field name="act_window_id" ref="hr_leave_action_my_ref"/>
+            <field name="view_id" ref="hr_holidays.hr_leave_view_tree_my"/>
+        </record>
+        <record id="hr_leave_action_my_ref_view_form" model="ir.actions.act_window.view">
+            <field name="sequence">2</field>
+            <field name="view_mode">form</field>
+            <field name="act_window_id" ref="hr_leave_action_my_ref"/>
+            <field name="view_id" ref="hr_holidays.hr_leave_view_form"/>
+        </record>
+
+        <record id="view_referensi_employee_category_form" model="ir.ui.view">
+            <field name="name">hr.employee.category.form.referensi</field>
+            <field name="model">hr.employee.category</field>
+            <field name="inherit_id" ref="hr.view_employee_category_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="replace">
+                    <field name="name" string="Status Pegawai"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_referensi_employee_category_list" model="ir.ui.view">
+            <field name="name">hr.employee.category.list.referensi</field>
+            <field name="model">hr.employee.category</field>
+            <field name="inherit_id" ref="hr.view_employee_category_list"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="replace">
+                    <field name="name" string="Status Pegawai"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="referensi_view_categ_form" model="ir.actions.act_window">
+            <field name="name">Status Pegawai</field>
+            <field name="res_model">hr.employee.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="ir_action_report_referensi_template" model="ir.actions.act_window">
+            <field name="name">Template</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ir.actions.report</field>
+            <field name="view_type">form</field>
+            <!-- <field name="view_id" ref="act_report_xml_view_tree"/>
+            <field name="search_view_id" ref="act_report_xml_search_view"/> -->
+        </record>
+
+		<menuitem id="vit_referensi_top_menu" name="Referensi" sequence="20" groups="vit_referensi_pegawai.group_referensi_user,vit_referensi_pegawai.group_referensi_manager" web_icon="vit_referensi_pegawai,static/description/icon.png" />
+		<menuitem id="vit_referensi_sub_menu" name="Referensi" sequence="10" parent="vit_referensi_top_menu" />
+        <menuitem id="vit_referensi_sub_menu2" name="Referensi Tambahan" sequence="20" parent="vit_referensi_top_menu" />
+
+		<menuitem id="menu_vit_pak_unsur_kegiatan_ref" name="PAK Unsur Kegiatan" parent="vit_referensi_sub_menu" action="vit_univ_common.action_vit_pak_unsur_kegiatan" sequence="20"/>
+		<menuitem id="menu_referensi_view_employee" name="Import Data Master" parent="vit_referensi_sub_menu" action="referensi_view_employee_list" sequence="30"/>
+		<menuitem id="menu_action_res_bank_ref" action="base.action_res_bank_form" name="Bank" parent="vit_referensi_sub_menu" sequence="40"/>
+        <menuitem id="hr_holidays_referensi_periode" action="hr_leave_allocation_action_my_ref" name="Periode Cuti" parent="vit_referensi_sub_menu" sequence="60"/>
+        <!-- <menuitem id="menu_vit_rekomendasi_referensi" name="Rekomendasi BKD" parent="vit_referensi_sub_menu" action="vit_bkd_inherit.action_vit_bkd2" sequence="70"/> -->
+        <menuitem id="menu_vit_status_verifikasi_referensi" name="Status Verifikasi" parent="vit_referensi_sub_menu" action="vit_univ_common.action_vit_status_verifikasi" sequence="80"/>
+        <menuitem id="menu_email_templates_referensi" name="Template" parent="vit_referensi_sub_menu" action="ir_action_report_referensi_template" sequence="90"/>
+        <menuitem id="menu_vit_jenis_kegiatan_referensi" name="Jenis Kegiatan" parent="vit_referensi_sub_menu" action="vit_univ_common.action_vit_jenis_kegiatan" sequence="100"/>
+        <menuitem id="menu_vit_unit_wilayah_referensi" name="Unit Wilayah" parent="vit_referensi_sub_menu" action="vit_univ_common.action_vit_unit_wilayah" sequence="110"/>
+        <menuitem id="menu_vit_jenis_penghargaan_referensi" name="Jenis Penghargaan" parent="vit_referensi_sub_menu" action="vit_univ_common.action_vit_jenis_penghargaan" sequence="120"/>
+        <menuitem id="menu__salary_rule_referensi" action="hr_payroll.action_salary_rule_form" name="Gaji Pokok" parent="vit_referensi_sub_menu" sequence="130"/>
+        <menuitem id="menu_vit_golongan_darah_referensi" name="Golongan Darah" parent="vit_referensi_sub_menu" action="vit_univ_common.action_vit_golongan_darah" sequence="140"/>
+        <menuitem id="menu_vit_jenis_dokumen_ref" name="Jenis Dokumen" parent="vit_referensi_sub_menu" action="vit_dokumen.action_vit_jenis_dokumen" sequence="160"/>
+        <menuitem id="menu_vit_jenis_hukuman_ref" name="Jenis Hukuman" parent="vit_referensi_sub_menu" action="vit_univ_common.action_vit_jenis_hukuman" sequence="170"/>
+        <menuitem id="menu_view_employee_category_ref" action="referensi_view_categ_form" name="Status Pegawai" parent="vit_referensi_sub_menu" sequence="200"/>
+        <menuitem id="menu_vit_bidang_kepakaran_ref" name="Bidang Kepakaran" parent="vit_referensi_sub_menu" action="vit_univ_common.action_vit_bidang_kepakaran" sequence="220"/>
+        <menuitem id="menu_vit_jabatan_ref" name="Jabatan Fungsional" parent="vit_referensi_sub_menu" action="action_vit_jabatan_ref" sequence="230"/>
+        <menuitem id="menu_vit_jenis_jabatan_fungsional_ref" name="Jenis Jabatan Fungsional" parent="vit_referensi_sub_menu" action="vit_univ_common.action_vit_jenis_jabatan_fungsional" sequence="240"/>
+        <menuitem id="menu_vit_pangkat_ref" name="Pangkat" parent="vit_referensi_sub_menu" action="vit_univ_common.action_vit_pangkat" sequence="260"/>
+        <menuitem id="menu_vit_golongan_ref" name="Golongan" parent="vit_referensi_sub_menu" action="vit_univ_common.action_vit_golongan" sequence="270"/>
+        <!-- ref tambahan -->
+        <menuitem id="menu_vit_tunjangan_kesehatan_ref" name="Tunjangan Kesehatan" parent="vit_referensi_sub_menu2" action="vit_univ_common.action_vit_tunjangan_kesehatan" sequence="5"/>
+        <menuitem id="hr_leave_menu_ref" name="Hak Libur" parent="vit_referensi_sub_menu2" action="hr_leave_action_my_ref" sequence="6"/>
+        <menuitem id="menu_vit_pendapat_ref" name="Pendapat" parent="vit_referensi_sub_menu2" action="vit_univ_common.action_vit_pendapat" sequence="7"/>
+        <menuitem id="menu_vit_penetapan_angka_ref" name="Penetapan Angka" parent="vit_referensi_sub_menu2" action="vit_univ_common.action_vit_penetapan_angka" sequence="10"/>
+        <menuitem id="hr_holidays_referensi" action="hr_holidays.open_view_holiday_status" name="Tipe Cuti" parent="vit_referensi_sub_menu2" sequence="20"/>
+        <menuitem id="menu_vit_sks_dosen_ref" name="SKS Dosen" parent="vit_referensi_sub_menu2" action="vit_univ_common.action_vit_sks_dosen" sequence="30"/>        
+        <menuitem id="menu_vit_kebangsaan_ref" name="Kebangsaan" parent="vit_referensi_sub_menu2" action="base.action_country" sequence="70"/>
+        <menuitem id="menu_view_hr_job_ref" name="Pekerjaan" parent="vit_referensi_sub_menu2" action="hr.action_hr_job" sequence="80"/>
+        <menuitem id="menu_vit_jenis_pendapatan_lain_ref" name="Jenis Pendapatan Lain" parent="vit_referensi_sub_menu2" action="vit_univ_common.action_vit_jenis_pendapatan_lain" sequence="90"/>
+        <menuitem id="menu_vit_jenis_kunjungan_luar_ref" name="Jenis Kunjungan Luar" parent="vit_referensi_sub_menu2" action="vit_univ_common.action_vit_jenis_kunjungan_luar" sequence="100"/>
+        <menuitem id="menu_vit_jenis_publikasi_ref" name="Jenis Publikasi" parent="vit_referensi_sub_menu2" action="vit_univ_common.action_vit_jenis_publikasi" sequence="110"/>
+        <menuitem id="menu_vit_agama_ref" name="Agama" parent="vit_referensi_sub_menu2" action="vit_univ_common.action_vit_agama" sequence="120"/>
+        <menuitem id="menu_vit_bidang_ilmu_ref" name="Bidang Ilmu" parent="vit_referensi_sub_menu2" action="vit_univ_common.action_vit_bidang_ilmu" sequence="150"/>
+        <menuitem id="menu_vit_ilmiah_ref" name="Ilmiah" parent="vit_referensi_sub_menu2" action="vit_univ_common.action_vit_ilmiah" sequence="160"/>
+        <menuitem id="menu_vit_tingkat_seminar_ref" name="Tingkat Seminar" parent="vit_referensi_sub_menu2" action="vit_univ_common.action_vit_tingkat_seminar" sequence="170"/>
+        <menuitem id="menu_vit_jabatan_ref2" name="Jabatan Struktural" parent="vit_referensi_sub_menu2" action="action_vit_jabatan_ref2" sequence="180"/>
+        <menuitem id="menu_vit_tipe_struktural_ref" name="Tipe Struktural" parent="vit_referensi_sub_menu2" action="vit_univ_common.action_vit_tipe_struktural" sequence="190"/>
+        <menuitem id="menu_vit_jenis_pelatihan_ref" name="Jenis Pelatihan" parent="vit_referensi_sub_menu2" action="vit_univ_common.action_vit_jenis_pelatihan" sequence="200"/>
+        <menuitem id="menu_vit_tipe_pelatihan_ref" name="Tipe Pelatihan" parent="vit_referensi_sub_menu2" action="vit_univ_common.action_vit_tipe_pelatihan" sequence="210"/>
+        <menuitem id="menu_vit_unit_kerja_ref" name="Unit Kerja" parent="vit_referensi_sub_menu2" action="vit_univ_common.action_vit_unit_kerja" sequence="220"/>
+	</data>
+</odoo>

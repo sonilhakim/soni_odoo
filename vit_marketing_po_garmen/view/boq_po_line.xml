@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_boq_po_garmen_line_tree" model="ir.ui.view">
+            <field name="name">vit_boq_po_garmen_line_tree</field>
+            <field name="model">vit.boq_po_garmen_line</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Boq po line">
+                    <field name="name" />
+                    <field name="product_id" />
+                    <field name="price" />
+                    <field name="qty" />
+                    <field name="total_price" />
+                    <field name="uom_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_boq_po_garmen_line_form" model="ir.ui.view">
+            <field name="name">vit_boq_po_garmen_line_form</field>
+            <field name="model">vit.boq_po_garmen_line</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Boq po line">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Boq po line Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="price" />
+                                <field name="qty" />
+                                <field name="total_price" />
+                            </group>
+                            <group>
+                                <field name="product_id" />
+                                <field name="uom_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_boq_po_garmen_line_search" model="ir.ui.view">
+            <field name="name">vit_boq_po_garmen_line</field>
+            <field name="model">vit.boq_po_garmen_line</field>
+            <field name="arch" type="xml">
+                <search string="Boq po line">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Price" name="filter_by_price" domain="[('price','=','')]" />
+                    <filter string="Qty" name="filter_by_set" domain="[('qty','=','')]" />
+                    <filter string="Total price" name="filter_by_total_price" domain="[('total_price','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="price" select="True"/>
+                    <field name="qty" select="True"/>
+                    <field name="total_price" select="True"/>
+                    <field name="product_id" select="True"/>
+                    <field name="uom_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Product" domain="[]" name="group_by_product_id" context="{'group_by':'product_id'}"/>
+                        <filter string="Uom" domain="[]" name="group_by_uom_id" context="{'group_by':'uom_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_boq_po_garmen_line_kanban" model="ir.ui.view" >
+            <field name="name">vit_boq_po_garmen_line</field>
+            <field name="model">vit.boq_po_garmen_line</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="price" />
+                    <field name="qty" />
+                    <field name="total_price" />
+                    <field name="product_id" />
+                    <field name="uom_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            Field1: <field name="name"></field>
+                                        </li>
+                                        <li>
+                                            Field2: <field name="name"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_boq_po_garmen_line_graph" model="ir.ui.view">
+            <field name="name">vit_boq_po_garmen_line</field>
+            <field name="model">vit.boq_po_garmen_line</field>
+            <field name="arch" type="xml">
+                <graph string="Boq po line" type="bar">
+                    <field name="product_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_boq_po_garmen_line" model="ir.actions.act_window">
+            <field name="name">Boq po line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.boq_po_garmen_line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Boq po line
+                </p><p>
+                Click the Create button to add a new Boq po line
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_boq_po_garmen_line" name="Boq po line" parent="vit_marketing_po_garmen_sub_menu" action="action_vit_boq_po_garmen_line" sequence="20"/>
+    </data>
+</odoo>

@@ -1,0 +1,139 @@
+<openerp>
+	<data>
+		<!--uom_category-->
+		<record id="uom_cat_keg" model="uom.category">
+			<field name="name">Keg</field>
+			<field name="measure_type" search="[('measure_type','=','Units')]" model="uom.category" />
+		</record>	
+		<record id="uom_cat_pkt" model="uom.category">
+			<field name="name">Pkt</field>
+			<field name="measure_type" search="[('measure_type','=','Units')]" model="uom.category" />
+		</record>	
+		<record id="uom_cat_org" model="uom.category">
+			<field name="name">Org</field>
+			<field name="measure_type" search="[('measure_type','=','Units')]" model="uom.category" />
+		</record>	
+		<record id="uom_cat_thn" model="uom.category">
+			<field name="name">Thn</field>
+			<field name="measure_type" search="[('measure_type','=','Units')]" model="uom.category" />
+		</record>	
+		<record id="uom_cat_bln" model="uom.category">
+			<field name="name">Bln</field>
+			<field name="measure_type" search="[('measure_type','=','Units')]" model="uom.category" />
+		</record>		
+		<record id="uom_cat_hr" model="uom.category">
+			<field name="name">Hr</field>
+			<field name="measure_type" search="[('measure_type','=','Units')]" model="uom.category" />
+		</record>		
+		<record id="uom_cat_dus" model="uom.category">
+			<field name="name">Dus</field>
+			<field name="measure_type" search="[('measure_type','=','Units')]" model="uom.category" />
+		</record>			
+		<record id="uom_cat_buku" model="uom.category">
+			<field name="name">Buku</field>
+			<field name="measure_type" search="[('measure_type','=','Units')]"  model="uom.category"/>
+		</record>			
+		<record id="uom_cat_bh" model="uom.category">
+			<field name="name">Bh</field>
+			<field name="measure_type" search="[('measure_type','=','Units')]"  model="uom.category"/>
+		</record>				
+		<record id="uom_cat_kali" model="uom.category">
+			<field name="name">Kali</field>
+			<field name="measure_type" search="[('measure_type','=','Units')]"  model="uom.category"/>
+		</record>
+		<!--uom -->
+
+		<record id="uom_keg" model="uom.uom">
+			<field name="name">Keg</field>
+			<field name="rounding">0.01</field>
+			<field name="factor">1</field>
+			<field name="type">reference</field>
+			<field name="category_id" search="[('name','=','Keg')]" model="uom.category" />
+		</record>	
+		<record id="uom_pkt" model="uom.uom">
+			<field name="name">Pkt</field>
+			<field name="rounding">0.01</field>
+			<field name="factor">1</field>
+			<field name="type">reference</field>
+			<field name="category_id" search="[('name','=','Pkt')]" model="uom.category" />
+		</record>	
+		<record id="uom_org" model="uom.uom">
+			<field name="name">Org</field>
+			<field name="rounding">0.01</field>
+			<field name="factor">1</field>
+			<field name="type">reference</field>
+			<field name="category_id" search="[('name','=','Org')]" model="uom.category" />
+		</record>	
+		<record id="uom_thn" model="uom.uom">
+			<field name="name">Thn</field>
+			<field name="rounding">0.01</field>
+			<field name="factor">1</field>
+			<field name="type">reference</field>
+			<field name="category_id" search="[('name','=','Thn')]" model="uom.category" />
+		</record>	
+		<record id="uom_bln" model="uom.uom">
+			<field name="name">Bln</field>
+			<field name="rounding">0.01</field>
+			<field name="factor">1</field>
+			<field name="type">reference</field>
+			<field name="category_id" search="[('name','=','Bln')]" model="uom.category" />
+		</record>		
+		<record id="uom_hr" model="uom.uom">
+			<field name="name">Hr</field>
+			<field name="rounding">0.01</field>
+			<field name="factor">1</field>
+			<field name="type">reference</field>
+			<field name="category_id" search="[('name','=','Hr')]" model="uom.category" />
+		</record>		
+		<record id="uom_dus" model="uom.uom">
+			<field name="name">Dus</field>
+			<field name="factor">1</field>
+			<field name="rounding">0.01</field>
+			<field name="type">reference</field>
+			<field name="category_id" search="[('name','=','Dus')]" model="uom.category" />
+		</record>			
+		<record id="uom_buku" model="uom.uom">
+			<field name="name">Buku</field>
+			<field name="factor">1</field>
+			<field name="rounding">0.01</field>
+			<field name="type">reference</field>
+			<field name="category_id" search="[('name','=','Buku')]" model="uom.category" />
+		</record>			
+		<record id="uom_bh" model="uom.uom">
+			<field name="name">Bh</field>
+			<field name="factor">1</field>
+			<field name="rounding">0.01</field>
+			<field name="type">reference</field>
+			<field name="category_id" search="[('name','=','Bh')]" model="uom.category" />
+		</record>				
+		<record id="uom_kali" model="uom.uom">
+			<field name="name">Kali</field>
+			<field name="factor">1</field>
+			<field name="rounding">0.01</field>
+			<field name="type">reference</field>
+			<field name="category_id" search="[('name','=','Kali')]" model="uom.category" />
+		</record>	
+
+		<!-- contoh COA -->
+
+		<record id="coa_521211" model="account.account">
+			<field name="code">521211</field>
+			<field name="name">Belanja bahan</field>
+			<!-- <field name="user_type_id">other</field> -->
+			<field name="user_type_id" search="[('type','=','other')]" model="account.account.type" />
+			<field name="user_type" ref="account.data_account_type_expenses"/>
+		</record>		
+		<record id="coa_521213" model="account.account">
+			<field name="code">521213</field>
+			<field name="name">Honor output kegiatan</field>
+			<field name="user_type_id" search="[('type','=','other')]" model="account.account.type" />
+			<field name="user_type" ref="account.data_account_type_expenses"/>
+		</record>			
+		<record id="coa_521219" model="account.account">
+			<field name="code">521219</field>
+			<field name="name">Belanja barang non operasional lainnya</field>
+			<field name="user_type_id" search="[('type','=','other')]" model="account.account.type" />
+			<field name="user_type" ref="account.data_account_type_expenses"/>
+		</record>	
+	</data>
+</openerp>

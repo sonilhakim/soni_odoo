@@ -1,0 +1,201 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="vit_profile.list">
+      <field name="name">vit_profile list</field>
+      <field name="model">vit_profile.vit_profile</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="vit_profile.action_window">
+      <field name="name">vit_profile window</field>
+      <field name="res_model">vit_profile.vit_profile</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="vit_profile.action_server">
+      <field name="name">vit_profile server</field>
+      <field name="model_id" ref="model_vit_profile_vit_profile"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="vit_profile" id="vit_profile.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="vit_profile.menu_1" parent="vit_profile.menu_root"/>
+    <menuitem name="Menu 2" id="vit_profile.menu_2" parent="vit_profile.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="vit_profile.menu_1_list" parent="vit_profile.menu_1"
+              action="vit_profile.action_window"/>
+    <menuitem name="Server to list" id="vit_profile" parent="vit_profile.menu_2"
+              action="vit_profile.action_server"/>
+    -->
+    <!-- <record id="action_res_users_my_profie" model="ir.actions.act_window">
+        <field name="name">Users</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.users</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+        <field name="domain">[('id','=',uid)]</field>
+        <field name="context">{'search_default_no_share': 1}</field>
+    </record>
+    <menuitem name="Profile" id="vit_profile.menu_root" action="base.action_res_users" web_icon="vit_riwayat,static/description/icon.png" />
+    <menuitem name="My Profile" id="vit_profile.menu_my_profile" parent="vit_profile.menu_root"
+              action="action_res_users_my_profie"/> -->
+
+    <record id="view_users_form_profile" model="ir.ui.view">
+        <field name="name">res.users.form</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <form string="Users">
+                <header>
+                </header>
+                <sheet>
+                    <field name="id" invisible="1"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-check">
+                            <field name="active" widget="boolean_button" options='{"terminology": "active"}'/>
+                        </button>
+                    </div>
+                    <field name="active_partner" required="0" readonly="1" invisible="1"/>
+                    <div class="alert alert-info text-center o_form_header"
+                        attrs="{'invisible': [
+                            '|', '|',
+                            '&amp;', ('active', '=', True), ('active_partner', '=', True),
+                            '&amp;', ('active', '=', False), ('active_partner', '=', False),
+                            '&amp;', ('active', '=', True), ('active_partner', '=', False),
+                        ]}"
+                        role="alert">
+                      <a class="close" data-dismiss="alert" href="#">x</a>
+                      <div>
+                        <strong>The contact linked to this user is still active</strong>
+                      </div>
+                      <div>You can archive the contact
+                        <field name="partner_id" required="0" readonly="1"/>
+                      </div>
+                    </div>
+                    <field name="image" widget='image' class="oe_avatar" options='{"preview_image": "image_medium"}'/>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" required="1"/></h1>
+                        <field name="email" invisible="1"/>
+                        <label for="login" class="oe_edit_only" string="Email Address"/>
+                        <h2><field name="login"/></h2>
+                        <group>
+                            <field name="partner_id" readonly="1" required="0" groups="base.group_no_one"
+                                    attrs="{'invisible': [('id', '=', False)]}"/>
+                        </group>
+                    </div>
+                    <notebook>                        
+                        <page string="Preferences">
+                            <group>
+                                <group string="Localization" name="preferences">
+                                    <field name="lang"/>
+                                    <field name="tz" widget="timezone_mismatch" options="{'tz_offset_field': 'tz_offset'}" />
+                                    <field name="tz_offset" invisible="1"/>
+                                </group>
+                                <group string="Menus Customization" groups="base.group_no_one">
+                                    <field name="action_id"/>
+                                </group>
+                            </group>
+                            <group string="Messaging and Social" name="messaging">
+                                <field name="signature"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_res_users_my_profiles" model="ir.actions.act_window">
+        <field name="name">Profil Saya</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.users</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+        <field name="domain">[('id','=',uid)]</field>
+        <field name="context">{'search_default_no_share': 1}</field>
+    </record>
+    <record id="action_res_users_view_profiletree" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+        <field name="act_window_id" ref="action_res_users_my_profiles"/>
+    </record>
+    <record id="action_res_users_view_profileform" model="ir.actions.act_window.view">
+        <field eval="20" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_users_form_profile"/>
+        <field name="act_window_id" ref="action_res_users_my_profiles"/>
+    </record>
+
+    <record id="action_res_users_atur_akun" model="ir.actions.act_window">
+        <field name="name">Pengaturan Akun</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.users</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+        <field name="domain">[('id','=',uid)]</field>
+        <field name="context">{'search_default_no_share': 1}</field>
+    </record>
+    <record id="action_res_users_atur_akun1" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+        <field name="act_window_id" ref="action_res_users_atur_akun"/>
+    </record>
+    <record id="action_res_users_atur_akun2" model="ir.actions.act_window.view">
+        <field eval="20" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="base.view_users_form"/>
+        <field name="act_window_id" ref="action_res_users_atur_akun"/>
+    </record>
+
+    <menuitem name="Profile" id="vit_profile.menu_root" web_icon="vit_riwayat,static/description/icon.png" />
+    <menuitem name="Profil Saya" id="vit_profile.menu_my_profile" parent="vit_profile.menu_root"
+              action="action_res_users_my_profiles"/>
+
+    <!-- <menuitem name="Profile" id="vit_profile.menu_root" web_icon="vit_riwayat,static/description/icon.png" /> -->
+    <!-- <menuitem name="My Profile" id="vit_profile.menu_my_profile" parent="vit_profile.menu_root"
+              action="base.action_res_users"/> -->
+    <menuitem name="Task" id="vit_profile.menu_task" parent="vit_profile.menu_root"
+              action="project.action_view_task"/>
+    <menuitem name="Message" id="vit_profile.menu_message" parent="vit_profile.menu_root"
+              action="mail.action_discuss"/>
+    <menuitem name="Account Settings" id="vit_profile.menu_account_setting" parent="vit_profile.menu_root"
+              action="action_res_users_atur_akun"/>
+    <menuitem name="Kalender" id="vit_profile.menu_kalender" parent="vit_profile.menu_root"
+              action="calendar.action_calendar_event"/>
+    <menuitem name="Log Trafik" id="vit_profile.menu_log_trafic" parent="vit_profile.menu_root"
+              action="auditlog.action_auditlog_log_tree"/>
+  </data>
+</odoo>

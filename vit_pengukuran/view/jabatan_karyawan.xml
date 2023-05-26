@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_jabatan_karyawan_tree" model="ir.ui.view">
+            <field name="name">vit_jabatan_karyawan_tree</field>
+            <field name="model">vit.jabatan_karyawan</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="abatan">
+                    <field name="name" />
+                    <field name="pengukuran_id" />
+                    <field name="spk_id"/>
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_jabatan_karyawan_form" model="ir.ui.view">
+            <field name="name">vit_jabatan_karyawan_form</field>
+            <field name="model">vit.jabatan_karyawan</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Jabatan">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Nama Jabatan"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="user_id" options="{'no_create':True}" readonly="1"/>
+                            </group>
+                            <!-- <group>
+                                <field name="pengukuran_id" options="{'no_create':True}" required="1"/>
+                                <field name="spk_id" options="{'no_create':True}" required="1"/>
+                            </group> -->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_jabatan_karyawan_search" model="ir.ui.view">
+            <field name="name">vit_jabatan_karyawan</field>
+            <field name="model">vit.jabatan_karyawan</field>
+            <field name="arch" type="xml">
+                <search string="Jabatan">
+                    <field name="name" select="True"/>
+                    <field name="pengukuran_id"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- action window -->
+        <record id="action_vit_jabatan_karyawan" model="ir.actions.act_window">
+            <field name="name">Jabatan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.jabatan_karyawan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!-- <field name="context">{"search_default_fieldname":1}</field> -->
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Jabatan
+                </p><p>
+                Click the Create button to add a new Jabatan
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_jabatan_karyawan" name="Jabatan" parent="vit_master_date_sub_menu" action="action_vit_jabatan_karyawan" groups="group_edp_pengukuran" sequence="70"/>
+    </data>
+</odoo>

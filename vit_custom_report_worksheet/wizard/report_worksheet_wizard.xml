@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+
+        <record id="report_worksheet_wizard_view_form" model="ir.ui.view">
+            <field name="name">report.worksheet.wizard.form</field>
+            <field name="model">report.worksheet.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Faktur">
+                    <p class="oe_grey">
+                        Print Worksheet ?
+                    </p>
+                    <footer>
+                        <button string="Ok" name="action_print_report" type="object" default_focus="1" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="report_worksheet_wizard_view">
+            <field name="name">Print Worksheet</field>
+            <field name="res_model">report.worksheet.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

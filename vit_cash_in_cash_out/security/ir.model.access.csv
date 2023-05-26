@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_user_vit_cash_in_out,access_user_vit_cash_in_out,model_vit_cash_in_out,vit_cash_in_cash_out.group_cash_in_cash_out_user,1,1,1,0
+access_manager_vit_cash_in_out,access_manager_vit_cash_in_out,model_vit_cash_in_out,vit_cash_in_cash_out.group_cash_in_cash_out_manager,1,1,1,1
+access_admin_vit_cash_in_out,access_admin_vit_cash_in_out,model_vit_cash_in_out,base.group_system,1,1,1,1
+access_user_vit_transaksi_cash,access_user_vit_transaksi_cash,model_vit_transaksi_cash,vit_cash_in_cash_out.group_cash_in_cash_out_user,1,1,1,0
+access_manager_vit_transaksi_cash,access_manager_vit_transaksi_cash,model_vit_transaksi_cash,vit_cash_in_cash_out.group_cash_in_cash_out_manager,1,1,1,1
+access_admin_vit_transaksi_cash,access_admin_vit_transaksi_cash,model_vit_transaksi_cash,base.group_system,1,1,1,1

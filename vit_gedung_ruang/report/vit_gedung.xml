@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_vit_gedung_menu" string="Vit - Vit gedung"
+         model="vit.vit_gedung" report_type="qweb-pdf" 
+         file="vit.vit_gedung"  name="vit_gedung_ruang.vit_vit_gedung_report" />
+
+        <!-- document template -->
+        <template id="vit_gedung_ruang.vit_vit_gedung_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Vit gedung: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Kode gedung</strong>
+                            <p class="m-0" t-field="doc.kode_gedung" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Alamat</strong>
+                            <p class="m-0" t-field="doc.alamat" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Asset</strong>
+                            <p class="m-0" t-field="doc.asset_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Penanggung jawab</strong>
+                            <p class="m-0" t-field="doc.penanggung_jawab_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Ruang</h2>
+                <table class="table table-sm o_main_table" name="ruang_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Kode ruang</td>
+                            <td>Luas</td>
+                            <td>Lantai</td>
+                            <td>Tanggal awal</td>
+                            <td>Tanggal akhir</td>
+                            <td>Gedung</td>
+                            <td>Penanggung jawab</td>
+                            <td>Pengguna</td>
+                            <td>Jenis penggunaan</td>
+                        </tr>
+                    </thead>
+                    <tbody class="ruang_ids_tbody">
+                        <tr t-foreach="doc.ruang_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.kode_ruang" /></td>
+                            <td><span t-field="line.luas" /></td>
+                            <td><span t-field="line.lantai" /></td>
+                            <td><span t-field="line.tanggal_awal" /></td>
+                            <td><span t-field="line.tanggal_akhir" /></td>
+                            <td><span t-field="line.gedung_id" /></td>
+                            <td><span t-field="line.penanggung_jawab_id" /></td>
+                            <td><span t-field="line.pengguna_id" /></td>
+                            <td><span t-field="line.jenis_penggunaan_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_gedung_ruang.vit_vit_gedung_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_gedung_ruang.vit_vit_gedung_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

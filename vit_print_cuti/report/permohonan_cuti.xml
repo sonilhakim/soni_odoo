@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="report_permohonan_cuti"
+            string="Permohonan Cuti"
+            model="hr.leave" 
+            report_type="qweb-pdf"
+            paperformat="vit_print_cuti.paperformat_print_cuti"
+            file="hr.leave" 
+            name="vit_print_cuti.permohonan_cuti_report"
+        />
+
+        <!-- paper_format="paperformat_a4_landscape"  -->
+        
+        <template id="report_permohonan_cuti_dokumen">            
+            <t t-call="vit_print_cuti.external_layout_print_cuti">
+                <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                <div class="page">
+                    <div class="oe_structure"/>                    
+                    <div class="header">
+                        <h4 class="text-center">
+                            <img style="width:100px;" t-if="o.employee_id.company_id.logo" t-att-src="image_data_uri(o.employee_id.company_id.logo)" alt="Logo"/>
+                            <br/>
+                            <br/>
+                            <strong>UNIVERSITAS PERTAHANAN RI
+                            <br/>
+                            Permohonan Cuti Pegawai</strong>
+                        </h4>
+                    </div>
+
+                    <div style="margin-bottom:20px;">
+                        <strong>Data Pegawai</strong>
+                        <div class="row">
+                            <div style="padding:5px;width:50%;border-left: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;">
+                                Nama Lengkap
+                            </div>
+                            <div style="padding:5px;width:50%;border-top: 1px solid black;border-right: 1px solid black;">
+                                <span t-field="o.employee_id.name" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="padding:5px;width:50%;border-left: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;">
+                                Alamat
+                            </div>
+                            <div style="padding:5px;width:50%;border-top: 1px solid black;border-right: 1px solid black;">
+                                <span t-field="o.employee_id.address_home_id.street" /> - <span t-field="o.employee_id.address_home_id.city" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="padding:5px;width:50%;border-left: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;">
+                                No. Telepon
+                            </div>
+                            <div style="padding:5px;width:50%;border-top: 1px solid black;border-right: 1px solid black;">
+                                <span t-field="o.employee_id.emergency_phone" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="padding:5px;width:50%;border-left: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;">
+                                Matra
+                            </div>
+                            <div style="padding:5px;width:50%;border-top: 1px solid black;border-right: 1px solid black;">
+                                <span t-field="o.employee_id.matra_id.name" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="padding:5px;width:50%;border-left: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;">
+                                Jabatan
+                            </div>
+                            <div style="padding:5px;width:50%;border-top: 1px solid black;border-right: 1px solid black;">
+                                <span t-field="o.employee_id.jabatanf_id.name" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="padding:5px;width:50%;border-left: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;border-bottom: 1px solid black;">
+                                Subsatker
+                            </div>
+                            <div style="padding:5px;width:50%;border-top: 1px solid black;border-right: 1px solid black;border-bottom: 1px solid black;">
+                                <span t-field="o.employee_id.unit_kerja_id.name" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:20px;">
+                        <strong>Keterangan Cuti</strong>
+                        <div class="row">
+                            <div style="padding:5px;width:50%;border-left: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;">
+                                Jenis Cuti
+                            </div>
+                            <div style="padding:5px;width:50%;border-top: 1px solid black;border-right: 1px solid black;">
+                                <span t-field="o.holiday_status_id.name" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="padding:5px;width:50%;border-left: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;">
+                                Lama Cuti
+                            </div>
+                            <div style="padding:5px;width:50%;border-top: 1px solid black;border-right: 1px solid black;">
+                                <span t-field="o.number_of_days" /> Hari
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="padding:5px;width:50%;border-left: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;;border-bottom: 1px solid black;">
+                                Mulai Tanggal s/d Tanggal
+                            </div>
+                            <div style="padding:5px;width:50%;border-top: 1px solid black;border-right: 1px solid black;;border-bottom: 1px solid black;">
+                                <span t-field="o.request_date_from" /> s.d <span t-field="o.request_date_to" />
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom:20px;">
+                        <div class="row">
+                            <div style="padding:5px;width:50%;border-left: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;">
+                                Hak Cuti
+                            </div>
+                            <div style="padding:5px;width:50%;border-top: 1px solid black;border-right: 1px solid black;">
+                                <span t-field="o.holiday_status_id.max_leaves" /> Hari
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="padding:5px;width:50%;border-left: 1px solid black;border-right: 1px solid black;border-bottom: 1px solid black;">
+                                Sisa Hak Cuti
+                            </div>
+                            <div style="padding:5px;width:50%;border-right: 1px solid black;border-bottom: 1px solid black;">
+                                <span t-field="o.holiday_status_id.remaining_leaves" /> Hari
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom:20px;">
+                        <div class="row">
+                            <div style="padding:5px;width:50%;border-left: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;border-bottom: 1px solid black;">
+                                Keterangan / Alasan
+                            </div>
+                            <div style="padding:5px;width:50%;border-top: 1px solid black;border-right: 1px solid black;border-bottom: 1px solid black;">
+                                <span t-field="o.name" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <strong>Catatan dari Atasan</strong>
+                        <div class="row">
+                            <div style="padding:5px;width:100%;border: 1px solid black;">
+                                <span t-field="o.report_note" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:50px;">
+                        <table style="width:100%;border-collapse: collapse;">
+                           <tbody>                            
+                                <tr>
+                                    <td style="text-align:right;">
+                                        <br/>
+                                        Bogor, <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d %B %Y')"/>
+                                        <br/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                                        
+                    <div style="margin-top:50px;">
+                        <table style="width:100%;border-collapse: collapse;text-align:center;">
+                            <tr>
+                                <td style="width:25%;">Pemohon Cuti</td>
+                                <td style="width:25%;">Persetujuan Atasan</td>
+                                <td style="width:25%;">Kasubag</td>
+                                <td style="width:25%;">HRD</td>
+                            </tr>
+                            <tr style="height:30mm">
+                                <td style="vertical-align:bottom;">
+                                    <span t-field="o.employee_id.name"/>
+                                </td>
+                                <td style="vertical-align:bottom;">(............................)</td>
+                                <td style="vertical-align:bottom;">(............................)</td>
+                                <td style="vertical-align:bottom;">(............................)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+
+        <template id="permohonan_cuti_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="lang" t-value="o.user_id.sudo().lang"/>
+                    <t t-call="vit_print_cuti.report_permohonan_cuti_dokumen" t-lang="lang"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

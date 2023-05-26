@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_daftar_pegawai_pensiun_menu" string="Vit - Daftar pegawai pensiun"
+         model="vit.daftar_pegawai_pensiun" report_type="qweb-pdf" 
+         file="vit.daftar_pegawai_pensiun"  name="vit_laporan.vit_daftar_pegawai_pensiun_report" />
+
+        <!-- document template -->
+        <template id="vit_laporan.vit_daftar_pegawai_pensiun_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Daftar pegawai pensiun: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Fakultas</strong>
+                            <p class="m-0" t-field="doc.fakultas_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Matra</strong>
+                            <p class="m-0" t-field="doc.matra_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Pensiun detail</h2>
+                <table class="table table-sm o_main_table" name="pensiun_detail_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Nip</td>
+                            <td>Jabatan terakhir</td>
+                            <td>Golongan terakhir</td>
+                            <td>Tmt pensiun</td>
+                            <td>Pensiun</td>
+                        </tr>
+                    </thead>
+                    <tbody class="pensiun_detail_ids_tbody">
+                        <tr t-foreach="doc.pensiun_detail_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.nip" /></td>
+                            <td><span t-field="line.jabatan_terakhir" /></td>
+                            <td><span t-field="line.golongan_terakhir" /></td>
+                            <td><span t-field="line.tmt_pensiun" /></td>
+                            <td><span t-field="line.pensiun_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_laporan.vit_daftar_pegawai_pensiun_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_laporan.vit_daftar_pegawai_pensiun_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

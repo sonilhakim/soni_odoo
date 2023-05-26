@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_gaji_pnbp_detail_tree" model="ir.ui.view">
+            <field name="name">vit_gaji_pnbp_detail_tree</field>
+            <field name="model">vit.gaji_pnbp_detail</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Gaji pnbp detail">
+                    <field name="gaji" />
+                    <field name="karyawan_id" />
+                    <field name="gaji_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_gaji_pnbp_detail_form" model="ir.ui.view">
+            <field name="name">vit_gaji_pnbp_detail_form</field>
+            <field name="model">vit.gaji_pnbp_detail</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Gaji pnbp detail">
+                    <header>
+                    </header>
+                    <sheet>
+                        <!-- <div class="oe_button_box" name="button_box"> -->
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        <!-- </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Gaji pnbp detail Name"/>
+                            <h1><field name="name"/></h1>
+                        </div> -->
+                        <group>
+                            <group>
+                                <field name="gaji" />
+                            </group>
+                            <group>
+                                <field name="karyawan_id" />
+                                <field name="gaji_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <!-- <record id="view_vit_gaji_pnbp_detail_search" model="ir.ui.view">
+            <field name="name">vit_gaji_pnbp_detail</field>
+            <field name="model">vit.gaji_pnbp_detail</field>
+            <field name="arch" type="xml">
+                <search string="Gaji pnbp detail">
+
+                    <filter string="Gaji" name="filter_by_gaji" domain="[('gaji','=','')]" />
+                    <field name="gaji" select="True"/>
+                    <field name="karyawan_id" select="True"/>
+                    <field name="gaji_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Karyawan" domain="[]" name="group_by_karyawan_id" context="{'group_by':'karyawan_id'}"/>
+                        <filter string="Gaji" domain="[]" name="group_by_gaji_id" context="{'group_by':'gaji_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record> -->
+        <!-- kanban , to show image, please add image_small in the model -->
+        <!-- <record id="view_vit_gaji_pnbp_detail_kanban" model="ir.ui.view" >
+            <field name="name">vit_gaji_pnbp_detail</field>
+            <field name="model">vit.gaji_pnbp_detail</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="gaji" />
+                    <field name="karyawan_id" />
+                    <field name="gaji_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Karyawan</span> <field name="karyawan_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Gaji</span> <field name="gaji_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record> -->
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <!-- <record id="view_vit_gaji_pnbp_detail_graph" model="ir.ui.view">
+            <field name="name">vit_gaji_pnbp_detail</field>
+            <field name="model">vit.gaji_pnbp_detail</field>
+            <field name="arch" type="xml">
+                <graph string="Gaji pnbp detail" type="bar">
+                    <field name="karyawan_id"/>
+                </graph>
+            </field>
+        </record> -->
+        <!-- action window -->
+        <!-- <record id="action_vit_gaji_pnbp_detail" model="ir.actions.act_window">
+            <field name="name">Gaji pnbp detail</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.gaji_pnbp_detail</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Gaji pnbp detail
+                </p><p>
+                Click the Create button to add a new Gaji pnbp detail
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_gaji_pnbp_detail" name="Gaji pnbp detail" parent="vit_remunerasi_config_menu" action="action_vit_gaji_pnbp_detail" sequence="60"/> -->
+    </data>
+</odoo>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="rekap_stock_acc_report_tmpl">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="doc">
+                        <div class="page">
+                            <div class="text-center">
+                                <h4>
+                                    <strong>LAPORAN STOK AKSESORIS</strong>
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        PERIODE BULAN <span t-field="doc.periode" />
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="text-center" style="width:100%; margin-bottom:25px;font-size:14px;">
+                                <thead style="background-color: #ebebeb;">
+                                    <tr>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:5%;">NO</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:12%;">NO PO</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:17%;">KODE BARANG</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:28%;">ITEM</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:9%;">QTY</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:9%;">UNIT</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;width:20%;">KETERANGAN</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="no" t-value="1" />
+                                    <t t-foreach="data_dict" t-as="dat">
+                                        <tr>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="no" />
+                                                <t t-set="no" t-value="no + 1"/>
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat[0]" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat[1]" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat[2]" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat[3]" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat[4]" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                            </td>
+                                        </tr>
+                                    </t>
+
+                                </tbody>
+                            </table>
+                            <table style="width:100%;">
+                                <tr>
+                                    <td style="width:40%;"></td>
+                                    <td style="width:8%;border-top: 2px solid black;border-left: 2px solid black;padding-left:5px;">
+                                        Tanggal
+                                    </td>
+                                    <td style="width:52%;border-top: 2px solid black;border-right: 2px solid black;">
+                                        :&#160;<span t-esc="doc.get_current_date()" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <table style="width:100%;">
+                                <tr>
+                                    <td style="width:40%;"></td>
+                                    <td style="border-top: 1px solid black;border-left: 2px solid black;width:8%;padding-left:5px;">
+                                        Dibuat
+                                    </td>
+                                    <td style="border-top: 1px solid black;border-right: 1px solid black;width:17%;">
+                                        :&#160;<span t-esc="doc.create_uid.name" />
+                                    </td>
+                                    <td style="border-top: 1px solid black;border-left: 1px solid black;width:10%;text-align:center;">
+                                        Diperiksa
+                                    </td>
+                                    <td style="border-top: 1px solid black;border-left: 1px solid black;border-right: 2px solid black;width:25%;padding-left:5px;">
+                                        Mengetahui:
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="text-center" style="width:100%;">
+                                <tr>
+                                    <td style="width:40%;"></td>
+                                    <td style="border-top: 1px solid black;border-left: 2px solid black;width:35%;">
+                                        Bahan Baku,
+                                    </td>
+                                    <td style="border-top: 1px solid black;border-left: 1px solid black;width:10%;">
+                                        PPC,
+                                    </td>
+                                    <td style="border-top: 1px solid black;border-left: 1px solid black;border-right: 2px solid black;width:15%;">
+                                        MD/Foll.UP
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="border-top: 1px solid black;border-left: 2px solid black;height:100px;">
+                                    </td>
+                                    <td style="border-top: 1px solid black;border-left: 1px solid black;height:100px;">
+                                    </td>
+                                    <td style="border-top: 1px solid black;border-left: 1px solid black;border-right: 2px solid black;height:100px;">
+                                    </td>
+                                </tr>
+                            </table>
+                            <table style="width:100%;">
+                                <tr>
+                                    <td style="width:40%;height:25px;"></td>
+                                    <td style="border-top: 1px solid black;;border-bottom: 2px solid black;border-left: 2px solid black;width:25%;height:25px;">
+                                    </td>
+                                    <td style="border-top: 1px solid black;;border-bottom: 2px solid black;border-left: 1px solid black;width:10%;height:25px;">
+                                    </td>
+                                    <td style="border-top: 1px solid black;;border-bottom: 2px solid black;border-left: 1px solid black;width:10%;height:25px;">
+                                    </td>
+                                    <td style="border-top: 1px solid black;border-bottom: 2px solid black;border-left: 1px solid black;border-right: 2px solid black;width:15%;height:25px;">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+
+        </template>
+
+    </data>
+</openerp>

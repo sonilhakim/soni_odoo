@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="vit_skp_top_menu" name="SKP" sequence="20" web_icon="vit_skp,static/description/icon.png" />
+		<!-- <menuitem id="vit_skp_sub_menu" name="Operations" sequence="40" parent="vit_skp_top_menu" /> -->
+		<menuitem id="vit_skp_config_menu" name="Configurations" sequence="100" parent="vit_skp_top_menu" />
+	</data>
+</odoo>

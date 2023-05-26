@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+
+        <record id="vit_product_template_only_form_view_po" model="ir.ui.view">
+            <field name="name">product.template.product.form.po</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml"> 
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="default_code_c" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+   </data>
+</odoo>

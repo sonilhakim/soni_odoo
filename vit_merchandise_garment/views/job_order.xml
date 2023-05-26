@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_job_order_garmen_tree" model="ir.ui.view">
+            <field name="name">vit_job_order_garmen_tree</field>
+            <field name="model">vit.purchase_order_garmen</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Order Received" create="false">
+                    <field name="name_jo" />
+                    <field name="date" />
+                    <field name="name" string="No. OR" />
+                    <field name="po_buyer" />
+                    <field name="po_date" />
+                    <field name="time_production"/>
+                    <field name="partner_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_job_order_garmen_form" model="ir.ui.view">
+            <field name="name">vit_job_order_garmen_form</field>
+            <field name="model">vit.purchase_order_garmen</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Order Received">
+                    <header>
+                        <button string="JO Done" type="object" name="action_job_done" states="jo_onprogress" groups="vit_merchandise_garment.group_md_garment_manager" confirm="Anda yakin JO akan validate ?"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,approved"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <div class="oe_title">
+                            <label for="name_jo" class="oe_edit_only" string="No JO :"/>
+                            <h1><field name="name_jo"/></h1>
+                        </div>
+                        <group>
+                            <group>                                
+                                <field name="date" />
+                                <field name="po_buyer" required="1"/>
+                                <field name="po_date" required="1" />
+                                <field name="time_production" required="1"/>
+                                <field name="name" string="No. OR" readonly="1"/>
+                                <field name="product_created" invisible="1" />
+                            </group>
+                            <group>                                    
+                                <field name="partner_id" domain="[('customer','=',True)]" options="{'no_create': True}"/>
+                                <field name="partner_invoice" domain="[('parent_id','=',partner_id),('type','=','invoice')]" options="{'no_create': True}" />
+                                <field name="partner_delivery" domain="[('parent_id','=',partner_id),('type','=','delivery')]" options="{'no_create': True}" />
+                                <field name="user_id" />
+                                <field name="company_id" />
+                                <field name="project" required="1"/>
+                                <field name="note" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="BOQ">
+                                <field name="boq_line_ids">
+                                    <tree string="BOQ" editable="bottom">
+                                        <field name="name" required="1"/>
+                                        <field name="sample_approv_id"/>
+                                        <field name="product_id" readonly="1"/>
+                                        <field name="product_name"/>
+                                        <field name="qty" required="1"/>
+                                        <field name="uom_id" options="{'no_create': True}" string="Satuan"/>
+                                        <field name="harga_cm" required="1"/>
+                                    </tree>
+                                    <form string="BOQ">
+                                        <div class="oe_button_box" name="button_box">
+                                        </div>
+                                        <div class="oe_title">
+                                            <label for="product_id" class="oe_edit_only" string="Style :"/>
+                                            <h1><field name="product_id"/></h1>
+                                        </div>
+                                        <group>
+                                            <group>
+                                                <field name="sample_id"/>
+                                                <field name="product_id" readonly="1"/>
+                                                <field name="product_name"/>
+                                            </group>
+                                            <group>
+                                                <field name="qty" required="1"/>
+                                                <field name="uom_id" options="{'no_create': True}" string="Satuan"/>
+                                                <field name="harga_cm" required="1"/>
+                                                <field name="sample_done" readonly="1"/>
+                                            </group>
+                                            <!-- <group>
+                                                <field name="po_id" string="NO. OR"/>
+                                            </group>
+                                            <group>
+                                            </group> -->
+                                        </group>
+                                        <notebook>
+                                            <page string="Material List">
+                                                <field name="material_ids">
+                                                    <tree string="Material List" editable="bottom">
+                                                        <field name="acc_no" />
+                                                        <field name="material" context="{'default_type': 'product'}" domain="[('categ_id.name','=','MATERIAL')]" options="{'no_create': True}" />
+                                                        <field name="spec" />
+                                                        <field name="colour" />
+                                                        <field name="qty" invisible="1"/>
+                                                        <field name="cons" />
+                                                        <field name="uom" options="{'no_create': True}"/>
+                                                    </tree>
+                                                </field>
+                                            </page>
+                                            <page string="Document">
+                                                <field name="design_ids">
+                                                    <tree string="Document" editable="bottom">
+                                                        <field name="doc_name" invisible="1"/>
+                                                        <field name="doc" widget="binary" filename="doc_name" />
+                                                        <field name="date"/>
+                                                        <field name="name"/>
+                                                    </tree>
+                                                </field>
+                                            </page>
+                                        </notebook>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Document">
+                                <field name="doc_line_ids">
+                                    <tree string="Document" editable="bottom">
+                                        <field name="doc_name" invisible="1"/>
+                                        <field name="doc" widget="binary" filename="doc_name" />
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Other Info">
+                                <group>
+                                    <group>
+                                        <field name="product_request_id" readonly="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="sample_approval_id" readonly="1"/>
+                                        <field name="sample_done" readonly="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_vit_job_order_garmen" model="ir.actions.act_window">
+            <field name="name">Job Order (JO)</field>
+            <field name="res_model">vit.purchase_order_garmen</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('state','in',['jo_onprogress','jo_done'])]</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <!-- <field name="search_view_id" ref="view_account_invoice_filter"/> -->
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Job Order
+                </p><p>
+                Click the Create button to add a new Job Order
+                </p>
+            </field>
+        </record>
+
+        <record id="action_view_vit_job_order_garmen_tree_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_vit_job_order_garmen_tree"/>
+            <field name="act_window_id" ref="action_vit_job_order_garmen"/>
+        </record>
+
+        <record id="action_view_vit_job_order_garmen_tree_view2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_vit_job_order_garmen_form"/>
+            <field name="act_window_id" ref="action_vit_job_order_garmen"/>
+        </record>
+
+        <menuitem action="action_vit_job_order_garmen" id="menu_vit_job_order_garmen" name="Job Order (JO)" parent="vit_merchandise_garment.submenu_merchandise" sequence="80"/>
+    </data>
+</odoo>

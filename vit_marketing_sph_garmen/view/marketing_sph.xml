@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_marketing_sph_garmen_tree" model="ir.ui.view">
+            <field name="name">vit_marketing_sph_garmen_tree</field>
+            <field name="model">vit.marketing_sph_garmen</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Marketing sph">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="proposal_id" />
+                    <field name="partner_id" />
+                    <field name="project" />
+                    <field name="due_date"/>
+                    <field name="time_production" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_marketing_sph_garmen_form" model="ir.ui.view">
+            <field name="name">vit_marketing_sph_garmen_form</field>
+            <field name="model">vit.marketing_sph_garmen</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Marketing SPH">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" />
+                        <button name="%(vit_marketing_sph_garmen.show_marketing_sph_wizard)d" string="Request Design" type="action" class="oe_highlight" attrs="{'invisible':['|',('request','!=',False),('state','not in',['open','purchase_approved','ppic_approved'])]}"/>
+                        <button string="Purchase Approve" type="object" name="action_approve_purchase" states="open" groups="purchase.group_purchase_user" confirm="Anda yakin SPH akan di approve ?"/>
+                        <button string="PPIC Approve" type="object" name="action_approve_ppic" states="purchase_approved" groups="vit_ppic.group_manager_ppic" confirm="Anda yakin SPH akan di approve ?"/>
+                        <button string="Cancel" type="object" name="action_cancel" attrs="{'invisible':[('state','not in',['open','purchase_approved','ppic_approved'])]}" confirm="Anda yakin SPH akan di cancel ?"/>
+                        <button string="Cancel" type="object" name="action_cancel" states="tender" groups="vit_marketing_sph_garmen.group_marketing_sph" confirm="Anda yakin SPH akan di cancel ?"/>
+                        <button string="Reset to Draft" type="object" name="action_draft" states="cancel" />
+                        <button string="Tender" type="object" name="action_tender" attrs="{'invisible':['|',('sample','=',False),('state','!=','ppic_approved')]}" groups="vit_marketing_sph_garmen.group_marketing_sph" confirm="Anda yakin SPH sudah Tender ?"/>
+                        <button string="Close" type="object" name="action_close" attrs="{'invisible':['|',('sample','=',False),('state','not in',['ppic_approved','tender'])]}" groups="vit_marketing_sph_garmen.group_marketing_sph" confirm="Anda yakin SPH akan di close ?"/>
+                        <button string="Unclose" type="object" name="action_draft" states="close" groups="vit_marketing_sph_garmen.group_marketing_sph" confirm="Anda yakin SPH akan di unclose ?" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,purchase_approved,ppic_approved,tender"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="SPH No :"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>                                
+                                <field name="date" />
+                                <field name="due_date" required="1"/>
+                                <field name="time_production" required="1" />
+                                <field name="proposal_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="partner_id" string="Buyer" domain="[('customer','=',True)]" options="{'no_create': True}" />
+                                <field name="user_id" />
+                                <field name="company_id" />
+                                <field name="project" string="Project Description"/>
+                                <field name="notes" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="BOQ">
+                                <field name="boq_ids">
+                                    <!-- <tree string="BOQ" editable="bottom">
+                                        <field name="name"/>
+                                        <field name="qty"/>
+                                        <field name="qty_or" readonly="1"/>
+                                        <field name="uom_id" options="{'no_create': True}"/>
+                                        <field name="price"/>
+                                        <field name="total_price"/>
+                                    </tree> -->
+                                </field>
+                                <group>
+                                    <group>
+                                        <field name="condition"/>
+                                        <field name="total_qty" invisible="1"/>       
+                                    </group>
+                                    <group class="oe_subtotal_footer oe_right">
+                                        <field name="total_price" class="oe_subtotal_footer_separator"/>
+                                        <field name="currency_id" invisible="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Document">
+                                <field name="doc_ids">
+                                    <tree string="Document" editable="bottom">
+                                        <field name="doc_name" invisible="1"/>
+                                        <field name="doc" widget="binary" filename="doc_name" required="1"/>
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Other Info">
+                                <group>
+                                    <group>
+                                        <field name="request" readonly="1"/>
+                                        <field name="sample" readonly="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="po" readonly="1" attrs="{'invisible':[('po','=',False)]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_marketing_sph_garmen_search" model="ir.ui.view">
+            <field name="name">vit_marketing_sph_garmen_search</field>
+            <field name="model">vit.marketing_sph_garmen</field>
+            <field name="arch" type="xml">
+                <search string="Marketing SPH">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Buyer" name="filter_by_partner_id" domain="[('partner_id','=','')]" />
+                    <filter string="No. Proposal" name="filter_by_proposal_id" domain="[('proposal_id','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="date" select="True"/>
+                    <field name="project" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="partner_id" select="True"/>
+                    <field name="proposal_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Partner" domain="[]" name="group_by_partner_id" context="{'group_by':'partner_id'}"/>
+                        <filter string="Proposal" domain="[]" name="group_by_proposal_id" context="{'group_by':'proposal_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_marketing_sph_garmen_kanban" model="ir.ui.view" >
+            <field name="name">vit_marketing_sph_garmen_kanban</field>
+            <field name="model">vit.marketing_sph_garmen</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="project" />
+                    <field name="partner_id" />
+                    <field name="proposal_id" />
+                    <field name="date" />
+                    <field name="due_date" />
+                    <field name="state" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            <span class='text-muted'>Buyer</span> <field name="partner_id"></field>
+                                        </li>
+                                        <li>
+                                            <span class='text-muted'>Project</span> <field name="project"></field>
+                                        </li>
+                                        <li>
+                                            <span class='text-muted'>Date</span> <field name="date"></field>
+                                        </li>
+                                        <li>
+                                            <span class='text-muted'>Due Date</span> <field name="due_date"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_vit_marketing_sph_garmen_cal" model="ir.ui.view">
+            <field name="name">vit_marketing_sph_garmen_cal</field>
+            <field name="model">vit.marketing_sph_garmen</field>
+            <field name="arch" type="xml">
+                <calendar string="Marketing SPH" date_start="date" date_stop="due_date" color="name">
+                    <field name="name" />
+                    <field name="partner_id"/>
+                    <field name="project" />
+                </calendar>
+            </field>
+        </record>
+        <!-- graph -->
+        <record id="view_vit_marketing_sph_garmen_graph" model="ir.ui.view">
+            <field name="name">vit_marketing_sph_garmen_graph</field>
+            <field name="model">vit.marketing_sph_garmen</field>
+            <field name="arch" type="xml">
+                <graph string="Marketing SPH" type="bar">
+                    <field name="partner_id"/>
+                    <field name="project" />
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_marketing_sph_garmen" model="ir.actions.act_window">
+            <field name="name">Surat Penawaran Harga (SPH)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.marketing_sph_garmen</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,calendar,graph</field>
+            <field name="view_id" ref="view_vit_marketing_sph_garmen_tree"/>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create"> 
+                Click to add a new Marketing sph 
+                </p><p> 
+                Click the Create button to add a new Marketing sph 
+                </p>
+            </field>
+        </record>
+        <menuitem id="menu_vit_marketing_sph" name="Surat Penawaran Harga (SPH)" parent="vit_marketing.vit_marketing_sub_menu" action="action_vit_marketing_sph_garmen" sequence="40"/>
+
+        <!-- tree view sph ppic -->
+        <!-- <record id="view_vit_marketing_sph_ppic_tree" model="ir.ui.view">
+            <field name="name">vit_marketing_sph_ppic_tree</field>
+            <field name="model">vit.marketing_sph_garmen</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Marketing sph" delete="false" create="false">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="proposal_id" />
+                    <field name="partner_id" />
+                    <field name="time_production" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record> -->
+
+        <!-- <record id="action_vit_marketing_sph_ppic" model="ir.actions.act_window">
+            <field name="name">Surat Penawaran Harga (SPH)</field>
+            <field name="res_model">vit.marketing_sph_garmen</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_vit_marketing_sph_ppic_tree"/>
+            <field name="domain">[('state','!=','draft')]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create"> 
+                Click to add a new Marketing sph 
+                </p><p> 
+                Click the Create button to add a new Marketing sph 
+                </p>
+            </field>
+        </record>
+        <menuitem id="menu_vit_ppic_sph" name="Surat Penawaran Harga (SPH)" parent="vit_merchandise.menu_sub_ppic_control" action="action_vit_marketing_sph_ppic" sequence="90"/> -->
+    </data>
+</odoo>

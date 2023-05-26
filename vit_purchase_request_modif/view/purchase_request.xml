@@ -1,0 +1,215 @@
+<odoo>
+    <data>
+        <!-- form -->
+        <record id="view_purchase_request_form" model="ir.ui.view">
+            <field name="name">vit_purchase.request_form</field>
+            <field name="model">vit.product.request</field>
+            <field name="inherit_id" ref="vit_product_request.view_product_request_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form" position="replace">
+                    <form string="purchase request form" >
+                        <header>
+
+                            <button string="Confirm" type="object" name="action_confirm" 
+                                class="oe_highlight"
+                                groups="vit_product_request.product_request_user,vit_product_request.product_request_manager"
+                                states="draft" />
+
+                            <button string="Validate" type="object" name="action_validate" 
+                                class="oe_highlight"
+                                groups="vit_product_request.product_request_manager"
+                                states="open" />
+
+                            <button string="Cancel" type="object" name="action_draft"
+                                states="open" />
+
+                            <button string="Reject" type="object" name="action_reject"
+                                    confirm="Are you sure to Reject?"
+                                states="open,draft" groups="vit_product_request.product_request_manager"/>
+
+                            <button string="Create Bid" type="object" name="action_create_pr"
+                                states="validate" groups="purchase.group_purchase_manager"/>
+
+                            <button string="Set to Draft" type="object" name="action_draft"
+                                states="reject" groups="vit_product_request.product_request_manager"/>
+
+                            <field name="state" widget="statusbar" statusbar_visible="draft,open,validate,onprogress"/>
+
+                        </header>
+                        <sheet>
+                            <div class="oe_title">
+                                <label for="name" class="oe_edit_only" 
+                                     string="Purchase Request Number" />
+                                <h1>
+                                    <field name="name" />
+                                </h1>
+                            </div>
+                            <group>
+                                <group>
+                                    <field name="date"/>
+                                    <field name="user_id" options="{'no_create':True,'no_open':True}"/>
+                                    <field name="company_id" options="{'no_create':True,'no_open':True}" />
+                                    <field name="date_required" />
+                                    <field name="payment_term_id" readonly="1" attrs="{'invisible':[('payment_term_id','=',False)]}"/>
+                                </group>
+                                <group>
+                                    <field name="category_id" options="{'no_create':True,'no_open':True}"/>
+                                    <field name="department_id" options="{'no_create':True,'no_open':True}"/>
+                                    <field name="reference" />
+                                </group>
+                            </group>
+
+                            <notebook>
+                                <page string="Lines">
+                                    <field name="product_request_line_ids" attrs="{'readonly': [('state','!=','draft')]}">
+                                        <tree string="Product Lines" editable="bottom">
+                                            <field name="product_id"
+                                                domain="[('categ_id','=',parent.category_id)]" options="{'no_create':True,'no_open':True}" required="1"/>
+                                            <field name="name" required="1"/>       
+                                            <field name="quantity" sum="Total Quantity"/>
+                                            <field name="product_uom_id" options="{'no_create':True,'no_open':True}"/>
+                                            <field name="allowance_id" domain="[('active', '=', True)]" options="{'no_create':True}"/>
+                                            <field name="allow_qty"/>
+                                            <field name="product_qty_hand" readonly="1" />
+                                            <field name="product_qty" string="Qty Total PR" sum="Total Qty PR"/>
+                                        </tree>
+                                    </field>
+
+                                    <!-- <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                        <field name="total" class="oe_subtotal_footer_separator" widget="monetary"/>
+                                    </group> -->
+
+
+                                </page>
+                            </notebook>
+                            <field name="notes" placeholder="Input notes here..."/>
+                        </sheet>
+
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers"
+                                groups="base.group_user"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                        </div>
+                    </form>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!-- tree -->
+
+        <record id="view_purchase_request_tree" model="ir.ui.view">
+            <field name="name">vit_purchase.request_tree</field>
+            <field name="model">vit.product.request</field>
+            <field name="inherit_id" ref="vit_product_request.view_product_request_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="/tree" position="replace">
+                    <tree string="list purchase request"
+                          decoration-muted="state=='done'"
+                          decoration-info="state=='draft'"
+                          decoration-primary="state=='open'"
+                          decoration-danger="state=='reject'"
+                          >
+                        <field name="name"/>
+                        <field name="partner_id" string="Customer"/>
+                        <field name="department_id"/>
+                        <field name="date"/>
+                        <field name="user_id"/>
+                        <!-- <field name="total"/> -->
+                        <field name="state"/>
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Allowance -->
+
+        <record id="view_product_request_allowance_tree" model="ir.ui.view">
+            <field name="name">vit.product.request.allowance.tree</field>
+            <field name="model">vit.product.request.allowance</field>
+            <field name="arch" type="xml">
+                <tree string="Allowance" decoration-muted="not active">
+                    <field name="name"/>
+                    <field name="amount"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_product_request_allowance_search" model="ir.ui.view">
+            <field name="name">vit.product.request.allowance.search</field>
+            <field name="model">vit.product.request.allowance</field>
+            <field name="arch" type="xml">
+                <search string="Search Allowance">
+                    <field name="name" filter_domain="[('name','ilike',self)]" string="Allowance"/>
+                    <separator/>
+                    <filter name="active" string="Active" domain="[('active','=',True)]" help="Show active allowance"/>
+                    <filter name="inactive" string="Inactive" domain="[('active','=',False)]" help="Show inactive allowance"/>
+                    <group string="Group By">
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_product_request_allowance_form" model="ir.ui.view">
+            <field name="name">vit.product.request.allowance.form</field>
+            <field name="model">vit.product.request.allowance</field>
+            <field name="arch" type="xml">
+                <form string="Allowance">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Allowance Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="amount_type" />
+                                <label for="amount"/>
+                                <div>
+                                    <field name="amount" class="oe_inline" />
+                                    <span class="o_form_label oe_inline" attrs="{'invisible':[('amount_type','=','fixed')]}">%</span>
+                                </div>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_product_request_allowance_form" model="ir.actions.act_window">
+            <field name="name">Allowance</field>
+            <field name="res_model">vit.product.request.allowance</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain" eval="False"/> <!-- Force empty -->
+            <field name="context">{'search_default_active': True,}</field>
+            <field name="view_id" ref="view_product_request_allowance_tree"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new allowance
+              </p>
+            </field>
+        </record>
+
+        <menuitem 
+            id="menu_request_sub_config"
+            sequence="20"
+            parent="vit_product_request.menu_request_root"
+            name="Configuration"
+            groups="vit_product_request.product_request_manager"
+            />
+        <menuitem
+            action="action_product_request_allowance_form"
+            id="menu_action_request_allowance_form"
+            parent="menu_request_sub_config"
+            sequence="10"
+            />
+
+    </data>     
+</odoo>

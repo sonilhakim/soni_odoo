@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="vit_kerja_dosen_top_menu" name="Kerja Dosen" sequence="20" web_icon="vit_kerja_dosen,static/description/icon.png" />
+		<menuitem id="vit_kerja_dosen_sub_menu" name="Operations" sequence="40" parent="vit_kerja_dosen_top_menu" />
+		<menuitem id="vit_kerja_dosen_config_menu" name="Configurations" sequence="50" parent="vit_kerja_dosen_top_menu" />
+	</data>
+</odoo>

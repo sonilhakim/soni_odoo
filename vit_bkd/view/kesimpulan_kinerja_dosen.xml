@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_kesimpulan_kinerja_dosen_tree" model="ir.ui.view">
+            <field name="name">vit_kesimpulan_kinerja_dosen_tree</field>
+            <field name="model">vit.kesimpulan_kinerja_dosen</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Kesimpulan kinerja dosen">
+                    <field name="name" />
+                    <field name="nip" />
+                    <field name="state" />
+                    <field name="dosen_id" />
+                    <field name="status_dosen_id" />
+                    <field name="tahun_akademik_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kesimpulan_kinerja_dosen_form" model="ir.ui.view">
+            <field name="name">vit_kesimpulan_kinerja_dosen_form</field>
+            <field name="model">vit.kesimpulan_kinerja_dosen</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Kesimpulan kinerja dosen">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" />
+                        <button string="Mark as Done" type="object" name="action_done" states="open" />
+                        <button string="Reset to Draft" type="object" name="action_draft" states="open,done" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Kesimpulan kinerja dosen Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="nip" />
+                            </group>
+                            <group>
+                                <field name="dosen_id" />
+                                <field name="status_dosen_id" />
+                                <field name="tahun_akademik_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Line">
+                                <field name="line_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_kesimpulan_kinerja_dosen_search" model="ir.ui.view">
+            <field name="name">vit_kesimpulan_kinerja_dosen</field>
+            <field name="model">vit.kesimpulan_kinerja_dosen</field>
+            <field name="arch" type="xml">
+                <search string="Kesimpulan kinerja dosen">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Nip" name="filter_by_nip" domain="[('nip','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="nip" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="dosen_id" select="True"/>
+                    <field name="status_dosen_id" select="True"/>
+                    <field name="tahun_akademik_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Dosen" domain="[]" name="group_by_dosen_id" context="{'group_by':'dosen_id'}"/>
+                        <filter string="Status dosen" domain="[]" name="group_by_status_dosen_id" context="{'group_by':'status_dosen_id'}"/>
+                        <filter string="Tahun akademik" domain="[]" name="group_by_tahun_akademik_id" context="{'group_by':'tahun_akademik_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_kesimpulan_kinerja_dosen_kanban" model="ir.ui.view" >
+            <field name="name">vit_kesimpulan_kinerja_dosen</field>
+            <field name="model">vit.kesimpulan_kinerja_dosen</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="nip" />
+                    <field name="state" />
+                    <field name="dosen_id" />
+                    <field name="status_dosen_id" />
+                    <field name="tahun_akademik_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Dosen</span> <field name="dosen_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Status dosen</span> <field name="status_dosen_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Tahun akademik</span> <field name="tahun_akademik_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_kesimpulan_kinerja_dosen_graph" model="ir.ui.view">
+            <field name="name">vit_kesimpulan_kinerja_dosen</field>
+            <field name="model">vit.kesimpulan_kinerja_dosen</field>
+            <field name="arch" type="xml">
+                <graph string="Kesimpulan kinerja dosen" type="bar">
+                    <field name="dosen_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_kesimpulan_kinerja_dosen" model="ir.actions.act_window">
+            <field name="name">Kesimpulan kinerja dosen</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.kesimpulan_kinerja_dosen</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Kesimpulan kinerja dosen
+                </p><p>
+                Click the Create button to add a new Kesimpulan kinerja dosen
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_kesimpulan_kinerja_dosen" name="Kesimpulan kinerja dosen" parent="vit_bkd_sub_menu" action="action_vit_kesimpulan_kinerja_dosen" sequence="200"/>
+    </data>
+</odoo>

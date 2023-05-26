@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="account.account_invoices"
+            model="account.invoice"
+            string="Faktur"
+            report_type="qweb-pdf"
+            paperformat="vit_report_invoice_custom.paperformat_custom_faktur"
+            name="vit_report_invoice_custom.report_invoice_faktur_custom"
+            file="vit_report_invoice_custom.report_invoice_faktur_custom"
+            print_report_name="'Faktur - %s - %s' % (object.partner_id.name or '', object.name)"
+            groups="account.group_account_invoice"
+        />
+
+        <template id="report_invoice_faktur_custom">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="vit_report_invoice_custom.external_layout_faktur_custom">
+                        <div class="page">
+                            <table class="table table-sm o_main_table" name="invoice_line_table">
+                                <thead>
+                                    <tr>
+                                        <th style="border-top: 2px solid black;border-bottom: 2px solid black;border-right: 2px solid black;">Jumlah</th>
+                                        <th style="border: 2px solid black;">Unit</th>
+                                        <th style="border: 2px solid black;">Nama Barang</th>
+                                        <th style="border: 2px solid black;">Harga Satuan</th>
+                                        <th style="border: 2px solid black;">Disc</th>
+                                        <th style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="invoice_tbody" style="border-bottom: 2px solid black;border-top: 2px solid black;">
+                                    <t t-foreach="doc.invoice_line_ids" t-as="line">
+                                        <tr>
+                                            <td style="border-right: 2px solid black;text-align:right;"><span t-esc="'{0:,.2f}'.format(line.quantity)"/></td>
+                                            <td style="border-right: 2px solid black"><span t-field="line.uom_id"/></td>
+                                            <td style="border-right: 2px solid black"><span t-field="line.product_id"/></td>
+                                            <td style="border-right: 2px solid black;text-align:right;"><span t-esc="'{0:,.2f}'.format(line.price_unit)"/></td>
+                                            <td style="border-right: 2px solid black;text-align:right;">
+                                                <t t-if="line.discount > 0">
+                                                    <span t-esc="'{0:,.2f}'.format(line.discount)"/> %
+                                                </t>
+                                                <t t-if="line.discount_val > 0">
+                                                    <span t-esc="'{0:,.2f}'.format(line.discount_val)"/>
+                                                </t>
+                                            </td>                                
+                                            <td style="text-align:right;"><span t-esc="'{0:,.2f}'.format(line.price_subtotal)"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+
+                            <div class="clearfix">
+                                <div id="total" class="row">
+                                    <div class="col-2 text-center">
+                                        <div style="margin-bottom:50px;">Hormat Kami</div>
+                                        <div>(&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;)</div>
+                                    </div>
+                                    <div class="col-2 text-center">
+                                        <div style="margin-bottom:50px;">Diterima Oleh</div>
+                                        <div>(&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;)</div>
+                                    </div>
+                                    <div class="col-4" style="margin-top:5px;">
+                                        <div class="text-center" style="border: 1px solid black;padding-top:5px;padding-bottom:5px;">
+                                            PERHATIAN <br/> Barang yang telah dibeli tidak <br/> dapat ditukar atau dikembalikan
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <table class="col-4 ">
+                                            <tr style="border-bottom: 2px solid black;">
+                                                <td><strong>Subtotal</strong></td>
+                                                <td class="text-right">
+                                                    <span t-esc="'{0:,.2f}'.format(doc.amount_undisc)"/>
+                                                </td>
+                                            </tr>
+                                            <tr style="border-bottom: 2px solid black;">
+                                                <td style="padding-top:10px;"><strong>Discount</strong></td>
+                                                <td class="text-right">
+                                                    <span t-esc="'{0:,.2f}'.format(doc.amount_disc)"/>
+                                                </td>
+                                            </tr>
+                                            <tr class="o_total" style="border-bottom: 2px solid black;">
+                                                <td style="padding-top:10px;"><strong>Total</strong></td>
+                                                <td class="text-right">
+                                                    <span t-esc="'{0:,.2f}'.format(doc.amount_total)"/>
+                                                </td>
+                                            </tr>
+                                            <tr class="o_total" style="border-bottom: 2px solid black;">
+                                                <td style="padding-top:10px;"><strong>Uang Muka</strong></td>
+                                                <td class="text-right">
+                                                    <span t-esc="'{0:,.2f}'.format((doc.amount_total - doc.residual))"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>        
+    </data>
+</odoo>

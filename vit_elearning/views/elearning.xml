@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+
+      <template id="elearning">
+         <html>
+            <head>
+               <meta charset="utf-8"/>
+               <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/bootstrap.min.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/icofont.min.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/classy-nav.min.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/animate.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/owl.carousel.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/magnific-popup.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/owl.theme.default.min.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/style.css"/>
+               <link rel="stylesheet" href="/vit_elearning/static/src/css/responsive.css"/>
+               <!-- <title>Toffin Indonesia - E-Learning</title> -->
+               <link rel="icon" type="image/png" href="https://toffin.id/wp-content/uploads/2019/12/cropped-ic-192x192.png"/>
+            </head>
+            <body>
+               
+               <div class="preloader-area">
+                  <div class="loader">
+                     <div class="dots"> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-down"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-left"></i> <i class="dots-item dots-item-move-up"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-right"></i> <i class="dots-item dots-item-move-up"></i> </div>
+                  </div>
+               </div>               
+               <t t-call="vit_elearning.header"/>
+               <div class="main-banner-three">
+                  <div class="d-table">
+                     <div class="d-table-cell">
+                        <div class="container">
+                           <div class="main-banner-three-content">
+                              <h1>TOFFIN E-LEARNING CENTER</h1>
+                              <!-- <p>Toffin e-learning adalah platform yang menyediakan program pengembangan dan pelatihan industri kopi mulai dari kreasi menu, bisnis,hingga keterampilan yang difasilitasi oleh mentor berpengalaman dibidangnya secara online video dan online class.</p> -->
+                              <p>No.1 Coffee Business Platform in Indonesia</p>
+                           </div>
+                           <div class="col-lg-12 col-md-12">
+                           <div class="view-all text-center"> <a href="/about" class="btn btn-primary">Lebih Lanjut <i class="icofont-rounded-double-right"></i></a> </div>
+                        </div>                       
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <section class="popular-courses-area ptb-100">
+                  <div class="container">
+                     <div style="margin-bottom:20px !important;" class="section-title">
+                        <h3>Features</h3>
+                     </div>
+                     <!-- <div class="row">
+                        <div class="banner-categories">
+                           
+                                 
+                        </div>
+                     </div> -->
+                     <div class="row">
+                        <div class="col-lg-6 col-md-12 mar-15 features-home">
+                           <div class="row">
+                              <a t-attf-href="/kelasonline_free?offset=0">
+                                 <img src="/vit_elearning/static/src/img/free.png" style="margin-left:15px;"/>
+                                 <div class="desc-features" style="max-width: 400px;">   
+                                    <h5>Free Access Video</h5>
+                                    <p>Video pembelajaran dan pelatihan yang dapat diakses oleh siapapun.</p>
+                                 </div>
+                              </a>
+                           </div>
+                        </div>
+                     
+                        <div class="col-lg-6 col-md-12 mar-15 features-home">
+                           <div class="row">
+                              <!-- <a t-attf-href="/kelasonline?offset=0"> -->
+                                 <img src="/vit_elearning/static/src/img/paid.png" style="margin-left:15px;"/>
+                                 <div class="desc-features" style="max-width: 400px;">   
+                                    <h5>Paid Access Video</h5>
+                                    <p>Video berbayar yang diisi oleh master &amp; expert yang membahas topik atau pelatihan tingkat advance</p>
+                                 </div>
+                              <!-- </a> -->
+                           </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-md-12 mar-15 features-home">
+                           <div class="row">
+                              <!-- <a t-attf-href="/seminaronline?offset=0"> -->
+                                 <img src="/vit_elearning/static/src/img/live.png" style="margin-left:15px;"/>
+                                 <div class="desc-features" style="padding-top:10px; padding-bottom:0px;max-width: 400px;">   
+                                    <h5>Live Online Class</h5>
+                                    <p>Kelas online yang diselenggarakan secara langsung melalui platform virtual (Google Meet) yang difasilitasi oleh professional mentor berdurasi kurang lebih 2 jam.</p>
+                                 </div>
+                              <!-- </a> -->
+                           </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-md-12 mar-15 features-home">
+                           <div class="row">
+                              <a t-attf-href="/elearning">
+                                 <img src="/vit_elearning/static/src/img/od.png" style="margin-left:15px;"/>
+                                 <div class="desc-features" style="padding-top:0px; padding-bottom:0px;max-width: 400px;">   
+                                    <h5>On Demand Class &amp; Video</h5>
+                                    <p>Kami mengajak publik untuk berpartisipasi mengajukan topik yang paling banyak diminati atau jika Anda adalah seorang professional, master, expertis, bergabunglah menjadi bagian dari platform kami.</p>
+                                 </div>
+                              </a>
+                           </div>
+                        </div>
+
+                     </div>
+                  </div>
+               </section>
+               
+               <section class="popular-courses-area ptb-100">
+                  <div class="container">
+                     <div style="margin-bottom:20px !important;" class="section-title">
+                        <h3>Topic</h3>
+                     </div>
+                     <div class="row">
+                        <div class="banner-categories">
+                           <nav id="nav-heroes" role="full-horizontal">
+                              <ul>
+                                 <t t-foreach="e_categories" t-as="e_category">
+                                    <li><a t-attf-href="/kelasonlines/{{e_category.id}}?offset=0">
+                                       <img style="height: 75px;" t-attf-src="data:image/*;base64,{{e_category.logo}}" t-attf-alt="{{e_category.name}}" class="img-fluid" />
+                                       <br/>
+                                       <span t-field="e_category.name"/>
+                                    </a></li>
+                                 </t>
+                              </ul>
+                           </nav>
+                        </div>
+                     </div>
+
+                     <div style="margin-bottom:20px !important;" class="section-title">
+                        <h3>Online Videos</h3>
+                     </div>                           
+                           
+                     <div class="row">
+                        <div class="col-lg-4 col-md-6" t-foreach="e_class_ids" t-as="e_class_id">
+                           <div class="single-courses-item">
+                              <div class="portrait">
+                                 <a t-attf-href="/single-courses/{{e_class_id.id}}">
+                                    <img t-attf-src="data:image/*;base64,{{e_class_id.image_small}}" t-attf-alt="{{e_class_id.name}}" class="img-fluid" />
+                                 </a>
+                                 <!-- <h2><span t-field="e_class_id.teachers_id.name"/></h2>
+                                 <h4>"<span t-field="e_class_id.name"/>"</h4> -->
+                              </div>
+                              <div class="courses-content">
+                                 <h3><a t-attf-href="/single-courses/{{e_class_id.id}}"><span t-field="e_class_id.name"/></a></h3>
+                                 <p><span t-esc="e_class_id.description[:50] + '\n' + e_class_id.description[50:100] if e_class_id.description else ''"/></p>
+                              </div>
+                              <div class="courses-content-bottom">
+                                 <t t-if="e_class_id.total_price==0">
+                                    <h4 class="price">Gratis</h4>
+                                 </t>
+                                 <t t-else="">
+                                    <h4 class="price">Rp &#160;<span t-field="e_class_id.total_price"/></h4>
+                                 </t>
+                                 <h4><a t-attf-href="/single-courses/{{e_class_id.id}}" class="btn btn-primary btn-course">Read More</a></h4>
+                              </div>
+                           </div>
+                        </div>
+                     
+                        <div class="col-lg-12 col-md-12">
+                           <div class="view-all text-center"> <a href="/kelasonline?offset=0" class="btn btn-primary">Lihat Semua Kelas Online <i class="icofont-rounded-double-right"></i></a> </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+               <section class="newsletter-area ptb-100">
+                  <div class="container">
+                     <div class="newsletter">
+                        <div style="margin-bottom:20px !important;">
+                           <h3>DAPATKAN UPDATE DAN PENAWARAN MATERI BARU</h3>
+                        </div>
+                        <div>
+                           <form role="form" t-attf-action="/subscribe" method="POST">
+                              <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                              <div class="form-group">
+                                 <input type="email" name="email" t-att-value="email" id="email" class="form-control" placeholder="Enter your email address..." required="required" size="90"/>
+                              </div>
+                              <div class="clearfix oe_login_buttons">
+                                 <button type="submit" class="btn btn-primary">Subscribe Now</button>
+                              </div>
+                           </form>
+                        </div>
+                        <!-- <form> <input class="form-control" placeholder="Enter your email address..."/> <button type="submit" class="btn btn-primary">Subscribe Now</button> </form> -->
+                     </div>
+                  </div>
+               </section>               
+               <section class="upcoming-events-area events-two ptb-100">
+                  <div class="container">
+                     <div class="section-title">
+                        <h3>Live Online Class</h3>
+                     </div>
+                     <div class="section-title">
+                        <h2 style="color: #f49521">Coming Soon</h2>
+                     </div>
+                     <!-- <div class="row">
+                        <div class="col-lg-12 col-md-12 mtb-10" t-foreach="e_seminar_ids" t-as="e_seminar_id">
+                           <div class="single-event mb-0">
+                              <div class="row m-0">
+                                 <div class="col-lg-6 col-md-6 p-0 ">
+                                    <figure>
+                                       <a t-attf-href="/single-seminar/{{e_seminar_id.id}}">
+                                          <span class="image" t-attf-style="background-image: url(data:image/*;base64,{{e_seminar_id.image_small}});"></span>
+                                          <img t-attf-src="data:image/*;base64,{{e_seminar_id.image_small}}" t-attf-alt="{{e_seminar_id.name}}" class="img-fluid" />
+                                       </a> 
+                                       <div class="date"><span t-field="e_seminar_id.date"/></div>
+                                    </figure>
+                                 </div>
+                                 <div class="col-lg-6 col-md-6 p-0">
+                                    <div class="event-content">
+                                       <h3><span t-field="e_seminar_id.name"/></h3>
+                                       <p><span t-esc="e_seminar_id.description[:70] + '\n' + e_seminar_id.description[70:140] + '\n' + e_seminar_id.description[140:210] + '\n' + e_seminar_id.description[210:280] + '\n' if e_seminar_id.description else ''"/></p>
+                            
+                                       <div class="row where-when">
+                                          <ul class="pull-left">
+                                             <li><span>Pembicara</span></li>
+                                             <li><p t-field="e_seminar_id.teachers_id.name"/></li>
+                                          </ul>
+                                       
+                                          <ul>
+                                             <li><span>Waktu</span></li>
+                                             <li><p t-field="e_seminar_id.day"/></li>
+                                             <li class="row" align="center"><p t-field="e_seminar_id.start_time" t-field-options='{"widget": "float_time"}'/><p>&#160; - &#160;</p><p t-field="e_seminar_id.end_time" t-field-options='{"widget": "float_time"}'/></li>
+                                          </ul>
+                                       </div>
+                                       <a t-attf-href="/single-seminar/{{e_seminar_id.id}}" class="btn btn-primary">View Details <i class="icofont-rounded-double-right"></i></a> 
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div> 
+                     </div> -->
+                  </div>
+               </section>
+               <section class="news-area ptb-100">
+                  <div class="container">
+                     <div class="section-title">
+                        <h3>Articles</h3>
+                     </div>
+                     <div class="row">
+                        <div class="news-slider">
+                           <div class="col-lg-12 col-md-12" t-foreach="artikel_ids" t-as="artikel_id">
+                              <div class="single-card-post">
+                                 <div class="blog-img">
+                                    <a t-attf-href="/artikel-detail/{{artikel_id.id}}">
+                                       <img t-attf-src="data:image/*;base64,{{artikel_id.image_small}}" t-attf-alt="{{artikel_id.name}}" class="img-fluid" />
+                                    </a>
+                                    <div class="date"><span t-field="artikel_id.date"/></div>
+                                 </div>
+                                 <div class="blog-card-content">
+                                    <a t-attf-href="/artikel-detail/{{artikel_id.id}}">
+                                       <h3><span t-field="artikel_id.name"/></h3>
+                                    </a>
+                                    <p><span t-field="artikel_id.description"/></p>
+                                    <a t-attf-href="/artikel-detail/{{artikel_id.id}}" class="read-more"><span class="left"><i class="icofont-rounded-double-right"></i></span> Read More <span class="right"><i class="icofont-rounded-double-right"></i></span></a> 
+                                 </div>
+                              </div>
+                           </div>                    
+                        </div>
+                     </div>
+                  </div>
+               </section>               
+               <t t-call="vit_elearning.footer"/>
+
+               <a class="scrolltop" href="#top"><i class="icofont-hand-drawn-up"></i></a> 
+               <script src="/vit_elearning/static/src/js/jquery.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/popper.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/bootstrap.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/classy-nav.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/owl.carousel.min.js"></script>
+               <script src="/vit_elearning/static/src/js/jquery.magnific-popup.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/jquery.counterup.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/waypoints.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/form-validator.min.js"></script> 
+               <script src="/vit_elearning/static/src/js/contact-form-script.js"></script> 
+               <script src="/vit_elearning/static/src/js/main.js"></script> 
+            </body>
+         </html>
+      </template>
+   </data>
+</odoo>

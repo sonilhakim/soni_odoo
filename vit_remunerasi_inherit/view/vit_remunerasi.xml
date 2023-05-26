@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_remunerasi_tree" model="ir.ui.view">
+            <field name="name">vit.remunerasi.tree</field>
+            <field name="model">vit.remunerasi</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Remunerasi">
+                    <field name="name" />
+                    <field name="tanggal" />
+                    <field name="jenis_remunerasi" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_remunerasi_form" model="ir.ui.view">
+            <field name="name">vit.remunerasi.form</field>
+            <field name="model">vit.remunerasi</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Remunerasi">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Nama Remunerasi"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tanggal" />
+                            </group>
+                            <group>
+                                <field name="jenis_remunerasi" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_remunerasi_search" model="ir.ui.view">
+            <field name="name">vit.remunerasi</field>
+            <field name="model">vit.remunerasi</field>
+            <field name="arch" type="xml">
+                <search string="remunerasi">
+                    <field name="name" select="True"/>
+                    <field name="tanggal" select="True"/>
+                    <field name="jenis_remunerasi" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Jenis Remunerasi" domain="[]" name="group_by_jenis_remunerasi" context="{'group_by':'jenis_remunerasi'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- action window -->
+        <!-- <record id="action_vit_remunerasi" model="ir.actions.act_window">
+            <field name="name">Remunerasi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.remunerasi</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Remunerasi
+                </p><p>
+                Click the Create button to add a new Remunerasi
+                </p>
+            </field>
+        </record> -->
+        <record id="action_vit_remunerasi" model="ir.actions.act_window">
+            <field name="name">Remunerasi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.payroll.structure</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Remunerasi
+                </p><p>
+                Click the Create button to add a new Remunerasi
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_vit_remunerasi_pegawai" name="Remunerasi" parent="vit_remunerasi.vit_remunerasi_sub_menu" action="action_vit_remunerasi" sequence="1"/>
+    </data>
+</odoo>

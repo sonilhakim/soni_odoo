@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_bkd_menu" string="Vit - Bkd"
+         model="vit.bkd" report_type="qweb-pdf" 
+         file="vit.bkd"  name="vit_bkd.vit_bkd_report" />
+
+        <!-- document template -->
+        <template id="vit_bkd.vit_bkd_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Bkd: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Date</strong>
+                            <p class="m-0" t-field="doc.date" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nip</strong>
+                            <p class="m-0" t-field="doc.nip" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nidn</strong>
+                            <p class="m-0" t-field="doc.nidn" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>S1</strong>
+                            <p class="m-0" t-field="doc.s1" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>S2</strong>
+                            <p class="m-0" t-field="doc.s2" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>S3</strong>
+                            <p class="m-0" t-field="doc.s3" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Bidang ilmu</strong>
+                            <p class="m-0" t-field="doc.bidang_ilmu" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Mobile</strong>
+                            <p class="m-0" t-field="doc.mobile" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Email</strong>
+                            <p class="m-0" t-field="doc.email" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Employee</strong>
+                            <p class="m-0" t-field="doc.employee_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Institusi</strong>
+                            <p class="m-0" t-field="doc.institusi_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tahun akademik</strong>
+                            <p class="m-0" t-field="doc.tahun_akademik_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Semester</strong>
+                            <p class="m-0" t-field="doc.semester_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Wakil dekan</strong>
+                            <p class="m-0" t-field="doc.wakil_dekan_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Status dosen</strong>
+                            <p class="m-0" t-field="doc.status_dosen_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jabatan fungsional</strong>
+                            <p class="m-0" t-field="doc.jabatan_fungsional_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Fakultas</strong>
+                            <p class="m-0" t-field="doc.fakultas_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jurusan</strong>
+                            <p class="m-0" t-field="doc.jurusan_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Program studi</strong>
+                            <p class="m-0" t-field="doc.program_studi_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Golongan</strong>
+                            <p class="m-0" t-field="doc.golongan_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Kinerja bidang pendidikan</h2>
+                <table class="table table-sm o_main_table" name="kinerja_bidang_pendidikan_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Uraian jenis kegiatan</td>
+                            <td>Bukti penugasan</td>
+                            <td>File bukti penugasan</td>
+                            <td>File bukti penugasan filename</td>
+                            <td>Beban sks</td>
+                            <td>Masa penugasan</td>
+                            <td>Bukti dokumen</td>
+                            <td>File bukti dokumen</td>
+                            <td>File bukti dokumen filename</td>
+                            <td>Kinerja sks</td>
+                            <td>Kinerja sks persen</td>
+                            <td>Bkd</td>
+                            <td>Jenis kegiatan</td>
+                            <td>Rekomendasi</td>
+                        </tr>
+                    </thead>
+                    <tbody class="kinerja_bidang_pendidikan_ids_tbody">
+                        <tr t-foreach="doc.kinerja_bidang_pendidikan_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.uraian_jenis_kegiatan" /></td>
+                            <td><span t-field="line.bukti_penugasan" /></td>
+                            <td><span t-field="line.file_bukti_penugasan" /></td>
+                            <td><span t-field="line.file_bukti_penugasan_filename" /></td>
+                            <td><span t-field="line.beban_sks" /></td>
+                            <td><span t-field="line.masa_penugasan" /></td>
+                            <td><span t-field="line.bukti_dokumen" /></td>
+                            <td><span t-field="line.file_bukti_dokumen" /></td>
+                            <td><span t-field="line.file_bukti_dokumen_filename" /></td>
+                            <td><span t-field="line.kinerja_sks" /></td>
+                            <td><span t-field="line.kinerja_sks_persen" /></td>
+                            <td><span t-field="line.bkd_id" /></td>
+                            <td><span t-field="line.jenis_kegiatan_id" /></td>
+                            <td><span t-field="line.rekomendasi_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Kinerja bidang penelitian</h2>
+                <table class="table table-sm o_main_table" name="kinerja_bidang_penelitian_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Uraian jenis kegiatan</td>
+                            <td>Bukti penugasan</td>
+                            <td>File bukti penugasan</td>
+                            <td>File bukti penugasan filename</td>
+                            <td>Beban sks</td>
+                            <td>Masa penugasan</td>
+                            <td>Bukti dokumen</td>
+                            <td>File bukti dokumen</td>
+                            <td>File bukti dokumen filename</td>
+                            <td>Kinerja sks</td>
+                            <td>Kinerja sks persen</td>
+                            <td>Bkd</td>
+                            <td>Jenis kegiatan</td>
+                            <td>Rekomendasi</td>
+                        </tr>
+                    </thead>
+                    <tbody class="kinerja_bidang_penelitian_ids_tbody">
+                        <tr t-foreach="doc.kinerja_bidang_penelitian_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.uraian_jenis_kegiatan" /></td>
+                            <td><span t-field="line.bukti_penugasan" /></td>
+                            <td><span t-field="line.file_bukti_penugasan" /></td>
+                            <td><span t-field="line.file_bukti_penugasan_filename" /></td>
+                            <td><span t-field="line.beban_sks" /></td>
+                            <td><span t-field="line.masa_penugasan" /></td>
+                            <td><span t-field="line.bukti_dokumen" /></td>
+                            <td><span t-field="line.file_bukti_dokumen" /></td>
+                            <td><span t-field="line.file_bukti_dokumen_filename" /></td>
+                            <td><span t-field="line.kinerja_sks" /></td>
+                            <td><span t-field="line.kinerja_sks_persen" /></td>
+                            <td><span t-field="line.bkd_id" /></td>
+                            <td><span t-field="line.jenis_kegiatan_id" /></td>
+                            <td><span t-field="line.rekomendasi_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Kinerja bidang pengabdian</h2>
+                <table class="table table-sm o_main_table" name="kinerja_bidang_pengabdian_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Uraian jenis kegiatan</td>
+                            <td>Bukti penugasan</td>
+                            <td>File bukti penugasan</td>
+                            <td>File bukti penugasan filename</td>
+                            <td>Beban sks</td>
+                            <td>Masa penugasan</td>
+                            <td>Bukti dokumen</td>
+                            <td>File bukti dokumen</td>
+                            <td>File bukti dokumen filename</td>
+                            <td>Kinerja sks</td>
+                            <td>Kinerja sks persen</td>
+                            <td>Bkd</td>
+                            <td>Rekomendasi</td>
+                            <td>Rekomendasi</td>
+                            <td>Jenis kegiatan</td>
+                        </tr>
+                    </thead>
+                    <tbody class="kinerja_bidang_pengabdian_ids_tbody">
+                        <tr t-foreach="doc.kinerja_bidang_pengabdian_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.uraian_jenis_kegiatan" /></td>
+                            <td><span t-field="line.bukti_penugasan" /></td>
+                            <td><span t-field="line.file_bukti_penugasan" /></td>
+                            <td><span t-field="line.file_bukti_penugasan_filename" /></td>
+                            <td><span t-field="line.beban_sks" /></td>
+                            <td><span t-field="line.masa_penugasan" /></td>
+                            <td><span t-field="line.bukti_dokumen" /></td>
+                            <td><span t-field="line.file_bukti_dokumen" /></td>
+                            <td><span t-field="line.file_bukti_dokumen_filename" /></td>
+                            <td><span t-field="line.kinerja_sks" /></td>
+                            <td><span t-field="line.kinerja_sks_persen" /></td>
+                            <td><span t-field="line.bkd_id" /></td>
+                            <td><span t-field="line.rekomendasi_id" /></td>
+                            <td><span t-field="line.rekomendasi_id" /></td>
+                            <td><span t-field="line.jenis_kegiatan_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Kinerja kewajiban khusus</h2>
+                <table class="table table-sm o_main_table" name="kinerja_kewajiban_khusus_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Uraian jenis kegiatan</td>
+                            <td>Bukti penugasan</td>
+                            <td>File bukti penugasan</td>
+                            <td>File bukti penugasan filename</td>
+                            <td>Beban sks</td>
+                            <td>Masa penugasan</td>
+                            <td>Bukti dokumen</td>
+                            <td>File bukti dokumen</td>
+                            <td>File bukti dokumen filename</td>
+                            <td>Kinerja sks</td>
+                            <td>Kinerja sks persen</td>
+                            <td>Bkd</td>
+                            <td>Jenis kegiatan</td>
+                            <td>Rekomendasi</td>
+                        </tr>
+                    </thead>
+                    <tbody class="kinerja_kewajiban_khusus_ids_tbody">
+                        <tr t-foreach="doc.kinerja_kewajiban_khusus_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.uraian_jenis_kegiatan" /></td>
+                            <td><span t-field="line.bukti_penugasan" /></td>
+                            <td><span t-field="line.file_bukti_penugasan" /></td>
+                            <td><span t-field="line.file_bukti_penugasan_filename" /></td>
+                            <td><span t-field="line.beban_sks" /></td>
+                            <td><span t-field="line.masa_penugasan" /></td>
+                            <td><span t-field="line.bukti_dokumen" /></td>
+                            <td><span t-field="line.file_bukti_dokumen" /></td>
+                            <td><span t-field="line.file_bukti_dokumen_filename" /></td>
+                            <td><span t-field="line.kinerja_sks" /></td>
+                            <td><span t-field="line.kinerja_sks_persen" /></td>
+                            <td><span t-field="line.bkd_id" /></td>
+                            <td><span t-field="line.jenis_kegiatan_id" /></td>
+                            <td><span t-field="line.rekomendasi_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_bkd.vit_bkd_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_bkd.vit_bkd_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

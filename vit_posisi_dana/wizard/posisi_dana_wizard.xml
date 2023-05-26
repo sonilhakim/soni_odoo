@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_vit_posisi_dana_wizard" model="ir.ui.view">
+            <field name="name">vit_posisi_dana_wizard</field>
+            <field name="model">vit.posisi_dana_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Posisi Dana">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="year" required="1"/>
+                            </group>
+                            <group>
+                                <field name="c_year" required="1"/>
+                            </group>
+                        </group>  
+                    </sheet>
+                    <footer>
+                        <button name="load_posisi_dana" string="Posisi Dana" type="object" class="btn-primary"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="show_posisi_dana_wizard">
+            <field name="name">Posisi Dana</field>
+            <field name="res_model">vit.posisi_dana_wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_vit_posisi_dana" name="Posisi Dana" parent="ks_dashboard_ninja.board_menu_root" action="show_posisi_dana_wizard" sequence="200"/>
+           
+</odoo>

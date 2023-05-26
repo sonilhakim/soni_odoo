@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="0">
+		<!-- MD -->
+		<record model="ir.module.category" id="module_pgm_marker">
+			<field name="name">PE-GM</field>
+			<field name="description">PE-GM Groups</field>
+			<field name="sequence">90</field>
+		</record>
+		<record id="group_pgm_user" model="res.groups">
+			<field name="name">PE-GM / User</field>
+			<field name="category_id" ref="module_pgm_marker"/>
+		</record>
+
+		<record id="group_pgm_manager" model="res.groups">
+			<field name="name">PE-GM / Manager</field>
+			<field name="category_id" ref="module_pgm_marker"/>
+		</record>
+
+	</data>
+</odoo>

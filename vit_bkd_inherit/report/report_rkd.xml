@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_rkd_menu" string="Laporan Rencana Beban Kerja Dosen"
+         model="vit.bkd" report_type="qweb-pdf" paperformat="vit_bkd_inherit.paperformat_bkd" file="vit.bkd"  name="vit_bkd_inherit.vit_rkd_report" />
+
+        <!-- document template -->
+        <template id="vit_bkd_inherit.vit_rkd_report_document" >
+            <t t-call="vit_bkd_inherit.external_layout_bkd">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page" style="padding-top:200px;">
+                    <div style="text-align:center;margin-bottom:100px;">
+                        <img t-if="doc.institusi_id.logo" t-att-src="image_data_uri(doc.institusi_id.logo)" alt="Logo" style="width:200px"/>
+                        <br/><br/>
+                        <h2>
+                            <strong>RENCANA BEBAN KERJA DOSEN</strong>
+                        </h2>
+                    </div>
+                    
+                    <div style="margin-bottom:420px;margin-left:70px;">
+                        <div class="row mb-2">
+                            <div class="col-5">
+                                <h5>NAMA</h5>
+                            </div>
+                            <div>
+                                <h5>: <span t-field="doc.employee_id" /></h5>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-5">
+                                <h5>NO.SERTIFIKAT/NIDN</h5>
+                            </div>
+                            <div>
+                                <h5>: <span t-field="doc.no_sertifikat" />/<span t-field="doc.nidn" /></h5>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-5">
+                                <h5>JURUSAN/PRODI</h5>
+                            </div>
+                            <div>
+                                <h5>: <span t-field="doc.jurusan_id" /><span t-field="doc.program_studi_id" /></h5>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-5">
+                                <h5>FAKULTAS</h5>
+                            </div>
+                            <div>
+                                <h5>: <span t-field="doc.fakultas_id" /></h5>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-5">
+                                <h5>PERGURUAN TINGGI</h5>
+                            </div>
+                            <div>
+                                <h5>: <span t-field="doc.institusi_id" /></h5>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-5">
+                                <h5>SEMESTER-TAHUN LAPORAN</h5>
+                            </div>
+                            <div>
+                                <h5>: <span t-field="doc.semester_id" /> - <span t-field="doc.tahun_akademik_id" /></h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align:center">
+                        <h3>
+                            <strong><span t-field="doc.jurusan_id" /><span t-field="doc.program_studi_id" /></strong>
+                        </h3>
+                        <h3>
+                            <strong><span t-field="doc.fakultas_id" /></strong>
+                        </h3>
+                        <h3>
+                            <strong><span t-field="doc.institusi_id" /></strong>
+                        </h3>
+                    </div>
+
+                </div>
+                <div style="margin-left:40px;">
+                    <strong>I. IDENTITAS</strong>
+                </div>
+                <div style="margin-bottom:20px;margin-left:70px;">
+                    <div class="row">
+                        <div class="col-4">
+                            Nama
+                        </div>
+                        <div>
+                            : <span t-field="doc.employee_id" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            No.Sertifikat/NIDN
+                        </div>
+                        <div>
+                            : <span t-field="doc.no_sertifikat" />/<span t-field="doc.nidn" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            Perguruan Tinggi
+                        </div>
+                        <div>
+                            : <span t-field="doc.institusi_id" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            Status
+                        </div>
+                        <div>
+                            : <span t-field="doc.status_dosen_id" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            Alamat PT
+                        </div>
+                        <div>
+                            : <span t-field="doc.institusi_id.street" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            Jurusan/Prodi
+                        </div>
+                        <div>
+                            : <span t-field="doc.jurusan_id" /><span t-field="doc.program_studi_id" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            Jab. Fungsional / Gol
+                        </div>
+                        <div>
+                            : <span t-field="doc.jabatan_fungsional_id" /> / <span t-field="doc.golongan_id" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                           Tempat-Tgl. Lahir
+                        </div>
+                        <div>
+                           : <span t-field="doc.employee_id.place_of_birth" /> - <span t-field="doc.employee_id.birthday" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                           S1
+                        </div>
+                        <div>
+                            : <span t-field="doc.s1" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            S2
+                        </div>
+                        <div>
+                            : <span t-field="doc.s2" /><span t-field="doc.program_studi_id" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            S3
+                        </div>
+                        <div>
+                        : <span t-field="doc.s3" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            Ilmu Yang Ditekuni
+                        </div>
+                        <div>
+                            : <span t-field="doc.bidang_ilmu" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            No. HP
+                        </div>
+                        <div>
+                            : <span t-field="doc.mobile" />
+                        </div>
+                    </div>
+                </div>
+                <table style="margin-left:40px;width:90%;">
+                    <thead>
+                        <tr>
+                            <td style="width:5%;border-left:2px solid black;border-top:2px solid black;"></td>
+                            <td style="width:35%;border-top:2px solid black;border-left:2px solid black;"></td>
+                            <td style="width:25%;border-top:2px solid black;border-left:2px solid black;text-align:right;">Beban Kerja</td>
+                            <td style="width:10%;border-top:2px solid black;border-right:2px solid black;"></td>
+                            <td style="width:15%;border-top:2px solid black;border-right:2px solid black;text-align:center;">Masa</td>
+                        </tr>
+                        <tr>
+                            <td style="width:5%;border-left:2px solid black;border-bottom:2px solid black;text-align:center;">No</td>
+                            <td style="width:35%;border-left:2px solid black;border-bottom:2px solid black;text-align:center;">Kegiatan</td>
+                            <td style="width:25%;border:2px solid black;text-align:center;">Bukti penugasan</td>
+                            <td style="width:10%;border:2px solid black;text-align:center;">SKS</td>
+                            <td style="width:15%;border-bottom:2px solid black;border-right:2px solid black;text-align:center;">Pelaksanaan Tugas</td>
+                        </tr>
+                    </thead>
+                </table>
+
+                <div class="oe_structure"/>
+                <div style="margin-left:40px;">
+                    <strong>II. BIDANG PENDIDIKAN</strong>
+                </div>
+                <table name="kinerja_bidang_pendidikan_ids_table" style="margin-left:40px;width:90%;">
+                    <tbody class="kinerja_bidang_pendidikan_ids_tbody">
+                        <tr t-foreach="doc.kinerja_bidang_pendidikan_ids" t-as="line">
+                            <td style="width:5%;text-align:center;"><t t-esc="line_index+1"/></td>
+                            <td style="width:35%;padding-left:2px;"><span t-field="line.name" /></td>
+                            <td style="width:25%;padding-left:2px;"><span t-field="line.bukti_penugasan" /></td>
+                            <td style="width:10%;text-align:right"><span t-field="line.beban_sks" /></td>
+                            <td style="width:15%;text-align:right"><span t-field="line.masa_penugasan" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <div style="margin-left:40px;">
+                    <strong>III. BIDANG PENELITIAN DAN PENGEMBANGAN ILMU</strong>
+                </div>
+                <table name="kinerja_bidang_penelitian_ids_table" style="margin-left:42px;width:90%;">
+                    <tbody class="kinerja_bidang_penelitian_ids_tbody">
+                        <tr t-foreach="doc.kinerja_bidang_penelitian_ids" t-as="line">
+                            <td style="width:5%;text-align:center;"><t t-esc="line_index+1"/></td>
+                            <td style="width:35%;padding-left:2px;"><span t-field="line.name" /></td>
+                            <td style="width:25%;padding-left:2px;"><span t-field="line.bukti_penugasan" /></td>
+                            <td style="width:10%;text-align:right"><span t-field="line.beban_sks" /></td>
+                            <td style="width:15%;text-align:right"><span t-field="line.masa_penugasan" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <div style="margin-left:40px;">
+                    <strong>IV. BIDANG PENGABDIAN KEPADA MASYARAKAT</strong>
+                </div>
+                <table name="kinerja_bidang_pengabdian_ids_table" style="margin-left:40px;width:90%;">
+                    <tbody class="kinerja_bidang_pengabdian_ids_tbody">
+                        <tr t-foreach="doc.kinerja_bidang_pengabdian_ids" t-as="line">
+                            <td style="width:5%;text-align:center;"><t t-esc="line_index+1"/></td>
+                            <td style="width:35%;padding-left:2px;"><span t-field="line.name" /></td>
+                            <td style="width:25%;padding-left:2px;"><span t-field="line.bukti_penugasan" /></td>
+                            <td style="width:10%;text-align:right"><span t-field="line.beban_sks" /></td>
+                            <td style="width:15%;text-align:right;"><span t-field="line.masa_penugasan" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <div style="margin-left:40px;">
+                    <strong>V. PENUNJANG LAINNYA</strong>
+                </div>
+                <table name="kinerja_penunjang_ids_table" style="margin-left:40px;width:90%;">
+                    <tbody class="kinerja_penunjang_ids_tbody">
+                        <tr t-foreach="doc.kinerja_penunjang_ids" t-as="line">
+                            <td style="width:5%;text-align:center;"><t t-esc="line_index+1"/></td>
+                            <td style="width:35%;padding-left:2px;"><span t-field="line.name" /></td>
+                            <td style="width:25%;padding-left:2px;"><span t-field="line.bukti_penugasan" /></td>
+                            <td style="width:10%;text-align:right"><span t-field="line.beban_sks" /></td>
+                            <td style="width:15%;text-align:right;"><span t-field="line.masa_penugasan" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <div class="row" style="margin-left:40px;margin-top:50px;">
+                    <div style="margin-right:500px">Menyetujui<br/>
+                    Ketua Jurusan/Prodi</div>
+                    <div><br/>
+                    Dosen Yang Membuat</div>
+                </div>
+                <div class="row" style="margin-left:42px;margin-top:100px;">
+                    <div style="margin-right:400px">
+                        <span t-field="doc.jurusan_id" /><span t-field="doc.program_studi_id" />
+                    </div>
+                    <div>
+                        <span t-field="doc.employee_id" />
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_bkd_inherit.vit_rkd_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_bkd_inherit.vit_rkd_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="view_production_lot_ukur_form" model="ir.ui.view">
+            <field name="name">stock.production.lot.ukur.form</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/group" position="after">
+                    <group>
+                        <field name="pengukuran_karyawan"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

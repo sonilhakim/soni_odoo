@@ -1,0 +1,247 @@
+<odoo>
+    <data>
+        <!-- res.users -->
+        <record id="view_users_perencanaan_form" model="ir.ui.view">
+            <field name="name">res.users.perencanaan.form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <field name="companies_count" position="after">
+                    <field string="SUBSATKER" name="unit_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                </field>
+            </field>
+        </record>
+        <!-- Biaya from -->
+        <record id="view_biaya_forms" model="ir.ui.view">
+            <field name="name">anggaran_biaya_forms</field>
+            <field name="model">anggaran.biaya</field>
+            <field name="inherit_id" ref="anggaran.view_biaya_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+
+                <button name="action_done" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_reject" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_draft" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+
+            </field>
+        </record>
+
+        <!-- SPM from -->
+        <record id="view_spm_forms" model="ir.ui.view">
+            <field name="name">anggaran_spm_forms</field>
+            <field name="model">anggaran.spm</field>
+            <field name="inherit_id" ref="anggaran.view_spm_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+
+                <button name="action_done" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_draft" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_reject" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+
+                <button name="action_create_kas_keluar" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+
+                <button name="action_view_kas" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+            </field>
+        </record>
+
+        <!-- RKA form -->
+        <record id="view_rka_form2" model="ir.ui.view">
+            <field name="name">anggaran_rka_form2</field>
+            <field name="model">anggaran.rka</field>
+            <field name="inherit_id" ref="anggaran.view_rka_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="action_confirm" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_kasubbag</attribute>
+                </button>
+                <button name="action_submit" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_kasubsatker</attribute>
+                </button>
+                <button name="action_done" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_rorenku</attribute>
+                </button>
+                <button name="action_notdone" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_rorenku</attribute>
+                </button>
+                <button name="action_cancel" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_rorenku</attribute>
+                </button>
+                <button name="%(anggaran.revisi_wizard_action2)d" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_rorenku</attribute>
+                </button>
+                <button name="action_lock" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_rorenku</attribute>
+                </button>
+                <button name="action_draft" position="attributes">
+                    <attribute name="states">open,submit,done</attribute>
+                </button>
+            </field>
+        </record>
+
+        <!-- Cashflow from -->
+        <record id="view_cashflow_form2" model="ir.ui.view">
+            <field name="name">anggaran_cashflow_form2</field>
+            <field name="model">anggaran.cashflow</field>
+            <field name="inherit_id" ref="anggaran.view_cashflow_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="action_draft" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_done" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_reject" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+            </field>
+        </record>
+
+        <!-- kas from -->
+        <record id="view_kas_form2" model="ir.ui.view">
+            <field name="name">anggaran_kas_form2</field>
+            <field name="model">anggaran.kas</field>
+            <field name="inherit_id" ref="anggaran.view_kas_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="action_draft" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_done" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_reject" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+
+                <button name="action_create_biaya" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+
+                <button name="action_view_biaya" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+            </field>
+        </record>
+
+        <!-- SPP from -->
+        <record id="view_spp_form2" model="ir.ui.view">
+            <field name="name">anggaran_spp_form2</field>
+            <field name="model">anggaran.spp</field>
+            <field name="inherit_id" ref="anggaran.view_spp_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="action_draft" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_done" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_reject" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+
+                <button name="action_create_spm" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+
+                <button name="action_view_spm" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+            </field>
+        </record>
+
+        <!-- SPTB from -->
+        <record id="view_sptb_form2" model="ir.ui.view">
+            <field name="name">anggaran_sptb_form2</field>
+            <field name="model">anggaran.sptb</field>
+            <field name="inherit_id" ref="anggaran.view_sptb_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="action_draft" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_done" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_reject" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+
+                <button name="action_create_spp" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+
+                <button name="action_view_spp" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+            </field>
+        </record>
+
+        <!-- SUP from -->
+        <record id="view_sup_form2" model="ir.ui.view">
+            <field name="name">anggaran_sup_form2</field>
+            <field name="model">anggaran.sup</field>
+            <field name="inherit_id" ref="anggaran.view_sup_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="action_draft" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_done" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_reject" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+
+                <button name="action_create_spm" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+
+                <button name="action_view_spm" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+            </field>
+        </record>
+
+        <!-- TUP from -->
+        <record id="view_tup_form2" model="ir.ui.view">
+            <field name="name">anggaran_tup_form2</field>
+            <field name="model">anggaran.tup</field>
+            <field name="inherit_id" ref="anggaran.view_tup_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="action_draft" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_done" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+                <button name="action_reject" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+
+                <button name="action_create_spm" position="attributes">
+                    <attribute name="groups">vit_perencanaan.group_perencanaan_manager</attribute>
+                </button>
+            </field>
+        </record>
+    </data>
+</odoo>

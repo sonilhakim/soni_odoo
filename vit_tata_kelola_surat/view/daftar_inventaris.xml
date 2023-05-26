@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_buku_inventaris_tree" model="ir.ui.view">
+            <field name="name">vit.buku.inventaris.tree</field>
+            <field name="model">asset.asset.report</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Transfer">
+                    <field name="asset_id" string="Name"/>
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="asset_category_id"  string="Category"/>
+                    <field name="depreciation_date" />
+                    <field name="depreciation_value" />
+                    <field name="installment_nbr" />
+                    <field name="installment_value" />
+                    <field name="gross_value" />
+                    <field name="posted_value"/>
+                    <field name="unposted_value"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- <record id="view_buku_induk_inventaris_tree" model="ir.ui.view">
+            <field name="name">vit.buku.inventaris.tree</field>
+            <field name="model">asset.asset.report</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Transfer">
+                    <field name="asset_id" />
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="asset_category_id" />
+                    <field name="depreciation_date" />
+                    <field name="depreciation_value" />
+                    <field name="installment_nbr" />
+                    <field name="installment_value" />
+                    <field name="gross_value" />
+                    <field name="posted_value"/>
+                    <field name="unposted_value"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record> -->
+
+        <record model="ir.actions.act_window" id="act_open_account_inventaris_detail_view">
+            <field name="name">Daftar Inventaris Ruang</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.asset.asset</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="vit_asset.view_account_asset_asset_detail_search"/>
+            <field name="domain">[('asset_id','!=',False)]</field>
+            <field name="context">{'search_default_asset_not_disposed':True}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_account_asset_asset_view_form">
+            <field name="act_window_id" ref="act_open_account_inventaris_detail_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="vit_asset.view_account_asset_asset_detail_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_account_asset_asset_view_tree">
+            <field name="act_window_id" ref="act_open_account_inventaris_detail_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="vit_asset.view_account_asset_asset_detail_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_account_asset_asset_view_kanban">
+            <field name="act_window_id" ref="act_open_account_inventaris_detail_view"/>
+            <field name="sequence" eval="15"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="vit_asset.account_asset_asset_kanban_view"/>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_buku_inventaris_report">
+            <field name="name">Buku Inventaris </field>
+            <field name="res_model">asset.asset.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="search_view_id" ref="om_account_asset.view_asset_asset_report_search"/>
+            <!-- <field name="domain">[('asset_category_id.type', '=', 'purchase'),('asset_id.asset_id', '!=', False),('asset_category_id.parent_id', '=', 'Inventaris')]</field> -->
+            <field name="domain">[('asset_category_id.type', '=', 'purchase'),('asset_category_id.parent_id', '=', 'Inventaris')]</field>
+            <field name="context">{}</field>  <!-- force empty -->
+            <field name="help" type="html">
+              <p class="o_view_nocontent_empty_folder">
+                No content
+              </p><p>
+                From this report, you can have an overview on all depreciations. The
+                search bar can also be used to personalize your assets depreciation reporting.
+              </p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_buku_inventaris_report_tree">
+            <field name="act_window_id" ref="action_buku_inventaris_report"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="vit_tata_kelola_surat.view_buku_inventaris_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_buku_induk_inventaris_report">
+            <field name="name">Buku Induk Inventaris </field>
+            <field name="res_model">asset.asset.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">pivot</field>
+            <field name="search_view_id" ref="om_account_asset.view_asset_asset_report_search"/>
+            <!-- <field name="domain">[('asset_category_id.type', '=', 'purchase'),('asset_id.asset_id', '=', False),('asset_category_id.parent_id', '=', 'Inventaris')]</field> -->
+            <field name="domain">[('asset_category_id.type', '=', 'purchase'),('asset_category_id.parent_id', '=', 'Inventaris')]</field>
+            <field name="context">{}</field>  <!-- force empty -->
+            <field name="help" type="html">
+              <p class="o_view_nocontent_empty_folder">
+                No content
+              </p><p>
+                From this report, you can have an overview on all depreciations. The
+                search bar can also be used to personalize your assets depreciation reporting.
+              </p>
+            </field>
+        </record>
+
+        <!-- <record model="ir.actions.act_window.view" id="act_buku_inventaris_report_tree">
+            <field name="act_window_id" ref="action_buku_induk_inventaris_report"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="vit_tata_kelola_surat.view_buku_induk_inventaris_tree"/>
+        </record> -->
+
+        <record model="ir.actions.act_window" id="act_open_vit_mutasi_view">
+            <field name="name">Laporan Mutasi Barang</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.transfer</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="vit_asset.view_vit_transfer_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_vit_mutasi_view_form">
+            <field name="act_window_id" ref="act_open_vit_mutasi_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="vit_asset.view_vit_transfer_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_vit_mutasi_view_tree">
+            <field name="act_window_id" ref="act_open_vit_mutasi_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="vit_asset.view_vit_transfer_tree"/>
+        </record>
+        
+    </data>
+</odoo>

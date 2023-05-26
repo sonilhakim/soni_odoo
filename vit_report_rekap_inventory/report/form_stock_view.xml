@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="form_stock_tmpl">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="doc">
+                        <div class="page">
+                            <table style="margin-bottom:5px;width:100%;">
+                                <tr>
+                                    <td style="border-top: 1px solid black;border-left: 1px solid black;width:15%;"></td>
+                                    <td style="border-top: 1px solid black;width:49%;"></td>
+                                    <td style="border-top: 1px solid black;border-bottom: 1px solid black;border-left: 1px solid black;width:12%;text-align:center;">DATE</td>
+                                    <td style="border-top: 1px solid black;border-bottom: 1px solid black;border-left: 1px solid black;width:12%;text-align:center;">PREPARED</td>
+                                    <td style="border-top: 1px solid black;border-bottom: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;width:12%;text-align:center;">APPROVED</td>
+                                </tr>
+                                <tr>
+                                    <td style="border-left: 1px solid black;padding-left:5px;">FORM STOCK</td>
+                                    <td></td>
+                                    <td style="border-left: 1px solid black;"></td>
+                                    <td style="border-left: 1px solid black;"></td>
+                                    <td style="border-left: 1px solid black;border-right: 1px solid black;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-left: 1px solid black;padding-left:5px;">BUYER / STYLE</td>
+                                    <td>: <span t-field="doc.partner_id.name" /> / <span t-field="doc.style_id.name" /></td>
+                                    <td style="border-left: 1px solid black;text-align:center;"><span t-field="doc.date" /></td>
+                                    <td style="border-left: 1px solid black;"></td>
+                                    <td style="border-left: 1px solid black;border-right: 1px solid black;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-left: 1px solid black;border-bottom: 1px solid black;padding-left:5px;">ITEM</td>
+                                    <td style="border-bottom: 1px solid black;">: <span t-field="doc.product_name" /></td>
+                                    <td style="border-bottom: 1px solid black;border-left: 1px solid black;"></td>
+                                    <td style="border-bottom: 1px solid black;border-left: 1px solid black;"></td>
+                                    <td style="border-bottom: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;"></td>
+                                </tr>
+                            </table>
+                            <table class="text-center" style="width:100%;">
+                                <thead style="background-color: #ebebeb;">
+                                    <tr>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:20%;">TGL.</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:44%;">COLOUR</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:12%;">TERIMA</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;width:12%;">KELUAR</th>
+                                        <th style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;width:12%;">STOCK</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="data_dict" t-as="dat">
+                                        <tr>
+                                            <td style="border: 1px solid black;">
+                                                <t t-if="dat[0]">
+                                                    <span t-esc="dat[0].strftime('%d-%m-%Y')" />
+                                                </t>
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat[1]" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat[2]" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat[3]" />
+                                            </td>
+                                            <td style="border: 1px solid black;">
+                                                <span t-esc="dat[4]" />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+
+        </template>
+
+    </data>
+</openerp>

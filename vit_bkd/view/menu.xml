@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="vit_bkd_top_menu" name="BKD" sequence="20" web_icon="vit_bkd,static/description/icon.png" />
+		<menuitem id="vit_bkd_sub_menu" name="Operations" sequence="40" parent="vit_bkd_top_menu" />
+		<menuitem id="vit_bkd_config_menu" name="Configurations" sequence="50" parent="vit_bkd_top_menu" />
+	</data>
+</odoo>

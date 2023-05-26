@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_kasbon_pb_tree" model="ir.ui.view">
+            <field name="name">vit_kasbon_pb_tree</field>
+            <field name="model">vit.kasbon_pb</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree decoration-info="state == 'draft'" decoration-primary="state == 'open'" decoration-success="state == 'confirm'" decoration-danger="not_fully_paid == True" decoration-muted="state in ('cancel','refuse')" string="Kasbon">
+                    <field name="name" />
+                    <field name="employee_id" />
+                    <field name="tanggal_pengajuan" />
+                    <field name="pinjaman" />
+                    <field name="pencairan" />
+                    <field name="angsuran" />
+                    <field name="state" />
+                    <field name="not_fully_paid" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <!-- pivot view -->
+        <record id="view_vit_kasbon_pb_pivot" model="ir.ui.view">
+            <field name="name">vit_kasbon_pb_tree</field>
+            <field name="model">vit.kasbon_pb</field>
+            <field name="type">pivot</field>
+            <field name="arch" type="xml">
+                <pivot string="Kasbon pb">
+                    <field name="employee_id" type="row"/>
+                    <field name="department_id" type="row"/>
+                    <field name="user_id" type="row"/>
+                </pivot>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kasbon_pb_form" model="ir.ui.view">
+            <field name="name">vit_kasbon_pb_form</field>
+            <field name="model">vit.kasbon_pb</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Kasbon pb">
+                    <header>
+                        <button name="button_confirm" 
+                                states="draft" 
+                                string="Confirm" 
+                                type="object" 
+                                class="oe_highlight"/>
+
+                        <button name="button_confirm_manager" 
+                                states="open" 
+                                string="Approve" 
+                                type="object" 
+                                class="oe_highlight"
+                                groups="vit_kasbon_pb.group_vit_kasbon_pb_manager"/>
+
+                        <button name="%(action_account_kasbon_payment)d" 
+                                type="action"
+                                string="Angsuran" 
+                                groups="vit_kasbon_pb.group_vit_kasbon_pb_manager, vit_kasbon_pb.group_vit_kasbon_pb_kasir" 
+                                class="oe_highlight"
+                                attrs="{'invisible': ['|',('state','!=','confirm'),('pencairan', '=', 0)]}"/>
+
+                        <button name="button_cancel" 
+                                states="open" 
+                                string="Cancel" 
+                                type="object"/>
+
+                        <button name="button_refuse" 
+                                states="open" 
+                                string="Refuse" 
+                                type="object"
+                                class="btn-danger"
+                                groups="vit_kasbon_pb.group_vit_kasbon_pb_manager"/>
+
+                        <button name="button_draft" 
+                                states="cancel" 
+                                string="Set to draft" 
+                                type="object"
+                                class="oe_highlight"/>
+
+                        <button name="action_lunas"
+                                string="Lunas" 
+                                type="object"
+                                class="btn-warning"
+                                groups="vit_kasbon_pb.group_vit_kasbon_pb_manager"
+                                attrs="{'invisible': ['|',('state','!=','confirm'),('sama', '!=', True)]}"/>/>
+                                
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,confirm" statusbar_colors='{"draft":"red","open":"blue"}' readonly="1"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_pencairan"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o"
+                                attrs="{'invisible': [('pencairan_count', '=', 0)]}"
+                                string="Pencairan">
+                                <field name="pencairan_count" invisible="1"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Kasbon pb Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tanggal_pengajuan" />
+                                <field name="employee_id" />
+                                <field name="department_id" />
+                                <field name="user_id" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="pinjaman" />
+                                <field name="pencairan" readonly="1"/>
+                                <field name="angsuran" readonly="1"/>
+                                <field name="sama" invisible="1"/>
+                                <field name="not_fully_paid" invisible="1"/>
+                            </group>
+                            <group colspan="4">
+                                <field name="notes"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Angsuran" attrs="{'invisible': [('angsuran', '=', 0)]}">
+                                <field name="angsuran_ids" readonly="1">
+                                    <tree string="Angsuran" default_order='nomor'>
+                                        <field name="nomor"/>
+                                        <field name="payment_date" string="Tanggal Angsuran"/>
+                                        <!-- <field name="name"/> -->
+                                        <field name="journal_id" string="Jurnal"/>
+                                        <!-- <field name="payment_method_id"/> -->
+                                        <field name="partner_id" string="Karyawan"/>
+                                        <field name="amount" string="Nominal" sum="Amount"/>
+                                        <field name="note"/>
+                                        <field name="state"/>
+                                        <!-- <field name="company_id" groups="base.group_multi_company"/> -->
+                                        <!-- <field name="currency_id" invisible="1"/>
+                                        <field name="partner_type" invisible="1"/> -->
+                                    </tree>
+                                    <form string="Angsuran">
+                                        <header>
+                                            <field name="state" widget="statusbar" statusbar_visible="draft,posted,reconciled,cancelled"/>
+                                        </header>
+                                        <sheet>
+                                            <div class="oe_button_box" name="button_box">
+                                                <button class="oe_stat_button" name="button_journal_entries"
+                                                        string="Journal Items" type="object"
+                                                        groups="account.group_account_user"
+                                                        attrs="{'invisible':[('move_line_ids','=',[])]}" icon="fa-bars"/>
+                                                <field name="move_line_ids" invisible="1"/>
+                                                <button class="oe_stat_button" name="open_payment_matching_screen"
+                                                        string="Payment Matching" type="object"
+                                                        attrs="{'invisible':[('move_reconciled','=',True)]}" icon="fa-university"/>
+                                                <field name="move_reconciled" invisible="1"/>
+                                            </div>
+                                            <field name="id" invisible="1"/>
+                                            <div class="oe_title" attrs="{'invisible': [('state', '=', 'draft')]}">
+                                                <h1><field name="name"/></h1>
+                                            </div>
+                                            <group>
+                                                <group>
+                                                    <field name="payment_type" invisible="1"/>
+                                                    <field name="partner_type" invisible="1"/>
+                                                    <field name="partner_id" string="Karyawan"/>
+                                                    <label for="amount" string="Nominal"/>
+                                                    <div name="amount_div" class="o_row">
+                                                        <field name="amount"/>
+                                                        <field name="currency_id"/>
+                                                    </div>
+                                                    <field name="journal_id" string="Jurnal"/>
+                                                    <field name="hide_payment_method" invisible="1"/>
+                                                    <field name="payment_method_id" invisible="1"/>
+                                                    <field name="partner_bank_account_id" invisible="1"/>
+                                                    <field name="show_partner_bank_account" invisible="1"/>
+                                                    <field name="payment_method_code" invisible="1"/>
+                                                </group>
+                                                <group>
+                                                    <field name="payment_date"/>
+                                                    <field name="communication"/>
+                                                    <field name="note"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_kasbon_pb_search" model="ir.ui.view">
+            <field name="name">vit_kasbon_pb</field>
+            <field name="model">vit.kasbon_pb</field>
+            <field name="arch" type="xml">
+                <search string="Kasbon pb">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Tanggal pengajuan" name="filter_by_tanggal_pengajuan" domain="[('tanggal_pengajuan','=','')]" />
+                    <filter string="Pinjaman" name="filter_by_pinjaman" domain="[('pinjaman','=','')]" />
+                    <filter string="Pencairan" name="filter_by_pencairan" domain="[('pencairan','=','')]" />
+                    <filter string="Angsuran" name="filter_by_angsuran" domain="[('angsuran','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="tanggal_pengajuan" select="True"/>
+                    <field name="pinjaman" select="True"/>
+                    <field name="pencairan" select="True"/>
+                    <field name="angsuran" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="employee_id" select="True"/>
+                    <field name="department_id" select="True"/>
+                    <field name="user_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Karyawan d" domain="[]" name="group_by_employee_id" context="{'group_by':'employee_id'}"/>
+                        <filter string="Department" domain="[]" name="group_by_department_id" context="{'group_by':'department_id'}"/>
+                        <filter string="User" domain="[]" name="group_by_user_id" context="{'group_by':'user_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_kasbon_pb_kanban" model="ir.ui.view" >
+            <field name="name">vit_kasbon_pb</field>
+            <field name="model">vit.kasbon_pb</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="name" />
+                    <field name="employee_id" />
+                    <field name="department_id" />
+                    <field name="tanggal_pengajuan" />
+                    <field name="pinjaman" />
+                    <field name="pencairan" />
+                    <field name="angsuran" />
+                    <field name="state" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Karyawan</span> <field name="employee_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Department</span> <field name="department_id"></field>
+                                        </li>
+
+                                        <li>
+                                            <span class="text-muted">Tanggal pengajuan</span> <field name="tanggal_pengajuan"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_vit_kasbon_pb_cal" model="ir.ui.view">
+            <field name="name">vit_kasbon_pb_cal</field>
+            <field name="model">vit.kasbon_pb</field>
+            <field name="arch" type="xml">
+                <calendar string="Kasbon pb" date_start="tanggal_pengajuan">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record>
+        <!-- graph -->
+        <record id="view_vit_kasbon_pb_graph" model="ir.ui.view">
+            <field name="name">vit_kasbon_pb</field>
+            <field name="model">vit.kasbon_pb</field>
+            <field name="arch" type="xml">
+                <graph string="Kasbon pb" type="bar">
+                    <field name="employee_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_kasbon_pb" model="ir.actions.act_window">
+            <field name="name">Kasbon pb</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.kasbon_pb</field>
+            <field name="view_mode">tree,form,kanban,pivot,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Kasbon
+                </p><p>
+                Klik tombol Create untuk menambahkan Kasbon baru
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_kasbon_pb" name="Kasbon" parent="vit_kasbon_pb_sub_menu" action="action_kasbon_pb" sequence="20"/>
+    </data>
+</odoo>

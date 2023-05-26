@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_sample_approval_line_tree" model="ir.ui.view">
+            <field name="name">vit_sample_approval_line_tree</field>
+            <field name="model">vit.sample_approval_line</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Detail">
+                    <field name="name" string="Style"/>
+                    <field name="size"/>
+                    <field name="kain"/>
+                    <field name="qty" sum="total Qty"/>
+                    <field name="uom"/>
+                    <field name="harga_cm"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_sample_approval_line_form" model="ir.ui.view">
+            <field name="name">vit_sample_approval_line_form</field>
+            <field name="model">vit.sample_approval_line</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Detail" delete="false" create="false">
+                    <header>
+                        <button string="Create Product" type="object" name="create_product_sample" attrs="{'invisible':['|',('state','!=','open'),('product_sample_id','!=',False)]}" confirm="Anda yakin akan membuat product sample ?"/>
+                        <button name="%(vit_sample_approval.show_mo_sample_wizard)d" string="Create MO Sample" type="action" class="oe_highlight" states="created,mo" />
+                        <button string="Approved" type="object" name="action_approved" attrs="{'invisible':['|',('state','!=','done_mo')]}" confirm="Anda yakin Sample Approval Line akan di Approve ?"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,approved"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Style"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="size" required="1"/>
+                                <field name="qty" required="1"/>
+                                <field name="uom" options="{'no_create': True}" required="1"/>
+                                <field name="kain" required="1"/>
+                                <field name="harga_cm"/>
+                                <field name="boq_jo_id" invisible="1"/>
+                            </group>
+                            <group>
+                                <!-- <field name="routing_id" options="{'no_create': True}"/> -->
+                                <field name="desc" string="Product Description"/>
+                                <field name="product_sample_id" readonly="1" attrs="{'invisible':[('product_sample_id','=',False)]}" string="Product Sample"/>
+                                <field name="bom_id" readonly="1" attrs="{'invisible':[('bom_id','=',False)]}" string="BoM Sample"/>
+                            </group>
+                        </group>                        
+                        <notebook>
+                            <page string="Material List">
+                                <field name="material_ids">
+                                    <tree string="Material List" editable="bottom">
+                                        <field name="material" context="{'default_type': 'product'}" domain="[('categ_id.name','!=','Barang Jadi Uniform')]" options="{'no_create': True}" />
+                                        <field name="spec" />
+                                        <field name="colour" />
+                                        <field name="qty" />
+                                        <field name="uom" options="{'no_create': True}"/>
+                                        <field name="cons" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Design">
+                                <field name="design_ids">
+                                    <tree string="Design" editable="bottom">
+                                        <field name="doc_name" invisible="1"/>
+                                        <field name="doc" widget="binary" filename="doc_name" required="1"/>
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Manufacturing Order Sample" attrs="{'invisible':[('state','!=',('mo'))]}">
+                                <field name="mo_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_sample_approval_line" model="ir.actions.act_window">
+            <field name="name">Sample Approval Detail</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.sample_approval_line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">                
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_sample_approval_line" name="Sample Approval Detail" parent="vit_merchandise_garment.submenu_merchandise_sample_approval" action="action_vit_sample_approval_line" sequence="30"/>
+    </data>
+</odoo>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+    <data>
+        <report id="action_rekap_bkb_report"
+                string="Rekap Bukti Keluar Barang" 
+                model="stock.move"
+                report_type="qweb-pdf"
+                file = "vit_report_rekap_inventory.rekap_bkb_report_tmpl"
+                name ="vit_report_rekap_inventory.rekap_bkb_report_tmpl"
+                menu="False"/>
+
+        <report id="action_rekap_btb_report"
+                string="Rekap Bukti Terima Barang" 
+                model="stock.move"
+                report_type="qweb-pdf"
+                file = "vit_report_rekap_inventory.rekap_btb_report_tmpl"
+                name ="vit_report_rekap_inventory.rekap_btb_report_tmpl"
+                menu="False"/>
+
+        <report id="action_rekap_stock_acc"
+                string="Laporan Stok Aksesoris" 
+                model="stock.move"
+                report_type="qweb-pdf"
+                file = "vit_report_rekap_inventory.rekap_stock_acc_report_tmpl"
+                name ="vit_report_rekap_inventory.rekap_stock_acc_report_tmpl"
+                menu="False"/>
+
+        <report id="action_jadwal_pm"
+                string="Jadwal Persiapan Material" 
+                model="stock.picking"
+                report_type="qweb-pdf"
+                file = "vit_report_rekap_inventory.jpm_tmpl"
+                name ="vit_report_rekap_inventory.jpm_tmpl"
+                menu="False"/>
+
+        <report id="action_form_stock"
+                string="Form Stock" 
+                model="product.product"
+                report_type="qweb-pdf"
+                file = "vit_report_rekap_inventory.form_stock_tmpl"
+                name ="vit_report_rekap_inventory.form_stock_tmpl"
+                menu="False"/>
+
+        <report id="action_mutasi_stock"
+                string="Ringkasan Mutasi Stock" 
+                model="rekap.mutasi.stock.wizard"
+                report_type="qweb-pdf"
+                file = "vit_report_rekap_inventory.mutasi_stock_tmpl"
+                name ="vit_report_rekap_inventory.mutasi_stock_tmpl"
+                menu="False"/>
+
+    </data>
+
+</openerp>
+
+
+

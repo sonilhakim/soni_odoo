@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_rekap_stock_acc_wizard_form" model="ir.ui.view">
+        <field name="name">rekap.stock.acc.wizard.form</field>
+        <field name="model">rekap.stock.acc</field>
+        <field name="arch" type="xml">
+        <form string="Reports">
+            <group>
+                <group>
+                    <field name="year" string="Tahun"/>
+                    <field name="periode"/>
+                </group>
+                <group>
+                    <label string="Date Range" for="date_from" invisible="1"/>
+                    <div invisible="1">
+                        <field name="date_from" style="width: 40%"/> - 
+                        <field name="date_to" style="width: 40%"/>
+                    </div>
+                </group>
+            </group>
+            
+            <footer>
+                <button name="action_print_report" string="Print" type="object" default_focus="1" class="oe_highlight"/>
+                or <button string="Cancel" class="oe_link" special="cancel" />
+            </footer>
+        </form>
+        </field>
+    </record>
+
+    <record id="action_rekap_stock_acc_wizard" model="ir.actions.act_window">
+        <field name="name">LAPORAN STOK AKSESORIS</field>
+        <field name="res_model">rekap.stock.acc</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_rekap_stock_acc_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="menu_rekap_stock_acc_wizard"
+        name="Laporan Stok Aksesoris"
+        action="action_rekap_stock_acc_wizard"
+        parent="stock.menu_warehouse_report"
+        sequence="240"/>
+
+</odoo>

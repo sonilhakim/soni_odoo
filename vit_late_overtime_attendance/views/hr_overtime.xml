@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_vit_overtime_form" model="ir.ui.view">
+        <field name="name">vit.overtime.form</field>
+        <field name="model">hr.overtime</field>
+        <field name="inherit_id" ref="vit_overtime_hress.view_hr_overtime_form"/>
+        <field name="arch" type="xml">
+            <field name="number_of_hours_temp" position="after">
+                <field name="tgl" invisible="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>

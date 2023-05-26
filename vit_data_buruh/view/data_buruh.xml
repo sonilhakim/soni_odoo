@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_data_buruh_tree" model="ir.ui.view">
+            <field name="name">vit_data_buruh_tree</field>
+            <field name="model">vit.data_buruh</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Data buruh">
+                    <field name="name" />
+                    <field name="tanggal" />
+                    <field name="state" />
+                    <field name="note" />
+                </tree>
+            </field>
+        </record>
+        <!-- pivot view -->
+        <!-- <record id="view_vit_data_buruh_pivot" model="ir.ui.view">
+            <field name="name">vit_data_buruh_tree</field>
+            <field name="model">vit.data_buruh</field>
+            <field name="type">pivot</field>
+            <field name="arch" type="xml">
+                <pivot string="Data buruh">
+                </pivot>
+            </field>
+        </record> -->
+        <!-- form view -->
+        <record id="view_vit_data_buruh_form" model="ir.ui.view">
+            <field name="name">vit_data_buruh_form</field>
+            <field name="model">vit.data_buruh</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Data buruh">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" class="btn-primary"/>
+                        <button string="Cancel" type="object" name="action_cancel" states="open" class="btn-danger"/>
+                        <button string="Done" type="object" name="action_done" states="open" class="btn-primary"/>
+                        <button string="Cancel" type="object" name="action_cancel" states="done" class="btn-danger" groups="vit_data_buruh.group_data_buruh_manager,base.group_system"/>
+                        <button string="Reset to Draft" type="object" name="action_draft" states="cancel" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Data buruh Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tanggal" />
+                            </group>
+                            <group>
+                                <field name="user_id" invisible="1"/>
+                                <field name="note" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="daftar_ids" string="Daftar Buruh">
+                                <field name="daftar_ids">
+                                    <tree string="Daftar Buruh" editable="bottom">
+                                        <field name="buruh_id" domain="[('buruh','=',True)]" context="{'default_buruh':1}"/>
+                                        <field name="uang_makan" />
+                                        <field name="potongan" />
+                                        <field name="note" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_data_buruh_search" model="ir.ui.view">
+            <field name="name">vit_data_buruh</field>
+            <field name="model">vit.data_buruh</field>
+            <field name="arch" type="xml">
+                <search string="Data buruh">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Tanggal" name="filter_by_tanggal" domain="[('tanggal','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                    <filter string="Note" name="filter_by_note" domain="[('note','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="tanggal" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="note" select="True"/>
+                    <group string="Group By..">
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_data_buruh_kanban" model="ir.ui.view" >
+            <field name="name">vit_data_buruh</field>
+            <field name="model">vit.data_buruh</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="tanggal" />
+                    <field name="state" />
+                    <field name="note" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            <span class="text-muted">Tanggal</span> <field name="tanggal"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- <record id="view_vit_data_buruh_cal" model="ir.ui.view">
+            <field name="name">vit_data_buruh_cal</field>
+            <field name="model">vit.data_buruh</field>
+            <field name="arch" type="xml">
+                <calendar string="Data buruh" date_start="tanggal">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record> -->
+        <!-- graph -->
+        <!-- <record id="view_vit_data_buruh_graph" model="ir.ui.view">
+            <field name="name">vit_data_buruh</field>
+            <field name="model">vit.data_buruh</field>
+            <field name="arch" type="xml">
+                <graph string="Data buruh" type="bar">
+                    <field name="penanggung_jawab_id"/>
+                </graph>
+            </field>
+        </record> -->
+        <!-- action window -->
+        <record id="action_data_buruh" model="ir.actions.act_window">
+            <field name="name">Data Buruh / Hari</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.data_buruh</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Data Buruh / Hari
+                </p><p>
+                Click the Create button to add a new Data Buruh / Hari
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_data_buruh" name="Data Buruh / Hari" parent="vit_data_buruh_sub_menu" action="action_data_buruh" sequence="20"/>
+    </data>
+</odoo>

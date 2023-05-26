@@ -1,0 +1,115 @@
+<!-- top menu MD -->
+<odoo>
+    <data>
+        <!-- menu order recieve -->
+        <!-- tree view -->
+        <record id="view_vit_order_recieve_md_tree" model="ir.ui.view">
+            <field name="name">vit_order_recieve_md_tree</field>
+            <field name="model">vit.purchase_order_garmen</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Order Received" delete="false" create="false">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="partner_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_vit_md_or_form" model="ir.ui.view">
+            <field name="name">vit_md_or_form</field>
+            <field name="model">vit.purchase_order_garmen</field>
+            <field name="inherit_id" ref="vit_marketing_po_garmen.view_vit_purchase_order_garmen_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[@name='create_spk_pengukuran']" position="after">
+                    <button name="%(vit_merchandise_garment.show_sample_approval_wizard)d" string="Sample Approval" type="action" class="oe_highlight" groups="vit_merchandise_garment.group_md_garment_user" attrs="{'invisible':['|',('sample_approval_id','!=',False),('state','!=','approved')]}" />
+                    <button name="%(vit_merchandise_garment.show_md_pr_wizard)d" string="Create Purchase Request" type="action" class="oe_highlight" groups="vit_merchandise_garment.group_md_garment_user"  attrs="{'invisible':['|',('product_request_id','!=',False),('state','!=','approved')]}" />
+                </xpath>
+                <xpath expr="//header/button[@name='action_close']" position="replace">
+                    <button string="Submit JO" type="object" name="action_submit_jo" attrs="{'invisible':['|',('state','!=','approved'),('sample_done','=',False)]}" groups="vit_merchandise_garment.group_md_garment_user" confirm="Anda yakin akan Submit Job Order ?"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Other Info">
+                        <group>
+                            <group>
+                                <field name="product_request_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="sample_approval_id" readonly="1"/>
+                                <field name="sample_done" readonly="1"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_order_recieve_md" model="ir.actions.act_window">
+            <field name="name">Order Received (OR)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.purchase_order_garmen</field>
+            <field name="view_mode">tree,form,kanban,calendar,graph</field>
+            <field name="view_id" ref="vit_merchandise_garment.view_vit_order_recieve_md_tree"/>
+            <field name="domain">[('state','=','approved')]</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                To add a new Order Received go to Marketing Menu
+                </p><p>
+                Untuk membuat Order Recieved masuk ke Menu Marketing
+                </p>
+            </field>
+        </record>
+
+        <!-- menu request design -->
+        <!-- tree view -->
+        <!-- <record id="view_vit_marketing_request_md_tree" model="ir.ui.view">
+            <field name="name">vit_marketing_request_md_tree</field>
+            <field name="model">vit.marketing_request</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Marketing Request Design" delete="false" create="false">
+                    <field name="name" string="No Request"/>
+                    <field name="date" />
+                    <field name="partner_id" /> -->
+                    <!-- <field name="requester" /> -->
+                    <!-- <field name="recipient" />
+                    <field name="due_date" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record> -->
+
+        <!-- act window inquery_garmen customer -->
+        <!-- <record id="action_vit_marketing_request_md" model="ir.actions.act_window">
+            <field name="name">Marketing Request Design</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.marketing_request</field>
+            <field name="view_mode">tree,form,kanban,calendar,graph</field>
+            <field name="view_id" ref="vit_merchandise_garment.view_vit_marketing_request_md_tree"/>
+            <field name="domain">[('state','=','done')]</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                To add a new Marketing Request go to Marketing Menu
+                </p><p>
+                Untuk membuat Marketing Request masuk ke Menu Marketing
+                </p>
+            </field>
+        </record> -->
+
+        <menuitem
+            name="Merchandise"
+            id="menu_merchandise_garment"
+            sequence="50"
+            web_icon="vit_merchandise_garment,static/description/md.png"
+            groups="vit_merchandise_garment.group_md_garment_manager,vit_merchandise_garment.group_md_garment_user"/>
+        <menuitem name="Merchandise" parent="menu_merchandise_garment" id="submenu_merchandise" sequence="10"/>
+        <menuitem name="Sample Room PPIC" parent="menu_merchandise_garment" id="submenu_merchandise_sample_approval" sequence="20"/>
+        <menuitem name="Monitoring" parent="menu_merchandise_garment" id="submenu_merchandise_monitoring" sequence="30"/>
+        <menuitem name="Setting" parent="menu_merchandise_garment" id="submenu_merchandise_settting" sequence="40"/>
+        <menuitem id="menu_order_recieve_md" name="Order Received (OR)" parent="vit_merchandise_garment.submenu_merchandise" action="vit_merchandise_garment.action_vit_order_recieve_md" sequence="20"/>
+        <!-- <menuitem id="menu_vit_marketing_request" name="Marketing Request Design" parent="vit_merchandise_garment.submenu_merchandise" action="vit_merchandise_garment.action_vit_marketing_request_md" sequence="30"/> -->
+        
+    </data>
+</odoo>

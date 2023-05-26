@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- form view -->
+        <record id="view_vit_buku_induk_inventaris_form2" model="ir.ui.view">
+            <field name="name">vit_buku_induk_inventaris_form2</field>
+            <field name="model">vit.buku_induk_inventaris</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_tks.view_vit_buku_induk_inventaris_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <button string="Reload" type="object" name="action_reload" states="draft" />
+                </header>
+
+                <xpath expr="//notebook/page" position="replace">
+                    <page string="Daftar Inventaris">
+                        <field name="induk_detail_ids" mode="tree">
+                            <tree string="Daftar Inventaris" editable="bottom">
+                                <field name="name" string="Nama Barang"/>
+                                <field name="code" string="Kode Barang"/>
+                                <field name="type" string="Keterangan Barang"/>
+                                <field name="jumlah" />
+                                <field name="satuan" />
+                                <field name="tahun_pembuatan" />
+                                <field name="asal" />
+                                <field name="kelengkapan_dokumen" />
+                                <field name="tanggal_penyerahan_barang" />
+                                <field name="kondisi" />
+                                <field name="harga" />
+                                <field name="keterangan" />
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- action window -->
+        <record id="action_vit_buku_induk_inventaris2" model="ir.actions.act_window">
+            <field name="name">Buku induk inventaris</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.buku_induk_inventaris</field>
+            <field name="view_mode">kanban,tree,form,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Buku induk inventaris
+                </p><p>
+                Click the Create button to add a new Buku induk inventaris
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_buku_induk_inventaris" name="Buku induk inventaris" parent="vit_tks.vit_tks_top_menu" action="action_vit_buku_induk_inventaris2" sequence="100"/>
+    </data>
+</odoo>

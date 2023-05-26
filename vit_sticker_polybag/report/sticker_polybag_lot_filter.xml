@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- search view -->
+        <record model="ir.ui.view" id="vit_packing_list.search_product_lot_filter_pl_full">
+            <field name="name">Packing List Filter</field>
+            <field name="model">stock.production.lot</field>
+            <field name="arch" type="xml">
+                <search string="Product Lots Filter">
+                    <field name="name" string="Product Lots" filter_domain="['|',('name','ilike',self),('ref','ilike',self)]"/>
+                    <field name="product_id"/>
+                    <field name="project_id" string="Project"/>
+                    <field name="partner_id"/>
+                    <field name="lokasi_id"/>
+                    <field name="karyawan"/>
+                    <field name="style_id"/>
+                    <field name="size_id"/>
+                    <field name="package_id"/>
+                    <field name="polybag"/>
+                    <field name="status_complete"/>
+                    <field name="is_comp"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_product" string="Product" domain="[]" context="{'group_by':'product_id'}"/>
+                        <filter name="group_by_partner_id" string="Customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter name="group_by_project_id" string="Project" domain="[]" context="{'group_by':'project_id'}"/>
+                        <filter name="group_by_lokasi_id" string="Lokasi" domain="[]" context="{'group_by':'lokasi_id'}"/>               
+                        <filter name="group_by_karyawan" string="Karyawan" domain="[]" context="{'group_by':'karyawan'}"/>
+                        <filter name="group_by_nik" string="NIK" domain="[]" context="{'group_by':'nik'}"/>
+                        <filter name="group_by_style_id" string="Style" domain="[]" context="{'group_by':'style_id'}"/> 
+                        <filter name="group_by_size_id" string="Size" domain="[]" context="{'group_by':'size_id'}"/>
+                        <filter name="group_by_package_id" string="Package" domain="[]" context="{'group_by':'package_id'}"/>
+                        <filter name="group_by_polybag" string="Polybag" domain="[]" context="{'group_by':'polybag'}"/>
+                        <filter name="group_by_status_complete" string="Status Item" domain="[]" context="{'group_by':'status_complete'}"/>
+                        <filter name="group_by_is_complate_true" string="Complete" domain="[('is_comp', '=', True)]"/>
+                         <filter name="group_by_is_complate_false" string="Uncomplete" domain="[('is_comp', '=', False)]"/>
+                        </group>                    
+                </search>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

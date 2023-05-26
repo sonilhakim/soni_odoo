@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>   
+        <record id="supplierinfo_price_hide_form" model="ir.ui.view">
+            <field name="name">product.supplierinfo.hide.price</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+            <field name="arch" type="xml">
+                <label for="price" position="replace">
+                    <label for="price" groups="purchase.group_purchase_manager"/>
+                </label>
+                <field name="price" position="replace">
+                    <field name="price" class="oe_inline" groups="purchase.group_purchase_manager"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- <record id="product_supplierinfo_view_kanban" model="ir.ui.view">
+            <field name="name">product.supplierinfo.kanban</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="min_qty"/>
+                    <field name="delay"/>
+                    <field name="price"/>
+                    <field name="name"/>
+                    <field name="currency_id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="row mb4">
+                                    <strong class="col-6">
+                                        <span t-esc="record.name.value"/>
+                                    </strong>
+                                    <strong class="col-6 text-right">
+                                        <strong><field name="price" widget="monetary"/></strong>
+                                    </strong>
+                                    <div class="col-6">
+                                        <span t-esc="record.min_qty.value"/>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <span t-esc="record.delay.value"/> days
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record> -->
+
+        <record id="supplierinfo_price_hide_tree" model="ir.ui.view">
+            <field name="name">supplierinfo.hide.price.view</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="price" position="replace">
+                    <field name="price" string="Price" groups="purchase.group_purchase_manager"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

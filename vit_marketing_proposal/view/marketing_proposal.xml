@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_marketing_proposal_tree" model="ir.ui.view">
+            <field name="name">vit_marketing_proposal_tree</field>
+            <field name="model">vit.marketing_proposal</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Proposal" create="false">
+                    <field name="name" string="No Proposal"/>
+                    <field name="date" />
+                    <field name="inquery_id" />
+                    <field name="partner_id" />
+                    <field name="due_date" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_marketing_proposal_form" model="ir.ui.view">
+            <field name="name">vit_marketing_proposal_form</field>
+            <field name="model">vit.marketing_proposal</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Proposal">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" groups="vit_marketing_proposal.group_marketing_proposal_user"/>
+                        <button string="Validate" type="object" name="action_done" states="open"  groups="vit_marketing_proposal.group_marketing_proposal" confirm="Anda yakin Proposal akan di Validate ?"/>
+                        <button string="Cancel" type="object" name="action_cancel" states="open" confirm="Anda yakin Proposal akan di cancel ?"/>
+                        <button string="Reset to Draft" type="object" name="action_draft" states="cancel" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Proposal No :"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="date" />
+                                <field name="inquery_id" readonly="1" />
+                                <field name="due_date" required="1"/>
+                                <field name="sph" readonly="1" attrs="{'invisible':[('sph','=',False)]}"/>
+                            </group>
+                            <group>
+                                <field name="partner_id" string="Buyer" domain="[('customer','=',True)]" options="{'no_create': True}" />
+                                <field name="user_id" />
+                                <field name="company_id" />
+                                <field name="project" />
+                                <field name="notes" />
+                            </group>                            
+                        </group>
+                        <notebook>
+                            <page string="BOQ">
+                                <field name="line_ids">
+                                    <tree string="BOQ" editable="bottom">
+                                        <!-- <field name="product_id" context="{'default_type' : 'product', }" options="{'no_create': True}"/> -->
+                                        <field name="name" />
+                                        <field name="qty" sum="Total Qty"/>
+                                        <field name="uom" options="{'no_create': True}"/>
+                                    </tree>
+                                </field>
+                                <!-- <group class="oe_subtotal_footer oe_right">
+                                    <field name="total_qty" class="oe_subtotal_footer_separator"/>
+                                </group> -->
+                            </page>
+                            <page string="Document">
+                                <field name="doc_ids">
+                                    <tree string="Document" editable="bottom">
+                                        <field name="doc_name" invisible="1"/>
+                                        <field name="doc" widget="binary" filename="doc_name" required="1"/>
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_marketing_proposal_search" model="ir.ui.view">
+            <field name="name">vit_marketing_proposal_search</field>
+            <field name="model">vit.marketing_proposal</field>
+            <field name="arch" type="xml">
+                <search string="Proposal">
+
+                   <!--  <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Date" name="filter_by_date" domain="[('date','=','')]" />
+                    <filter string="Project" name="filter_by_project" domain="[('project','=','')]" />
+                    <filter string="Notes" name="filter_by_notes" domain="[('notes','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" /> -->
+                    <field name="name" select="True"/>
+                    <field name="date" select="True"/>
+                    <field name="project" select="True"/>
+                    <field name="notes" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="inquery_id" select="True"/>
+                    <field name="partner_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="No Inquery" domain="[]" name="group_by_inquery_id" context="{'group_by':'inquery_id'}"/>
+                        <filter string="Partner" domain="[]" name="group_by_partner_id" context="{'group_by':'partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_marketing_proposal_kanban" model="ir.ui.view" >
+            <field name="name">vit_marketing_proposal_kanban</field>
+            <field name="model">vit.marketing_proposal</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="due_date"/>
+                    <field name="project" />
+                    <field name="inquery_id" />
+                    <field name="partner_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            <span class='text-muted'>Customer</span> <field name="partner_id"></field>
+                                        </li>
+                                        <li>
+                                            <span class='text-muted'>Project</span> <field name="project"></field>
+                                        </li>
+                                        <li>
+                                            <span class='text-muted'>Date</span> <field name="date"></field>
+                                        </li>
+                                        <li>
+                                            <span class='text-muted'>Due Date</span> <field name="due_date"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_vit_marketing_proposal_cal" model="ir.ui.view">
+            <field name="name">vit_marketing_proposal_cal</field>
+            <field name="model">vit.marketing_proposal</field>
+            <field name="arch" type="xml">
+                <calendar string="Proposal" date_start="date" date_stop="due_date" color="name">
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="project" />
+                </calendar>
+            </field>
+        </record>
+        <!-- graph -->
+        <record id="view_vit_marketing_proposal_graph" model="ir.ui.view">
+            <field name="name">vit_marketing_proposal_graph</field>
+            <field name="model">vit.marketing_proposal</field>
+            <field name="arch" type="xml">
+                <graph string="Proposal" type="bar">
+                    <field name="partner_id" />
+                    <field name="project" />
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_marketing_proposal" model="ir.actions.act_window">
+            <field name="name">Proposal</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.marketing_proposal</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Proposal
+                </p><p>
+                Click the Create button to add a new Marketing proposal
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_marketing_proposal" name="Proposal" parent="vit_marketing.vit_marketing_sub_menu" action="action_vit_marketing_proposal" sequence="30"/>
+    </data>
+</odoo>

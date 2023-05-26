@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_fakultas_tree" model="ir.ui.view">
+            <field name="name">vit_fakultas_tree</field>
+            <field name="model">vit.fakultas</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref=""/>
+            <field name="arch" type="xml">
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_fakultas_form" model="ir.ui.view">
+            <field name="name">vit_fakultas_form</field>
+            <field name="model">vit.fakultas</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref=""/>
+            <field name="arch" type="xml">
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_fakultas_search" model="ir.ui.view">
+            <field name="name">vit_fakultas</field>
+            <field name="model">vit.fakultas</field>
+            <field name="inherit_id" ref=""/>
+            <field name="arch" type="xml">
+            </field>
+        </record>
+    </data>
+</odoo>

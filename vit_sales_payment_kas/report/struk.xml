@@ -1,0 +1,140 @@
+<odoo>
+    <data>
+        
+        <report
+            string="Struk"
+            id="vit_sales_payment_kas.action_report_struk"
+            model="account.invoice"
+            report_type="qweb-pdf"
+            paperformat="vit_sales_payment_kas.paperformat_custom_struk"
+            name="vit_sales_payment_kas.report_struk"
+            file="vit_sales_payment_kas.report_struk"
+            print_report_name="'Struk - %s - %s' % (object.partner_id.name or '', object.name)"
+        />
+
+
+        <template id="report_struk">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="vit_sales_payment_kas.external_layout_struk">
+                        <div class="page" style="font-size:10px;">
+                            <div class="text-center">
+                                REPRINT
+                                <div t-field="o.company_id.name"/>
+                                <div t-field="o.company_id.city"/>
+                            </div>
+                            <div>
+                                ==================================================
+                            </div>
+                            <div t-foreach="o.invoice_line_ids" t-as="line">
+                                <div>
+                                    <span t-field="line.product_id.display_name"/>
+                                </div>
+                                <div class="row text-center">
+                                    <div class="col-1 text-center">
+                                        <span t-esc="'{0:,.0f}'.format(line.quantity)"/>
+                                    </div>
+                                    <div class="col-3">
+                                        <span t-field="line.uom_id"/>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <span t-esc="'{0:,.0f}'.format(line.price_unit)"/>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <span t-esc="'{0:,.0f}'.format(line.price_subtotal)"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                ------------------------------------------------------------------------------------------------(+)
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    TOTAL ITEM
+                                </div>
+                                <div class="col-6 text-right">
+                                    <span t-field="o.total_item"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    TOTAL QTY
+                                </div>
+                                <div class="col-6 text-right">
+                                    <span t-esc="'{0:,.0f}'.format(o.total_qty)"/>
+                                </div>
+                            </div>
+                            <t t-if="o.discount_global_amount > 0">
+                                <div class="row">
+                                    <div class="col-6">
+                                        DISKON TAMBAHAN
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <span t-esc="'{0:,.0f}'.format(o.discount_global_amount)"/>
+                                    </div>
+                                </div>
+                            </t>
+                            <div class="row">
+                                <div class="col-6">
+                                    TOTAL HRG
+                                </div>
+                                <div class="col-6 text-right">
+                                    <span t-esc="'{0:,.0f}'.format(o.amount_total)"/>
+                                </div>
+                            </div>
+                            <div>
+                                -------------------------------------------------------------------------------------------------(-)
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    Kembali
+                                </div>
+                                <div class="col-6 text-right">
+                                    <span t-esc="'{0:,.0f}'.format(o.change)"/>
+                                </div>
+                            </div>
+                            <div>
+                                ==================================================
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <span t-field="o.number"/>
+                                </div>
+                                <div class="col-6">
+                                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y %H:%M:%S')"/>
+                                    <!-- <span t-esc="context_timestamp(o.confirmation_date).strftime('%d-%m-%Y %H:%M:%S')"/> -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Pelanggan
+                                </div>
+                                <div>
+                                    : <span t-field="o.partner_id"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    Kasir
+                                </div>
+                                <div>
+                                    : <span t-field="o.user_id"/>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="col-12 text-center">
+                                TERIMA KASIH <br/>
+                                Barang Yang Telah Di Beli <br/>
+                                Tidak Dapat Ditukar/Dikembalikan/>
+                            </div>
+                            
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="external_layout_standard_cash_in_out">
+        <div class="header" t-att-style="report_header_style">
+            <div class="row zero_min_height">
+                <div class="col-12">
+                    <div style="border-bottom: 3px solid black;"/>
+                </div>
+            </div>
+            <div class="row" style="margin-top:5px; margin-bottom:5px;">
+                <div class="col-2">
+                    <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" style="height: 110px;" alt="Logo"/>
+                </div>
+                <div class="col-4">
+                    <b><div t-field="doc.company_id.name"/></b>
+                    <div t-field="doc.company_id.street"/>
+                    <div t-field="doc.company_id.city"/>
+                    <div> Telp. <span t-field="doc.company_id.phone"/> </div>
+                    <div> Email. <span t-field="doc.company_id.email"/> </div>
+                </div>
+                <div class="col-6">
+                    <div>
+                        <table class="table table-sm" style="border: 2px solid black; box-shadow: 4px 3px 3px 0px black; margin-top:5px; margin-bottom:50px;">
+                            <tr class="o_total">
+                                <td class="text-center" style="font-size:14pt;">
+                                    <strong><span t-field="doc.name"/></strong>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="text-right">
+                        Cetak : <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%b-%Y')"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row zero_min_height">
+                <div class="col-12">
+                    <div style="border-bottom: 3px solid black;"/>
+                </div>
+            </div>
+        </div>
+        <div class="article o_report_layout_standard"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <!-- <t t-call="web.address_layout"/> -->
+            <t t-raw="0"/>
+        </div>
+        <!-- <div class="footer o_standard_footer">
+            <div class="text-center" style="border-top: 1px solid black;">
+                <div t-if="report_type == 'pdf'">
+                    Halaman: <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+        </div> -->
+
+    </template>
+
+    <!-- Public api: layout to t-call from reports -->
+
+    <template id="external_layout_cash_in_out">
+        <t t-call="vit_cash_in_cash_out.external_layout_standard_cash_in_out">
+            <t t-raw="0"/>                
+        </t>
+
+    </template>
+
+</odoo>

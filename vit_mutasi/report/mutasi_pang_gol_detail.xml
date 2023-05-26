@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_mutasi_pang_gol_detail_menu" string="Vit - Mutasi pang gol detail"
+         model="vit.mutasi_pang_gol_detail" report_type="qweb-pdf" 
+         file="vit.mutasi_pang_gol_detail"  name="vit_mutasi.vit_mutasi_pang_gol_detail_report" />
+
+        <!-- document template -->
+        <template id="vit_mutasi.vit_mutasi_pang_gol_detail_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Mutasi pang gol detail: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Mutasi pang gol</strong>
+                            <p class="m-0" t-field="doc.mutasi_pang_gol_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Employee</strong>
+                            <p class="m-0" t-field="doc.employee_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pangkat awal</strong>
+                            <p class="m-0" t-field="doc.pangkat_awal"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pangkat tujuan</strong>
+                            <p class="m-0" t-field="doc.pangkat_tujuan"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Golongan awal</strong>
+                            <p class="m-0" t-field="doc.golongan_awal"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Golongan tujuan</strong>
+                            <p class="m-0" t-field="doc.golongan_tujuan"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_mutasi.vit_mutasi_pang_gol_detail_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_mutasi.vit_mutasi_pang_gol_detail_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

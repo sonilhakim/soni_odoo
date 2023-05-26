@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_user_vit_referensi_aset,access_user_vit_referensi_aset,model_vit_referensi_aset,vit_referensi_aset.group_referensi_user,1,0,0,0
+access_manager_vit_referensi_aset,access_manager_vit_referensi_aset,model_vit_referensi_aset,vit_referensi_aset.group_referensi_manager,1,1,1,1
+access_admin_vit_referensi_aset,access_admin_vit_referensi_aset,model_vit_referensi_aset,base.group_system,1,1,1,1
+access_user_vit_ikhtisar,access_user_vit_ikhtisar,model_vit_ikhtisar,vit_referensi_aset.group_referensi_user,1,0,0,0
+access_manager_vit_ikhtisar,access_manager_vit_ikhtisar,model_vit_ikhtisar,vit_referensi_aset.group_referensi_manager,1,1,1,1
+access_admin_vit_ikhtisar,access_admin_vit_ikhtisar,model_vit_ikhtisar,base.group_system,1,1,1,1

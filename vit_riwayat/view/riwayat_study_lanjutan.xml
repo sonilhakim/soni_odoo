@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_riwayat_study_lanjutan_tree" model="ir.ui.view">
+            <field name="name">vit_riwayat_study_lanjutan_tree</field>
+            <field name="model">vit.riwayat_study_lanjutan</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Riwayat study lanjutan">
+                    <field name="name" />
+                    <field name="major" />
+                    <field name="date_start" />
+                    <field name="date_end" />
+                    <field name="employee_id" />
+                    <field name="country_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_riwayat_study_lanjutan_form" model="ir.ui.view">
+            <field name="name">vit_riwayat_study_lanjutan_form</field>
+            <field name="model">vit.riwayat_study_lanjutan</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Riwayat study lanjutan">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Riwayat study lanjutan Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="major" />
+                                <field name="date_start" />
+                                <field name="date_end" />
+                            </group>
+                            <group>
+                                <field name="employee_id" />
+                                <field name="country_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_riwayat_study_lanjutan_search" model="ir.ui.view">
+            <field name="name">vit_riwayat_study_lanjutan</field>
+            <field name="model">vit.riwayat_study_lanjutan</field>
+            <field name="arch" type="xml">
+                <search string="Riwayat study lanjutan">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Major" name="filter_by_major" domain="[('major','=','')]" />
+                    <filter string="Date start" name="filter_by_date_start" domain="[('date_start','=','')]" />
+                    <filter string="Date end" name="filter_by_date_end" domain="[('date_end','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="major" select="True"/>
+                    <field name="date_start" select="True"/>
+                    <field name="date_end" select="True"/>
+                    <field name="employee_id" select="True"/>
+                    <field name="country_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Employee" domain="[]" name="group_by_employee_id" context="{'group_by':'employee_id'}"/>
+                        <filter string="Country" domain="[]" name="group_by_country_id" context="{'group_by':'country_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_riwayat_study_lanjutan_kanban" model="ir.ui.view" >
+            <field name="name">vit_riwayat_study_lanjutan</field>
+            <field name="model">vit.riwayat_study_lanjutan</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="major" />
+                    <field name="date_start" />
+                    <field name="date_end" />
+                    <field name="employee_id" />
+                    <field name="country_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            Field1: <field name="name"></field>
+                                        </li>
+                                        <li>
+                                            Field2: <field name="name"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_vit_riwayat_study_lanjutan_cal" model="ir.ui.view">
+            <field name="name">vit_riwayat_study_lanjutan_cal</field>
+            <field name="model">vit.riwayat_study_lanjutan</field>
+            <field name="arch" type="xml">
+                <calendar string="Riwayat study lanjutan" date_start="date_end">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record>
+        <!-- graph -->
+        <record id="view_vit_riwayat_study_lanjutan_graph" model="ir.ui.view">
+            <field name="name">vit_riwayat_study_lanjutan</field>
+            <field name="model">vit.riwayat_study_lanjutan</field>
+            <field name="arch" type="xml">
+                <graph string="Riwayat study lanjutan" type="bar">
+                    <field name="employee_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_riwayat_study_lanjutan" model="ir.actions.act_window">
+            <field name="name">Riwayat study lanjutan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.riwayat_study_lanjutan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Riwayat study lanjutan
+                </p><p>
+                Click the Create button to add a new Riwayat study lanjutan
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_riwayat_study_lanjutan" name="Riwayat study lanjutan" parent="vit_riwayat_sub_menu" action="action_vit_riwayat_study_lanjutan" sequence="20"/>
+    </data>
+</odoo>

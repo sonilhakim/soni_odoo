@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_mutasi_hukum_detail_tree" model="ir.ui.view">
+            <field name="name">vit_mutasi_hukum_detail_tree</field>
+            <field name="model">vit.mutasi_hukum_detail</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Mutasi hukum detail">
+                    <!-- <field name="name" /> -->
+                    <field name="employee_id" />
+                    <field name="hukum_awal" />
+                    <field name="hukum_tujuan" />
+                    <!-- <field name="mutasi_hukum_id" /> -->                    
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_mutasi_hukum_detail_form" model="ir.ui.view">
+            <field name="name">vit_mutasi_hukum_detail_form</field>
+            <field name="model">vit.mutasi_hukum_detail</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Mutasi hukum detail">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <!-- <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Mutasi hukum detail Name"/>
+                            <h1><field name="name"/></h1>
+                        </div> -->
+                        <group>
+                            <group>
+                                <!-- <field name="mutasi_hukum_id" /> -->
+                                <field name="employee_id" />
+                            </group>
+                            <group>
+                                <field name="hukum_awal" />
+                                <field name="hukum_tujuan" />
+                            </group>
+                            
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_mutasi_hukum_detail_search" model="ir.ui.view">
+            <field name="name">vit_mutasi_hukum_detail</field>
+            <field name="model">vit.mutasi_hukum_detail</field>
+            <field name="arch" type="xml">
+                <search string="Mutasi hukum detail">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Hukum awal" name="filter_by_hukum_awal" domain="[('hukum_awal','=','')]" />
+                    <filter string="Hukum tujuan" name="filter_by_hukum_tujuan" domain="[('hukum_tujuan','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="hukum_awal" select="True"/>
+                    <field name="hukum_tujuan" select="True"/>
+                    <field name="mutasi_hukum_id" select="True"/>
+                    <field name="employee_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Mutasi hukum" domain="[]" name="group_by_mutasi_hukum_id" context="{'group_by':'mutasi_hukum_id'}"/>
+                        <filter string="Employee" domain="[]" name="group_by_employee_id" context="{'group_by':'employee_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_mutasi_hukum_detail_kanban" model="ir.ui.view" >
+            <field name="name">vit_mutasi_hukum_detail</field>
+            <field name="model">vit.mutasi_hukum_detail</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="hukum_awal" />
+                    <field name="hukum_tujuan" />
+                    <field name="mutasi_hukum_id" />
+                    <field name="employee_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Mutasi hukum</span> <field name="mutasi_hukum_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Employee</span> <field name="employee_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_mutasi_hukum_detail_graph" model="ir.ui.view">
+            <field name="name">vit_mutasi_hukum_detail</field>
+            <field name="model">vit.mutasi_hukum_detail</field>
+            <field name="arch" type="xml">
+                <graph string="Mutasi hukum detail" type="bar">
+                    <field name="mutasi_hukum_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_mutasi_hukum_detail" model="ir.actions.act_window">
+            <field name="name">Mutasi hukum detail</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.mutasi_hukum_detail</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Mutasi hukum detail
+                </p><p>
+                Click the Create button to add a new Mutasi hukum detail
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_mutasi_hukum_detail" name="Mutasi hukum detail" parent="vit_mutasi_config_menu" action="action_vit_mutasi_hukum_detail" sequence="270"/>
+    </data>
+</odoo>

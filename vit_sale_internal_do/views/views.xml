@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_order_int_do_inherit" model="ir.ui.view">
+            <field name="name">sale.order.int_do.inherit.form</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+
+                <xpath expr="/form/header/button[@name='action_confirm']" position="before">
+                    <button name="create_int_do" string="Create Internal DO" class="btn-primary" type="object" attrs="{'invisible': [('need_do', '=', False)]}"/>
+                    <button name="create_int_trans" string="Create Internal Transfer" class="btn-primary" type="object" attrs="{'invisible': [('need_int_trans', '=', False)]}"/>
+                </xpath>
+
+                <!-- <xpath expr="/form/sheet/div[@name='button_box']" position="inside"> -->
+                    <!-- <button type="object"
+                        name="action_view_delivery"
+                        class="oe_stat_button"
+                        icon="fa-truck"
+                        attrs="{'invisible': [('int_do_count', '=', 0)]}">
+                        <field name="int_do_count" widget="statinfo" string="Internal DO"/>
+                    </button> -->
+                <!-- </xpath> -->
+
+                <xpath expr="//field[@name='picking_policy']" position="after">
+                    <field name="need_int_trans" attrs="{'invisible': [('need_int_trans', '=', False)]}"/>
+                    <field name="need_do" attrs="{'invisible': [('need_do', '=', False)]}"/>
+                </xpath>
+                <!-- <xpath expr="//field[@name='po_customer']" position="after">
+                    <field name="surat_jalan"/>
+                </xpath> -->
+            </field>
+        </record>
+
+        <record id="sale_view_warehouse_form_inherit" model="ir.ui.view">
+            <field name="name">sale.view.warehouse.inherit.form</field>
+            <field name="inherit_id" ref="stock.view_warehouse"/>
+            <field name="model">stock.warehouse</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="is_utama"/>
+                    <field name="is_toko"/>
+                    <field name="is_etalase"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_view_location_form_inherit" model="ir.ui.view">
+            <field name="name">sale.view.location.inherit.form</field>
+            <field name="inherit_id" ref="stock.view_location_form"/>
+            <field name="model">stock.location</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='return_location']" position="after">
+                    <field name="is_utama"/>
+                    <field name="is_toko"/>
+                    <field name="is_etalase"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_view_picking_type_form_inherit" model="ir.ui.view">
+            <field name="name">sale.view.picking.type.inherit.form</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form"/>
+            <field name="model">stock.picking.type</field>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group[2]" position="inside">
+                    <group>
+                        <field name="is_utama"/>
+                        <field name="is_toko"/>
+                        <field name="is_etalase"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">sale.view.picking.inherit.form</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='move_type']" position="after">
+                    <field name="is_do" attrs="{'invisible': [('is_do', '=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

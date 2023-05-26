@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_account_asset_menu" string="Vit - Aset"
+         model="account.asset.asset" report_type="qweb-pdf" 
+         file="account.asset.asset"  name="vit_status_aset.account_asset_report" />
+
+        <!-- document template -->
+        <template id="vit_status_aset.account_asset_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Aset: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Status</strong>
+                            <p class="m-0" t-field="doc.status_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_status_aset.account_asset_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_status_aset.account_asset_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

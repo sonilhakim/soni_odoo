@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_monitoring_skp_menu" string="Monitoring Skp"
+         model="vit.monitoring_skp" report_type="qweb-pdf" 
+         file="vit.monitoring_skp"  name="vit_skp_inherit.vit_monitoring_skp_report" />
+
+        <!-- document template -->
+        <template id="vit_skp_inherit.vit_monitoring_skp_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div style="padding-top:30px;" class="page">
+                    <h2>
+                        <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tanggal</strong>
+                            <p class="m-0" t-field="doc.tanggal" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tahun akademik</strong>
+                            <p class="m-0" t-field="doc.tahun_akademik_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Fakultas</strong>
+                            <p class="m-0" t-field="doc.fakultas_id" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jurusan</strong>
+                            <p class="m-0" t-field="doc.jurusan_id" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Program Studi</strong>
+                            <p class="m-0" t-field="doc.prodi_id" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Unit Kerja</strong>
+                            <p class="m-0" t-field="doc.unit_kerja_id" />
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <table class="table table-sm o_main_table" name="mon_details_table">
+                    <thead>
+                        <tr>
+                            <td>Pns</td>
+                            <td>Nip</td>
+                            <td>Nilai Prestasi Kerja</td>
+                            <td>Capaian Kinerja Pegawai</td>
+                            <td>Capaian Kinerja (%)</td>
+                        </tr>
+                    </thead>
+                    <tbody class="mon_details_tbody">
+                        <tr t-foreach="doc.mon_details" t-as="line">
+                            <td><span t-field="line.pns_id" /></td>
+                            <td><span t-field="line.pns_nip" /></td>
+                            <td><span t-field="line.nilai_prestasi_kerja" /></td>
+                            <td><span t-field="line.capaian" /></td>
+                            <td><span t-field="line.capaian_persen" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_skp_inherit.vit_monitoring_skp_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_skp_inherit.vit_monitoring_skp_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

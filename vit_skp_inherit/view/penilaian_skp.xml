@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_penilaian_skp_tree" model="ir.ui.view">
+            <field name="name">vit_penilaian_skp_tree</field>
+            <field name="model">vit.penilaian_skp</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Penilaian SKP">
+                    <field name="name" />
+                    <field name="tanggal" />
+                    <field name="tahun_akademik_id" />
+                    <field name="pns_id" />
+                    <field name="pns_nip" />
+                    <field name="pejabat_penilai_id" />
+                    <field name="pejabat_penilai_nip" />
+                    <field name="pejabat_penilai_unit_kerja_id" />
+                    <field name="atasan_pejabat_penilai_id" />
+                    <field name="atasan_pejabat_penilai_nip" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_penilaian_skp_form" model="ir.ui.view">
+            <field name="name">vit_penilaian_skp_form</field>
+            <field name="model">vit.penilaian_skp</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Penilaian SKP">
+                    <header>
+                        <button string="Konfirmasi" type="object" name="action_confirm" states="draft" />
+                        <!-- <button string="Reload" type="object" name="action_reload" states="draft" /> -->
+                        <button string="Validasi" type="object" name="action_done" states="open" groups="vit_skp.group_skp_manager"/>
+                        <button string="Tolak" type="object" name="action_reject" states="open" groups="vit_skp.group_skp_manager"/>
+                        <button string="Kembalikan ke rancangan" type="object" name="action_draft" states="open" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Target SKP Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tanggal" />
+                                <field name="tahun_akademik_id" />
+                            </group>
+                            <group>
+                                <field name="pns_id" />
+                                <field name="pns_nip" />
+                                <field name="pns_pangkat_gol_ruang" />
+                                <field name="pns_jabatan_id" />
+                                <field name="pns_unit_kerja_id" />
+                            </group>
+                            <group>                                
+                                <field name="pejabat_penilai_id" />
+                                <field name="pejabat_penilai_nip" />
+                                <field name="pejabat_penilai_pangkat_gol_ruang" />
+                                <field name="pejabat_penilai_jabatan_id" />
+                                <field name="pejabat_penilai_unit_kerja_id" />
+                            </group>
+                            <group>
+                                <field name="atasan_pejabat_penilai_id" />
+                                <field name="atasan_pejabat_penilai_nip" />
+                                <field name="atasan_pejabat_penilai_pangkat_gol_ruang" />
+                                <field name="atasan_pejabat_penilai_jabatan_id" />
+                                <field name="atasan_pejabat_penilai_unit_kerja_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Perilaku Kerja">
+                                <field name="perilaku_kerja_ids" mode="tree">
+                                    <tree string="Perilaku Kerja" editable="bottom">
+                                        <field name="name" />
+                                        <field name="keterangan" />
+                                        <field name="nilai" />
+                                    </tree>
+                                </field>
+                                <group>
+                                    <group class="oe_subtotal_footer oe_right">
+                                        <field name="jumlah_nilai_perilaku_kerja" string="Jumlah"/>
+                                        <field name="nilai_perilaku_kerja_rata_rata" string="Nilai rata-rata"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Unsur Penilaian">
+                                <field name="unsur_penilaian_ids" mode="tree">
+                                    <tree string="Unsur Penilaian" editable="bottom">
+                                        <field name="name" />
+                                        <field name="nilai_capaian" />
+                                        <field name="persentase" />
+                                        <field name="jumlah" />
+                                    </tree>
+                                </field>
+                                <group>
+                                    <group class="oe_subtotal_footer oe_right">
+                                        <field name="nilai_prestasi_kerja"/>
+                                    </group>
+                                </group>
+                            </page>                            
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <!-- <record id="view_vit_skp_search" model="ir.ui.view">
+            <field name="name">vit_skp</field>
+            <field name="model">vit.skp</field>
+            <field name="arch" type="xml">
+                <search string="Skp">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                    <filter string="Jumlah 10 sks pertama" name="filter_by_jumlah_10_sks_pertama" domain="[('jumlah_10_sks_pertama','=','')]" />
+                    <filter string="Jumlah sks berikutnya" name="filter_by_jumlah_sks_berikutnya" domain="[('jumlah_sks_berikutnya','=','')]" />
+                    <filter string="Tanggal" name="filter_by_tanggal" domain="[('tanggal','=','')]" />
+                    <filter string="Pns nip" name="filter_by_pns_nip" domain="[('pns_nip','=','')]" />
+                    <filter string="Pns pangkat gol ruang" name="filter_by_pns_pangkat_gol_ruang" domain="[('pns_pangkat_gol_ruang','=','')]" />
+                    <filter string="Pejabat penilai nip" name="filter_by_pejabat_penilai_nip" domain="[('pejabat_penilai_nip','=','')]" />
+                    <filter string="Pejabat penilai pangkat gol ruang" name="filter_by_pejabat_penilai_pangkat_gol_ruang" domain="[('pejabat_penilai_pangkat_gol_ruang','=','')]" />
+                    <filter string="Lokasi" name="filter_by_lokasi" domain="[('lokasi','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="jumlah_10_sks_pertama" select="True"/>
+                    <field name="jumlah_sks_berikutnya" select="True"/>
+                    <field name="tanggal" select="True"/>
+                    <field name="pns_nip" select="True"/>
+                    <field name="pns_pangkat_gol_ruang" select="True"/>
+                    <field name="pejabat_penilai_nip" select="True"/>
+                    <field name="pejabat_penilai_pangkat_gol_ruang" select="True"/>
+                    <field name="lokasi" select="True"/>
+                    <field name="tahun_akademik_id" select="True"/>
+                    <field name="pns_id" select="True"/>
+                    <field name="pejabat_penilai_id" select="True"/>
+                    <field name="pns_jabatan_id" select="True"/>
+                    <field name="pns_unit_kerja_id" select="True"/>
+                    <field name="pejabat_penilai_unit_kerja_id" select="True"/>
+                    <field name="pejabat_penilai_jabatan_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Tahun akademik" domain="[]" name="group_by_tahun_akademik_id" context="{'group_by':'tahun_akademik_id'}"/>
+                        <filter string="Pns" domain="[]" name="group_by_pns_id" context="{'group_by':'pns_id'}"/>
+                        <filter string="Pejabat penilai" domain="[]" name="group_by_pejabat_penilai_id" context="{'group_by':'pejabat_penilai_id'}"/>
+                        <filter string="Pns jabatan" domain="[]" name="group_by_pns_jabatan_id" context="{'group_by':'pns_jabatan_id'}"/>
+                        <filter string="Pns unit kerja" domain="[]" name="group_by_pns_unit_kerja_id" context="{'group_by':'pns_unit_kerja_id'}"/>
+                        <filter string="Pejabat penilai unit kerja" domain="[]" name="group_by_pejabat_penilai_unit_kerja_id" context="{'group_by':'pejabat_penilai_unit_kerja_id'}"/>
+                        <filter string="Pejabat penilai jabatan" domain="[]" name="group_by_pejabat_penilai_jabatan_id" context="{'group_by':'pejabat_penilai_jabatan_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record> -->
+        <!-- kanban , to show image, please add image_small in the model -->
+        <!-- <record id="view_vit_skp_kanban" model="ir.ui.view" >
+            <field name="name">vit_skp</field>
+            <field name="model">vit.skp</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="state" />
+                    <field name="jumlah_10_sks_pertama" />
+                    <field name="jumlah_sks_berikutnya" />
+                    <field name="tanggal" />
+                    <field name="pns_nip" />
+                    <field name="pns_pangkat_gol_ruang" />
+                    <field name="pejabat_penilai_nip" />
+                    <field name="pejabat_penilai_pangkat_gol_ruang" />
+                    <field name="lokasi" />
+                    <field name="tahun_akademik_id" />
+                    <field name="pns_id" />
+                    <field name="pejabat_penilai_id" />
+                    <field name="pns_jabatan_id" />
+                    <field name="pns_unit_kerja_id" />
+                    <field name="pejabat_penilai_unit_kerja_id" />
+                    <field name="pejabat_penilai_jabatan_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Tahun akademik</span> <field name="tahun_akademik_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Pns</span> <field name="pns_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Pejabat penilai</span> <field name="pejabat_penilai_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Pns jabatan</span> <field name="pns_jabatan_id"></field>
+                                        </li> -->
+
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Pns unit kerja</span> <field name="pns_unit_kerja_id"></field>
+                                        </li>
+                                        -->
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Pejabat penilai unit kerja</span> <field name="pejabat_penilai_unit_kerja_id"></field>
+                                        </li>
+                                        -->
+                                        <!--
+                                        <li>
+                                            <span class="text-muted">Pejabat penilai jabatan</span> <field name="pejabat_penilai_jabatan_id"></field>
+                                        </li>
+                                        -->
+                                        <!-- <li>
+                                            <span class="text-muted">Tanggal</span> <field name="tanggal"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record> -->
+        <!-- calendar if a date field exists -->
+        <!-- <record id="view_vit_skp_cal" model="ir.ui.view">
+            <field name="name">vit_skp_cal</field>
+            <field name="model">vit.skp</field>
+            <field name="arch" type="xml">
+                <calendar string="Skp" date_start="tanggal">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record> -->
+        <!-- graph -->
+       <!--  <record id="view_vit_skp_graph" model="ir.ui.view">
+            <field name="name">vit_skp</field>
+            <field name="model">vit.skp</field>
+            <field name="arch" type="xml">
+                <graph string="Skp" type="bar">
+                    <field name="tahun_akademik_id"/>
+                </graph>
+            </field>
+        </record> -->
+        <!-- action window -->
+        <record id="action_vit_penilaian_skp" model="ir.actions.act_window">
+            <field name="name">Penilaian SKP</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.penilaian_skp</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Klik untuk menambahkan Penilaian Skp baru
+                </p><p>
+                Klik tombol Buat untuk menambahkan Penilaian Skp baru
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_penilaian_skp" name="Penilaian SKP" parent="vit_skp.vit_skp_top_menu" action="action_vit_penilaian_skp" sequence="30"/>
+    </data>
+</odoo>

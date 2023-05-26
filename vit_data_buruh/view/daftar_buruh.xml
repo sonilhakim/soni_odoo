@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_daftar_buruh_tree" model="ir.ui.view">
+            <field name="name">vit_daftar_buruh_tree</field>
+            <field name="model">vit.daftar_buruh</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Daftar buruh">
+                    <field name="buruh_id" />
+                    <field name="uang_makan" />
+                    <field name="potongan" />
+                    <field name="note" />
+                    <field name="data_buruh_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- pivot view -->
+        <!-- <record id="view_vit_daftar_buruh_pivot" model="ir.ui.view">
+            <field name="name">vit_daftar_buruh_tree</field>
+            <field name="model">vit.daftar_buruh</field>
+            <field name="type">pivot</field>
+            <field name="arch" type="xml">
+                <pivot string="Daftar buruh">
+                    <field name="data_buruh_id" type="row"/>
+                    <field name="buruh_id" type="row"/>
+                </pivot>
+            </field>
+        </record> -->
+        <!-- form view -->
+        <record id="view_vit_daftar_buruh_form" model="ir.ui.view">
+            <field name="name">vit_daftar_buruh_form</field>
+            <field name="model">vit.daftar_buruh</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Daftar buruh">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="buruh_id" class="oe_edit_only" string="Nama Buruh"/>
+                            <h1><field name="buruh_id"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="uang_makan" />
+                                <field name="potongan" />
+                                <field name="note" />
+                            </group>
+                            <group>
+                                <field name="data_buruh_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_daftar_buruh_search" model="ir.ui.view">
+            <field name="name">vit_daftar_buruh</field>
+            <field name="model">vit.daftar_buruh</field>
+            <field name="arch" type="xml">
+                <search string="Daftar buruh">
+
+                    <filter string="Uang makan" name="filter_by_uang_makan" domain="[('uang_makan','=','')]" />
+                    <filter string="Potongan" name="filter_by_potongan" domain="[('potongan','=','')]" />
+                    <filter string="Note" name="filter_by_note" domain="[('note','=','')]" />
+                    <field name="uang_makan" select="True"/>
+                    <field name="potongan" select="True"/>
+                    <field name="note" select="True"/>
+                    <field name="data_buruh_id" select="True"/>
+                    <field name="buruh_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Data buruh" domain="[]" name="group_by_data_buruh_id" context="{'group_by':'data_buruh_id'}"/>
+                        <filter string="Buruh" domain="[]" name="group_by_buruh_id" context="{'group_by':'buruh_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_daftar_buruh_kanban" model="ir.ui.view" >
+            <field name="name">vit_daftar_buruh</field>
+            <field name="model">vit.daftar_buruh</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="uang_makan" />
+                    <field name="potongan" />
+                    <field name="note" />
+                    <field name="data_buruh_id" />
+                    <field name="buruh_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="buruh_id"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Data buruh</span> <field name="data_buruh_id"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <!-- <record id="view_vit_daftar_buruh_graph" model="ir.ui.view">
+            <field name="name">vit_daftar_buruh</field>
+            <field name="model">vit.daftar_buruh</field>
+            <field name="arch" type="xml">
+                <graph string="Daftar buruh" type="bar">
+                    <field name="data_buruh_id"/>
+                </graph>
+            </field>
+        </record> -->
+        <!-- action window -->
+        <record id="action_daftar_buruh" model="ir.actions.act_window">
+            <field name="name">Daftar buruh</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.daftar_buruh</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Daftar buruh
+                </p><p>
+                Click the Create button to add a new Daftar buruh
+                </p>
+            </field>
+        </record>
+
+        <!-- <menuitem id="menu_daftar_buruh" name="Daftar buruh" parent="vit_data_buruh_config_menu" action="action_daftar_buruh" sequence="40"/> -->
+    </data>
+</odoo>

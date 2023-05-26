@@ -1,0 +1,39 @@
+<odoo>
+	<data>
+		
+		<record id="view_vit_marketing_sph_garmen_form_req" model="ir.ui.view">
+			<field name="name">vit_marketing_sph_garmen_form_req</field>
+			<field name="model">vit.marketing_sph_garmen</field>
+			<field name="inherit_id" ref="vit_marketing_sph_garmen.view_vit_marketing_sph_garmen_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//header/button[@name='%(vit_marketing_sph_garmen.show_marketing_sph_wizard)d']" position="attributes">
+					<attribute name="attrs">{'invisible':[('state','in',['tender','close','cancel'])]}</attribute>
+				</xpath>
+				<xpath expr="//header/button[@name='action_tender']" position="attributes">
+					<attribute name="attrs">{'invisible':[('state','!=','ppic_approved')]}</attribute>
+				</xpath>
+				<xpath expr="//header/button[@name='action_close']" position="attributes">
+					<attribute name="attrs">{'invisible':[('state','!=','ppic_approved')]}</attribute>
+				</xpath>
+				<xpath expr="//field[@name='proposal_id']" position="after">
+					<field name="po" readonly="1" attrs="{'invisible':[('po','=',False)]}"/>
+				</xpath>
+				<xpath expr="//notebook/page[3]" position="replace">
+					<page string="Sample Request">
+						<field name="request_ids" readonly="1">
+							<tree string="Sample request">
+								<field name="name" string="No. Request"/>
+								<field name="requester" />
+								<field name="recipient" string="Penerima"/>
+								<field name="date" />
+								<field name="due_date" />
+								<field name="state" />
+							</tree>
+						</field>
+					</page>
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</odoo>

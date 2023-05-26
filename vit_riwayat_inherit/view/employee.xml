@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="employee_riwayat_form">
+            <field name="name">employee.riwayat.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+
+                    <page string="Riwayat Izin Belajar">
+                        <field name="riwayat_izin_belajar_ids"/>
+                    </page>
+                    <page string="Riwayat Tugas Belajar">
+                        <field name="riwayat_tugas_belajar_ids"/>
+                    </page>
+                    <page string="Riwayat Study Lanjutan">
+                        <field name="riwayat_study_lanjutan_ids"/>
+                    </page>
+                    <page string="Riwayat BKD">
+                        <field name="riwayat_bkd_ids"/>
+                    </page>
+                    <page string="Riwayat Pengabdian Masyarakat">
+                        <field name="riwayat_pengabdian_masyarakat_ids"/>
+                    </page>
+                    <page string="Riwayat Pekerjaan">
+                        <field name="riwayat_pekerjaan_ids"/>
+                    </page>
+                    <page string="Riwayat Beasiswa">
+                        <field name="riwayat_beasiswa_ids"/>
+                    </page>
+                    <page string="Riwayat Diklat">
+                        <field name="riwayat_diklat_ids"/>
+                    </page>
+                    <page string="Riwayat Pendidikan">
+                        <field name="riwayat_pendidikan_ids"/>
+                    </page>
+                    <page string="Riwayat Penghargaan">
+                        <field name="riwayat_penghargaan_ids"/>
+                    </page>
+                    <page string="Riwayat Penelitian Karya Imliah">
+                        <field name="riwayat_penelitian_karya_imliah_ids"/>
+                    </page>
+                    <page string="Riwayat Dosen Mengajar Diluar">
+                        <field name="riwayat_dosen_mengajar_diluar_ids"/>
+                    </page>
+                    <page string="Riwayat Seminar">
+                        <field name="riwayat_seminar_ids"/>
+                    </page>
+                    <page string="Riwayat Organisasi Pegawai">
+                        <field name="riwayat_organisasi_pegawai_ids"/>
+                    </page>
+                    <page string="Riwayat Pelatihan">
+                        <field name="riwayat_pelatihan_ids"/>
+                    </page>
+                    <page string="Riwayat Kunjungan ke Luar Negeri">
+                        <field name="riwayat_kunjungan_ke_luar_negeri_ids"/>
+                    </page>
+                    <page string="Riwayat Kepakaran Dosen">
+                        <field name="riwayat_kepakaran_dosen_ids"/>
+                    </page>
+                    <page string="Riwayat Mengajar">
+                        <field name="riwayat_mengajar_ids"/>
+                    </page>
+                    <page string="Riwayat Membimbing">
+                        <field name="riwayat_membimbing_ids"/>
+                    </page>
+
+                </notebook>
+            </field>
+        </record>
+    </data>
+</odoo>

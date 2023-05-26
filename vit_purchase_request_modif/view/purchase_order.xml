@@ -1,0 +1,42 @@
+<odoo>
+	<data>
+		<!-- form -->
+		<record id="purchase_order_form_modif" model="ir.ui.view">
+			<field name="name">purchase.order.form.modif</field>
+			<field name="model">purchase.order</field>
+			<field name="inherit_id" ref="purchase.purchase_order_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='date_order']" position="after">
+					<field name="due_date"/>
+					<field name="po_id" attrs="{'invisible': [('inquery_id','!=',False)]}"/>
+					<field name="inquery_id" attrs="{'invisible': [('po_id','!=',False)]}"/>
+				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_purchase_requisition_form_product_names_modif">
+	        <field name="name">purchase.requisition.form.modif</field>
+	        <field name="model">purchase.requisition</field>
+	        <field name="inherit_id" ref="vit_product_request.view_purchase_requisition_form_product_names"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//field[@name='line_ids']/form/notebook" position="attributes">
+	                <attribute name="invisible">1</attribute>
+	            </xpath>
+
+			</field>
+		</record>
+		<record id="purchase_order_form_line_per_dept_modif" model="ir.ui.view">
+            <field name="name">purchase_order_form_line_per_dept_modif</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="vit_product_request.purchase_order_form_line_per_dept"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='order_line']/form/sheet/notebook/page[3]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+	</data>		
+</odoo>

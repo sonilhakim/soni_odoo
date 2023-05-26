@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_penerima_beasiswa_menu" string="Vit - Penerima beasiswa"
+         model="vit.penerima_beasiswa" report_type="qweb-pdf" 
+         file="vit.penerima_beasiswa"  name="vit_beasiswa.vit_penerima_beasiswa_report" />
+
+        <!-- document template -->
+        <template id="vit_beasiswa.vit_penerima_beasiswa_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Penerima beasiswa: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>State</strong>
+                            <p class="m-0" t-field="doc.state" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nama siswa</strong>
+                            <p class="m-0" t-field="doc.nama_siswa" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nomor hp</strong>
+                            <p class="m-0" t-field="doc.nomor_hp" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Email</strong>
+                            <p class="m-0" t-field="doc.email" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nama orang tua</strong>
+                            <p class="m-0" t-field="doc.nama_orang_tua" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nomor hp orang tua</strong>
+                            <p class="m-0" t-field="doc.nomor_hp_orang_tua" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Alamat</strong>
+                            <p class="m-0" t-field="doc.alamat" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Asal sekolah</strong>
+                            <p class="m-0" t-field="doc.asal_sekolah" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nomor rekening</strong>
+                            <p class="m-0" t-field="doc.nomor_rekening" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nama bank</strong>
+                            <p class="m-0" t-field="doc.nama_bank" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Upload foto</strong>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Upload kartu keluarga</strong>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Upload buku tabungan</strong>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Upload ktp</strong>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Institusi</strong>
+                            <p class="m-0" t-field="doc.institusi_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Prestasi akademik</h2>
+                <table class="table table-sm o_main_table" name="prestasi_akademik_ids_table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Tahun</td>
+                            <td>Tingkat</td>
+                            <td>Prestasi</td>
+                            <td>Upload bukti</td>
+                            <td>Penerima beasiswa</td>
+                        </tr>
+                    </thead>
+                    <tbody class="prestasi_akademik_ids_tbody">
+                        <tr t-foreach="doc.prestasi_akademik_ids" t-as="line">
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.tahun" /></td>
+                            <td><span t-field="line.tingkat" /></td>
+                            <td><span t-field="line.prestasi" /></td>
+                            <td><span t-field="line.upload_bukti" /></td>
+                            <td><span t-field="line.penerima_beasiswa_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_beasiswa.vit_penerima_beasiswa_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_beasiswa.vit_penerima_beasiswa_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

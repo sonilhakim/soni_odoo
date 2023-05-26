@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_kir_detail_tree" model="ir.ui.view">
+            <field name="name">vit_kir_detail_tree</field>
+            <field name="model">vit.kir_detail</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Kir detail">
+                    <field name="name" />
+                    <field name="merk_model" />
+                    <field name="no_seri_pbr" />
+                    <field name="thn_pembuatan" />
+                    <field name="code" />
+                    <field name="jumlah" />
+                    <field name="harga" />
+                    <field name="kondisi" />
+                    <field name="keterangan" />
+                    <field name="kir_id" />
+                    <field name="asset_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kir_detail_form" model="ir.ui.view">
+            <field name="name">vit_kir_detail_form</field>
+            <field name="model">vit.kir_detail</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Kir detail">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Kir detail Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="merk_model" />
+                                <field name="no_seri_pbr" />
+                                <field name="thn_pembuatan" />
+                                <field name="code" />
+                                <field name="jumlah" />
+                                <field name="harga" />
+                                <field name="kondisi" />
+                                <field name="keterangan" />
+                            </group>
+                            <group>
+                                <field name="kir_id" />
+                                <field name="asset_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_kir_detail_search" model="ir.ui.view">
+            <field name="name">vit_kir_detail</field>
+            <field name="model">vit.kir_detail</field>
+            <field name="arch" type="xml">
+                <search string="Kir detail">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Merk model" name="filter_by_merk_model" domain="[('merk_model','=','')]" />
+                    <filter string="No seri pbr" name="filter_by_no_seri_pbr" domain="[('no_seri_pbr','=','')]" />
+                    <filter string="Thn pembuatan" name="filter_by_thn_pembuatan" domain="[('thn_pembuatan','=','')]" />
+                    <filter string="Code" name="filter_by_code" domain="[('code','=','')]" />
+                    <filter string="Jumlah" name="filter_by_jumlah" domain="[('jumlah','=','')]" />
+                    <filter string="Harga" name="filter_by_harga" domain="[('harga','=','')]" />
+                    <filter string="Kondisi" name="filter_by_kondisi" domain="[('kondisi','=','')]" />
+                    <filter string="Keterangan" name="filter_by_keterangan" domain="[('keterangan','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="merk_model" select="True"/>
+                    <field name="no_seri_pbr" select="True"/>
+                    <field name="thn_pembuatan" select="True"/>
+                    <field name="code" select="True"/>
+                    <field name="jumlah" select="True"/>
+                    <field name="harga" select="True"/>
+                    <field name="kondisi" select="True"/>
+                    <field name="keterangan" select="True"/>
+                    <field name="kir_id" select="True"/>
+                    <field name="asset_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Kir" domain="[]" name="group_by_kir_id" context="{'group_by':'kir_id'}"/>
+                        <filter string="Asset" domain="[]" name="group_by_asset_id" context="{'group_by':'asset_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_kir_detail_kanban" model="ir.ui.view" >
+            <field name="name">vit_kir_detail</field>
+            <field name="model">vit.kir_detail</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="merk_model" />
+                    <field name="no_seri_pbr" />
+                    <field name="thn_pembuatan" />
+                    <field name="code" />
+                    <field name="jumlah" />
+                    <field name="harga" />
+                    <field name="kondisi" />
+                    <field name="keterangan" />
+                    <field name="kir_id" />
+                    <field name="asset_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Kir</span> <field name="kir_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Asset</span> <field name="asset_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_kir_detail_graph" model="ir.ui.view">
+            <field name="name">vit_kir_detail</field>
+            <field name="model">vit.kir_detail</field>
+            <field name="arch" type="xml">
+                <graph string="Kir detail" type="bar">
+                    <field name="kir_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_kir_detail" model="ir.actions.act_window">
+            <field name="name">Kir detail</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.kir_detail</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Kir detail
+                </p><p>
+                Click the Create button to add a new Kir detail
+                </p>
+            </field>
+        </record>
+
+        <!-- <menuitem id="menu_vit_kir_detail" name="Kir detail" parent="vit_tks_config_menu" action="action_vit_kir_detail" sequence="30"/> -->
+    </data>
+</odoo>

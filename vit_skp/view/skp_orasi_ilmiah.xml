@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_skp_orasi_ilmiah_tree" model="ir.ui.view">
+            <field name="name">vit_skp_orasi_ilmiah_tree</field>
+            <field name="model">vit.skp_orasi_ilmiah</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Skp orasi ilmiah">
+                    <field name="name" />
+                    <field name="semester_genap" />
+                    <field name="semester_ganjil" />
+                    <field name="jumlah" />
+                    <field name="ak" />
+                    <field name="skp_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_skp_orasi_ilmiah_form" model="ir.ui.view">
+            <field name="name">vit_skp_orasi_ilmiah_form</field>
+            <field name="model">vit.skp_orasi_ilmiah</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Skp orasi ilmiah">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Skp orasi ilmiah Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="semester_genap" />
+                                <field name="semester_ganjil" />
+                                <field name="jumlah" />
+                                <field name="ak" />
+                            </group>
+                            <group>
+                                <field name="skp_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_skp_orasi_ilmiah_search" model="ir.ui.view">
+            <field name="name">vit_skp_orasi_ilmiah</field>
+            <field name="model">vit.skp_orasi_ilmiah</field>
+            <field name="arch" type="xml">
+                <search string="Skp orasi ilmiah">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Semester genap" name="filter_by_semester_genap" domain="[('semester_genap','=','')]" />
+                    <filter string="Semester ganjil" name="filter_by_semester_ganjil" domain="[('semester_ganjil','=','')]" />
+                    <filter string="Jumlah" name="filter_by_jumlah" domain="[('jumlah','=','')]" />
+                    <filter string="Ak" name="filter_by_ak" domain="[('ak','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="semester_genap" select="True"/>
+                    <field name="semester_ganjil" select="True"/>
+                    <field name="jumlah" select="True"/>
+                    <field name="ak" select="True"/>
+                    <field name="skp_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Skp" domain="[]" name="group_by_skp_id" context="{'group_by':'skp_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_skp_orasi_ilmiah_kanban" model="ir.ui.view" >
+            <field name="name">vit_skp_orasi_ilmiah</field>
+            <field name="model">vit.skp_orasi_ilmiah</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="semester_genap" />
+                    <field name="semester_ganjil" />
+                    <field name="jumlah" />
+                    <field name="ak" />
+                    <field name="skp_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Skp</span> <field name="skp_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_skp_orasi_ilmiah_graph" model="ir.ui.view">
+            <field name="name">vit_skp_orasi_ilmiah</field>
+            <field name="model">vit.skp_orasi_ilmiah</field>
+            <field name="arch" type="xml">
+                <graph string="Skp orasi ilmiah" type="bar">
+                    <field name="skp_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_skp_orasi_ilmiah" model="ir.actions.act_window">
+            <field name="name">Skp orasi ilmiah</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.skp_orasi_ilmiah</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Skp orasi ilmiah
+                </p><p>
+                Click the Create button to add a new Skp orasi ilmiah
+                </p>
+            </field>
+        </record>
+
+        <!-- <menuitem id="menu_vit_skp_orasi_ilmiah" name="Skp orasi ilmiah" parent="vit_skp_config_menu" action="action_vit_skp_orasi_ilmiah" sequence="130"/> -->
+    </data>
+</odoo>

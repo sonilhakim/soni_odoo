@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+
+        <record id="view_uudp_penyelesaian_form_analytic" model="ir.ui.view">
+            <field name="name">view.uudp.penyelesaian.analytic</field>
+            <field name="model">uudp</field>
+            <field name="inherit_id" ref="vit_uudp.view_uudp_penyelesaian_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page/field/tree/field[@name='description']" position="before">
+                    <field name="actual_date"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

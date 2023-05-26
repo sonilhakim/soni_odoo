@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_vit_export_perencanaan_wizard" model="ir.actions.act_window">
+            <field name="name">Export Anggaran</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.export_anggaran</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="view_vit_export_perencnaan_form" model="ir.ui.view">
+            <field name="name">view_vit_export_perencnaan_form</field>
+            <field name="model">vit.export_anggaran</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Export Anggaran" version="7.0">                    
+                    <p>
+                        <group>
+                            <field name="unit_id" />
+                            <field name="rka_id" domain="[('unit_id','=',unit_id),('state', 'not in', ('cancel', 'lock'))]" />
+                        </group>
+                        <p>
+                            Klik tombol Export di bawah untuk mulai export data Anggaran.
+                        </p>
+
+                        <p>
+                            Setelah proses export Anggaran selesai dilakukan,
+                            download file:
+                        </p>
+                        <group>
+                            <field name="export_file" readonly="1" filename="export_filename"/>
+                            <field name="export_filename" invisible="1" />
+                        </group>
+                    </p>                    
+                    <footer>
+                        <button string="Export" name="confirm_button" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+
+        <menuitem id="Export_2" 
+                    name="Export Anggaran"
+                    parent="vit_perencanaan.vit_perencanaan_anggaran"
+                    action="action_vit_export_perencanaan_wizard"
+                    sequence="210" />
+
+    </data>
+</odoo>

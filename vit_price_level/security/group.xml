@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<record id="group_price_level" model="res.groups">
+			<field name="name">Level Harga</field>
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,23 @@
+<odoo>
+	<data>
+		<!-- form -->
+		<record id="view_picking_form_cus" model="ir.ui.view">
+			<field name="name">picking.form.cus</field>
+			<field name="model">stock.picking</field>
+			<field name="inherit_id" ref="stock.view_picking_form"/>
+			<field name="arch" type="xml">
+                <xpath expr="//field[@name='move_type']" position="after">
+					<field name="no_polisi"/>
+				</xpath>
+
+				<xpath expr="//button[@name='334']" position="attributes">
+					<attribute name="string">Print Surat Jalan</attribute>
+				</xpath>
+				<!-- <xpath expr="//button[@name='334']" position="attributes">
+					<attribute name="attrs">{'invisible': ['|', '|', ('state', '!=', 'done'), ('is_locked', '=', False), ('picking_type_code', '!=', 'outgoing')]}</attribute>
+				</xpath> -->
+			</field>
+		</record>
+
+	</data>		
+</odoo>

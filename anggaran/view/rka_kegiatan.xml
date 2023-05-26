@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+
+        <!-- tree rka_detail -->
+        <record id="view_rka_kegiatan_tree" model="ir.ui.view">
+            <field name="name">anggaran_rka_kegiatan_tree</field>
+            <field name="model">anggaran.rka_kegiatan</field>
+            <field name="arch" type="xml">
+                <tree string="list rka_coa" >
+                    <field name="indikator" string="Kegiatan"/>
+                    <field name="target_capaian" />
+                    <field name="target_capaian_uom" />
+                    <field name="anggaran" />      
+                    <field name="realisasi" />      
+                    <field name="sisa" />
+                    <field name="rka_coa_ids" />
+                </tree>    
+            </field>
+        </record>
+
+        <!-- search rka_detail -->
+        <record id="view_rka_kegiatan_filter" model="ir.ui.view">
+            <field name="name">rka_kegiatan.filter</field>
+            <field name="model">anggaran.rka_kegiatan</field>
+            <field name="arch" type="xml">
+                <search string="Search rka_coa">
+                    <field name="tridharma_id" />
+                    <field name="category_id" />
+                    <field name='anggaran' />
+
+                    <group expand="1" string="Group By...">
+                    </group>                                        
+        
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_prestasi_akademik_tree" model="ir.ui.view">
+            <field name="name">vit_prestasi_akademik_tree</field>
+            <field name="model">vit.prestasi_akademik</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Prestasi akademik">
+                    <field name="name" />
+                    <field name="tahun" />
+                    <field name="tingkat" />
+                    <field name="prestasi" />
+                    <field name="upload_bukti" />
+                    <field name="penerima_beasiswa_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_prestasi_akademik_form" model="ir.ui.view">
+            <field name="name">vit_prestasi_akademik_form</field>
+            <field name="model">vit.prestasi_akademik</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Prestasi akademik">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Prestasi akademik Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tahun" />
+                                <field name="tingkat" />
+                                <field name="prestasi" />
+                                <field name="upload_bukti" />
+                            </group>
+                            <group>
+                                <field name="penerima_beasiswa_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_prestasi_akademik_search" model="ir.ui.view">
+            <field name="name">vit_prestasi_akademik</field>
+            <field name="model">vit.prestasi_akademik</field>
+            <field name="arch" type="xml">
+                <search string="Prestasi akademik">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Tahun" name="filter_by_tahun" domain="[('tahun','=','')]" />
+                    <filter string="Tingkat" name="filter_by_tingkat" domain="[('tingkat','=','')]" />
+                    <filter string="Prestasi" name="filter_by_prestasi" domain="[('prestasi','=','')]" />
+                    <filter string="Upload bukti" name="filter_by_upload_bukti" domain="[('upload_bukti','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="tahun" select="True"/>
+                    <field name="tingkat" select="True"/>
+                    <field name="prestasi" select="True"/>
+                    <field name="upload_bukti" select="True"/>
+                    <field name="penerima_beasiswa_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Penerima beasiswa" domain="[]" name="group_by_penerima_beasiswa_id" context="{'group_by':'penerima_beasiswa_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_prestasi_akademik_kanban" model="ir.ui.view" >
+            <field name="name">vit_prestasi_akademik</field>
+            <field name="model">vit.prestasi_akademik</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="tahun" />
+                    <field name="tingkat" />
+                    <field name="prestasi" />
+                    <field name="upload_bukti" />
+                    <field name="penerima_beasiswa_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Penerima beasiswa</span> <field name="penerima_beasiswa_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- graph -->
+        <record id="view_vit_prestasi_akademik_graph" model="ir.ui.view">
+            <field name="name">vit_prestasi_akademik</field>
+            <field name="model">vit.prestasi_akademik</field>
+            <field name="arch" type="xml">
+                <graph string="Prestasi akademik" type="bar">
+                    <field name="penerima_beasiswa_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_prestasi_akademik" model="ir.actions.act_window">
+            <field name="name">Prestasi akademik</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.prestasi_akademik</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Prestasi akademik
+                </p><p>
+                Click the Create button to add a new Prestasi akademik
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_prestasi_akademik" name="Prestasi akademik" parent="vit_beasiswa_config_menu" action="action_vit_prestasi_akademik" sequence="60"/>
+    </data>
+</odoo>

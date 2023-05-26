@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_asset_asset_form_kel" model="ir.ui.view">
+            <field name="name">account.asset.asset.form.kel</field>
+            <field name="model">account.asset.asset</field>
+            <field name="inherit_id" ref="om_account_asset.view_account_asset_asset_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="category_id" position="after">
+                    <field name="parent_kategori" invisible='1'/>
+                    <field name="kelompok_asset_id" attrs="{'invisible':[('parent_kategori', '!=', 'Aset')]}"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

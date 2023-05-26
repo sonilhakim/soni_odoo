@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <menuitem id="vit_menu_surat"
+                  name="Tata Kelola Surat"
+                  sequence="20"
+                  web_icon="vit_tata_kelola_surat,static/description/icon.png"
+        />
+        <menuitem name="Daftar Inventaris Ruang" id="menu_account_inventaris_detail" parent="vit_menu_surat"
+                  action="vit_tata_kelola_surat.act_open_account_inventaris_detail_view" groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+
+        <menuitem name="Buku Inventaris" id="vit_buku_inventaris" parent="vit_menu_surat"
+                  action="vit_tata_kelola_surat.action_buku_inventaris_report" groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+        <menuitem name="Buku Induk Inventaris" id="vit_buku_induk_inventaris" parent="vit_menu_surat"
+                  action="vit_tata_kelola_surat.action_buku_induk_inventaris_report" groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+
+        <menuitem name="Laporan Mutasi Barang" id="vit_laporan_mutasi_menu" parent="vit_menu_surat"
+                  action="vit_tata_kelola_surat.act_open_vit_mutasi_view" groups="vit_pengelolaan_asset_data.group_pengelolaan_aset_user,vit_pengelolaan_asset_data.group_pengelolaan_aset_manager"/>
+
+    </data>
+</odoo>

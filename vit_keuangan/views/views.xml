@@ -1,0 +1,224 @@
+<odoo>
+  <data>
+
+	<!-- action_Pengelolaan_COA -->
+	<record id="action_Pengelolaan_COA" model="ir.actions.act_window">
+		<field name="name">Pengelolaan COA</field>
+		<field name="res_model">account.account</field>
+		<field name="view_mode">tree,form,graph</field>
+	</record>
+
+	<!-- action_Pengelolaan_Tahun_Pembukuan -->
+	<record id="action_Pengelolaan_Tahun_Pembukuan" model="ir.actions.act_window">
+		<field name="name">Pengelolaan Tahun Pembukuan</field>
+		<field name="res_model">account.fiscal.year</field>
+		<field name="view_mode">tree,form,graph</field>
+	</record>
+
+	<!-- action_Skenario_Jurnal_Otomatis -->
+	<record id="action_Skenario_Jurnal_Otomatis" model="ir.actions.act_window">
+		<field name="name">Pengelolaan  Skenario Jurnal Otomatis</field>
+		<field name="res_model">account.journal</field>
+		<field name="view_mode">tree,form,graph</field>
+	</record>
+
+	<!-- action_Pengelolaan_Transaksi -->
+	<record id="action_Pengelolaan_Transaksi" model="ir.actions.act_window">
+		<field name="name">Pengelolaan Transaksi</field>
+		<field name="res_model">account.move</field>
+		<field name="view_mode">tree,form,graph</field>
+	</record>
+
+	<!-- action_Pengelolaan_Jurnal -->
+	<record id="action_Pengelolaan_Jurnal" model="ir.actions.act_window">
+		<field name="name">Pengelolaan Jurnal</field>
+		<field name="res_model">account.move.line</field>
+		<field name="view_mode">tree,form,graph</field>
+	</record>
+
+	<!-- menu_Jurnal_Penerimaan -->
+	<record id="action_Jurnal_Penerimaan" model="ir.actions.act_window">
+		<field name="name">Jurnal Penerimaan</field>
+		<field name="res_model">account.invoice</field>
+		<field name="view_mode">tree,form,graph</field>
+		<field eval="False" name="view_id"/>
+        <field name="domain">[('type','=','out_invoice')]</field>
+        <field name="context">{'type':'out_invoice', 'journal_type': 'sale'}</field>
+        <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+	</record>
+	<record id="action_Jurnal_Penerimaan_view1" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="account.invoice_tree_with_onboarding"/>
+        <field name="act_window_id" ref="action_Jurnal_Penerimaan"/>
+    </record>
+
+    <record id="action_Jurnal_Penerimaan_view2" model="ir.actions.act_window.view">
+        <field eval="2" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="account.invoice_form"/>
+        <field name="act_window_id" ref="action_Jurnal_Penerimaan"/>
+    </record>
+
+	<!-- menu_Jurnal_Pengeluaran -->
+	<record id="action_Jurnal_Pengeluaran" model="ir.actions.act_window">
+		<field name="name">Jurnal Pengeluaran</field>
+		<field name="res_model">account.invoice</field>
+		<field name="view_mode">tree,form,graph</field>
+		<field eval="False" name="view_id"/>
+        <field name="domain">[('type','=','in_invoice')]</field>
+        <field name="context">{'default_type': 'in_invoice', 'type': 'in_invoice', 'journal_type': 'purchase'}</field>
+        <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+	</record>
+
+
+	<!-- action_Laporan_Transaksi -->
+	<record id="action_Laporan_Transaksi" model="ir.actions.client">
+		<field name="name">Laporan Transaksi</field>
+		<!-- <field name="res_model">account.move.line</field>
+		<field name="view_mode">tree,form,graph</field> -->
+		<field name="tag">account_report</field>
+		<field name="context" eval="{'model': 'account.consolidated.journal'}" />
+	</record>
+
+	<!-- action_Laporan_Posisi_Keuangan -->
+	<record id="action_Laporan_Posisi_Keuangan" model="ir.actions.client">
+        <field name="name">Laporan Posisi Keuangan</field>
+        <field name="tag">account_report</field>
+        <field name="context" eval="{'model': 'account.financial.html.report', 'id': ref('account_reports.account_financial_report_balancesheet0')}" />
+    </record>
+
+    <!-- action_Laporan_Saldo_Master -->
+    <record id="action_saldo_master" model="ir.actions.client">
+        <field name="name">Saldo Master</field>
+        <field name="tag">account_report</field>
+        <field name="context" eval="{'model': 'account.coa.report'}" />
+    </record>
+
+	<!-- action_Laporan_Buku_Besar -->
+	<record id="action_Laporan_Buku_Besar" model="ir.actions.act_window">
+		<field name="name">Laporan Buku Besar</field>
+		<field name="res_model">account.move.line</field>
+		<field name="view_mode">tree,form,graph</field>
+	</record>
+
+
+
+
+
+
+
+    <menuitem name="Akuntansi" id="vit_keuangan_akuntansi" 
+      web_icon="vit_keuangan,static/description/icon.png"
+      groups="vit_keuangan.group_keuangan_user,vit_keuangan.group_keuangan_manager,vit_keuangan.group_keuangan_akuntan"/>
+
+	<!-- menu_Pengelolaan_COA -->
+	<menuitem id="menu_Pengelolaan_COA"
+			action="action_Pengelolaan_COA"
+			name="Pengelolaan COA"
+			sequence="10"
+			parent="vit_keuangan_akuntansi"/>
+
+	<!-- 3)   Pengelolaan Tahun Pembukuan -->
+	<menuitem id="menu_Pengelolaan_Tahun_Pembukuan"
+			action="action_Pengelolaan_Tahun_Pembukuan"
+			name="Pengelolaan Tahun Pembukuan"
+			sequence="20"
+			parent="vit_keuangan_akuntansi"/>
+
+	<!--4)   Pengelolaan Skenario Jurnal Otomatis -->
+	<menuitem id="menu_Skenario_Jurnal_Otomatis"
+			action="action_Skenario_Jurnal_Otomatis"
+			name="Pengelolaan Skenario Jurnal Otomatis"
+			sequence="30"
+			parent="vit_keuangan_akuntansi"/>
+	<!-- 5)   Pengelolaan Transaksi-->
+	<menuitem id="menu_Pengelolaan_Transaksi"
+			action="action_Pengelolaan_Transaksi"
+			name="Pengelolaan Transaksi"
+			sequence="30"
+			parent="vit_keuangan_akuntansi"/>
+	<!-- 6)   Pengelolaan Jurnal-->
+	<menuitem id="menu_Pengelolaan_Jurnal"
+			action="action_Pengelolaan_Jurnal"
+			name="Pengelolaan Jurnal"
+			sequence="40"
+			parent="vit_keuangan_akuntansi"/>
+	<!-- 7)   Jurnal Penerimaan-->
+	<menuitem id="menu_Jurnal_Penerimaan"
+			action="action_Jurnal_Penerimaan"
+			name="Jurnal Penerimaan"
+			sequence="50"
+			parent="vit_keuangan_akuntansi"/>
+	<!-- 8)   Jurnal Pengeluaran-->
+	<menuitem id="menu_Jurnal_Pengeluaran"
+			action="action_Jurnal_Pengeluaran"
+			name="Jurnal Pengeluaran"
+			sequence="60"
+			parent="vit_keuangan_akuntansi"/>
+	<!-- 9)   General Ledger-->
+	<menuitem id="menu_General_Ledger"
+			action="account_reports.action_account_report_general_ledger"
+			name="General Ledger"
+			sequence="70"
+			parent="vit_keuangan_akuntansi"
+			groups="vit_keuangan.group_keuangan_manager,vit_keuangan.group_keuangan_akuntan"/>
+	<!-- 13) Neraca/Posisi Keuangan-->
+	<menuitem id="menu_Neraca_Posisi_Keuangan"
+			action="action_Laporan_Posisi_Keuangan"
+			name="Neraca/Posisi Keuangan"
+			sequence="80"
+			parent="vit_keuangan_akuntansi"
+			groups="vit_keuangan.group_keuangan_manager,vit_keuangan.group_keuangan_akuntan"/>
+	<!-- 14) Arus Kas-->
+	<menuitem id="menu_Arus_Kas"
+			action="account_reports.account_financial_html_report_action_3"
+			name="Arus Kas"
+			sequence="90"
+			parent="vit_keuangan_akuntansi"
+			groups="vit_keuangan.group_keuangan_manager,vit_keuangan.group_keuangan_akuntan"/>
+	<!-- 15) Surplus Defisit/Aktivasi-->
+	<menuitem id="menu_Surplus_Defisit_Aktivasi"
+			action="account_reports.account_financial_html_report_action_1"
+			name="Surplus Defisit/Aktivitas"
+			sequence="100"
+			parent="vit_keuangan_akuntansi"
+			groups="vit_keuangan.group_keuangan_manager,vit_keuangan.group_keuangan_akuntan"/>
+	<!-- 16) Buku Besar-->
+	<menuitem id="menu_Buku_Besar"
+			action="account_reports.action_account_report_general_ledger"
+			name="Buku Besar"
+			sequence="100"
+			parent="vit_keuangan_akuntansi"
+			groups="vit_keuangan.group_keuangan_manager,vit_keuangan.group_keuangan_akuntan"/>
+	<!-- 17) Saldo Master-->
+	<menuitem id="menu_Saldo_Master"
+			action="action_saldo_master"
+			name="Saldo Master"
+			sequence="110"
+			parent="vit_keuangan_akuntansi"
+			groups="vit_keuangan.group_keuangan_manager,vit_keuangan.group_keuangan_akuntan"/>
+	<!-- 18) Perubahan Ekuitas-->
+	<menuitem id="menu_Perubahan_Ekuitas"
+			action="account_reports.account_financial_html_report_action_5"
+			name="Perubahan Ekuitas"
+			sequence="110"
+			parent="vit_keuangan_akuntansi"
+			groups="vit_keuangan.group_keuangan_manager,vit_keuangan.group_keuangan_akuntan"/>
+	<!-- 19) Laporan Transaksi-->
+	<menuitem id="menu_Laporan_Transaksi"
+			action="action_Laporan_Transaksi"
+			name="Laporan Transaksi"
+			sequence="120"
+			parent="vit_keuangan_akuntansi"
+			groups="vit_keuangan.group_keuangan_manager,vit_keuangan.group_keuangan_akuntan"/>
+	<!-- 20) Laporan Buku Besar-->
+	<menuitem id="menu_Laporan_Buku_Besar"
+			action="accounting_pdf_reports.action_account_general_ledger_menu"
+			name="Laporan Buku Besar"
+			sequence="130"
+			parent="vit_keuangan_akuntansi"
+			groups="vit_keuangan.group_keuangan_manager,vit_keuangan.group_keuangan_akuntan"/>
+
+  </data>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- form view -->
+        <record id="view_vit_vit_gedung_form2" model="ir.ui.view">
+            <field name="name">vit_vit_gedung_form2</field>
+            <field name="model">vit.vit_gedung</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_gedung_ruang.view_vit_vit_gedung_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="asset_id" position="attributes">
+                    <attribute name="domain">[('category_id.parent_id.parent_id.parent_id','=','Aset'),('state','=','open'),('asset_id','!=',False)]</attribute>
+                </field>
+
+                <xpath expr="//notebook/page/field[@name='ruang_ids']" position="replace">
+                    <field name="ruang_ids" mode="tree">
+                        <tree string="Ruang" editable="bottom">
+                            <field name="name" string="Nama Ruang"/>
+                            <field name="kode_ruang" />
+                            <field name="penanggung_jawab_id" />
+                            <field name="luas" />
+                            <field name="satuan" />
+                            <field name="lantai" />
+                            <field name="pengguna_id" />
+                            <field name="jenis_penggunaan_id" />
+                            <field name="tanggal_awal" string="Awal Penggunaan"/>
+                            <field name="tanggal_akhir" string="Akhir Penggunaan" />
+                        </tree>
+                    </field>
+                </xpath>
+                
+            </field>
+        </record>
+    </data>
+</odoo>

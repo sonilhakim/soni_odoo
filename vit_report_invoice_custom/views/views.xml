@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <!-- register-->
+        <record id="views_register_payment_note_form" model="ir.ui.view">
+            <field name="name">views_register_payment_note_form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_invoice_form" />
+            <field name="arch" type="xml">
+                <field name="communication" position="after">
+                    <field name="note"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- payment-->
+        <record id="views_payment_note_form" model="ir.ui.view">
+            <field name="name">views_payment_note_form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form" />
+            <field name="arch" type="xml">
+                <field name="payment_transaction_id" position="after">
+                    <field name="note" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

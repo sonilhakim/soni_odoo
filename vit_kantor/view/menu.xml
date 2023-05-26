@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="vit_kantor_top_menu" name="Kantor" sequence="20" web_icon="vit_kantor,static/description/icon.png" />
+		<menuitem id="vit_kantor_sub_menu" name="Operations" sequence="40" parent="vit_kantor_top_menu" />
+		<menuitem id="vit_kantor_config_menu" name="Configurations" sequence="50" parent="vit_kantor_top_menu" />
+	</data>
+</odoo>

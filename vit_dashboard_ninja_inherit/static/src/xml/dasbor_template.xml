@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="ksNoItemView">
+        <div class="o_view_nocontent">
+            <div class="o_nocontent_help">
+                <p class="o_view_nocontent_neutral_face">
+                    Dasbor pribadi Anda kosong
+                </p>
+                <p>
+                    Untuk menambahkan item dashboard, klik<strong> Sesuaikan Dasbor </strong>ikon seperti roda gigi di kanan atas
+                    pojok dan kemudian pilih opsi "Tambahkan Item".
+                </p>
+            </div>
+        </div>
+    </t>
+</templates>

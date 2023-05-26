@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_riwayat_verifikasi_tree" model="ir.ui.view">
+            <field name="name">vit_riwayat_verifikasi_tree</field>
+            <field name="model">vit.riwayat_verifikasi</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Verifikasi">
+                    <field name="name" />
+                    <field name="kegiatan" />
+                    <field name="date_start" />
+                    <field name="date_end" />
+                    <field name="employee_id" />
+                    <field name="status_verifikasi" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_riwayat_verifikasi_form" model="ir.ui.view">
+            <field name="name">vit_riwayat_verifikasi_form</field>
+            <field name="model">vit.riwayat_verifikasi</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Verifikasi">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Verifikasi Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="kegiatan" />
+                                <field name="date_start" />
+                                <field name="date_end" />
+                            </group>
+                            <group>
+                                <field name="employee_id" />
+                                <field name="status_verifikasi" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- action window -->
+        <record id="action_vit_riwayat_verifikasi" model="ir.actions.act_window">
+            <field name="name">Verifikasi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.riwayat_verifikasi</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Riwayat Verifikasi
+                </p><p>
+                Click the Create button to add a new Riwayat Verifikasi
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_riwayat_verifikasi" name="Verifikasi" parent="vit_riwayat.vit_riwayat_sub_menu" action="action_vit_riwayat_verifikasi" sequence="120"/>
+    </data>
+</odoo>

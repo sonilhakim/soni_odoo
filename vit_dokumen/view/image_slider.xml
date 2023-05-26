@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_image_slider_tree" model="ir.ui.view">
+            <field name="name">vit_image_slider_tree</field>
+            <field name="model">vit.image_slider</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="image_slider">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="img_name" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_image_slider_form" model="ir.ui.view">
+            <field name="name">vit_image_slider_form</field>
+            <field name="model">vit.image_slider</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="image_slider">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Deskripsi"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="date" />
+                            </group>
+                            <group>
+                                <field name="img_name"  invisible="1"/>
+                                <field name="img" widget="image"  filename="img_name"/>
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_image_slider_search" model="ir.ui.view">
+            <field name="name">vit_image_slider</field>
+            <field name="model">vit.image_slider</field>
+            <field name="arch" type="xml">
+                <search string="image_slider">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <field name="name" select="True"/>
+                    <group string="Group By..">
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_image_slider" model="ir.actions.act_window">
+            <field name="name">Image Slider</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.image_slider</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Image Slider
+                </p><p>
+                Click the Create button to add a new Image Slider
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_image_slider" name="Image Slider" parent="vit_dokumen_config_menu" action="action_vit_image_slider" sequence="70"/>
+    </data>
+</odoo>

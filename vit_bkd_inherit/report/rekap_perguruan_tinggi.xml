@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_rekap_perguruan_tinggi_menu" string="Laporan Rekap perguruan"
+         model="vit.rekap_perguruan_tinggi" report_type="qweb-pdf"  paperformat="vit_bkd_inherit.paperformat_bkd" file="vit.rekap_perguruan_tinggi"  name="vit_bkd_inherit.vit_rekap_perguruan_tinggi_report1" />
+
+        <!-- document template -->
+        <template id="vit_bkd_inherit.vit_rekap_perguruan_tinggi_report_document1" >
+            <t t-call="vit_bkd_inherit.external_layout_bkd">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <div style="text-align:center;margin-bottom:30px;">
+                        <img t-if="doc.institusi_id.logo" t-att-src="image_data_uri(doc.institusi_id.logo)" alt="Logo" style="width:100px"/>
+                        <br/><br/>
+                        <h4>
+                            <strong>LAPORAN REKAP BKD FAKULTAS</strong>
+                        </h4>
+                    </div>
+                    <div style="margin-bottom:30px;margin-left:80px;">
+                        <div class="row mb-2">
+                            <div class="col-5">
+                                PERGURUAN TINGGI
+                            </div>
+                            <div>
+                                : <span t-field="doc.institusi_id" />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-5">
+                                Rektor
+                            </div>
+                            <div>
+                                <!-- : <span t-field="doc.rektor_id" /> -->
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-5">
+                                TAHUN LAPORAN
+                            </div>
+                            <div>
+                                : <span t-field="doc.tahun_akademik_id" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <table class="table table-sm o_main_table" name="line_ids_table">
+                    <thead>
+                        <tr>
+                            <td>No</td>
+                            <td>No sertifikat</td>
+                            <td>Nama dosen</td>
+                            <td>Semester gasal pd</td>
+                            <td>Semester gasal pl</td>
+                            <td>Semester gasal pg</td>
+                            <td>Semester gasal pk</td>
+                            <td>Semester genap pd</td>
+                            <td>Semester genap pl</td>
+                            <td>Semester genap pg</td>
+                            <td>Semester genap pk</td>
+                            <td>Kewajiban khusus</td>
+                            <td>Status</td>
+                            <td>Kesimpulan</td>
+                            <td>Rekap perguruan tinggi</td>
+                        </tr>
+                    </thead>
+                    <tbody class="line_ids_tbody">
+                        <tr t-foreach="doc.line_ids" t-as="line">
+                            <td><t t-esc="line_index+1"/></td>
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.no_sertifikat" /></td>
+                            <td><span t-field="line.nama_dosen" /></td>
+                            <td><span t-field="line.semester_gasal_pd" /></td>
+                            <td><span t-field="line.semester_gasal_pl" /></td>
+                            <td><span t-field="line.semester_gasal_pg" /></td>
+                            <td><span t-field="line.semester_gasal_pk" /></td>
+                            <td><span t-field="line.semester_genap_pd" /></td>
+                            <td><span t-field="line.semester_genap_pl" /></td>
+                            <td><span t-field="line.semester_genap_pg" /></td>
+                            <td><span t-field="line.semester_genap_pk" /></td>
+                            <td><span t-field="line.kewajiban_khusus" /></td>
+                            <td><span t-field="line.status" /></td>
+                            <td><span t-field="line.kesimpulan" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_bkd_inherit.vit_rekap_perguruan_tinggi_report1">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_bkd_inherit.vit_rekap_perguruan_tinggi_report_document1" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,29 @@
+<odoo>
+    <data>        
+        <record id="view_account_invoice_payment_kas" model="ir.ui.view">
+            <field name="name">sale.account.inv.payment.kas</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_bank_id']" position="after">
+                    <field name="total_item" invisible="1" />
+                    <field name="total_qty" invisible="1" />
+                    <field name="change" invisible="1" />
+                    <field name="discount_global_amount" invisible="1" />
+                    <field name="tunai" invisible="1" />
+                </xpath>
+
+                <xpath expr="//form//header//button[@name='preview_invoice']" position="after">
+                    <button name="print_struk" string="Print Struk" type="object"  attrs="{'invisible': [('tunai', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='discount_global_persen']" position="after">
+                    <field name="discount_global_amount" invisible="1" />
+                </xpath>
+                <!-- <xpath expr="//field[@name='team_id']" position="after">
+                    <field name="cara_bayar" />
+                </xpath> -->
+            </field>
+        </record>
+
+    </data>
+</odoo>

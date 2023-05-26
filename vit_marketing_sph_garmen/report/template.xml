@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="external_layout_standard_sph">
+        <div class="article o_report_layout_standard"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0"/>
+        </div>
+        <div class="footer o_standard_footer">
+            <div class="text-center">
+                <div t-if="report_type == 'pdf'">
+                    <!-- <div t-field="company.partner_id"
+                        t-options='{"widget": "contact", "fields": ["street", "city", "zip", "phone", "email", "website", "name"], "no_marker": true}'
+                    /> -->
+                    <div>
+                        <span t-field="company.partner_id.name"/>
+                    </div>
+                    <div style="font-size: 9pt;">
+                        <span t-field="company.partner_id.street"/>&#160;-&#160;<span t-field="company.partner_id.city"/>&#160;
+                        <span t-field="company.partner_id.zip"/>&#160;*Ph.:<span t-field="company.partner_id.phone"/>
+                    </div>
+                    <div style="font-size: 9pt;">
+                        <span t-field="company.partner_id.email"/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span t-field="company.partner_id.website"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Public api: layout to t-call from reports -->
+
+    <template id="external_layout_sph">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+
+        <t t-if="not company">
+            <!-- Multicompany -->
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+        <t t-call="vit_marketing_sph_garmen.external_layout_standard_sph">
+            <t t-raw="0"/>                
+        </t>
+
+    </template>
+
+</odoo>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_buku_inventaris_tree" model="ir.ui.view">
+            <field name="name">vit_buku_inventaris_tree</field>
+            <field name="model">vit.buku_inventaris</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Buku inventaris">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="status" string="Status Inventaris"/>
+                    <field name="lokasi_id" />
+                    <field name="kategori_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_buku_inventaris_form" model="ir.ui.view">
+            <field name="name">vit_buku_inventaris_form</field>
+            <field name="model">vit.buku_inventaris</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Buku inventaris">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" />
+                        <button string="Mark as Done" type="object" name="action_done" states="open" />
+                        <button string="Reset to Draft" type="object" name="action_draft" states="open,done" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Buku inventaris Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="date" />
+                                <field name="status" string="Status Inventaris" />
+                            </group>
+                            <group>
+                                <field name="lokasi_id" />
+                                <field name="kategori_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Detail">
+                                <field name="detail_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_buku_inventaris_search" model="ir.ui.view">
+            <field name="name">vit_buku_inventaris</field>
+            <field name="model">vit.buku_inventaris</field>
+            <field name="arch" type="xml">
+                <search string="Buku inventaris">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                    <filter string="Date" name="filter_by_date" domain="[('date','=','')]" />
+                    <filter string="Status" name="filter_by_status" domain="[('status','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="state" select="True"/>
+                    <field name="date" select="True"/>
+                    <field name="status" select="True"/>
+                    <field name="lokasi_id" select="True"/>
+                    <field name="kategori_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Lokasi" domain="[]" name="group_by_lokasi_id" context="{'group_by':'lokasi_id'}"/>
+                        <filter string="Kategori" domain="[]" name="group_by_kategori_id" context="{'group_by':'kategori_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_buku_inventaris_kanban" model="ir.ui.view" >
+            <field name="name">vit_buku_inventaris</field>
+            <field name="model">vit.buku_inventaris</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="state" />
+                    <field name="date" />
+                    <field name="status" />
+                    <field name="lokasi_id" />
+                    <field name="kategori_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Lokasi</span> <field name="lokasi_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Kategori</span> <field name="kategori_id"></field>
+                                        </li>
+
+                                        <li>
+                                            <span class="text-muted">Date</span> <field name="date"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_vit_buku_inventaris_cal" model="ir.ui.view">
+            <field name="name">vit_buku_inventaris_cal</field>
+            <field name="model">vit.buku_inventaris</field>
+            <field name="arch" type="xml">
+                <calendar string="Buku inventaris" date_start="date">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record>
+        <!-- graph -->
+        <record id="view_vit_buku_inventaris_graph" model="ir.ui.view">
+            <field name="name">vit_buku_inventaris</field>
+            <field name="model">vit.buku_inventaris</field>
+            <field name="arch" type="xml">
+                <graph string="Buku inventaris" type="bar">
+                    <field name="lokasi_id"/>
+                </graph>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_vit_buku_inventaris" model="ir.actions.act_window">
+            <field name="name">Buku inventaris</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.buku_inventaris</field>
+            <field name="view_mode">kanban,tree,form,calendar,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Buku inventaris
+                </p><p>
+                Click the Create button to add a new Buku inventaris
+                </p>
+            </field>
+        </record>
+
+        <!-- <menuitem id="menu_vit_buku_inventaris" name="Buku inventaris" parent="vit_tks_sub_menu" action="action_vit_buku_inventaris" sequence="40"/> -->
+    </data>
+</odoo>

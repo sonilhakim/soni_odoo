@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_vit_mutasi_barang_menu2" string="Laporan Mutasi barang"
+         model="vit.mutasi_barang" report_type="qweb-pdf" 
+         file="vit.mutasi_barang"  name="vit_tks_inherit.vit_mutasi_barang_report2" />
+
+        <!-- document template -->
+        <template id="vit_tks_inherit.vit_mutasi_barang_report_document2" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <br/>
+                <br/>
+                <div class="text-center">
+                    <img style="width:150px;" t-if="doc.create_uid.company_id.logo" t-att-src="image_data_uri(doc.create_uid.company_id.logo)" alt="Logo"/>
+                    <h2>Laporan Mutasi barang</h2>
+                </div>
+                <div class="pull-right">
+                    No. Dokumen: <span t-field="doc.name"/>
+                </div>
+                <div>
+                    Tanggal pembukuan: <span t-field="doc.date" />
+                </div>
+                <div>
+                    Dari tanggal: <span t-field="doc.start_date" /> Sampai tanggal: <span t-field="doc.end_date" />
+                </div>
+                <br/>
+                <div class="oe_structure"/>
+                <table class="table table-sm o_main_table text-center" style="font-size:9pt;width:100%;" name="detail_ids_table">
+                    <thead>
+                        <tr>
+                            <td style="border:1px solid black;width:1%;">No</td>
+                            <td style="border:1px solid black;width:7%;">Kode brg</td>
+                            <td style="border:1px solid black;width:7%;">Register</td>
+                            <td style="border:1px solid black;width:10%;">Nama barang</td>
+                            <td style="border:1px solid black;width:9%;">Merk/Type</td>
+                            <td style="border:1px solid black;width:10%;">No Sertifikat</td>
+                            <td style="border:1px solid black;width:8%;">Asal</td>
+                            <td style="border:1px solid black;width:11%;">Th Perolehan</td>
+                            <td style="border:1px solid black;width:7%;">Kondisi</td>
+                            <td style="border:1px solid black;width:10%;">Lokasi awal</td>
+                            <td style="border:1px solid black;width:10%;">Lokasi akhir</td>
+                            <!-- <td style="border:1px solid black;">Jumlah awal</td>
+                            <td style="border:1px solid black;">Jumlah akhir</td> -->
+                            <td style="border:1px solid black;width:10%;">Keterangan</td>
+                        </tr>
+                    </thead>
+                    <tbody class="detail_ids_tbody">
+                        <tr t-foreach="doc.detail_ids" t-as="line"> 
+                            <td style="border:1px solid grey;"><t t-esc="line_index+1"/></td>
+                            <td style="border:1px solid grey;"><span t-field="line.kode_barang" /></td>
+                            <td style="border:1px solid grey;"><span t-field="line.transfer_id" /></td>
+                            <td style="border:1px solid grey;"><span t-field="line.name" /></td>
+                            <td style="border:1px solid grey;"><span t-field="line.type" /></td>
+                            <td style="border:1px solid grey;"><span t-field="line.no_sertifikat" /></td>
+                            <td style="border:1px solid grey;"><span t-field="line.asal" /></td>
+                            <td style="border:1px solid grey;"><span t-field="line.tahun_perolehan" /></td>
+                            <td style="border:1px solid grey;"><span t-field="line.kondisi" /></td>
+                            <td style="border:1px solid grey;"><span t-field="line.lokasi_awal" /></td>
+                            <td style="border:1px solid grey;"><span t-field="line.lokasi_akhir" /></td>
+                            <!-- <td style="border:1px solid grey;"><span t-field="line.jumlah_awal" /></td>
+                            <td style="border:1px solid grey;"><span t-field="line.jumlah_akhir" /></td> -->
+                            <td style="border:1px solid grey;"><span t-field="line.keterangan" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div style="position:relative; page-break-inside: avoid;">
+                    <table style="width:99%;border-collapse: collapse;">
+                        <tr>
+                            <td style="width:30%;border-collapse: collapse; text-align: center;">Mengetahui</td>
+                            <td style="width:40%;border-collapse: collapse;"></td>
+                            <td style="width:30%;border-collapse: collapse; text-align: center;">Pengelola</td>
+                        </tr>
+                        <tr>
+                            <td style="width:30%;border-collapse: collapse; text-align: center;">Kepala....................
+                            <br/><br/><br/><br/><br/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:bottom;border-collapse: collapse; text-align: center;">                                        
+                                Nip..................
+                            </td>
+                            <td style="vertical-align:bottom;border-collapse: collapse;">
+                            </td>
+                            <td style="vertical-align:bottom;border-collapse: collapse; text-align: center;">
+                                Nip..................
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="vit_tks_inherit.vit_mutasi_barang_report2">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="vit_tks_inherit.vit_mutasi_barang_report_document2" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

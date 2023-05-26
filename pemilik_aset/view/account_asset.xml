@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_asset_asset_form_pml" model="ir.ui.view">
+            <field name="name">account.asset.asset.form.pml</field>
+            <field name="model">account.asset.asset</field>
+            <field name="inherit_id" ref="om_account_asset.view_account_asset_asset_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="analytic_tag_ids" position="after">
+                    <field name="pemilik_id"/>
+                    <field name="tgl_awal" attrs="{'invisible':[('pemilik_id', '=', False)]}"/>
+                    <field name="tgl_akhir" attrs="{'invisible':[('pemilik_id', '=', False)]}"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

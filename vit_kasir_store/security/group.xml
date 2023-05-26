@@ -1,0 +1,10 @@
+<odoo>
+	<data>
+		<record model="res.groups" id="user_kasir_store">
+			<field name="name">Kasir Store</field>
+		</record>
+		<!-- <record model="res.groups" id="manager_kasir_store">
+			<field name="name">Kasir Store Manager</field>
+		</record> -->
+	</data>
+</odoo>

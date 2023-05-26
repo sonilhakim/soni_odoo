@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- pencairan -->
+        <record id="bill_pencairan_kasbon_tree" model="ir.ui.view">
+            <field name="name">account.bill.pencairan.kasbon.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" decoration-bf="not partner_id" string="Vendor Bill" js_class="account_bills_tree">
+                    <field name="partner_id" invisible="1"/>
+                    <field name="source_email" invisible="1"/>
+                    <field name="invoice_icon" string=" "/>
+                    <field name="vendor_display_name" groups="base.group_user" string="Karyawan"/>
+                    <field name="date_invoice" string="Bill Date"/>
+                    <field name="number"/>
+                    <field name="reference"/>
+                    <field name="commercial_partner_id" invisible="1"/>
+                    <field name="name" invisible="1"/>
+                    <field name="journal_id" invisible="1"/>
+                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    <field name="date_due"/>
+                    <field name="origin"/>
+                    <field name="amount_total_signed" string="Total" sum="Total"/>
+                    <field name="residual_signed" string="To Pay" sum="To pay"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="company_currency_id" invisible="1"/>
+                    <field name="state"/>
+                    <field name="type" invisible="context.get('type',True)"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="bill_pencairan_kasbon_form" model="ir.ui.view">
+            <field name="name">account.invoice.pencairan.kasbon.form</field>
+            <field name="model">account.invoice</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <form string="Pencairan Kasbon">
+                <header>
+                        <button name="action_invoice_open" type="object" states="draft" string="Validate" class="oe_highlight" groups="account.group_account_invoice"/>
+                        <button name="%(account.action_account_invoice_payment)d" type="action" states="open" string="Register Payment" groups="account.group_account_invoice" class="oe_highlight"/>
+                        <!-- <button name="%(account.action_account_invoice_refund)d" type='action' string='Ask for a Credit Note' groups="account.group_account_invoice" attrs="{'invisible': ['|',('type', 'in', ['in_refund','out_refund']),('state','not in',('open','in_payment','paid'))]}"/> -->
+                        <button name="action_invoice_draft" states="cancel" string="Set to Draft" type="object" groups="account.group_account_invoice"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,open,paid" />
+                </header>
+                <div groups="account.group_account_invoice" class="alert alert-info" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('has_outstanding','=',False)]}">
+                    Anda mempunyai <bold><a class="alert-link" href="#outstanding" role="button">outstanding debits</a></bold> untuk karyawan ini. Anda dapat mengalokasikannya untuk menandai pencairan ini sudah dibayarkan.
+                </div>
+                <field name="has_outstanding" invisible="1"/>
+                <sheet string="Pencairan Kasbon">
+                    <div>
+                        <span class="o_form_label" attrs="{'invisible': ['|',('state','!=','draft'), ('type','!=','in_invoice')]}">Draft Pencairan</span>
+                        <span class="o_form_label" attrs="{'invisible': [('sequence_number_next_prefix','=',False)]}">- First Number:</span>
+                        <span class="o_form_label" attrs="{'invisible': ['|',('state','!=','draft'), ('type','!=','in_refund')]}">Draft Credit Note</span>
+                        <span class="o_form_label" attrs="{'invisible': ['|',('state', '=', 'draft'), ('type','!=','in_invoice')]}">Pencairan </span>
+                        <span class="o_form_label" attrs="{'invisible': ['|',('state', '=', 'draft'), ('type','!=','in_refund')]}">Credit Note </span>
+                        <h1 class="mt0">
+                            <field name="number" class="oe_inline" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                            <div  attrs="{'invisible': [('sequence_number_next_prefix','=',False)]}">
+                                <field name="sequence_number_next_prefix" class="oe_inline"/>
+                                <field name="sequence_number_next" class="oe_inline"/>
+                            </div>
+                        </h1>
+                    </div>
+                    <field name="type" invisible="1"/>
+                    <group>
+                        <group>
+                            <field string="Karyawan" name="partner_id"
+                              widget="res_partner_many2one"
+                              context="{'default_customer': 0, 'search_default_supplier': 1, 'default_supplier': 1, 'default_is_company': True, 'show_vat': True}"
+                              domain="[('supplier', '=', True)]"/>
+                            <field name="reference" string="Referensi Kasbon"/>
+                            <field name="vendor_bill_id" attrs="{'invisible': [('state','not in',['draft'])]}"
+                              domain="[('partner_id','child_of', [partner_id]), ('state','in',('open','in_payment','paid')), ('type','=','in_invoice')]"
+                              string="Auto-Complete" placeholder="Select an old vendor bill"
+                              options="{'no_create': True}" context="{'show_total_amount': True}"/>
+                        </group>
+                        <group>
+                            <!-- <field name="origin" attrs="{'invisible': [('origin', '=', False)]}"/> -->
+                            <field name="date_invoice" string="Bill Date" options="{'datepicker': {'warn_future': true}}"/>
+                            <field name="date_due" attrs="{'readonly': ['|',('payment_term_id','!=',False), ('state', 'in', ['open', 'in_payment', 'paid'])]}" force_save="1"/>
+                            <field name="move_name" invisible="1"/>
+                            <field name="currency_id" options="{'no_create': True, 'no_open': True}" groups="base.group_multi_currency"/>
+                            <field name="company_currency_id" invisible="1"/>
+                            <field name="commercial_partner_id" invisible="1"/>
+                            <field domain="[('partner_id', '=', commercial_partner_id)]" name="partner_bank_id" string="Bank Account" context="{'default_partner_id': commercial_partner_id}" attrs="{'invisible': [('type', '!=', 'in_invoice')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Pencairan">
+                            <field context="{'type': type, 'journal_id': journal_id}" name="invoice_line_ids">
+                                <tree string="Pencairan lines" editable="bottom">
+                                    <field name="sequence" widget="handle" />
+                                    <field name="product_id" groups="account.group_products_in_bills"
+                                        context="{'partner_id': parent.partner_id}" domain="[('purchase_ok','=',True)]"/>
+                                    <field name="name"/>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="account_id" groups="account.group_account_user"
+                                        domain="[('company_id', '=', parent.company_id), ('internal_type', '=', 'other'), ('deprecated', '=', False)]"/>
+                                    <field name="account_analytic_id" groups="analytic.group_analytic_accounting"
+                                        domain="[('company_id', '=', parent.company_id)]"
+                                        context="{'default_partner_id': parent.partner_id}"/>
+                                    <field name="analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id" groups="uom.group_uom"/>
+                                    <field name="price_unit"/>
+                                    <!-- <field name="invoice_line_tax_ids" widget="many2many_tags" options="{'no_create': True}" context="{'type':parent.type, 'tree_view_ref': 'account.account_tax_view_tree', 'search_view_ref': 'account.account_tax_view_search'}"
+                                        domain="[('type_tax_use','=','purchase'),('company_id', '=', parent.company_id)]"/> -->
+                                    <field name="price_subtotal" string="Amount"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </tree>
+                            </field>
+                            <group>
+                                <!-- <group>
+                                    <div class="oe_inline">
+                                        <field name="tax_line_ids">
+                                            <tree editable="bottom" string="Taxes">
+                                                <field name="name"/> -->
+                                                <!--Need invisible fields for on_change to create all necessary info -->
+                                                <!-- <field name="tax_id" invisible="1"/>
+                                                <field name="sequence" invisible="1"/>
+                                                <field name="manual" invisible="1"/>
+                                                <field name="account_id" groups="account.group_account_user"/>
+                                                <field name="account_analytic_id" domain="[('company_id', '=', parent.company_id)]" groups="analytic.group_analytic_accounting"/>
+                                                <field name="analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                                <field name="amount"/>
+                                                <field name="amount_rounding" invisible="1"/>
+                                                <field name="amount_total" invisible="1"/>
+                                                <field name="currency_id" invisible="1" force_save="1"/>
+                                            </tree>
+                                        </field>
+                                    </div>
+                                </group> -->
+                                <group class="oe_subtotal_footer oe_right">
+                                    <!-- <field name="amount_untaxed"/>
+                                    <field name="amount_tax"/> -->
+                                    <field name="amount_total" class="oe_subtotal_footer_separator"/>
+                                    <field name="payments_widget" colspan="2" nolabel="1" widget="payment"/>
+                                    <field name="residual" class="oe_subtotal_footer_separator" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                                    <field name="reconciled" invisible="1"/>
+                                    <field name="outstanding_credits_debits_widget" colspan="2" nolabel="1" widget="payment" attrs="{'invisible': [('state', 'not in', 'open')]}"/>
+                                </group>
+                            </group>
+                            <div>
+                                <field name="comment" placeholder="Additional notes..."/>
+                            </div>
+                        </page>
+                        <page string="Other Info" name="other_info">
+                            <group>
+                                <group>
+                                    <!-- <field name="user_id" string="Petugas Kasbon"/> -->
+                                    <field name="journal_id" groups="account.group_account_user" options="{'no_create': True}"
+                                        attrs="{'readonly':[('move_name','!=',False)]}"/>
+                                    <field domain="[('company_id', '=', company_id), ('internal_type', '=', 'payable'), ('deprecated', '=', False)]"
+                                name="account_id" groups="account.group_account_user"/>
+                                    <field name="date" groups="account.group_account_user"/>
+                                    <!-- <field name="name"/> -->
+                                </group>
+                                <group>
+                                    <field name="kasbon_id"/>
+                                    <!-- <field name="incoterm_id" options="{'no_create': True}"/> -->
+                                    <!-- <field name="fiscal_position_id" options="{'no_create': True}" placeholder="Auto-detect"/> -->
+                                    <field name="payment_term_id" options="{'no_create': True}"/>
+                                    <field name="move_id" groups="account.group_account_user" attrs="{'invisible': [('move_id', '=', False)]}"/>
+                                    <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="o_attachment_preview" attrs="{'invisible': ['|',('type', '!=', 'in_invoice'),('state', '!=', 'draft')]}" />
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_bill_pencairan_kasbon" model="ir.actions.act_window">
+            <field name="name">Pencairan</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('type','=','in_invoice'),('kasbon_id','!=',False)]</field>
+            <field name="context">{"search_default_kasbon_id":1}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a Pencairan Kasbon
+              </p><p>
+                Klik tombol Create untuk membuat Pencairan Kasbon
+              </p>
+            </field>
+        </record>
+
+        <record id="action_bill_tree_pencairan_kasbon_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="bill_pencairan_kasbon_tree"/>
+            <field name="act_window_id" ref="action_bill_pencairan_kasbon"/>
+        </record>
+
+        <record id="action_bill_tree_pencairan_kasbon_view2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="bill_pencairan_kasbon_form"/>
+            <field name="act_window_id" ref="action_bill_pencairan_kasbon"/>
+        </record>
+
+        <!-- <menuitem id="menu_pencairan_kasbon" name="Pencairan" parent="vit_kasbon_pb_config_menu" action="action_bill_pencairan_kasbon" sequence="60"/> -->
+    </data>
+</odoo>

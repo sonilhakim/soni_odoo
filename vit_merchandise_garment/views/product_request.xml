@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+
+        <record id="vit_product_rquest_md_form_view" model="ir.ui.view">
+            <field name="name">vit_product.request_md_form</field>
+            <field name="model">vit.product.request</field>
+            <field name="inherit_id" ref="vit_product_request.view_product_request_form"/>
+            <field name="arch" type="xml"> 
+                <xpath expr="//field[@name='reference']" position="after">
+                    <field name="merchandise_pr"/>
+                    <field name="po_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- menu product request md-->
+        <record id="mrp_action_pr_md" model="ir.actions.act_window">
+            <field name="name">Purchase Request</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.product.request</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="False"/>
+            <field name="domain">[('merchandise_pr','=',True)]</field>
+            <field name="search_view_id" ref="vit_product_request.view_product_request_filter"/>
+            <field name="context">{'default_merchandise_pr':True}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a Purchase Request
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_product_request"
+                name="Purchase Request"
+                action="mrp_action_pr_md"
+                parent="vit_merchandise_garment.submenu_merchandise"
+                sequence="60"/>
+
+   </data>
+</odoo>

@@ -1,0 +1,38 @@
+<odoo>
+	<data>
+
+		<record id="store_lot_form" model="ir.ui.view">
+			<field name="name">store_lot.form</field>
+			<field name="model">stock.production.lot</field>
+			<field name="inherit_id" ref="vit_pengukuran_karyawan_inherit.item_pengukuran_lot_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='po_id']" position="after">
+					<field name="date_done_store"/>
+					<field name="store"/>
+				</xpath>
+			</field>
+		</record>
+		
+		<record id="swap_history_lot_form" model="ir.ui.view">
+			<field name="name">swap_history_lot.form</field>
+			<field name="model">stock.production.lot</field>
+			<field name="inherit_id" ref="vit_workorder_lot.workorder_lot_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//notebook/page[2]" position="after">
+					<page string="Swap Barcode History">
+						<field name="swap_history_ids">
+							<tree string="Swap Barcode History" editable="bottom">
+								<field name="swap_lot_id"/>
+								<field name="nik"/>
+								<field name="karyawan"/>
+								<field name="date"/>
+								<field name="store_doc"/>
+							</tree>
+						</field>
+					</page>
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</odoo>

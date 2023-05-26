@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="account_report_faktur"
+            model="report.faktur.wizard"
+            string="Report Faktur"
+            report_type="qweb-pdf"
+            file="report.faktur.wizard" 
+            name="vit_custom_report_invoice.report_faktur"
+            print_report_name="'Faktur - %s - %s' % (object.inv_id.partner_id.name or '', object.inv_id.name)"
+            menu="False"
+        />
+
+        <template id="vit_custom_report_invoice.report_faktur">
+            <t t-call="web.external_layout">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+                        <t t-set="lang" t-value="o.inv_id.partner_id.lang"/>
+                        <t t-set="o" t-value="o.with_context(lang=lang)" />
+                        <div class="page">
+                            <h2 class="text-center">
+                                <b><span>FAKTUR PENJUALAN</span></b>
+                            </h2>
+                            <br/>
+                            <div class="row">                                
+                                <div class="col-7">
+                                    <strong>Kepada :</strong>
+                                    <div t-field="o.inv_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                                </div>
+                                <div class="col-5">
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td width="120px">No. Invoice</td>
+                                            <td>:</td> 
+                                            <td>&#160;<span t-field="o.inv_id.number"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="120px">Tanggal</td>
+                                            <td>:</td> 
+                                            <td>&#160;<span t-field="o.inv_id.date_invoice"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="120px">No. Order</td>
+                                            <td>:</td> 
+                                            <td>&#160;<span t-field="o.inv_id.or_id.po_buyer"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="120px">No. SO</td>
+                                            <td>:</td> 
+                                            <td>&#160;<span t-field="o.inv_id.or_id"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="120px">Jangka Waktu</td>
+                                            <td>:</td> 
+                                            <td>&#160;<span t-field="o.inv_id.payment_term_id"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="120px">Surat Jalan</td>
+                                            <td>:</td> 
+                                            <td>&#160;<span t-field="o.inv_id.surat_jalan"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="120px">Faktur Pajak</td>
+                                            <td>:</td> 
+                                            <td>&#160;<span t-field="o.inv_id.efaktur"/></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <table class="table table-sm o_main_table" name="faktur_line_table" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th name="th_description" class="text-center" style="border: 1px !important; border-style: solid !important; border-color: #000 !important;width:35%;"><span>Item Description</span></th>
+                                        <th name="th_quantity" class="text-center" style="border: 1px !important; border-style: solid !important; border-color: #000 !important;width:12%;"><span>Qty</span></th>
+                                        <th name="th_priceunit" t-attf-class="text-center {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}" style="border: 1px !important; border-style: solid !important; border-color: #000 !important;width:13%;"><span>Unit Price</span></th>
+                                        <th name="th_subtotal" class="text-center" style="border: 1px !important; border-style: solid !important; border-color: #000 !important;width:15%;">
+                                            <span groups="account.group_show_line_subtotals_tax_excluded">Amount</span>
+                                            <span groups="account.group_show_line_subtotals_tax_included">Amount</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="invoice_tbody">
+                                    <t t-set="current_subtotal" t-value="0"/>
+
+                                    <t t-foreach="o.lines_wizard" t-as="line">
+
+                                        <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                        <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+
+                                        <tr>
+                                            <td name="account_invoice_line_name" style="border: 1px !important; border-style: solid !important; border-color: #000 !important;"><span t-field="line.item_desc"/></td>
+                                            <td class="text-right" style="border: 1px !important; border-style: solid !important; border-color: #000 !important;">
+                                                <span t-field="line.quantity"/>
+                                                <span t-field="line.uom_id"  groups="uom.group_uom"/>
+                                            </td>
+                                            <td t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}" style="border: 1px !important; border-style: solid !important; border-color: #000 !important;">
+                                                <span t-field="line.price_unit"/>
+                                            </td>
+                                            <td class="text-right o_price_total" style="border: 1px !important; border-style: solid !important; border-color: #000 !important;">
+                                                <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                                <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+
+                            <div class="clearfix">
+                                <div id="total" class="row">
+                                    <div class="col-7">
+                                        Terbilang
+                                        <h5><span t-field="o.inv_id.terbilang"/></h5>
+                                    </div>
+                                    <div class="col-1"></div>
+                                    <div class="col-4">
+                                        <table class="table table-sm" style="page-break-inside: avoid;">
+                                            <tr>
+                                                <td><strong>Subtotal :</strong></td>
+                                                <td class="text-right">
+                                                    <span t-field="o.inv_id.amount_untaxed"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>DP :</strong></td>
+                                                <td class="text-right" t-if="o.inv_id.state != 'draft'">
+                                                    <span t-field="o.dp_total"/>
+                                                </td>
+                                                <td class="text-right" t-if="o.inv_id.state == 'draft'">0
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>PPN :</strong></td>
+                                                <td class="text-right">
+                                                    <span t-field="o.inv_id.amount_tax"/>
+                                                </td>
+                                            </tr>
+                                            <tr class="border-black o_total" style="border-bottom: 1px solid black;">
+                                                <td><strong>Total Invoice :</strong></td>
+                                                <td class="text-right">
+                                                    <span t-field="o.inv_id.amount_total"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-8">
+                                    <b><i>Mohon pembayaran ditransfer ke : </i></b>
+                                    <table>
+                                        <tr>
+                                            <td width="120px">BANK</td>
+                                            <td>:</td> 
+                                            <td>&#160;<span t-field="o.inv_id.partner_bank_id.bank_id.name"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="120px">CABANG</td>
+                                            <td>:</td> 
+                                            <td>&#160;<span t-field="o.inv_id.partner_bank_id.cabang"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="120px">No. Rekening</td>
+                                            <td>:</td> 
+                                            <td>&#160;<span t-field="o.inv_id.partner_bank_id.acc_number"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="120px">Atas Nama</td>
+                                            <td>:</td> 
+                                            <td>&#160;<span t-field="o.inv_id.partner_bank_id.acc_holder_name"/></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-5 text-center">
+                                    <table t-if="not o.inv_id.ttd">
+                                        <tr>
+                                            <th style="height:100px;">PT TERATAIWIDJAJA</th>
+                                        </tr>
+                                        <tr>
+                                            <th style="border-bottom: 1px solid black;">Wijanto Angkawidjaja</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Direktur Utama</td>
+                                        </tr>
+                                    </table>
+                                    <table t-if="o.inv_id.ttd">
+                                        <tr>
+                                            <th style="height:200px;">PT TERATAIWIDJAJA</th>
+                                        </tr>
+                                        <tr>
+                                            <th style="border-bottom: 1px solid black;"><span t-field="o.inv_id.ttd"/></th>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>        
+    </data>
+</odoo>

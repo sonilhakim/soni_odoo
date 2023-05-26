@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_remunerasi_pegawai_tree2" model="ir.ui.view">
+            <field name="name">vit_remunerasi_pegawai_tree2</field>
+            <field name="model">vit.remunerasi_pegawai</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_remunerasi.view_vit_remunerasi_pegawai_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="matra_id"/>
+                </field>
+            </field>
+        </record>
+        <!-- form view-->
+        <record id="view_vit_remunerasi_pegawai_form2" model="ir.ui.view">
+            <field name="name">vit_remunerasi_pegawai_form2</field>
+            <field name="model">vit.remunerasi_pegawai</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_remunerasi.view_vit_remunerasi_pegawai_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/group" position="inside">
+                    <field name="matra_id" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <label for="date_from" string="Period"/>
+                    <div>
+                        <field name="date_from" class="oe_inline" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/> - <field name="date_to" class="oe_inline" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    </div>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page" position="replace">
+                    <page string="Remunerasi">
+                        <field name="remunerasi_ids" mode="tree">
+                            <tree string="Remunerasi pegawai">
+                                <field name="karyawan_id" />
+                                <field name="golongan_id" />
+                                <field name="pangkat_id" />
+                                <field name="wage" />
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        <!-- form view line-->
+        <record id="view_vit_remunerasi_pegawai_ids_form2" model="ir.ui.view">
+            <field name="name">vit_remunerasi_pegawai_ids_form2</field>
+            <field name="model">vit.remunerasi_pegawai_ids</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_remunerasi.view_vit_remunerasi_pegawai_ids_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="replace">
+                    <form string="Remunerasi pegawai">
+                        <header>
+                        </header>
+                        <sheet>
+                            <div class="oe_title">
+                                <label for="name" class="oe_edit_only" string="Pegawai"/>
+                                <h1><field name="karyawan_id"/></h1>
+                            </div>
+                            <group>
+                                <group>
+                                    <field name="remunerasi" invisible="1"/>
+                                    <field name="golongan_id" />
+                                    <field name="pangkat_id" />
+                                </group>
+                                <group>
+                                    <field name="remunerasi_id" invisible="1"/>
+                                    <field name="wage" />
+                                </group>
+                            </group>
+                            <notebook>
+                            </notebook>
+                        </sheet>
+                    </form>
+                </xpath>
+            </field>
+        </record>
+        <!-- salary rule -->
+        <record id="hr_salary_rule_form_rem" model="ir.ui.view">
+            <field name="name">hr.salary.rule.form.rem</field>
+            <field name="model">hr.salary.rule</field>
+            <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form"/>
+            <field name="arch" type="xml">
+                <field name="sequence" position="after">
+                    <field name="remun_type" readonly="1"/>
+                </field>
+            </field>
+        </record>
+        <!-- form view capaian_kinerja_unit_kerja-->
+        <record id="view_vit_capaian_kinerja_unit_kerja_form2" model="ir.ui.view">
+            <field name="name">vit_capaian_kinerja_unit_kerja_form2</field>
+            <field name="model">vit.capaian_kinerja_unit_kerja</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="vit_remunerasi.view_vit_capaian_kinerja_unit_kerja_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page" position="replace">
+                    <page string="Capaian unit">
+                        <field name="capaian_unit_ids" mode="tree">
+                            <tree string="Capaian kinerja unit kerja detail" editable="bottom">
+                                <field name="unit_id" />
+                                <field name="target_capaian" />
+                                <field name="capaian" />
+                                <field name="penilaian" />
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        <!-- kehadiran pegawai -->
+        <record id="view_attendance_tree_rem" model="ir.ui.view">
+            <field name="name">hr.attendance.tree.rem</field>
+            <field name="model">hr.attendance</field>
+            <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+            <field name="arch" type="xml">
+                <field name="employee_id" position="attributes">
+                    <attribute name="string">Pegawai</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_attendance_view_form_rem" model="ir.ui.view">
+            <field name="name">hr.attendance.form.rem</field>
+            <field name="model">hr.attendance</field>
+            <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+            <field name="arch" type="xml">
+                <field name="employee_id" position="attributes">
+                    <attribute name="string">Pegawai</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_salary_rule_formrem" model="ir.ui.view">
+        <field name="name">hr.salary.rule.formrem</field>
+        <field name="model">hr.salary.rule</field>
+        <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/notebook/page/group/separator[3]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <field name="register_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+    </data>
+</odoo>

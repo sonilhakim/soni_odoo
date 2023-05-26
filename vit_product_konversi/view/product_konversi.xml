@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_product_konversi_tree" model="ir.ui.view">
+            <field name="name">product.konversi.tree</field>
+            <field name="model">product.konversi</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Attendee">
+                    <field name="name"/>
+                    <field name="conv_date"/>
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_product_konversi_form" model="ir.ui.view">
+            <field name="name">product.konversi.form</field>
+            <field name="model">product.konversi</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Session">
+					<header>
+						<button string="Confirm" type="object" name="action_confirm"
+						 	 states="draft" class="oe_highlight" />
+
+						<field name="state" widget="statusbar" />
+					</header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Number"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                        	<field name="conv_date" class="oe_inline"/>
+                        </group>
+
+                        <notebook>
+                            <page string="Detail">
+                                <field name="detail_ids">
+                                    <tree string="Details" editable="botttom">
+                                        <field name="product_asal_id" />
+                                        <field name="product_tujuan_id" />
+                                        <field name="location_id" />
+                                        <field name="location_dest_id" />
+                                        <field name="product_tracking" invisible="1"/>
+                                        <field name="lot_asal" domain="[('product_id', '=', product_asal_id),('location_id', '=', location_id)]" attrs="{'readonly': [('product_tracking', '=', 'none')]}"/>
+                                        <field name="lot_tujuan" domain="[('product_id', '=', product_tujuan_id),('location_id', '=', location_dest_id)]" attrs="{'readonly': [('product_tracking', '=', 'none')]}"/>
+                                        <field name="qty_asal" />
+                                        <field name="qty_tujuan" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_koversi_list" model="ir.actions.act_window">
+			<field name="name">Konversi Product</field>
+			<field name="res_model">product.konversi</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to start Convertion
+              </p>
+				<p>klik tombol create untuk memulai konversi produk</p>
+			</field>
+		</record>
+
+        <menuitem id="all_konversi" name="Konversi Product" parent="stock.menu_stock_warehouse_mgmt" sequence="150" action="action_koversi_list"/>
+
+    </data>
+</odoo>

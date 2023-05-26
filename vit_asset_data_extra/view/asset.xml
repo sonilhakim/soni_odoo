@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_asset_asset_tree_extra" model="ir.ui.view">
+            <field name="name">account.asset.asset.tree.extra</field>
+            <field name="model">account.asset.asset</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="vit_asset.view_account_asset_asset_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="Assets" decoration-info="(state == 'draft')" decoration-muted="(state == 'close')">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="category_id"/>
+                        <field name="nup"/>
+                        <field name="condition"/>
+                        <field name="tipe_barang" string="Merk/Tipe"/>
+                        <field name="first_depreciation_manual_date"/>
+                        <field name="tgl_penyerahan_brg" string="Tgl Perolehan"/>
+                        <field name="value"/>
+                        <field name="value_residual"/>
+                        <field name="qty"/>
+                        <field name="alloc" string="Status Penggunaan"/>
+                        <field name="state"/>
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_asset_asset_form_extra" model="ir.ui.view">
+            <field name="name">account.asset.asset.form.extra</field>
+            <field name="model">account.asset.asset</field>
+            <field name="inherit_id" ref="om_account_asset.view_account_asset_asset_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//field[@name='status_kepemilikan']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath> -->
+                <xpath expr="//field[@name='department_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <!-- <xpath expr="//field[@name='value']" position="attributes">
+                    <attribute name="string">Nilai Perolehan Pertama</attribute>
+                </xpath>
+                <xpath expr="//field[@name='salvage_value']" position="attributes">
+                    <attribute name="string">Nilai Mutasi</attribute>
+                </xpath>
+                <xpath expr="//field[@name='value_residual']" position="attributes">
+                    <attribute name="string">Nilai Perolehan</attribute>
+                </xpath>
+                <xpath expr="//field[@name='first_depreciation_manual_date']" position="attributes">
+                    <attribute name="string">Tgl Rekam Pertama</attribute>
+                </xpath> -->
+                <xpath expr="//field[@name='analytic_tag_ids']" position="after">
+                    <field name="kepemilikan"/>
+                </xpath>
+                <xpath expr="//field[@name='code']" position="after">
+                    <field name="nup"/>
+                </xpath>
+                <xpath expr="//field[@name='tgl_penyerahan_brg']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='first_depreciation_manual_date']" position="after">
+                    <field name="tgl_penyerahan_brg" string="Tgl Perolehan"/>
+                </xpath>
+                <xpath expr="//field[@name='tipe_barang']" position="attributes">
+                    <attribute name="string">Merk/Tipe</attribute>
+                </xpath>
+                <xpath expr="//field[@name='alloc']" position="attributes">
+                    <attribute name="string">Status Penggunaan</attribute>
+                </xpath>
+                <xpath expr="//field[@name='asal']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <!-- <xpath expr="//field[@name='bast']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='bap']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath> -->
+                <xpath expr="//field[@name='kelengkapan_dokumen']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <!-- <xpath expr="//field[@name='tahun_pembuatan']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath> -->
+                <xpath expr="//field[@name='alloc']" position="after">
+                    <field name="status_pengelolaan"/>
+                    <field name="jumlah_kib"/>
+                    <field name="optimalisasi"/>                    
+                </xpath>
+                <xpath expr="//field[@name='asset_ids']/tree" position="replace">
+                    <tree string="Asset Details" decoration-info="(state == 'draft')"
+                        decoration-muted="(state == 'close')">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="category_id"/>
+                        <field name="nup"/>
+                        <field name="condition"/>
+                        <field name="tipe_barang" string="Merk/Tipe"/>
+                        <field name="first_depreciation_manual_date"/>
+                        <field name="tgl_penyerahan_brg" string="Tgl Perolehan"/>
+                        <field name="value"/>
+                        <field name="value_residual"/>
+                        <field name="qty"/>
+                        <field name="alloc" string="Status Penggunaan"/>
+                        <field name="state"/>
+                    </tree>
+                </xpath>
+                <xpath expr="//notebook/page[7]/group/group[2]" position="replace">
+                    <group string="Dokumen">
+                        <field name="jenis_dokumen"/>
+                        <field name="jenis_sertifikat"/>
+                        <field name="number" string="No. PSP"/>
+                        <field name="dates" string="Tgl. PSP"/>
+                        <field name="sbsk"/>
+                        <field name="status_sbsn"/>
+                        <field name="no_bpkb"/>
+                        <field name="nomor_polisi"/>
+                        <field name="kelengkapan_dokumen"/>
+                    </group>
+                </xpath>
+                <xpath expr="//notebook/page[7]/group/group[2]" position="after">
+                    <group string="Informasi Lainnya">
+                        <field name="luas_tanah"/>
+                        <field name="luas_tanah_bangunan"/>
+                        <field name="luas_tanah_lingkungan"/>
+                        <field name="luas_lahan_kosong"/>
+                        <field name="luas_bangunan"/>
+                        <field name="luas_dasar"/>
+                        <field name="jml_lantai"/>
+                    </group>
+                    <group string="Alamat">
+                        <field name="alamat"/>
+                        <field name="alamat_lain"/>
+                        <field name="rt_rw"/>
+                        <field name="kelurahan_id"/>
+                        <field name="kecamatan_id"/>
+                        <field name="kota_id"/>
+                        <field name="state_id"/>
+                        <field name="kode_pos"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

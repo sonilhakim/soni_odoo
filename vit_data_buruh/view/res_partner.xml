@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_partner_buruh_form" model="ir.ui.view">
+            <field name="name">view_partner_buruh_form</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="buruh"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_res_partner_buruh_filter" model="ir.ui.view">
+            <field name="name">res.partner.buruh.select</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='supplier']" position="after">
+                    <filter string="Buruh" name="buruh" domain="[('buruh','=',True)]"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_res_partner_buruh_form" model="ir.actions.act_window">
+            <field name="name">Buruh</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{'default_buruh':1, 'search_default_buruh':1, 'default_is_company': True}</field>
+            <field name="filter" eval="True"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Click to add a new Buruh
+                </p><p>
+                Click the Create button to add a new Buruh
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_res_partner" name="Buruh" parent="vit_data_buruh_config_menu" action="action_res_partner_buruh_form" sequence="60"/>
+    </data>
+</odoo>

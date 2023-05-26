@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_vit_kpi_gsp_tree" model="ir.ui.view">
+            <field name="name">vit_kpi_gsp_tree</field>
+            <field name="model">vit.kpi_gsp</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Kpi gsp">
+                    <field name="name" />
+                    <field name="start_date" />
+                    <field name="end_date" />
+                    <field name="preference" />
+                    <field name="company_id" />
+                    <field name="total_bobot" />
+                    <field name="total_score" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_vit_kpi_gsp_form" model="ir.ui.view">
+            <field name="name">vit_kpi_gsp_form</field>
+            <field name="model">vit.kpi_gsp</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Kpi gsp">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <label string="Periode" for="start_date"/>
+                                <div>
+                                    <field name="start_date" style="width: 25%" required="1"/> - &#160;&#160;&#160;&#160;&#160;&#160;&#160;<field name="end_date" style="width: 25%" required="1"/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="preference" />
+                                <field name="company_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Kpi Detail">
+                                <field name="kpi_lines_ids"
+                                        nolabel="1"
+                                        widget="section_and_note_one2many">
+                                    <tree string="Kpi lines" editable="bottom"  decoration-success="(score &gt;= bobot)" decoration-danger="(score &lt; bobot)"
+                                    decoration-info="(display_type == 'line_section')">
+                                        <control>
+                                            <create string="Add a line"/>
+                                            <create string="Add a section" context="{'default_display_type': 'line_section'}"/>
+                                            <!-- <create string="Add a note" context="{'default_display_type': 'line_note'}"/> -->
+                                        </control>
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="aspek_id" />
+                                        <field name="satuan" />
+                                        <field name="bobot" sum='total_bobot'/>
+                                        <field name="target" />
+                                        <field name="realisasi" />
+                                        <field name="nilai" />
+                                        <field name="score" sum='total_score'/>
+                                        <field name="name" widget="section_and_note_text"/>
+                                        <field name="display_type" invisible="1"/>
+                                        <field name="company_id" invisible="1"/>
+                                    </tree>
+                                </field>
+                                <group class="oe_subtotal_footer oe_right">
+                                    <field name="total_bobot" class="oe_subtotal_footer_separator"/>
+                                    <field name="total_score"  class="oe_subtotal_footer_separator"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_vit_kpi_gsp_search" model="ir.ui.view">
+            <field name="name">vit_kpi_gsp</field>
+            <field name="model">vit.kpi_gsp</field>
+            <field name="arch" type="xml">
+                <search string="Kpi gsp">
+                    <field name="name" select="True"/>
+                    <field name="start_date" select="True"/>
+                    <field name="end_date" select="True"/>
+                    <field name="preference" select="True"/>
+                    <field name="company_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Company" domain="[]" name="group_by_company_id" context="{'group_by':'company_id'}"/>
+                        <filter string="Start Date" domain="[]" name="group_by_start_date" context="{'group_by':'start_date'}"/>
+                        <filter string="End Date" domain="[]" name="group_by_end_date" context="{'group_by':'end_date'}"/>
+                        <filter string="Preference" domain="[]" name="group_by_preference" context="{'group_by':'preference'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_vit_kpi_gsp_kanban" model="ir.ui.view" >
+            <field name="name">vit_kpi_gsp</field>
+            <field name="model">vit.kpi_gsp</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="name" />
+                    <field name="start_date" />
+                    <field name="end_date" />
+                    <field name="preference" />
+                    <field name="total_bobot"/>
+                    <field name="total_score" />
+                    <field name="company_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>
+                                            <span class="text-muted">Start Date</span> <field name="start_date"></field>
+                                        </li>
+                                        <li>
+                                            <span class="text-muted">End Date</span> <field name="end_date"></field>
+                                        </li>
+                                        <li>
+                                            <span class="text-muted">Total Bobot</span> <field name="total_bobot"></field>
+                                        </li>
+                                        <li>
+                                            <span class="text-muted">Total Score</span> <field name="total_score"></field>
+                                        </li>
+                                        <li>
+                                            <span class="text-muted">Company</span> <field name="company_id"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <!-- <record id="view_vit_kpi_gsp_cal" model="ir.ui.view">
+            <field name="name">vit_kpi_gsp_cal</field>
+            <field name="model">vit.kpi_gsp</field>
+            <field name="arch" type="xml">
+                <calendar string="Kpi gsp" date_start="start_date">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record> -->
+        <!-- action window -->
+        <record id="action_vit_kpi_gsp" model="ir.actions.act_window">
+            <field name="name">KPI</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vit.kpi_gsp</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Kpi GSP
+                </p><p>
+                Click the Create button to add a new Kpi GSP
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vit_kpi_gsp" name="KPI" parent="vit_kpi_gsp_sub_menu" action="action_vit_kpi_gsp" sequence="10"/>
+    </data>
+</odoo>
