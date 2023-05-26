@@ -1,0 +1,15 @@
+<odoo>
+   <data noupdate="0">
+   	<record id="group_giro" model="res.groups">
+    	<field name="name">Giro Menu</field>
+    </record>
+
+    <record id="group_manager" model="res.groups">
+    	<field name="name">Giro Manager</field>
+    </record>
+        
+    <record id="group_user" model="res.groups">
+    	<field name="name">Giro User</field>
+    </record>
+   </data>
+</odoo>

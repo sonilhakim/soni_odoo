@@ -1,0 +1,6 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_vit_vit_bilyet_giro_user,access_vit_vit_bilyet_giro_user,model_vit_vit_bilyet_giro,group_user,1,1,1,1
+access_vit_giro_invoice,access_vit_giro_invoice,model_vit_giro_invoice,,1,1,1,1
+access_vit_vit_config_giro_user,access_vit_vit_config_giro_user,model_vit_vit_config_giro,group_user,1,0,0,0
+access_vit_vit_bilyet_giro_manager,access_vit_vit_bilyet_giro_manager,model_vit_vit_bilyet_giro,group_manager,1,1,1,1
+access_vit_vit_config_giro_manager,access_vit_vit_config_giro_manager,model_vit_vit_config_giro,group_manager,1,1,1,1

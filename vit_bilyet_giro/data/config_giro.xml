@@ -1,0 +1,10 @@
+<openerp>
+	<data>
+
+	    
+	    <record id="vit_config_term_giro" model="vit.vit_config_giro">	        
+	        <field name="name">Parameter Submit Date</field>
+	    </record>
+		
+	</data>
+</openerp>

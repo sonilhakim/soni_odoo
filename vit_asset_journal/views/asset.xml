@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_asset_asset_tree" model="ir.ui.view">
+            <field name="name">account.asset.asset.tree</field>
+            <field name="model">account.asset.asset</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Assets" decoration-info="(state == 'draft')" decoration-muted="(state == 'close')">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="category_id"/>
+                    <field name="date"/>
+                    <field name="qty"/>
+                    <field name="partner_id" string="Vendor"/>
+                    <field name="purchase_order_id"/>
+                    <field name="last_location_id"/>
+                    <field name="value" groups="account.group_account_user"/>
+                    <field name="value_residual" widget="monetary" groups="account.group_account_user"/>
+                    <field name="currency_id" groups="base.group_multi_currency"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="status_kepemilikan"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_account_asset_asset_form" model="ir.ui.view">
+            <field name="name">account.asset.asset.form2</field>
+            <field name="model">account.asset.asset</field>
+            <field name="inherit_id" ref="om_account_asset.view_account_asset_asset_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <button name="set_to_close" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </button>
+                <button name="compute_depreciation_board" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </button>
+                <button name="set_to_draft" position="attributes">
+                    <attribute name="groups">vit_asset.group_asset_manager</attribute>
+                    <attribute name="attrs">{'invisible': ['|', '|', ('asset_id','!=',False), ('entry_count', '!=', 0),
+                        ('state', 'not in', ['confirm','open'])]}
+                    </attribute>
+                </button>
+                <button name="validate" position="attributes">
+                    <attribute name="states">confirm</attribute>
+                    <attribute name="string">Confirm Accounting</attribute>
+                    <attribute name="groups">vit_asset.group_confirm_asset_accounting</attribute>
+                    <attribute name="attrs">{'invisible': ['|',('asset_id','!=',False)]}</attribute>
+                </button>
+                <button name="validate" position="after">
+                    <button name="confirm_ga" string="Confirm GA" states="draft" type="object" class="btn-primary"
+                            groups="vit_asset.group_confirm_asset_ga"/>
+                </button>
+                <button name="%(om_account_asset.action_asset_modify)d" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </button>
+                <field name="state" position="attributes">
+                    <attribute name="statusbar_visible">draft,confirm,open</attribute>
+                </field>
+                <xpath expr="//form/sheet/div[@class='oe_title']" position="before">
+                    <field name="image" widget="image" class="oe_avatar"
+                           attrs="{'readonly': [('state','!=','draft')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='date']" position="after">
+                    <field name="account_id" options="{'no_create':True}"
+                           attrs="{'readonly':[('state','!=','draft')]}"/>
+                    <field name="qty"/>
+                    <field name="asset_id" invisible="1"/>
+                    <field name="status_kepemilikan" invisible="1"/>
+                    <field name="responsible_id" options="{'no_create':True}"/>
+                    <field name="department_id" readonly="1"/>
+                    <field name="last_location_id" required="0" options="{'no_create':True}"
+                           domain="[('company_id','=',company_id)]"/>
+                </xpath>
+                <xpath expr="//field[@name='depreciation_line_ids']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('asset_id','=',False)]}</attribute>
+                    <attribute name="groups">account.group_account_user</attribute>
+                </xpath>
+                <field name="value" position="attributes">
+                    <attribute name="groups">account.group_account_user</attribute>
+                </field>
+                <field name="salvage_value" position="attributes">
+                    <attribute name="groups">account.group_account_user</attribute>
+                </field>
+                <field name="value_residual" position="attributes">
+                    <attribute name="groups">account.group_account_user</attribute>
+                </field>
+                <field name="company_id" position="replace"/>
+                <field name="category_id" position="before">
+                    <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                </field>
+                <field name="category_id" position="attributes">
+                    <attribute name="domain">
+                        [('type','=','purchase'),('company_id','=',company_id),('hierarchy_type','=','normal')]
+                    </attribute>
+                    <attribute name="options">{'no_create': True}</attribute>
+                </field>
+                <field name="partner_id" position="attributes">
+                    <attribute name="options">{'no_create': True}</attribute>
+                </field>
+                <xpath expr="//field[@name='invoice_id']" position="replace"/>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Details" attrs="{'invisible': [('asset_ids','=',[])]}">
+                        <field name="asset_ids" readonly="1">
+                            <tree string="Asset Details" decoration-info="(state == 'draft')"
+                                  decoration-muted="(state == 'close')">
+                                <field name="code"/>
+                                <field name="name"/>
+                                <field name="category_id"/>
+                                <field name="date"/>
+                                <field name="partner_id" string="Vendor"/>
+                                <field name="last_location_id"/>
+                                <field name="value" groups="account.group_account_user"/>
+                                <field name="value_residual" widget="monetary" groups="account.group_account_user"/>
+                                <field name="currency_id" groups="base.group_multi_currency"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="condition"/>
+                                <field name="status_kepemilikan"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Detail Sewa"
+                          attrs="{'invisible': ['|',('asset_ids','!=',[]),('status_kepemilikan','!=','Sewa')]}">
+                        <field name="sewa_lines">
+                            <tree string="Detail Sewa">
+                                <field name="nilai_sewa"/>
+                                <field name="due_date"/>
+                                <field name="sequence"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Warranty">
+                        <group string="Warranty">
+                            <field name="warranty_name"/>
+                            <field name="warranty_description"/>
+                            <field name="warranty_date"/>
+                            <field name="warranty_service_provider_id" options="{'no_create': True}"/>
+                        </group>
+                    </page>
+                    <page string="Description">
+                        <field name="description" placeholder="Description for this assets..."/>
+                    </page>
+                    <page string="Other Info">
+                        <group colspan="4">
+                            <group string="Attributes">
+                                <field name="manufacturer_id" options="{'no_create': True}"/>
+                                <field name="brand"/>
+                                <field name="model"/>
+                                <field name="color"/>
+                                <field name="serial_number"/>
+                                <field name="transmisi"/>
+                                <field name="no_mesin"/>
+                                <field name="no_rangka"/>
+                                <field name="silinder"/>
+                                <field name="tahun_pembuatan"/>
+                                <field name="city"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="History">
+                        <group colspan="4">
+                            <group string="Purchase Order">
+                                <field name="purchase_order_id" readonly="1"/>
+                            </group>
+                            <group string="Invoice">
+                                <field name="invoice_id" readonly="1"/>
+                            </group>
+                            <group string="Receiving">
+                                <field name="shipping_id" readonly="1"/>
+                            </group>
+                        </group>
+                        <group string="Maintenance" attrs="{'invisible': [('maintenance_count','=',0)]}">
+                            <field name="maintenance_ids" readonly="1" nolabel="1"/>
+                            <field name="maintenance_count" invisible="1"/>
+                        </group>
+                        <group string="Disposal" attrs="{'invisible': [('disposal_count','=',0)]}">
+                            <field name="disposal_ids" readonly="1" nolabel="1"/>
+                            <field name="disposal_count" invisible="1"/>
+                        </group>
+                        <group string="Mutasi" attrs="{'invisible': [('mutation_count','=',0)]}">
+                            <field name="mutation_ids" readonly="1" nolabel="1"/>
+                            <field name="mutation_count" invisible="1"/>
+                        </group>
+                        <group string="Reclass" attrs="{'invisible': [('reclass_count','=',0)]}">
+                            <field name="reclass_ids" readonly="1" nolabel="1"/>
+                            <field name="reclass_count" invisible="1"/>
+                        </group>
+                        <group string="Revaluasi" attrs="{'invisible': [('reval_count','=',0)]}">
+                            <field name="reval_ids" readonly="1" nolabel="1"/>
+                            <field name="reval_count" invisible="1"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_asset_asset_search" model="ir.ui.view">
+            <field name="name">account.asset.asset.search</field>
+            <field name="model">account.asset.asset</field>
+            <field name="type">search</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Asset">
+                    <field name="name" select="True"/>
+                    <field name="responsible_id"/>
+                    <field name="department_id"/>
+                    <field name="last_location_id"/>
+                    <field name="category_id"/>
+                    <field name="account_analytic_id"/>
+                    <field name="analytic_tag_ids"/>
+                    <field name="status_kepemilikan"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Category" icon="terp-camera_test" name="group_by_category_id"
+                                context="{'group_by':'category_id'}"/>
+                        <filter string="Responsible" icon="terp-camera_test" name="group_by_responsible_id"
+                                context="{'group_by':'responsible_id'}"/>
+                        <filter string="Department" icon="terp-camera_test" name="group_by_department_id"
+                                context="{'group_by':'department_id'}"/>
+                        <filter string="Location" icon="terp-camera_test" name="group_by_last_location_id"
+                                context="{'group_by':'last_location_id'}"/>
+                        <filter string="Analytic Account" icon="terp-camera_test" name="group_by_account_analytic_id"
+                                context="{'group_by':'account_analytic_id'}"/>
+                        <filter string="Beli" name="asset_beli" domain="[('status_kepemilikan','=','Beli')]"/>
+                        <filter string="Sewa" name="asset_sewa" domain="[('status_kepemilikan','=','Sewa')]"/>
+                        <filter string="Status Kepemilikan" name="group_kepemilikan"
+                                context="{'group_by':'status_kepemilikan'}"/>
+                        <filter string="Start Date" name="group_start_date" context="{'group_by':'start_date'}"/>
+                        <filter string="End Date" name="group_end_date" context="{'group_by':'end_date'}"/>
+                        <filter string="State" name="group_state" context="{'group_by':'state'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="act_open_account_asset_asset_view">
+            <field name="name">Asset</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.asset.asset</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_account_asset_asset_search"/>
+            <field name="domain">[('asset_id','=',False)]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_account_asset_asset_view_form">
+            <field name="act_window_id" ref="act_open_account_asset_asset_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_account_asset_asset_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_account_asset_asset_view_tree">
+            <field name="act_window_id" ref="act_open_account_asset_asset_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_account_asset_asset_tree"/>
+        </record>
+
+        <menuitem id="menu_account_asset_asset"
+                  parent="submenu_asset"
+                  sequence="20"
+                  action="act_open_account_asset_asset_view"/>
+
+        <record id="action_server_confirm_asset_ga" model="ir.actions.server">
+            <field name="name">Confirm GA</field>
+            <field name="model_id" ref="model_account_asset_asset"/>
+            <field name="binding_model_id" ref="vit_asset.model_account_asset_asset"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                action = records.confirm_ga_multi()
+            </field>
+        </record>
+
+        <record id="action_server_confirm_asset_accounting" model="ir.actions.server">
+            <field name="name">Confirm Accounting</field>
+            <field name="model_id" ref="model_account_asset_asset"/>
+            <field name="binding_model_id" ref="vit_asset.model_account_asset_asset"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                action = records.validate_multi()
+            </field>
+        </record>
+
+        <!--        <record id="action_server_confirm_asset_ga" model="ir.actions.server">-->
+        <!--            <field name="name">Confirm GA</field>-->
+        <!--            <field name="condition">True</field>-->
+        <!--            <field name="type">ir.actions.server</field>-->
+        <!--            <field name="model_id" ref="om_account_asset.model_account_asset_asset" />-->
+        <!--            <field name="state">code</field>-->
+        <!--            <field name="code">obj.browse(context.get('active_ids', [])).confirm_ga_multi()</field>-->
+        <!--        </record>-->
+
+        <!--        <record model="ir.values" id="action_module_confirm_asset_ga">-->
+        <!--            <field name="name">action_module_confirm_asset_ga</field>-->
+        <!--            <field name="action_id" ref="action_server_confirm_asset_ga" />-->
+        <!--            <field name="value" eval="'ir.actions.server,' + str(ref('action_server_confirm_asset_ga'))" />-->
+        <!--            <field name="key">action</field>-->
+        <!--            <field name="model_id" ref="om_account_asset.model_account_asset_asset" />-->
+        <!--            <field name="model">account.asset.asset</field>-->
+        <!--            <field name="key2">client_action_multi</field>-->
+        <!--        </record>-->
+
+
+        <!--        <record id="action_server_confirm_asset_accounting" model="ir.actions.server">-->
+        <!--            <field name="name">Confirm Accounting</field>-->
+        <!--            <field name="condition">True</field>-->
+        <!--            <field name="type">ir.actions.server</field>-->
+        <!--            <field name="model_id" ref="om_account_asset.model_account_asset_asset" />-->
+        <!--            <field name="state">code</field>-->
+        <!--            <field name="code">obj.browse(context.get('active_ids', [])).validate_multi()</field>-->
+        <!--        </record>-->
+
+
+        <!--        <record model="ir.values" id="action_module_confirm_asset_accounting">-->
+        <!--            <field name="name">action_module_confirm_asset_accounting</field>-->
+        <!--            <field name="action_id" ref="action_server_confirm_asset_accounting" />-->
+        <!--            <field name="value" eval="'ir.actions.server,' + str(ref('action_server_confirm_asset_accounting'))" />-->
+        <!--            <field name="key">action</field>-->
+        <!--            <field name="model_id" ref="om_account_asset.model_account_asset_asset" />-->
+        <!--            <field name="model">account.asset.asset</field>-->
+        <!--            <field name="key2">client_action_multi</field>-->
+        <!--        </record>-->
+
+    </data>
+</odoo>

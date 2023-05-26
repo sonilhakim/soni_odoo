@@ -1,0 +1,163 @@
+<odoo>
+  <data>
+    <record id="vit_bilyet_giro_tree" model="ir.ui.view">
+      <field name="name">vit_bilyet_giro_tree</field>
+      <field name="model">vit.vit_bilyet_giro</field>
+      <field name="arch" type="xml">
+        <tree string="Vit Bilyet Giro">
+          <field name="name"/>
+          <field name="due_date"/>
+          <field name="journal_id"/>
+          <field name="type"/>
+          <field name="receive_date"/>
+          <field name="submit_date"/>
+          <field name="clearing_date"/>
+          <field name="amount"/>
+          <field name="partner_id"/>
+          <field name="invoice_names"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+    <record id="vit_bilyet_giro_form" model="ir.ui.view">
+      <field name="name">vit_bilyet_giro_form</field>
+      <field name="model">vit.vit_bilyet_giro</field>
+      <field name="arch" type="xml">
+        <form string="Form Giro">
+          <header>
+            <button string="Confirm" states="draft" type="object" name="action_confirm" class="oe_highlight"/>
+            <button string="Clearing" states="open" type="object" name="action_clearing" class="oe_highlight" groups="vit_bilyet_giro.group_manager"/>
+            <button string="Cancel" states="open" type="object" name="action_cancel" groups="vit_bilyet_giro.group_manager"/>
+            <button string="Reject" states="open" type="object" name="action_reject" groups="vit_bilyet_giro.group_manager"/>
+            <field name="state" widget="statusbar"/>
+          </header>
+          <sheet>
+            <div class="oe_title">
+                <label for="name" class="oe_edit_only" string="Nomor Giro"/>
+                <h1><field name="name"/></h1>
+            </div>
+            <group>
+              <group>
+                <!-- <field name="name"/> -->
+                <field name="journal_id"/>
+                <field name="type"/>
+                <field name="invoice_type" invisible="1"/>
+                <field name="partner_id"/>
+                <field name="amount"/>
+                <field name="amount_difference" decoration-danger="amount_difference &lt; 0" decoration-success="amount_difference >= 0"/>
+              </group>
+              <group>
+                <field name="due_date"/>
+                <field name="receive_date"/>
+                <field name="param_id"/>
+                <field name="submit_date"/>
+                <field name="clearing_date"/>
+              </group>
+            </group>
+            <notebook colspan="4">
+              <page string="Invoices">
+                <field name="giro_invoice_ids">
+                  <tree string="Invoices" editable="bottom">
+                    <field name="invoice_id" domain="[('partner_id','=', parent.partner_id),('state','=','open'),('type','=',parent.invoice_type)]"/>
+                    <field name="amount_invoice" sum="Total Amount"/>
+                    <!-- <field name="amount" sum="Total Amount"/> -->
+                  </tree>
+                </field>
+              </page>
+              <page string="Other Info">
+                <group>
+                  <field name="payment_id"/>
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="vit_config_giro_form" model="ir.ui.view">
+      <field name="name">vit_config_giro_form</field>
+      <field name="model">vit.vit_config_giro</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Configuration">
+          <sheet>
+            <div class="oe_title">
+                <label for="name" class="oe_edit_only" string="Term Name"/>
+                <h1><field name="name"/></h1>
+            </div>
+            <group>
+                <label for="term" string="Term" />
+                <div>
+                  <field name="term" style="width: 15%"/>
+                  <field name="category" style="width: 25%"/>
+                </div>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="vit_config_giro_tree" model="ir.ui.view">
+      <field name="name">vit_config_giro_tree</field>
+      <field name="model">vit.vit_config_giro</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Vit Config Giro">
+          <field name="name"/>
+          <!-- <field name="date"/> -->
+          <field name="term"/>
+          <field name="category"/>
+        </tree>
+      </field>
+    </record>
+    <record model="ir.actions.act_window" id="act_vit_bilyet_giro_list">
+      <field name="name">Bilyet Giro</field>
+      <field name="res_model">vit.vit_bilyet_giro</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="act_vit_bilyet_giro_invoice_list">
+      <field name="name">Invoice</field>
+      <field name="res_model">account.invoice</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="act_vit_bilyet_giro_config">
+      <field name="name">Submit Term</field>
+      <field name="res_model">vit.vit_config_giro</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_vit_bilyet_giro_top" name="Giro Invoice" sequence="10" groups="vit_bilyet_giro.group_giro" web_icon="vit_bilyet_giro,static/description/icon.png"/>
+		<menuitem id="menu_vit_bilyet_giro_trans" name="Transactions" sequence="10" parent="menu_vit_bilyet_giro_top" groups="vit_bilyet_giro.group_giro"/>
+    <menuitem id="menu_vit_bilyet_giro_config" name="Configuration" sequence="20" parent="menu_vit_bilyet_giro_top" groups="vit_bilyet_giro.group_manager"/>
+    <menuitem id="menu_vit_bilyet_giro_config_tree" name="Submit Term" action="act_vit_bilyet_giro_config" sequence="20" parent="menu_vit_bilyet_giro_config" 
+    groups="vit_bilyet_giro.group_manager"/>
+    <menuitem id="menu_vit_bilyet_giro" name="Bilyet Giro" action="act_vit_bilyet_giro_list" sequence="20" parent="menu_vit_bilyet_giro_trans"/>
+    <menuitem id="menu_vit_bilyet_giro_invoice" name="Invoice" action="act_vit_bilyet_giro_invoice_list" sequence="20" parent="menu_vit_bilyet_giro_trans"/>
+    <record id="giro_filter" model="ir.ui.view">
+      <field name="name">giro.filter</field>
+      <field name="model">vit.vit_bilyet_giro</field>
+      <field name="arch" type="xml">
+          <search string="Search Giro">
+              <field name="name"/>
+              <field name="due_date"/>
+              <field name='journal_id' />
+              <field name='type' />
+              <field name='receive_date' />
+              <field name='clearing_date' />
+              <field name='partner_id' />
+              <field name='state' />
+
+              <filter name="Due Today"
+                      domain="[('due_date','=', time.strftime('%Y-%m-%d') )]"/>
+
+              <group expand="0" string="Group By">
+                  <filter string="Group by Journal" icon="terp-camera_test"
+                          name="journal_id" context="{'group_by':'journal_id'}"/>
+                  <filter string="Group by Type" icon="terp-camera_test"
+                          name="type" context="{'group_by':'type'}"/>
+                  <filter string="Group by Partner" icon="terp-camera_test"
+                          name="partner_id" context="{'group_by':'partner_id'}"/>
+              </group>
+          </search>
+      </field>
+    </record>
+  </data>
+</odoo>
